@@ -9,27 +9,34 @@
 ## Arquitetura do Projeto
 
 ```
-Formação AE/
+Formação AE/                        # ← Repositório git local (commit "chore: sync")
 ├── AGENTS.md                    # Este arquivo
 ├── Analytics Engineer Training 2026.md   # Diário de bordo do curso
 ├── GUIA_DBT_BANVIC.md           # Guia prático dbt (local vs Cloud)
+├── INDICE_MODULOS.md            # Índice consolidado de módulos
+├── .gitignore                   # Exclui *.pdf, *.zip, Desafio/referências, .agents/
 ├── .claude/settings.local.json  # Permissões opencode
-├── Exemplos repo banvic/
-│   ├── banvic-dbt-main/         # Cópia local do template (referência)
-│   └── BanVic-main/             # Case completo de aluno (referência)
+├── index.html                   # App de visualização de materiais (design Apple)
+├── files.json                   # Manifest gerado pelo sync
+├── server.py                    # Servidor local (http://localhost:8765)
+├── .opencode/
+│   ├── skill/ae_materials_app/  # Skill de auto-sync (templates + sync.py)
+│   └── index.html, files.json   # ← duplicatas do sync (candidatas a limpeza)
+├── Módulo 1 -  Introdução à Análise de Dados/   # PDF/MD + resumo + decoreba
+├── Modulo 2 - SQL para Análise de Dados/        # Oficial + resumo + decoreba
+├── Desafio/
+│   ├── desafio-banvic-an-lise-de-dados-2024.ipynb
+│   └── Exemplos repo banvic/    # Referências de terceiros (NÃO versionar)
 └── SEU_PROJETO/                 # ← Criar via fork de techindicium/banvic-dbt
     ├── dbt_project.yml
-    ├── models/
-    │   ├── staging/
-    │   ├── intermediate/
-    │   └── marts/
+    ├── models/ (staging/ intermediate/ marts/)
     ├── seeds/banvic/            # 8 CSVs (vêm do template)
-    ├── macros/
-    ├── tests/
+    ├── macros/, tests/
     └── profiles.yml             # FORA do repo (~/.dbt/profiles.yml)
 ```
 
 **Seu projeto real** = fork de `https://github.com/techindicium/banvic-dbt` clonado localmente.
+**App de materiais** = local, sem build. Sempre abrir via `http://localhost:8765` (não `file://`, por CORS). Sync: `python .opencode/skill/ae_materials_app/sync.py` (o alias moderno `python -m ae_materials_app.sync` NÃO funciona — module fora do path).
 
 ---
 
@@ -88,9 +95,15 @@ jupyter notebook  # abre analise_banvic.ipynb ou seu notebook
 - Datas: `utc=True` + `dt.tz_convert('America/Sao_Paulo')` se necessário
 
 ### Git
-- `main` branch protegida; trabalho em branches `feature/`, `fix/`
-- Commits convencionais: `feat:`, `fix:`, `refactor:`, `test:`, `docs:`
-- `.gitignore`: `target/`, `dbt_packages/`, `logs/`, `.venv/`, `*.pyc`, `.DS_Store`
+- Repo local inicializado em `Formação AE/` (root). `main` branch protegida; trabalho em branches `feature/`, `fix/`
+- Commits convencionais: `feat:`, `fix:`, `refactor:`, `test:`, `docs:`, `chore:`
+- `.gitignore`: `target/`, `dbt_packages/`, `logs/`, `.venv/`, `*.pyc`, `.DS_Store`, `*.pdf`, `*.zip`, `Desafio/Exemplos repo banvic/`, `.agents/`
+
+### App de Materiais (HTML + Server)
+- **Sem build**: `index.html` lê `FILES` (array injetado pelo sync) + `marked.js` + `motion` (CDN)
+- **Design Apple**: sidebar translúcida (`backdrop-filter: blur`), springs `cubic-bezier(0.25,0.46,0.45,0.94)`, feedback no `pointerdown`, tipografia IBM Plex, respeita `prefers-reduced-motion` e dark mode
+- **Servidor**: `python server.py` (porta 8765, abre navegador, header CORS)
+- **Sync**: `python .opencode/skill/ae_materials_app/sync.py` regenera `FILES` + `files.json`
 
 ---
 

@@ -104,6 +104,24 @@ Evolução de carreira (livro *Data Story*, Nancy Duarte): **Explorar** (contrib
 
 ### Material complementar
 
+#### App de Materiais (workflow local) — criado nesta pasta
+
+Para estudar os PDFs/MDs do curso sem depender de pastas, montei um app HTML local sem build:
+
+- **Stack:** `index.html` (design Apple — sidebar translúcida `backdrop-filter: blur`, springs `cubic-bezier(0.25,0.46,0.45,0.94)`, feedback no `pointerdown`, tipografia IBM Plex, dark mode + `prefers-reduced-motion`) lê o array `FILES` + `marked.js` + `motion` (CDN). Sem Node/npm.
+- **Servidor:** `python server.py` → `http://localhost:8765` (abre o navegador; precisa ser `http://`, não `file://`, por CORS).
+- **Sync automático:** `python .opencode/skill/ae_materials_app/sync.py` varre pastas de módulos (`.md`/`.txt`, **exclui PDFs** pra evitar duplicatas) e regenera `FILES` + `files.json`. A ordem dos itens vem de um `MODULE_TITLES` no script.
+- **Cuidados aprendidos:** `python -m ae_materials_app.sync` NÃO funciona (módulo fora do path) → usar o caminho direto `.opencode/skill/ae_materials_app/sync.py`. Atenção a encoding (UTF-8) no terminal Windows/PowerShell.
+- Ao adicionar novo material de curso: colocar na pasta do módulo → rodar o sync → `git commit`.
+
+#### Git local da pasta de estudo (inicializado)
+
+- **`git init`** na raiz `Formação AE/` → primeiro commit `chore: sync + Apple design system`.
+- **`.gitignore`** implementado: NÃO versiona `*.pdf`, `*.zip`, `Desafio/Exemplos repo banvic/` (cópias de terceiros), `.agents/` (skills instalados) e artefatos de build (`target/`, `dbt_packages/`, etc.).
+- Commits convencionais: `feat:` / `fix:` / `refactor:` / `test:` / `docs:` / `chore:`.
+
+---
+
 #### Linux / Ubuntu — visão geral
 
 - **Significado de "Ubuntu":** palavra zulu/xhosa (sul da África) — "humanidade para os outros" / "eu sou porque nós somos". Nome escolhido pela Canonical para refletir a filosofia do software livre: construído coletivamente, acessível a todos.
