@@ -119,16 +119,32 @@ def discover_files() -> List[Dict[str, Any]]:
     files.sort(key=lambda f: (f["cat"] != "Config", f["module"], f["label"]))
     return files
 
+# Heading genéricos de fechamento de apresentação (não são títulos reais)
+GENERIC_HEADINGS = {
+    "thank you", "thanks", "obrigado", "obrigada",
+    "questions", "q&a", "perguntas", "dúvidas", "duvidas", "fim", "the end",
+}
+
 def extract_title(path: Path) -> str:
-    """Extrai o primeiro heading # do arquivo markdown/txt."""
+    """Extrai o melhor título do arquivo (heading real ou primeira linha)."""
     try:
         text = path.read_text(encoding="utf-8")
-        for line in text.splitlines():
+        lines = text.splitlines()
+        for line in lines:
             line = line.strip()
             if line.startswith("# "):
-                return line[2:].strip()
-            if line.startswith("## "):
-                return line[3:].strip()
+                t = line[2:].strip()
+                if t.lower().strip(" !?.,:;-") not in GENERIC_HEADINGS:
+                    return t
+            elif line.startswith("## "):
+                t = line[3:].strip()
+                if t.lower().strip(" !?.,:;-") not in GENERIC_HEADINGS:
+                    return t
+        # Fallback: primeira linha não-vazia não-heading (ex: slides sem título)
+        for line in lines:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                return line[:120]
     except Exception:
         pass
     return ""
