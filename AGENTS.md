@@ -20,8 +20,7 @@ Formação AE/                        # ← Repositório git local (commit "chor
 ├── files.json                   # Manifest gerado pelo sync
 ├── server.py                    # Servidor local (http://localhost:8765)
 ├── .opencode/
-│   ├── skill/ae_materials_app/  # Skill de auto-sync (templates + sync.py)
-│   └── index.html, files.json   # ← duplicatas do sync (candidatas a limpeza)
+│   └── skill/ae_materials_app/  # Skill de auto-sync (templates + sync.py)
 ├── Módulo 1 -  Introdução à Análise de Dados/   # PDF/MD + resumo + decoreba
 ├── Modulo 2 - SQL para Análise de Dados/        # Oficial + resumo + decoreba
 ├── Desafio/
