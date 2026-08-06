@@ -1,0 +1,363 @@
+===================================================
+DECOREBA DE SQL - PARA ENTENDER, NAO PARA DECORAR
+===================================================
+Ideia: nao memorize a query pronta. Entenda o que cada
+peca FAZ e para que ela SERVE. Na hora de escrever, va
+montando pergunta por pergunta:
+  - de onde os dados vem? (FROM)
+  - o que eu quero ver? (SELECT)
+  - preciso filtrar linhas? (WHERE)
+  - preciso agrupar/resumir? (GROUP BY)
+  - preciso filtrar o resumo? (HAVING)
+  - preciso ordenar? (ORDER BY)
+  - preciso limitar a quantidade? (LIMIT)
+
+Essa e a ORDEM EM QUE VOCE ESCREVE e tambem a ordem
+em que o SQL EXECUTA (com uma pequena diferenca: o
+banco processa primeiro o FROM, depois o WHERE, depois
+o GROUP BY, depois o HAVING, depois o SELECT, depois o
+ORDER BY e por ultimo o LIMIT).
+
+===================================================
+1) ESTRUTURA BASICA - "de onde vem e o que eu quero ver"
+===================================================
+SELECT coluna1, coluna2
+FROM tabela;
+
+SELECT * FROM tabela;
+  -> * significa "todas as colunas"
+
+SELECT * FROM tabela LIMIT 10;
+  -> LIMIT so entrega as N primeiras linhas do
+     resultado. Bom para espiar uma tabela grande
+     sem travar a consulta.
+
+Pense assim: SELECT = "eu quero ver isso",
+             FROM   = "buscando dessa tabela"
+
+===================================================
+2) ORDER BY - "eu quero ver numa ordem"
+===================================================
+SELECT coluna1, coluna2
+FROM tabela
+ORDER BY coluna1;              -- ASC e o padrao (crescente)
+
+ORDER BY coluna1 DESC;         -- decrescente (do maior pro menor)
+
+ORDER BY coluna1 ASC, coluna2 ASC;
+  -> ordena primeiro por coluna1; quando empatar,
+     desempata pela coluna2.
+
+Combo classico: "top 5 mais caros"
+SELECT produto, preco
+FROM produtos
+ORDER BY preco DESC
+LIMIT 5;
+
+===================================================
+3) WHERE - "eu quero so as linhas que..."
+===================================================
+O WHERE filtra LINHAS, uma por uma, antes de qualquer
+agrupamento. Pense nele como uma pergunta de sim/nao
+para cada linha da tabela.
+
+Igualdade (valor exato):
+  WHERE cidade = 'Sao Paulo'        -- texto sempre entre aspas simples
+
+Comparacao (numeros, datas):
+  WHERE preco >= 100
+  WHERE preco > 100
+  WHERE preco < 100
+  WHERE preco <= 100
+  WHERE preco <> 100   ou   WHERE preco != 100     -- diferente de
+
+Combinando condicoes (operadores logicos):
+  WHERE categoria = 'Eletronicos' AND preco > 500   -- as DUAS precisam ser verdade
+  WHERE estado = 'SP' OR estado = 'RJ'              -- BASTA UMA ser verdade
+  WHERE NOT estado = 'SP'                            -- inverte a condicao
+
+Valores nulos (campo vazio/nao preenchido):
+  WHERE data_envio IS NULL         -- so os vazios
+  WHERE data_envio IS NOT NULL     -- so os preenchidos
+  (nunca use "= NULL", nao funciona em SQL)
+
+Lista de valores (evita varios OR):
+  WHERE estado IN ('SP', 'RJ', 'MG')
+  WHERE estado NOT IN ('SP', 'RJ', 'MG')
+
+Intervalo (do minimo ao maximo, incluindo as pontas):
+  WHERE preco BETWEEN 10 AND 100
+  WHERE preco NOT BETWEEN 10 AND 100
+
+Busca por padrao de texto (curingas):
+  WHERE nome LIKE 'Jo%'      -- comeca com "Jo"
+  WHERE nome LIKE '%Jo'      -- termina com "Jo"
+  WHERE nome LIKE '%Jo%'     -- contem "Jo" em qualquer parte
+    % = qualquer sequencia de caracteres (ate zero)
+    _ = exatamente UM caractere qualquer
+
+===================================================
+4) OPERADORES ARITMETICOS - fazer conta em cima da coluna
+===================================================
+  +   soma
+  -   subtracao
+  *   multiplicacao
+  /   divisao
+  %   modulo (resto da divisao)
+  ABS(coluna)          -> valor absoluto (tira o sinal negativo)
+  ROUND(coluna, 2)     -> arredonda para 2 casas decimais
+
+SELECT preco * 1.1 AS preco_com_ajuste FROM produtos;
+
+===================================================
+5) GROUP BY - "eu quero resumir em grupos"
+===================================================
+Serve para responder perguntas do tipo "quanto foi X
+POR categoria/cliente/mes/etc". Sempre anda junto com
+uma FUNCAO DE AGREGACAO (item 7).
+
+SELECT categoria, SUM(valor) AS total
+FROM vendas
+GROUP BY categoria;
+
+REGRA DE OURO: toda coluna que aparece no SELECT e NAO
+esta dentro de uma funcao de agregacao TEM que estar
+tambem no GROUP BY.
+
+===================================================
+6) HAVING - "eu quero filtrar os grupos, nao as linhas"
+===================================================
+Diferenca chave:
+  WHERE  -> filtra ANTES de agrupar (linha por linha)
+  HAVING -> filtra DEPOIS de agrupar (grupo por grupo)
+
+SELECT categoria, SUM(valor) AS total
+FROM vendas
+GROUP BY categoria
+HAVING SUM(valor) > 1000;
+  -> so mostra categorias cujo total agrupado passou de 1000
+
+===================================================
+7) FUNCOES DE AGREGACAO - resumem varias linhas em 1 valor
+===================================================
+  COUNT(coluna)   -> conta quantas linhas (nao-nulas)
+  COUNT(*)        -> conta todas as linhas, incluindo nulas
+  SUM(coluna)     -> soma os valores
+  AVG(coluna)     -> calcula a media
+  MIN(coluna)     -> menor valor
+  MAX(coluna)     -> maior valor
+
+Sempre respondem "para o conjunto/grupo inteiro, qual e
+o total/media/etc?"
+
+===================================================
+8) CASE WHEN - "se isso, entao aquilo" (tipo SE do Excel)
+===================================================
+SELECT
+  cliente,
+  gasto_total,
+  CASE
+    WHEN gasto_total >= 1000 THEN 'VIP'
+    WHEN gasto_total >= 500  THEN 'Regular'
+    ELSE 'Basico'
+  END AS categoria_cliente
+FROM clientes;
+  -> avalia de cima para baixo e para na primeira
+     condicao verdadeira
+
+===================================================
+9) JOIN - "juntar colunas de tabelas diferentes" (horizontal)
+===================================================
+Usa uma coluna em comum (a "chave") para ligar as
+tabelas. A condicao de ligacao fica no ON.
+
+SELECT t1.coluna, t2.coluna
+FROM tabela1 t1
+JOIN tabela2 t2 ON t1.chave = t2.chave;
+
+Pergunte sempre: "quero SO quem tem em ambas, ou
+quero TUDO de uma tabela mesmo sem match na outra?"
+
+  INNER JOIN (ou so JOIN)
+    -> so retorna quem tem correspondencia NAS DUAS tabelas
+       (a intersecao)
+
+  LEFT JOIN
+    -> retorna TUDO da tabela da esquerda (a do FROM) +
+       o que casar na direita. Sem match na direita = NULL
+
+  RIGHT JOIN
+    -> o oposto do LEFT: TUDO da tabela da direita (a do
+       JOIN) + o que casar na esquerda
+
+  FULL (OUTER) JOIN
+    -> retorna TUDO das duas tabelas, com NULL onde nao
+       houver correspondencia
+
+  CROSS JOIN
+    -> combina CADA linha de uma tabela com CADA linha da
+       outra (produto cartesiano). Nao usa ON. Cuidado:
+       cresce muito rapido (10 linhas x 5 linhas = 50)
+
+  SELF JOIN
+    -> a tabela ligada com ela mesma. Usado para comparar
+       linhas da mesma tabela (ex: funcionario e seu
+       gestor, que esta na mesma tabela de funcionarios)
+
+===================================================
+10) UNION - "empilhar resultados" (vertical)
+===================================================
+Junta o resultado de duas consultas SELECT, uma embaixo
+da outra (nao lado a lado como o JOIN). As duas consultas
+precisam ter o MESMO NUMERO e TIPO de colunas.
+
+SELECT nome FROM clientes_brasil
+UNION
+SELECT nome FROM clientes_eua;
+
+  UNION       -> remove linhas duplicadas
+  UNION ALL   -> mantem duplicadas (mais rapido)
+
+===================================================
+11) FUNCOES ESCALARES - manipulam UM valor de cada vez
+===================================================
+Texto:
+  UPPER(coluna)          -> tudo maiusculo
+  LOWER(coluna)          -> tudo minusculo
+  TRIM(coluna)           -> remove espacos nas pontas
+  CONCAT(colA, colB)     -> junta textos (tambem existe || )
+  SUBSTR(texto, inicio, tamanho) -> pega um pedaco do texto
+  REPLACE(coluna, 'de', 'para')  -> troca um trecho por outro
+  SPLIT_PART(coluna, '@', 1)     -> quebra o texto por um
+                                     separador e pega a parte N
+  LEFT(coluna, 3)        -> pega os 3 primeiros caracteres
+  RIGHT(coluna, 3)       -> pega os 3 ultimos caracteres
+
+Numero:
+  ROUND(coluna, 2)   ABS(coluna)   CEIL(coluna)   FLOOR(coluna)
+
+Data/hora:
+  NOW()              -> data e hora atuais
+  YEAR(coluna)       -> extrai o ano
+  MONTH(coluna)      -> extrai o mes
+  DATEADD(...)       -> soma dias/meses/anos a uma data
+
+Conversao:
+  CAST(coluna AS tipo)     -> converte o tipo do dado (ex: texto -> numero)
+  COALESCE(coluna, valor)  -> se for nulo, usa esse valor no lugar
+  NULLIF(a, b)             -> retorna nulo se a = b
+
+===================================================
+12) FUNCOES ANALITICAS / WINDOW FUNCTIONS
+===================================================
+Parecidas com as de agregacao, mas NAO resumem as
+linhas em uma so: elas calculam um valor PARA CADA
+LINHA, olhando para uma "janela" de linhas relacionadas.
+
+SELECT
+  vendedor,
+  categoria,
+  AVG(valor) OVER (PARTITION BY categoria ORDER BY vendedor) AS media_categoria
+FROM vendas;
+
+  OVER          -> define a "janela" (o conjunto de linhas
+                   que a funcao vai enxergar)
+  PARTITION BY  -> divide essa janela em subgrupos (tipo um
+                   GROUP BY, mas sem esconder as linhas)
+  ORDER BY (dentro do OVER) -> ordena as linhas dentro do subgrupo
+
+Funcoes comuns nesse contexto:
+  ROW_NUMBER()   -> numera as linhas em sequencia
+  RANK()         -> da uma posicao/ranking (pode empatar e pular numero)
+  DENSE_RANK()   -> ranking sem pular numero em caso de empate
+  LAG()          -> traz o valor da LINHA ANTERIOR
+  LEAD()         -> traz o valor da PROXIMA LINHA
+  FIRST_VALUE()  -> primeiro valor da janela
+  LAST_VALUE()   -> ultimo valor da janela
+  SUM()/AVG()/COUNT() com OVER -> versao "linha a linha" da agregacao
+
+===================================================
+13) CTE (WITH) - organizar consultas complicadas em passos
+===================================================
+Serve para dar nome a um pedaco de consulta e reusar
+depois, deixando o codigo mais facil de ler (em vez de
+uma unica query gigante e confusa).
+
+WITH cte_1 AS (
+  SELECT coluna1
+  FROM tabelaX
+),
+cte_2 AS (
+  SELECT coluna1
+  FROM cte_1
+  WHERE coluna1 > 10
+)
+SELECT * FROM cte_2;
+
+Pense em cada CTE como um "passo" de uma receita: primeiro
+prepara isso, depois usa o resultado no passo seguinte.
+
+===================================================
+14) TIPOS DE COMANDO SQL (o "vocabulario" por tras)
+===================================================
+DQL (consulta, so LER)
+  SELECT
+
+DML (manipula os DADOS)
+  INSERT   -> adiciona linha nova
+  UPDATE   -> altera linha existente
+  DELETE   -> remove linha
+
+DDL (manipula a ESTRUTURA, o "esqueleto")
+  CREATE   -> cria tabela/objeto
+  ALTER    -> modifica a estrutura
+  DROP     -> apaga tabela/objeto
+  TRUNCATE -> apaga todos os dados da tabela, mantem a estrutura
+
+DCL (controla ACESSO)
+  GRANT    -> concede permissao
+  REVOKE   -> retira permissao
+
+TCL (controla TRANSACOES)
+  COMMIT   -> confirma as mudancas (torna permanente)
+  ROLLBACK -> desfaz as mudancas
+
+No dia a dia de analista de dados: 90% do tempo voce vai
+usar SELECT (DQL). O resto e bom saber reconhecer quando
+aparecer em documentacao ou no trabalho de outra pessoa.
+
+===================================================
+15) EXPLAIN - "por que essa consulta ta lenta?"
+===================================================
+EXPLAIN SELECT coluna FROM tabela WHERE condicao;
+  -> mostra o "plano de execucao": como o banco pretende
+     buscar os dados (se vai usar indice, em que ordem
+     vai juntar as tabelas, custo estimado). Util quando
+     uma query comeca a demorar muito.
+
+Dicas rapidas de performance:
+  - evite SELECT * em tabelas grandes (traga so as colunas
+    que voce precisa)
+  - filtre com WHERE o quanto antes (menos linhas para
+    processar depois)
+  - cuidado com ORDER BY em tabelas muito grandes
+  - indices ajudam a achar registros mais rapido nas
+    colunas mais consultadas
+
+===================================================
+COMO PENSAR NA HORA DE MONTAR UMA QUERY DO ZERO
+===================================================
+1. Qual pergunta de negocio eu quero responder?
+2. De qual(is) tabela(s) eu preciso? (FROM / JOIN)
+3. Preciso combinar tabelas? Que tipo de JOIN faz
+   sentido (so quem tem match, ou tudo de um lado)?
+4. Preciso filtrar linhas antes de qualquer coisa? (WHERE)
+5. Preciso resumir/agrupar (por categoria, cliente, mes)? (GROUP BY)
+6. Preciso filtrar esse resumo? (HAVING)
+7. Quais colunas eu realmente quero ver no resultado? (SELECT)
+8. Preciso ordenar o resultado final? (ORDER BY)
+9. Preciso limitar quantas linhas aparecem? (LIMIT)
+
+Va respondendo essas perguntas na ordem e a query vai
+"se montando sozinha" -- sem precisar decorar a sintaxe
+de cor, so entendendo o papel de cada peca.

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(python -c \"import pypdf\")",
+      "Bash(python -c \"import fitz\")",
+      "Bash(pip list *)",
+      "WebFetch(domain:www.udemy.com)",
+      "WebFetch(domain:www.youtube.com)"
+    ]
+  }
+}

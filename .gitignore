@@ -1,0 +1,18 @@
+# ==== App / build ====
+target/
+dbt_packages/
+logs/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# ==== Materiais pesados (não versionar) ====
+*.pdf
+*.zip
+
+# ==== Repos de referência do desafio (cópias de terceiros) ====
+Desafio/Exemplos repo banvic/
+
+# ==== Skills instalados de terceiros ====
+.agents/

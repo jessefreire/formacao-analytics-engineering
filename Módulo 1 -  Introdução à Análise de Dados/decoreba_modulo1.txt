@@ -1,0 +1,93 @@
+DECOREBA - MODULO 1: INTRODUCAO A ANALISE DE DADOS
+====================================================
+
+PAPEIS DA AREA DE DADOS (o que cada um FAZ)
+--------------------------------------------
+- Arquiteto de Dados -> define politicas, ferramentas e estrategia de modelagem
+- Engenheiro de Dados -> constroi e mantem infraestrutura de ingestao/armazenamento
+- Engenheiro de Analytics -> transforma dados brutos, constroi o Data Warehouse (usa DBT)
+- Analista de Dados -> transforma e analisa dados p/ gerar insight e decisao (dashboards)
+- Cientista de Dados -> estatistica/ML p/ modelos preditivos
+- Engenheiro de ML -> leva modelos de ML pra producao
+
+>> PEGADINHA: Analytics Engineer = "encanamento" (pipeline/modelagem).
+   Dashboard e interpretacao de negocio = territorio do Analista de Dados.
+
+TRIPE DE HABILIDADES (Analista de Dados)
+--------------------------------------------
+Matematica/Estatistica + Programacao + Conhecimento de Negocio
+= os 3 juntos = Ciencia de Dados
+
+PROCESSO DE TRABALHO (CRISP-DM adaptado) - 6 ETAPAS
+--------------------------------------------
+1. Entendimento do problema de negocio
+2. Entendimento dos dados e do usuario
+3. Preparacao / prototipacao / documentacao (catalogacao)
+4. Exploracao (estatistica descritiva + visualizacao)
+5. Conclusoes (validar com o negocio)
+6. Comunicacao (apresentar sem distorcer)
+-> E CICLICO, nao linear.
+
+TIPOS DE ANALISE
+--------------------------------------------
+Analise de dados: Descritiva, Segmentacao, Agregacao, Geoespacial
+Previsoes: Series temporais, Classificacao, Numerico-continua (regressao), Teste A/B
+
+EXPLORATORIA x EXPLICATIVA
+--------------------------------------------
+Exploratoria = bastidor, busca padroes, nao precisa ser bonita
+Explicativa = ja tem o insight, precisa de narrativa/conclusao
+Evolucao de carreira (Data Story - Nancy Duarte): Explorar -> Explicar -> Inspirar
+
+OS 5 Vs DO BIG DATA
+--------------------------------------------
+Volume, Velocidade, Variedade, Veracidade, Valor
+
+>> PEGADINHA: VERACIDADE x INTEGRIDADE
+   VERACIDADE = o DADO reflete a realidade (dado em si e verdadeiro/preciso)
+   INTEGRIDADE = o PROCESSO preservou o dado corretamente (nada corrompeu no caminho)
+
+CLASSIFICACAO DE VOLUME
+--------------------------------------------
+Small Data  = menos de 500GB (uma maquina resolve)
+Medium Data = 500GB a 100TB
+Big Data    = mais de 100TB (processamento distribuido)
+
+PROCESSAMENTO: batch (programado, em lotes) x streaming (tempo real)
+ESTRUTURA: estruturados (tabelas) / semiestruturados (JSON,XML,CSV) / nao estruturados (texto,imagem,audio)
+
+OKR x KPI
+--------------------------------------------
+OKR = Objetivo (O QUE alcancar) + Resultados-Chave (COMO medir)
+KPI = indicador de progresso. Tipos: Produtividade, Qualidade, Capacidade, Estrategico
+
+>> ERRO COMUM DE KPI: medir TAREFA em vez de RESULTADO
+   ex: "horas trabalhadas" mede esforco, nao se o objetivo foi atingido, e e facil de burlar
+
+FERRAMENTAS DE GESTAO / PENSAMENTO CRITICO
+--------------------------------------------
+PDCA (Plan-Do-Check-Act) -> melhoria continua de PROCESSO
+5 Porques -> achar causa raiz de UM problema especifico
+5W2H (What,Why,Who,Where,When,How,How much) -> planejar/detalhar uma ACAO
+Diagrama de Ishikawa (espinha de peixe, 6 Ms) -> investigar causas de UM problema JA ESCOLHIDO
+Matriz GUT (Gravidade,Urgencia,Tendencia) -> PRIORIZAR entre VARIOS problemas diferentes
+Diagrama de Pareto (80/20) -> poucas causas = maior parte do problema
+Brainstorming -> gerar ideias livres, sem julgamento
+Fluxograma -> mapear visualmente causa -> efeito -> solucao
+
+>> PEGADINHA: ORDEM GUT x ISHIKAWA
+   1o GUT (decide QUAL problema atacar, entre varios)
+   2o Ishikawa (investiga a causa raiz DO problema escolhido)
+
+ETICA NO MUNDO DE DADOS
+--------------------------------------------
+- Cuidado com VIES ESTRUTURAL ao analisar grupos sociais (analise "purista" pode
+  reforcar desigualdade existente nos dados historicos)
+- Seguranca da informacao: identificar dado sensivel/estrategico, evitar vazamento
+
+PLATAFORMA x PRODUTOS DE DADOS
+--------------------------------------------
+Plataforma de dados = infraestrutura (ingestao, armazenamento, entrega)
+Produtos de dados = o que sai dali (elementos no DW, dashboards, modelos de previsao)
+-> DBT = Engenheiro de Analytics (Data Marts)
+-> Power BI = Dashboards (Analista de Dados)
