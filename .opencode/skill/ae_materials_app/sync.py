@@ -108,7 +108,7 @@ def discover_files() -> List[Dict[str, Any]]:
                 "id": fid,
                 "label": path.name,
                 "title": title,
-                "path": path.name,
+                "path": path.relative_to(ROOT).as_posix(),
                 "cat": module_label,
                 "done": done,
                 "module": module_num if not is_config else 0,
