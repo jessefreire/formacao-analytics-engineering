@@ -50,6 +50,12 @@ body {
 }
 :root { font: 100%/1.5 system-ui, sans-serif; }
 
+/* ========== ANIMATIONS ========== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
 /* ========== SPRING ANIMATION HELPERS ========== */
 .spring-enter { opacity: 0; transform: translateY(8px); }
 .spring-enter-active { opacity: 1; transform: none; }
@@ -65,9 +71,10 @@ body {
   border-top: 1px solid rgba(255,255,255,0.4);
   display: flex; flex-direction: column;
   overflow-y: auto; height: 100vh;
-  position: sticky; top: 0;
+  position: relative;
   box-shadow: var(--shadow-md);
   z-index: 10;
+  transition: width var(--response) cubic-bezier(0.25,0.46,0.45,0.94), opacity var(--response);
 }
 [data-theme="dark"] .sidebar {
   background: rgba(var(--card-rgb, 22,22,36), 0.85);
@@ -104,9 +111,35 @@ body {
 .nav-link::before { content: "\2022 "; color: var(--muted); transition: color 0.12s ease; }
 .nav-link.active::before { content: "\25B8 "; color: inherit; }
 
+.sidebar-toggle {
+  background: var(--code-bg); border: 1px solid var(--border);
+  color: var(--fg); width: 28px; height: 28px;
+  border-radius: var(--radius-sm); cursor: pointer; font-size: 0.875rem;
+  font-family: inherit; display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.sidebar-toggle:active { transform: scale(0.92); }
+.sidebar-toggle:hover { background: var(--border); }
+[data-sidebar-collapsed="true"] .sidebar-toggle { transform: rotate(180deg); }
+[data-sidebar-collapsed="true"] .sidebar-toggle:hover { transform: rotate(180deg); }
+[data-sidebar-collapsed="true"] .sidebar { width: 0 !important; min-width: 0; overflow: hidden; border: none; }
+[data-sidebar-collapsed="true"] .sidebar-header,
+[data-sidebar-collapsed="true"] .nav { opacity: 0; pointer-events: none; }
+[data-sidebar-collapsed="true"] .resize-handle { display: none; }
+.sidebar-actions { display: flex; align-items: center; gap: 0.375rem; }
+
+.resize-handle {
+  position: absolute; top: 0; right: 0; bottom: 0; width: 4px;
+  cursor: col-resize; background: transparent; z-index: 20;
+  transition: background 0.15s ease;
+}
+.resize-handle:hover, .resize-handle.dragging { background: var(--accent); }
+
 /* ========== MAIN ========== */
 .main { flex: 1; overflow-y: auto; padding: clamp(1.5rem, 3vw, 3rem); }
 .main-header { margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+.main-header-empty { display: flex; align-items: center; gap: 0.5rem; min-height: 2.5rem; }
+.main-header-empty .empty-hint { color: var(--muted); font-size: 0.875rem; }
 .main-title {
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 600; line-height: 1.15;
@@ -143,19 +176,17 @@ body {
   transition: background 0.12s ease, color 0.12s ease, transform 0.1s ease;
 }
 .module-badge:active { transform: scale(0.95); }
-.module-badge.done { background: var(--accent); color: var(--bg); }
-
-.empty { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 40vh; padding: 2rem; text-align: center; color: var(--muted); }
-.empty-icon { font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 1rem; opacity: 0.35; }
-
 /* ========== MOBILE ========== */
 @media (max-width: 900px) {
   .sidebar { position: fixed; left: 0; top: 0; bottom: 0; z-index: 100; transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); box-shadow: var(--shadow-lg); }
-  .sidebar.open { transform: none; }
+  .sidebar.open { transform: none !important; }
   .main { padding: 1.5rem; }
   .mobile-toggle { display: block; position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 50; background: var(--accent); color: var(--bg); border: none; padding: 0.75rem 1.125rem; border-radius: var(--radius-md); font-weight: 500; font-size: 0.875rem; cursor: pointer; box-shadow: var(--shadow-lg); transition: transform 0.15s ease, box-shadow 0.15s ease; }
   .mobile-toggle:active { transform: scale(0.95); box-shadow: var(--shadow-md); }
   .mobile-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  [data-sidebar-collapsed="true"] .sidebar { width: var(--sidebar-w) !important; min-width: var(--sidebar-w); }
+  [data-sidebar-collapsed="true"] .sidebar-header,
+  [data-sidebar-collapsed="true"] .nav { opacity: 1; pointer-events: auto; }
 }
 @media (min-width: 901px) { .mobile-toggle { display: none; } }
 
@@ -173,15 +204,16 @@ body {
 <div class="sidebar" id="sidebar">
   <header class="sidebar-header">
     <span class="sidebar-title">Formação AE</span>
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema" aria-pressed="false">☀️/🌙</button>
+    <div class="sidebar-actions">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Recolher painel" title="Recolher painel">⟨</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema" aria-pressed="false">☀️/🌙</button>
+    </div>
   </header>
   <nav class="nav" id="nav" role="navigation" aria-label="Materiais do curso"></nav>
+  <div class="resize-handle" id="resizeHandle"></div>
 </div>
 <main class="main" id="main" role="main">
-  <div class="empty" id="emptyState" aria-hidden="true">
-    <div class="empty-icon" aria-hidden="true">📚</div>
-    <p>Selecione um material na barra lateral</p>
-  </div>
+  <div class="main-header-empty" id="emptyHint"><span class="empty-hint">Selecione um material ⟶</span></div>
   <article class="content" id="content" hidden></article>
 </main>
 <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebar">☰ Menu</button>
@@ -221,6 +253,9 @@ const FILES = [
 // ========== APP STATE ==========
 let currentFile = null;
 let sidebarOpen = false;
+let isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+const MIN_SIDEBAR = 200;
+const MAX_SIDEBAR = 600;
 
 // ========== THEME ==========
 function initTheme() {
@@ -234,6 +269,57 @@ function toggleTheme() {
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
   updateThemeIcon(next);
+}
+
+// ========== SIDEBAR COLLAPSE ==========
+function toggleSidebarCollapse() {
+  isCollapsed = !isCollapsed;
+  document.documentElement.setAttribute('data-sidebar-collapsed', isCollapsed);
+  localStorage.setItem('sidebarCollapsed', isCollapsed);
+}
+
+// ========== SIDEBAR RESIZE ==========
+function initResizeHandle() {
+  const handle = document.getElementById('resizeHandle');
+  let startX = 0;
+  let startW = 0;
+
+  function onMouseMove(e) {
+    const delta = e.clientX - startX;
+    let newW = startW + delta;
+    newW = Math.max(MIN_SIDEBAR, Math.min(MAX_SIDEBAR, newW));
+    document.documentElement.style.setProperty('--sidebar-w', newW + 'px');
+  }
+  function onMouseUp() {
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+    handle.classList.remove('dragging');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+    const currentW = document.documentElement.style.getPropertyValue('--sidebar-w');
+    localStorage.setItem('sidebarWidth', currentW);
+  }
+  handle.addEventListener('pointerdown', (e) => {
+    if (isCollapsed) return;
+    e.preventDefault();
+    startX = e.clientX;
+    const style = getComputedStyle(document.documentElement);
+    startW = parseFloat(style.getPropertyValue('--sidebar-w')) || 280;
+    handle.classList.add('dragging');
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
+}
+
+// ========== RESTORE SIDEBAR STATE ==========
+function initSidebarState() {
+  const savedW = localStorage.getItem('sidebarWidth');
+  if (savedW) {
+    document.documentElement.style.setProperty('--sidebar-w', savedW);
+  }
+  document.documentElement.setAttribute('data-sidebar-collapsed', isCollapsed);
 }
 function updateThemeIcon(theme) {
   const btn = document.getElementById('themeToggle');
@@ -271,7 +357,7 @@ function renderNav() {
         <a class="nav-link ${f.id === currentFile ? 'active' : ''}" 
            href="#" data-id="${f.id}" title="${escapeHtml(f.title || f.label)}"
            ${f.id === currentFile ? 'aria-current="page"' : ''}>
-          ${f.label} ${f.done ? '<span class="module-badge done" aria-label="Concluído">✓</span>' : ''}
+          ${f.label}
         </a>
       `).join('')}
     </section>
@@ -307,16 +393,16 @@ async function loadFile(id) {
 
 function showLoading() {
   const content = document.getElementById('content');
-  const empty = document.getElementById('emptyState');
-  empty.hidden = true;
+  const emptyHint = document.getElementById('emptyHint');
+  emptyHint.hidden = true;
   content.hidden = false;
   content.innerHTML = '<p style="color:var(--muted);text-align:center;padding:3rem;">Carregando…</p>';
 }
 
 function renderContent(file, text) {
   const content = document.getElementById('content');
-  const empty = document.getElementById('emptyState');
-  empty.hidden = true;
+  const emptyHint = document.getElementById('emptyHint');
+  emptyHint.hidden = true;
   content.hidden = false;
   
   const isMd = file.path.endsWith('.md');
@@ -324,7 +410,7 @@ function renderContent(file, text) {
   
   content.innerHTML = `
     <header class="main-header">
-      <span class="module-badge ${file.done ? 'done' : ''}">${escapeHtml(file.cat)}</span>
+      <span class="module-badge">${escapeHtml(file.cat)}</span>
       <h1 class="main-title">${escapeHtml(file.title || file.label)}</h1>
       <div class="main-meta">${escapeHtml(file.path)} · ${formatBytes(text.length)}</div>
     </header>
@@ -349,8 +435,8 @@ function renderContent(file, text) {
 
 function renderError(file, msg) {
   const content = document.getElementById('content');
-  const empty = document.getElementById('emptyState');
-  empty.hidden = true;
+  const emptyHint = document.getElementById('emptyHint');
+  emptyHint.hidden = true;
   content.hidden = false;
   content.innerHTML = `
     <header class="main-header">
@@ -382,7 +468,11 @@ function formatBytes(bytes) {
 
 // ========== EVENT LISTENERS ==========
 document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+document.getElementById('sidebarToggle').addEventListener('click', toggleSidebarCollapse);
 document.getElementById('mobileToggle').addEventListener('click', () => toggleSidebar(!sidebarOpen));
+initResizeHandle();
+
+// Click on main content area closes mobile menu
 document.getElementById('main').addEventListener('click', () => {
   if (window.innerWidth <= 900) closeMobileMenu();
 });
@@ -390,6 +480,7 @@ document.getElementById('main').addEventListener('click', () => {
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && sidebarOpen) closeMobileMenu();
+  if (e.key === 'b' && e.ctrlKey) { e.preventDefault(); toggleSidebarCollapse(); }
   if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
     e.preventDefault();
     document.getElementById('nav').querySelector('.nav-link')?.focus();
@@ -398,8 +489,9 @@ document.addEventListener('keydown', (e) => {
 
 // Init
 initTheme();
+initSidebarState();
 renderNav();
-if (FILES.length) loadFile(FILES[0].id);
+if (FILES.length) loadFile(FILES[0].id); else document.getElementById('emptyHint').hidden = false;
 </script>
 </body>
 </html>
