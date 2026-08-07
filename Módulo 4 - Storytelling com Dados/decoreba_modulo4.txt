@@ -1,0 +1,191 @@
+DECOREBA - MODULO 4: STORYTELLING COM DADOS
+===================================================
+
+O QUE E DATA STORYTELLING
+--------------------------------------------
+- Transformar dados em historias palpaveis p/ gerar valor e tomada de decisao
+- Baseado em: Data Story (Nancy Duarte) e Storytelling com Dados (Cole Knaflic)
+- Dado NAO FALA POR SI — precisa de um contador de historias
+- Cerebro processa HISTORIAS, numeros brutos sao esquecidos
+- E mais CRIATIVO que analitico (escolha do grafico certo exige criatividade)
+- "V" de Valor (Big Data) = gerado pela comunicacao convincente da informacao
+
+>> PEGADINHA: dados brutos NAO geram valor sozinhos.
+   So se gera valor quando alguem comunica de forma convincente.
+
+CONTEXTO DA ENTREGA - 3 PERGUNTAS BALIZADORAS
+--------------------------------------------
+1. QUAL E A ANALISE QUE PRETENDEMOS FAZER?
+2. PARA QUEM SE DESTINA ESSA ANALISE?
+3. O QUE ESPERAMOS RESPONDER COM ESSA ANALISE?
+
+>> PEGADINHA: quanto mais LONGE do usuario, mais AUTOSSUFICIENTE a analise precisa ser.
+   (email/relatorio = autossuficiente; apresentacao ao vivo = pode ser mais leve)
+
+EXPLORATORIA vs EXPLICATORIA
+--------------------------------------------
+- Exploratoria = BASTIDOR, busca padroes, abrir ostras p/ achar perolas
+- Explicatoria = JA TEM o insight, precisa de narrativa guiando a conclusao
+
+DASHBOARD vs RELATORIO
+--------------------------------------------
+- Dashboard = interativo, atualizacao periodica (D-1 ou tempo real), precisa de analista p/ interpretar
+- Relatorio = estatico, periodo especifico, autoexplicativo (nao precisa de interpretacao)
+
+>> PEGADINHA: Dashboard e Relatorio servem OBJETIVOS DIFERENTES.
+   Dashboard = exploratorio; Relatorio = explicatorio.
+   Nao existe "melhor" — depende do objetivo.
+
+3 NIVEIS ORGANIZACIONAIS
+--------------------------------------------
+- Operacional = alto detalhe, analise diaria, muitos graficos e paginas
+- Tatico = medio prazo, guiado, mais condensado
+- Gerencial = sucinto, KPIs direcionados, poucos graficos, rapido
+
+>> PEGADINHA: Nao entregue dashboard operacional p/ gerencia (ou vice-versa).
+   Cada nivel precisa de recursos diferentes.
+
+NARRATIVA E COMUNICACAO (3 ATOS)
+--------------------------------------------
+- Etapa 0: CAPA (titulo, logo, navegacao, data de atualizacao)
+- Etapa 1: COMECIO INTRODUTORIO = KPIs (cards) — prender atencao
+- Etapa 2: MEIO EXPLICATIVO = graficos de linha, barra, detalhamentos
+- Etapa 3: FINAL CONCLUSIVO = tabelas detalhadas, menor granularidade
+
+>> PEGADINHA: informacoes disconexas = numeros sem contexto.
+   A narrativa e o fio condutor que gera coerencia.
+
+ESCOLHA DO GRAFICO
+--------------------------------------------
+- Menos e mais — objetivo e facilitar a tomada de decisao
+- Use graficos que TODOS entendam
+
+>> PEGADINHA: facilidade de interpretacao > complexidade tecnica.
+   Seu cerebro decide a mensagem, nao decifra o grafico.
+
+GRAFICO DE LINHAS
+--------------------------------------------
+- USO: dados ao longo do TEMPO (series temporais — dias, meses, anos)
+- Eixo x = tempo; eixo y = valores
+- Indicado p/ tendencias, previsoes, anomalias temporais
+
+>> PEGADINHA: GRAFICO ESPAGUETE = muitas categorias sobrepostas.
+   Solucao: filtrar principais ou destacar uma cor viva + cinza nas demais.
+   NAO usar p/ enfatizar categorias (use barras).
+
+GRAFICO DE BARRAS
+--------------------------------------------
+- USO: dados CATEGORICOS, comparacoes entre categorias
+- Vertical = enfase no quantitativo, categorias curtas
+- Horizontal = melhor p/ ranking e nomes longos
+- Empilhada = totais + subcomponentes (limitada, sem base zero)
+- Agrupada = base zero p/ todas (cuidado c/ excesso de series)
+
+>> PEGADINHA: eixo y SEMPRE comeca em ZERO.
+   Sem base zero -> distorce proporcoes -> leitura incorreta.
+   Texto a 45o = 52% mais lento; a 90o = 205% mais lento.
+
+TABELAS
+--------------------------------------------
+- USO: publico misto, grandezas nao comparaveis, complemento final
+- Maximizar relacao sinal-ruido (Tufte): bordas finas/cinza, foco nos dados
+- Heatmap = gradiente de cor em coluna -> realca padroes
+- Icones/cores = destaque de valores especiais (metas, campeoes)
+
+TEXTOS / INDICADORES
+--------------------------------------------
+- USO: inicio do dashboard (regiao superior), mostrar ponto de partida
+- Completam graficos (ex: variacao percentual ao lado)
+
+>> PEGADINHA: titulo deve ser ESPECIFICO, nao generico.
+   "Vendas por Regiao 2024" melhor que "Visao Geral".
+
+GRAFICO DE PIZZA / ROSCA
+--------------------------------------------
+- USO: comparar partes com o TODO (100%)
+- Funciona bem: 2 categorias (dicotomicas — Sim/Nao, Digital/Fisica)
+
+>> PEGADINHA: MUITAS CATEGORIAS -> NAO use pizza.
+   Fatias pequenas = ilegivel. Use BARRAS ao inves.
+   Evite tambem quando categorias tem tamanhos muito similares.
+
+MAPA DE ARVORE (TREEMAP)
+--------------------------------------------
+- USO: partes com o todo, hierarquia (3-4 segmentos)
+- Retangulos maiores = maiores parcelas
+- Cuidado: publico pode nao conhecer o grafico
+
+GRAFICOS DE MAPAS
+--------------------------------------------
+- USO: dados GEOGRAFICOS (cidade, estado, pais, lat/long)
+- Coropletico = cores por regiao (distribuicao de variaveis)
+- Marcadores = pontos especificos (enderecos, concentracoes)
+- Posicao no dashboard: entre KPIs e graficos de linha
+
+>> PEGADINHA: mapas sao BONITOS, mas imprecisos.
+   P/ comparacao exata, complemente com tabelas/graficos.
+
+GRAFICO DE DISPERSAO (SCATTERPLOT) E BOLHAS
+--------------------------------------------
+- Dispersao = relacao entre DOIS valores numericos (x e y)
+- Bolhas = dispersao + TERCEIRA dimensao (tamanho da bolha)
+- Usos: correlacao, agrupamentos, padroes em grandes datasets
+
+>> PEGADINHA: CORRELACAO NAO = CAUSALIDADE.
+   Duas variaveis juntas nao significa que uma causa a outro.
+
+DATA-INK (EDWARD TUFTE)
+--------------------------------------------
+- Maximizar relacao DADOS/TINTA
+- Sinal = informacao que queremos comunicar
+- Ruido = elementos que dificultam a mensagem
+- Remova bordas grossas, sombras, decoracao desnecessaria
+- Combine tipos de graficos (barras + linhas) p/ simplificar
+
+>> PEGADINHA: seja o primeiro avaliador do SEU grafico.
+   Coloque o chapeu do usuario: "esta claro? consigo tirar informacao?"
+
+EIXOS vs ROTULOS
+--------------------------------------------
+- Eixos = mostrar tendencias/padrões (graficos de linha)
+- Rotulos = valores numericos especificos (graficos de barra c/ numeros)
+
+ETICA NA VISUALIZACAO DE DADOS
+--------------------------------------------
+- Imparcialidade = evitar vieses em visuais e insights
+- Transparencia = NAO manipular dados p/ favorecer narrativa
+- LGPD = seguir regras de dados pessoais
+- Impacto social = analises podem afetar milhoes de pessoas
+- Ciclo vicioso de feedback = rankings inflados geram desconfianca
+
+>> PEGADINHA: NAO distorcer eixos = MANIPULACAO VISUAL.
+   "Algoritmos de Destruicao em Massa" (Cathy O'Neil) mostra riscos reais.
+
+QUAL ANALISE DEVO FAZER (3 DEGRAUS)
+--------------------------------------------
+1. Reunioes/Brainstorming = explorar ideias (nao entregavel, criativo)
+2. Dashboard EXPLORATORIO = detectar tendencias (graficos complexos, pode nao chegar ao usuario)
+3. Dashboard DECLARATIVO = visao consolidada (simples, direto, apresenta perolas)
+
+>> PEGADINHA: e um CICLO, nao linear.
+   Respostas dos declarativos -> novas perguntas -> novos exploratorios.
+
+DICAS FINAIS DE DESIGN
+--------------------------------------------
+- Nao tenha ciume de suas criacoes — simplifique
+- Tente manter o usuario dentro da analise
+- Diminua chances dele precisar de outras ferramentas
+- Seja coerente com os dados — mantenha integridade
+- Lenda e essencial (usuario nao esta na mesma sala que voce)
+
+CONEXOES DBT + POWER BI
+--------------------------------------------
+- DBT = transformacao dos dados (staging -> marts) -> dados lapidados
+- Power BI = visualizacao -> storytelling (graficos certos, 3 atos, Data-Ink)
+- Dashboard do desafio = DECLARATORIO (explicatorio), narrativa guiando a conclusao
+- Estrutura de 3 atos no layout:
+  * Topo = KPIs (comezo introdutorio)
+  * Meio = graficos (meio explicativo)
+  * Fim = tabela detalhada (final conclusivo)
+- Aplicar Data-Ink: remover bordas, poluicao visual; cores com proposito
+- Garantir etica: nao distorcer eixos, nao manipular dados do BanVic

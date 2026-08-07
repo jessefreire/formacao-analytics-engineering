@@ -1,0 +1,164 @@
+DECOREBA - MODULO 6: DASHBOARDS COM POWER BI
+===================================================
+
+BI x DASHBOARD
+--------------------------------------------
+- BI = guarda-chuva: integracao, armazenamento, modelagem, exploracao, compartilhamento
+- Dashboard = parte visual/interativa da solucao de BI
+- BI nao diz o que FAZER, oferece meios p/ analisar dados e gerar insights
+
+>> PEGADINHA: BI e Dashboard NAO sao a mesma coisa.
+    BI e o processo completo; dashboard e so a ponta visual.
+
+COMPONENTES DO POWER BI
+--------------------------------------------
+- Power BI Desktop = app gratuito Windows, cria .pbix (modelo semantico + relatorio)
+- Power BI Service = plataforma online (app.powerbi.com), publica e compartilha
+- Desktop = criacao/edicao. Service = colaboracao/distribuicao.
+- Workspaces = containers que separam objetos por area/objetivo
+- "Meu workspace" = pessoal. Workspaces compartilhados = exigem licenca Pro/Premium
+
+>> PEGADINHA: RLS comeca no Desktop (Modelagem) e FINAIZA no Service (atribuindo usuarios).
+
+FLUXO DE DADOS x MODELO SEMANTICO
+--------------------------------------------
+- Fluxo de dados (Data Flow) = Power Query ONLINE, camada de consolidacao no Service
+- Modelo semantico = camada de dados no Desktop (relacionamentos + DAX)
+- Fluxo de dados: reutilizacao, menor contato com DW, menor atualizacao redundante
+- O que fazer no fluxo: mudanca de tipo, renomear colunas (tecnico -> negocio)
+- O que NAO fazer: regras de negocio complexas (deixar p/ ELT/DW)
+
+>> PEGADINHA: "Dados transformados o mais proximo da fonte possivel e o tao proximo da visualizacao quanto necessario" (Matthew Roche - Microsoft)
+
+MODOS DE ARMAZENAMENTO
+--------------------------------------------
+- Importacao = copia comprimida no modelo (VertiPaq ~10x). Rapido. Limite 1GB.
+- DirectQuery = sem copia, consulta em tempo real no DW. Ilimitado. Mais lento.
+- Duplo (Dual) = combinacao dos dois (umas tabelas importadas, outras DirectQuery)
+
+>> PEGADINHA: Importacao = padrao. So ir p/ DirectQuery se tamanho > 1GB, precisar tempo real ou restricao de seguranca.
+
+IMPORTACAO
+--------------------------------------------
+- Suporta TODAS as fontes, DAX e M
+- Ate 48 atualizacoes/dia (capacidade dedicada)
+- Limite: 1GB compactado (capacidade compartilhada)
+
+DIRECTQUERY
+--------------------------------------------
+- Sem copia, consulta em tempo real
+- Quando usar: dados > 1GB, tempo real, seguranca (sem copia local)
+- Contra: cada filtro/troca gera nova query no DW
+
+ESQUEMA ESTRELA (STAR SCHEMA)
+--------------------------------------------
+- Tabelas FATO = eventos (transacoes, propostas) - granularidade fina
+- Tabelas DIMENSAO = descricoes (clientes, agencias, datas) - granularidade grossa
+- Ligacao via chaves (PK dimensao -> FK fato)
+
+RELACIONAMENTOS
+--------------------------------------------
+- Um para muitos (1:*) = RECOMENDADO (padrao Star Schema)
+- Um para um (1:1) = NAO recomendado (preferir consolidar tabelas)
+- Muitos para muitos (*:*) = NAO recomendado (ambiguidade; usar Bridge Table)
+
+>> PEGADINHA: Power BI so permite UM relacionamento ATIVO entre duas tabelas.
+    Demais ficam inativos (linha pontilhada). Usar USERELATIONSHIP p/ ativar.
+
+DIRECAO DO FILTRO CRUZADO
+--------------------------------------------
+- Unica (padrao) = dimensao filtra fato. Seta aponta dimensao -> fato.
+- Ambas (bidirecional) = dimensao filtra fato E fato filtra dimensao
+- Ambas = mais poder, mas risco de ambiguidade e perda de desempenho
+- CROSSFILTER (DAX) = muda direcao do filtro entre tabelas
+
+POWER QUERY E LINGUAGEM M
+--------------------------------------------
+- Power Query = editor de transformacao (menu + etapas aplicadas + consultas)
+- Linguagem M = manipula/modela dados (gerada automaticamente pelo menu)
+- Usar p/: verificar/alterar tipo, renomear colunas, excluir colunas
+- NAO usar p/: regras de negocio complexas (deixar p/ dbt/ELT)
+- Editor Avancado = unico local onde se escreve M manualmente
+
+>> PEGADINHA: Toda alteracao no Power Query gera codigo M, mas a interface abstrai.
+    Foque no dbt p/ transformacoes; Power Query so p/ ajustes finais.
+
+LINGUAGEM DAX
+--------------------------------------------
+- DAX = Data Analysis Expressions (>200 funcoes)
+- Usada p/: medidas, colunas calculadas, tabelas calculadas, RLS
+- Medida = dinamica, nao ocupa espaco, depende do contexto de filtro
+- Coluna calculada = estatica, ocupa espaca, calculada por linha
+
+>> PEGADINHA: MEDIDA x COLUNA CALCULADA
+    Medida = agregacao/cruzamento entre tabelas (usa CALCULATE, SUM, etc)
+    Coluna calculada = classificacao/categorizacao por linha (evitar; preferir dbt)
+
+MEDIDAS IMPLICITAS x EXPLICITAS
+--------------------------------------------
+- Implicitas = aplicadas direto nas colunas (soma, contagem, media)
+- Explicitas = escritas em DAX (recomendado p/ analises completas)
+- Boa pratica: criar tabela virtual "Medidas" p/ centralizar todas
+
+FUNCOES DAX PRINCIPAIS
+--------------------------------------------
+- CALCULATE = avalia expressao em contexto modificado por filtros (a mais importante)
+- FILTER = cria tabela filtrada (usada dentro do CALCULATE p/ filtros complexos)
+- DIVIDE = divide com seguranca (trata divisao por zero)
+- SUM, AVERAGE, COUNT, DISTINCTCOUNT = agregacao basica
+- USERELATIONSHIP = ativa relacionamento inativo
+- CROSSFILTER = muda direcao do filtro cruzado
+
+VARIAVEIS EM DAX
+--------------------------------------------
+- VAR = declara variavel; RETURN = retorna calculo final
+- Beneficios: melhora desempenho, legibilidade, simplifica depuracao
+
+CLASSIFICACAO DAS FUNCOES DAX
+--------------------------------------------
+- Agregacao: SUM, AVERAGE, COUNT, MIN, MAX
+- Data e hora: DATE, YEAR, MONTH, DATEDIFF
+- Inteligencia temporal: FIRSTDATE, PREVIOUSYEAR, SAMEPERIODLASTYEAR
+- Logicas: IF, SWITCH (equivale CASE-WHEN do SQL)
+- Relacao: USERELATIONSHIP, CROSSFILTER
+- Iteradoras ("X"): SUMX, MINX, MAXX, AVERAGEX, COUNTX, RANKX (operam por linha)
+
+CRIACAO DE RELATORIOS
+--------------------------------------------
+- Estrutura: cabecalho (logo, titulo, data) -> filtros -> indicadores -> series temporais -> detalhamento
+- Segmentacao de dados = filtro explicito ao usuario (preferir ao menu lateral)
+- Grafico de linhas = series temporais (continuidade)
+- Graficos de barra horizontal = ranking
+- Matriz = detalhamento tabular com multiplas medidas
+- Botao "limpar segmentacoes" = ponto de partida p/ usuario
+
+OTIMIZACAO DE MODELOS
+--------------------------------------------
+- Star Schema = melhor performance (cardinalidade 1:muitos)
+- Performance Analyzer = analisa medidas e visuais no Desktop
+- Desabilitar data/hora automatica = evita tabelas ocultas desnecessarias
+- Minimizar tabelas e colunas calculadas = ocupam espaco na memoria
+
+>> PEGADINHA: Consulta DAX nao deve levar mais que 0,12 segundos.
+    Se acima, otimizar o calculo.
+
+ESTRATEGIAS DE REDUCAO DE DADOS
+--------------------------------------------
+- Filtragem vertical = remover colunas desnecessarias (preferir na origem)
+- Filtragem horizontal = remover linhas desnecessarias (limitar historico)
+- Agrupamento/resumo = reduzir granularidade (custo: perda de detalhamento)
+- DirectQuery = quando tamanho e o problema (custo: menor desempenho)
+
+DESKTOP x SERVICE - RESUMO
+--------------------------------------------
+- Desktop: conectar dados, ajustar modelo, criar visuais, iniciar RLS
+- Service: publicar, compartilhar, configurar RLS, criar dashboards, configurar atualizacao
+- Desktop = desenvolvimento. Service = distribuicao/colaboracao.
+
+DESAFINAL FINAL (DBT + POWER BI)
+--------------------------------------------
+- dbt = constroi o esquema estrela (staging -> intermediate -> marts)
+- Power BI = conecta nas tabelas fato e dimensao do dbt
+- Transformacoes de negocio = DBT. Visualizacao e medidas DAX = POWER BI
+- Se modelagem dbt estiver certa, relacionamentos no Power BI sao automaticos
+- Dashboard final deve ser ANALISE EXPLICATIVA (narrativa guiando a conclusao)

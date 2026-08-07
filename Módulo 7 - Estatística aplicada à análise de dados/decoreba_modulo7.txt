@@ -1,0 +1,247 @@
+DECOREBA - MODULO 7: ESTATISTICA APLICADA A ANALISE DE DADOS
+===================================================
+
+FUNDAMENTOS DA ESTATISTICA
+--------------------------------------------
+- Lei dos Grandes Numeros: frequencia relativa converge com muitas repeticoes
+- Precisao != Acuracao: resultado pode ser preciso mas errado (viesado)
+- Sempre quantificar a incerteza nas afirmacoes
+
+ANALISE DESCRITIVA
+--------------------------------------------
+- Resume e descreve dados SEM inferir sobre a populacao
+- Vantagens: objetividade, imparcialidade, visao ampla
+- Limitaoes: nao generaliza, nao testa hipoteses, nao estabelece causalidade
+
+MEDIDAS DE TENDENCIA CENTRAL
+--------------------------------------------
+- MEDIA = soma dos valores / n (melhor p/ dados simetricos)
+- MEDIANA = valor central ordenado (melhor p/ dados assimetricos com outliers)
+- MODA = valor mais frequente (melhor p/ categorias)
+
+>> PEGADINHA: DISTRIBUICAO ASSIMETRICA
+   Em dados com cauda longa (renda, transacoes), a MEDIA > MEDIANA.
+   A media e puxada pelos valores extremos. Use a mediana.
+
+MEDIDAS DE DISPERSAO
+--------------------------------------------
+- AMPLITUDE = max - min
+- DESVIO MEDIO = media dos desvios absolutos
+- VARIANCIA = media dos quadrados dos desvios
+- DESVIO PADRAO = raiz da variancia (mesma unidade dos dados)
+- COEF. VARIACAO = dp / media (adimensional, compara conjuntos distintos)
+
+>> PEGADINHA: FORMULA DA VARIANCIA
+   Populacional: divide por N
+   Amostral: divide por N-1 (correcao de Bessel)
+
+MEDIDAS DE ASSOCIACAO (CORRELACAO)
+--------------------------------------------
+- Coeficiente r (ou rho): entre -1 e 1
+- r = 0: sem associacao LINEAR (nao significa independencia!)
+- r proximo 1: correlacao positiva forte
+- r proximo -1: correlacao negativa forte
+
+>> PEGADINHA: CORRELACAO NAO E CAUSALIDADE
+   Duas variaveis correlacionadas podem ser coincidencia (correlacao espuria).
+   Sempre questionar: ha uma variavel de confusao? e so coincidencia?
+
+GRAFICOS ESTATISTICOS
+--------------------------------------------
+- HISTOGRAMA: 1 variavel continua, mostra distribuicao de frequencia
+- DISPERSAO (scatter): 2 variaveis, mostra relacao/padrao
+- BOXPLOT: 1 variavel + grupos, mostra mediana, quartis, outliers
+
+ELEMENTOS DO BOXPLOT
+--------------------------------------------
+- Q1 (25%), Mediana (50%), Q3 (75%)
+- IQR = Q3 - Q1
+- Limite inferior: Q1 - 1,5 * IQR
+- Limite superior: Q3 + 1,5 * IQR
+- Outliers: pontos fora dos limites
+
+PROBABILIDADE
+--------------------------------------------
+- Espaco amostral (omega): todos os resultados possiveis
+- Evento: subconjunto do espaco amostral
+- P(A U B) = P(A) + P(B) - P(A inter B)
+- P(A|B) = P(A inter B) / P(B) [condicional]
+- Independentes: P(A inter B) = P(A) * P(B)
+
+>> PEGADINHA: PROBABILIDADE CONDICIONAL (Monty Hall)
+   Trocar a porta = 2/3 de chance. Manter = 1/3.
+   A escolha do apresentador NAO e aleatoria (ele sabe onde esta o carro).
+
+VARIAVEIS ALEATORIAS
+--------------------------------------------
+- DISCRETA: valores inteiros (dado, n de filhos, fraude/nao-fraude)
+- CONTINUA: qualquer valor no intervalo (tempo, valor transacao, altura)
+
+DISTRIBUICOES DISCRETAS
+--------------------------------------------
+- UNIFORME: P(x) = 1/n (dado)
+- BERNOULLI: 1 tentativa sucesso/fracasso. P(x) = p^x * (1-p)^(1-x)
+- BINOMIAL: n tentativas, conta sucessos. P(k) = C(n,k) * p^k * (1-p)^(n-k)
+- GEOMETRICA: tentativas ate 1o sucesso. P(k) = p * (1-p)^(k-1)
+- POISSON: taxa de ocorrencia em intervalo. P(k) = e^(-lambda) * lambda^k / k!
+
+DISTRIBUICAO NORMAL
+--------------------------------------------
+- Formato de sino, simetrica em relacao a media
+- X ~ N(mu, sigma^2)
+- Normal padrao: Z = (X - mu) / sigma -> N(0,1)
+
+REGRA 68-95-99,7
+--------------------------------------------
+- 1 desvio padrao: 68,26% dos valores
+- 2 desvios padrao: 95,44% dos valores
+- 3 desvios padrao: 99,74% dos valores
+
+DISTRIBUICOES NAO NORMAIS
+--------------------------------------------
+Momentos p/ identificar nao normalidade:
+1. Localizacao: media != mediana != moda
+2. Dispersao: variancia extrema
+3. Assimetria: cauda a direita (+) ou esquerda (-)
+4. Curtose: mesocurta (normal), leptocurta (afunilada), platicurta (achatada)
+
+Principais:
+- EXPONENCIAL: tempo entre eventos
+- LOG-NORMAL: ln(X) ~ Normal (renda)
+- GAMMA: tempo ate k eventos
+- QUI-QUADRADO: testes de hipoteses
+
+Testes de normalidade:
+- SHAPIRO-WILK (W proximo de 1 = normal)
+- KOLMOGOROV-SMIRNOV (D = maior diferenca entre CDFs)
+
+Tratamento: transformacoes (log, Box-Cox) ou testes nao parametricos.
+
+>> PEGADINHA: TESTES PARAMETRICOS
+   Muitos testes assumem normalidade. Se os dados nao sao normais,
+   o resultado do teste pode ser distorcido.
+
+INFERENCIA ESTATISTICA
+--------------------------------------------
+- Estimativa pontual: 1 valor (ex: media amostral)
+- Estimativa intervalar: intervalo de confianca (ex: IC 95%)
+
+PARAMETROS vs ESTIMADORES
+--------------------------------------------
+- mu (media populacional) -> X_barra (media amostral)
+- p (proporcao) -> p_chapinha
+- sigma^2 (variancia) -> S^2 (divide por n-1!)
+
+TEOREMA CENTRAL DO LIMITE
+--------------------------------------------
+- Para n grande, media amostral ~ N(mu, sigma^2/n)
+- Erro padrao = sigma / raiz(n)
+- Quanto maior n -> menor erro padrao -> mais precisa a estimativa
+
+>> PEGADINHA: TAMANHO AMOSTRAL
+   O TCL vale para n suficientemente grande (convencao: n >= 30).
+   Para amostras pequenas, precisa verificar normalidade.
+
+INTERVALOS DE CONFIANCA
+--------------------------------------------
+- Interpretacao: se repetir o experimento varias vezes,
+  (1-alfa)% dos intervalos conterao o parametro verdadeiro.
+- MAIOR confianca = MAIOR amplitude = MENOR precisao
+- IC 95%: valor critico z = 1,96
+- IC 90%: z = 1,645
+- IC 99%: z = 2,575
+
+Para proporcao (pessimista, p=0,5):
+- IC = p_chapinha +/- z * raiz(0,25/n)
+
+>> PEGADINHA: INTERPRETACAO DO IC
+   O IC de 95% NAO significa "95% de chance de o valor estar aqui".
+   Significa: "em 95 das 100 amostras, o intervalo conteria o valor verdadeiro".
+
+TESTES DE HIPOTESES
+--------------------------------------------
+Etapas:
+1. Definir H0 (nula) e H1 (alternativa)
+2. Escolher unilateral ou bilateral
+3. Identificar distribuicao do estimador
+4. Fixar alfa e obter regiao critica
+5. Concluir
+
+Tipos de erro:
+- TIPO I (alfa): rejeitar H0 quando e verdadeira (falso positivo)
+- TIPO II (beta): nao rejeitar H0 quando e falsa (falso negativo)
+
+>> PEGADINHA: DIMINUIR ALFA = AUMENTAR BETA
+   Quanto mais rigoroso contra falso positivo, maior o risco de falso negativo.
+
+Quando usar:
+- n > 30: z (normal padrao)
+- n < 30: t de Student (n-1 graus de liberdade)
+
+>> PEGADINHA: t vs z
+   Para n > 30, a distribuicao t converge para a normal.
+   Convenção: usar z quando n > 30 mesmo com variancia desconhecida.
+
+AMOSTRAGEM
+--------------------------------------------
+- ALEATORIA SIMPLES: populacao homogenea
+- ESTRATIFICA: divide em estratos, amostra de cada
+- POR CONGLOMEROS: populacao grande/dispersa
+- SISTEMATICA: intervalo pre-determinado
+- POR COTAS: subgrupos especificos
+
+Tamanho amostra (proporcao, pessimista):
+- n = z^2 / (4 * e^2)
+
+>> PEGADINHA: TAMANHO AMOSTRAL
+   Quanto maior a confianca desejada, maior a amostra necessaria.
+   Quanto menor a margem de erro aceita, maior a amostra.
+
+EXPERIMENTOS (Teste A/B)
+--------------------------------------------
+- Grupo teste: recebe o tratamento
+- Grupo controle: nao recebe
+- Devem ser o mais similares possiveis (exceto pelo tratamento)
+- Um tratamento por vez para isolar efeitos
+
+Tipos:
+- Aleatorio controlado: alocacao aleatoria
+- Natural: circunstancias externas criam grupos similares
+
+REGRESSAO LINEAR
+--------------------------------------------
+- Modelo: y = a + bx
+- y: variavel dependente (prevista)
+- x: variavel independente (explicativa)
+- a: intercepto, b: coeficiente angular
+- MQO (Minimos Quadrados Ordinarios): minimiza soma dos quadrados dos erros
+
+R^2: qualidade do ajuste (0 a 1)
+
+>> PEGADINHA: R^2 SEMPRE AUMENTA
+   Adicionar mais variaveis SEMPRE aumenta o R^2, mesmo sem relacao real.
+   Use conhecimento de negocio para escolher variaveis.
+
+p-valor na regressao:
+- H0: coeficiente = 0 (sem associacao)
+- Se p < alfa: rejeita H0 -> variavel e significativa
+
+>> PEGADINHA: MULTICOLINEARIDADE
+   Variaveis explicativas muito correlacionadas entre si dificultam
+   o isolamento do efeito de cada uma. Manter apenas uma.
+
+>> PEGADINHA: CORRELACAO NAO E CAUSALIDADE (de novo!)
+   Regressao mostra associacao, NAO causalidade.
+   A direcao (x causa y) deve ser definida pelo conhecimento de negocio.
+
+CONEXAO COM DESAFIO FINAL (DBT + POWER BI)
+--------------------------------------------
+- Medidas de tendencia central e dispersao -> KPIs no Power BI
+- Correlacao entre variaveis transacionais -> features em models intermediate
+- Normalidade: modelos de regressao e testes assumem isso. Verificar antes.
+- Inferencia: dados do dbt sao populacionais; entender erro padrao ajuda
+  a avaliar se diferencas em KPIs sao significativas ou ruido.
+- Testes de hipoteses: comparar metricas entre grupos (ex: agencia Digital vs Fisica)
+- Boxplot no Power BI: visualiza outliers de transacoes (possiveis fraudes)
+- Regressao: interpretar tendencias em series temporais no dashboard
+- Sempre: CORRELACAO NAO E CAUSALIDADE nas analises do dashboard

@@ -1,0 +1,177 @@
+DECOREBA - MODULO IV: ENGENHARIA DE DADOS COM DBT E SNOWFLAKE
+===================================================
+
+ETL vs ELT
+--------------------------------------------
+ETL = Extract -> Transform -> Load (transforma ANTES de carregar)
+ELT = Extract -> Load -> Transform (carrega bruto, transforma DENTRO do DW)
+
+ETL tradicional = dados passam por servidor intermediario antes do DW
+ELT moderno = ferramentas SaaS movem dados brutos direto para o DW; transformacao via SQL/dbt
+
+>> PEGADINHA: a sigla ELT nao e so ordem diferente — a transformacao acontece NO DW,
+   nao em servidor separado. O DW faz o trabalho pesado de processamento.
+
+PROCESSO COMPLETO DE ELT
+--------------------------------------------
+1. PLANEJAMENTO
+   - Entendimento do problema de negocio
+   - Mapeamento de dados (ERD, planilhas)
+   - Modelo conceitual do DW (fatos + dimensoes)
+
+2. INGESTAO (E-L)
+   - Acessar fontes transacionais e carregar no DW (dados brutos)
+
+3. TRANSFORMACAO (T)
+   - Limpar, enriquecer, modelar fatos e dimensoes
+
+4. ENTREGA (deploy)
+   - Testes, documentacao, producao
+
+>> ERRO COMUM: achar que ELT = so extrair + transformar. O planejamento e entregas
+   fazem parte do processo completo.
+
+INGESTAO DE DADOS
+--------------------------------------------
+Formatos de conexao: JDBC, ODBC, API REST, Dump do banco
+
+FULL-LOAD vs INCREMENTAL:
+Full-load   = carrega TUDO a cada execucao (seguro, mas pesado)
+Incremental = carrega SOMENTES novos registros (rapido, mas riscado)
+
+CDC (Change Data Capture):
+- Usa logs de transacao do banco para capturar INSERT/UPDATE/DELETE
+- Forma MAIS SEGURA de ingestao incremental
+
+>> PEGADINHA: BANCOS TRANSACIONAIS SAO MUTAVEIS
+   Carga incremental por data pode PERDER registros cancelados/atualizados retroativamente.
+   Ex: pedido Pendente -> Cancelado nao aparece so por data de criacao.
+   Solucao: coluna "data_atualizacao" ou CDC via logs.
+
+FERRAMENTAS DE INGESTAO
+--------------------------------------------
+SaaS: Fivetran, Stitch, Hevo (pago, mais simples)
+Open-source: Airbyte, Meltano (gratuito, mais flexivel)
+
+Principio da ingestao ELT: MINIMA transformacao dos dados brutos no carregamento.
+
+>> PEGADINHA: ingestao nao transforma — isso e papel do dbt na etapa de Transform.
+
+ALTERNATIVAS DE ARQUITETURA ETL/ELT
+--------------------------------------------
+1. CODIGO PERSONALIZADO (Python/Spark)
+   Pro: maxima flexibilidade
+   Con: alta complexidade, divida tecnica, distanciamento do negocio
+
+2. ETL VISUAL (Pentaho, Informatica)
+   Pro: curva de aprendizado baixa
+   Con: lock-in, escalabilidade limitada, pouca governanca
+
+3. ELT MODERNO (DW + DBT)  <-- USADO NO CURSO
+   Pro: SQL padrao, foco no negocio, menor necessidade tecnica
+   Con: limitado a dados estruturados
+
+>> PEGADINHA: no MDS, o Engenheiro de Analytics transforma dados DENTRO do DW.
+   Ele nao precisa dominar Spark/Python avancado — foco e SQL + negocio.
+
+ESTRUTURA DE UM PROJETO DBT
+--------------------------------------------
+dbt_project.yml     -> configuracao geral do projeto
+models/             -> modelos SQL (.sql) = tabelas/views no DW
+seeds/              -> dados estaticos (CSVs)
+macros/             -> funcoes Jinja reutilizaveis
+tests/              -> testes singulares (.sql)
+snapshots/          -> capturas temporais
+analyses/           -> queries avulsas
+target/             -> arquivos compilados (ignorado no git)
+
+profiles.yml        -> FORA do repo (~/.dbt/) com credenciais do DW
+   -> targets: dev (desenvolvimento) e prod (producao)
+   -> verificar conexao: dbt debug
+
+MODELOS NO DBT
+--------------------------------------------
+Cada modelo .sql vira um objeto no DW com o mesmo nome do arquivo.
+
+SOURCE vs REF:
+{{ source('fonte', 'tabela') }} -> referencia dado BRUTO do DW (sem dependencia)
+{{ ref('modelo') }}             -> referencia OUTRO MODELO do bbt (cria dependencia/linhagem)
+
+>> PEGADINHA: source() aponta p/ tabela fisica do DW.
+   ref() aponta p/ outro modelo dbt que sera executado antes (ordem automatica).
+
+SEQUENCIA DE CONSTRUCAO:
+1. Mapear tabelas no sources.yml (staging/)
+2. Criar modelos stg_* (limpeza: renomear, tipar, criar colunas)
+3. Criar dimensoes dim_* (com chaves surrogate)
+4. Criar tabelas fato fct_* (joins entre dimensoes)
+
+MATERIALIZACAO
+--------------------------------------------
+view      = query executada a cada consulta (lento p/ BI, rapido no dev)
+table     = resultado persistido (melhor performance p/ BI)
+ephemeral = CTE temporaria (so existe durante a execucao do pipeline)
+
+>> PEGADINHA: configuracao no modelo SOBREPOE a do dbt_project.yml.
+   Prefira configurar materializacao no projeto, nao por modelo.
+
+CHAVES SURROGATE
+--------------------------------------------
+Geradas via ROW_NUMBER() OVER (ORDER BY chave_natural)
+
+>> PEGADINHA: auto-incremento em DW modernos pode ser PERIGOSO.
+   Se a ordem do ORDER BY mudar entre execucoes, a chave muda.
+   Prefira chaves deterministicas.
+
+TESTES NO DBT
+--------------------------------------------
+TESTES GENERICOS (schema tests) - em arquivos .yaml:
+- unique       -> sem valores duplicados
+- not_null     -> sem nulos
+- accepted_values -> valores dentro de lista pre-definida
+- relationships   -> integridade referencial entre modelos
+
+TESTES SINGULARES (data tests) - queries SQL:
+- Devem retornar 0 LINHAS para PASSAR
+- Escreva a query para "dar errado" (retorna linhas onde falha)
+
+>> PEGADINHA: teste singular com SUCESSO retorna 0 linhas.
+   Escreva a query como se quisesse encontrar o erro.
+
+Boa pratica: UNIQUE + NOT_NULL na PK de cada modelo.
+Recomendado: escrever TESTES ANTES dos modelos (TDD).
+
+DOCUMENTACAO E LINHAGEM
+--------------------------------------------
+- Descricoes em arquivos .yml (tabelas + colunas)
+- dbt docs generate -> gera documentacao HTML navegavel
+- dbt docs serve    -> visualiza localmente com arvore de dependencias
+
+>> PEGADINHA: linhagem (grafico de dependencias) e gerada automaticamente
+   a partir das funcoes ref() — por isso nunca referenciar tabelas diretamente.
+
+ORQUESTRACAO
+--------------------------------------------
+dbt Core (open-source) = sem orquestrador nativo (usa Airflow, Prefect, cron)
+dbt Cloud (SaaS)       = orquestrador incorporado
+
+>> PEGADINHA: dbt run vs dbt build
+   dbt run    = executa modelos
+   dbt build  = executa seeds + snapshots + modelos + testes (pipeline completo)
+
+GRUPO DA TABELA FATO
+--------------------------------------------
+Juntar orders + order_details muda o GRAO para nivel de item.
+order_id NAO E MAIS UNICO na tabela fato (cada linha = 1 item do pedido).
+
+>> PEGADINHA: teste de UNIQUE em order_id na tabela fato VAI FALHAR
+   se o grao for nivel de item (1 pedido tem N itens).
+
+CONEXAO COM DESAFIO FINAL (DBT + POWER BI)
+--------------------------------------------
+- DBT = transformacao (modelos stg_*, dim_*, fct_*)
+- Power BI = visualizacao (consome tabelas marts.*)
+- Airbyte = ingestao (carrega CSVs/seeds no DW)
+- Pipeline completo: Ingestao -> Transformacao (dbt) -> Visualizacao (Power BI)
+- dbt docs = documentacao tecnica entregue junto com o projeto
+- Testes garantem integridade ANTES do Power BI consumir os dados

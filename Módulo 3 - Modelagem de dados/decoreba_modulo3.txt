@@ -1,0 +1,148 @@
+DECOREBA - MODULO 3: MODELAGEM DE DADOS
+===================================================
+
+OLTP x OLAP
+--------------------------------------------
+- OLTP = transacional: operacoes diarias, orientado a LINHA, normalizado
+- OLAP = analitico: consultas complexas, orientado a COLUNA, desnormalizado
+- OLTP: consultas simples e frequentes (escrita/atualizacao)
+- OLAP: consultas complexas e intensivas (leitura/agregacao)
+
+>> PEGADINHA: ARMAZENAMENTO LINHA x COLUNA
+    LINHA = registro completo junto (bom p/ transacao individual)
+    COLUNA = cada coluna independente (bom p/ agregar milhoes de linhas)
+    OLAP e column-oriented -> le so a coluna necessaria, nao a linha inteira
+
+PARTICIONAMENTO DE TABELAS
+--------------------------------------------
+- Quebra colunas em partes menores para otimizar consultas
+- Mais comum: por DATA (dia, mes, ano)
+- Cardinalidade = numero de elementos distintos em um conjunto
+- Relacoes: 1:1, 1:N, N:N
+
+>> PEGADINHA: NAO particionar por coluna de ALTA CARDINALIDADE (ex: ID)
+    (1) Muitas partitions -> banco consulta muitas para agregar -> lento
+    (2) ID raramente e usado em filtro explicito -> sem ganho de eficiencia
+    Use colunas de BAIXA cardinalidade ou datas (frequentes em filtros)
+
+ETL x ELT
+--------------------------------------------
+- ETL = Extrai -> Transforma -> Carrega (transforma ANTES de carregar no DW)
+- ELT = Extrai -> Carrega -> Transforma (carrega bruto, transforma DENTRO do DW c/ SQL)
+- ELT moderno: dbt/dataform fazem a transformacao em SQL dentro do DW
+- Vantagens ELT: modularidade, simplicidade (so SQL), governanca, versionamento, testes
+
+>> PEGADINHA: A DIFERENCA E A ORDEM
+    ETL = transforma FORA do DW (middleware), depois carrega
+    ELT = carrega BRUTO no DW, transforma dentro dele com dbt
+    ELT permite que Analytics Engineers (mais proximos do negocio) construam o DW
+
+DATA WAREHOUSE x DATA LAKE x DATA LAKEHOUSE
+--------------------------------------------
+- DW = estruturados, alta qualidade, star/snowflake, BI/relatorios
+- Data Lake = todos os tipos (estrut/nao estrut), schema-on-read, ML/big data
+- Data Lakehouse = unificado (melhor dos dois), ACID, governanca + flexibilidade
+- Data Lake risco = "data swamp" (pantano de dados) sem governanca
+
+>> PEGADINHA: DW NAO substitui Data Lake (e vice-versa)
+    DW = fonte de verdade p/ BI (estruturado, confiavel)
+    Data Lake = camada intermediaria p/ ML/big dados (flexivel, barato)
+    Lakehouse = unifica os dois em uma plataforma so
+
+MODELAGEM DE DADOS - 3 NIVEIS
+--------------------------------------------
+- Conceitual -> entidades e relacionamentos (DER), sem detalhe de colunas
+- Logico -> traduz p/ esquema relacional: PK, FK, colunas, cardinalidade
+- Fisica -> DDL: tipos de dados, indices, restricoes (CREATE TABLE)
+
+ESQUEMAS DIMENSIONAIS (Kimball)
+--------------------------------------------
+- Star Schema = fato central + dimensoes ao redor (desnormalizado, poucos joins)
+- Snowflake = dimensoes normalizadas em subdimensoes (menos redundancia, mais joins)
+- Constelacao = multiplos star schemas conectados
+- STAR SCHEMA = formato recomendado p/ Power BI
+
+>> PEGADINHA: STAR x SNOWFLAKE
+    Star = desnormalizado -> menos joins -> mais simples -> melhor p/ BI
+    Snowflake = normalizado -> menos duplicacao -> mais joins -> mais complexo
+    Em DW analitico, normalizar demais (Snowflake) torna o modelo complexo e lento
+
+TABELAS FATO
+--------------------------------------------
+- Armazam METRICAS NUMERICAS de negocio (vendas, transacoes, valores)
+- Cada linha = UM EVENTO (transacao individual ou agregada)
+- Contem: medidas numericas + chaves estrangeiras (FK) p/ dimensoes
+- Granularidade = nivel de detalhe (transacao individual, dia, mes)
+
+Tipos:
+- Transacional = cada linha e uma transacao (alta granularidade)
+- Agregada = pre-calculada em nivel superior (ex: vendas/mes) p/ performance
+
+TABELAS DIMENSAO
+--------------------------------------------
+- Fornecem CONTEXTO DESCRITIVO dos fatos (quem, quando, onde, por que, como)
+- Usadas p/ filtrar, agrupar, classificar
+- Contem: chave unica (PK), atributos descritivos, hierarquias
+
+Surrogate Key = chave artificial (nao e o ID da origem)
+- Resolve rastreamento quando ha mudancas (SCD) ou multiplas fontes
+- Garante unicidade mesmo quando PK da origem se repete
+
+SCD (Slowly Change Dimension):
+- SCD1 = substitui registro anterior (NAO mantem historico)
+- SCD2 = cria NOVA LINHA a cada mudanca com periodo de validade (MANTEM historico)
+
+>> PEGADINHA: SURROGATE KEY x PK DA ORIGIN
+    Na tabela dimensao, NAO use so o ID da origem como chave
+    Motivo: com SCD2 o ID se repete (multiplas linhas p/ mesma entidade)
+    Surrogate Key combina colunas que tornam a linha unica (ex: ID + data)
+
+DIMENSO DEGENERADA
+--------------------------------------------
+- Dimensao tao simples (poucos atributos) que vai direto na TABELA FATO
+- Ex: status de transacao (tem poucos desdobramentos)
+- Simplifica o modelo (evita criar tabela so p/ isso)
+
+TABELAS PONTE (Bridge Table)
+--------------------------------------------
+- Resolve relacionamentos N:N (muitos-para-muitos) entre fato e dimensao
+- Contem APENAS chaves primarias das tabelas ligadas
+- Nao tem valor de negocio proprio (so conecta)
+- Pre-requisito: cada tabela deve ter PK (ou surrogate key)
+
+Quando usar:
+- Relacionamento N:N entre tabelas
+- Conectar tabelas com granularidades diferentes
+- Muitas combinacoes possiveis
+
+Beneficios: simplicidade nos joins, escalabilidade, flexibilidade
+Atencao: aumenta joins (performance), exige manutencao cuidadosa
+
+BOAS PRATICAS DATABRICKS (Lakehouse)
+--------------------------------------------
+- Delta Lake = armazenamento c/ transacoes ACID
+- Unity Catalog = governanca centralizada + RBAC
+
+Otimizacoes:
+- Optimize = compacta arquivos Parquet (16MB-1GB)
+- Z-Ordering = organiza por colunas frequentes em filtros
+- Auto-optimize = compactacao automatica (128MB padrao)
+- Particionamento = por baixa cardinalidade ou colunas de filtro
+- Delta Cache = copia local p/ leitura rapida
+- CBO (Cost-Based Optimizer) = usa estatisticas p/ planejar joins
+- Serverless = paga so o que usa, autoescalonamento
+- Auto-termination = suspende clusters ociosos
+- Query Profile / Spark UI = monitora gargalos
+
+>> PEGADINHA: PARTICIONAMENTO NO DATABRICKS
+    Mesma regra do OLAP: usar colunas de BAIXA cardinalidade em filtros
+    Evitar IDs (alta cardinalidade) -> muitas particoes -> lentidao
+
+CONEXOES DBT + POWER BI (Desafio Final)
+--------------------------------------------
+- dbt models = camada ELT (transforma dados DENTRO do Databricks)
+- staging = dados normalizados (1:1 c/ seeds brutas)
+- marts = star schema (fato + dimensoes) p/ Power BI
+- Power BI recomenda star schema (fato central + dimensoes ao redor)
+- Surrogate keys nas dimensoes = rastreamento historico correto
+- Boas praticas Databricks (Optimize, Z-Ordering) = dashboard performatico

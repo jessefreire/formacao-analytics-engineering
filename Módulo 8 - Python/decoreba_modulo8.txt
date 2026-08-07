@@ -1,0 +1,252 @@
+DECOREBA - MODULO 8: PYTHON
+===================================================
+
+JUPYTER / GOOGLE COLAB
+--------------------------------------------
+- Notebook = arquivo .ipynb, dividido em celulas
+- CTRL+ENTER -> executa celula atual
+- SHIFT+ENTER -> executa e cria celula abaixo
+- print() -> exibe mensagem/variavel/tipo/debug
+- # -> comentario (tudo a frente e ignorado)
+- Colab NAO exige print() pra exibir ultima expressao da celula
+
+TIPOS PRIMITIVOS
+--------------------------------------------
+- int    -> inteiro (108)
+- float  -> decimal (1.08) [PONTO, nao virgula!]
+- str    -> texto ('Analise')
+- bool   -> True / False
+- type(var) -> retorna o tipo
+- f-string -> f'valor: {var}' (interpolacao com {})
+
+OPERADORES
+--------------------------------------------
+Aritmeticos: + - * / // % **
+Atribuicao:   = += -= *= /= %=
+Comparacao:   > < == != >= <=
+Logicos:      and or not
+Identidade:   is / is not (mesmo objeto memoria)
+Associacao:   in / not in (pertence a sequencia)
+
+>> PEGADINHA: = e ATRIBUICAO, == e COMPARACAO
+   Erro classico: if x = 10 (SyntaxError)
+
+LISTAS
+--------------------------------------------
+- Indices comecam em ZERO
+- var.append(x)    -> adiciona ao final
+- var.remove(x)    -> remove 1a ocorrencia (erro se nao existir)
+- var.insert(i, x) -> insere no indice i
+- var.pop(i)       -> remove do indice i (ou ultimo)
+- var.index(x)     -> indice da 1a ocorrencia
+- var.count(x)     -> conta ocorrencas
+- var.sort(reverse=True) -> ordena decrescente
+
+DICIONARIOS
+--------------------------------------------
+- Chave: valor (chaves UNICAS; reescreve se repetir)
+- dic['chave']       -> acessa valor
+- dic['nova'] = v    -> cria/atualiza
+- dic.keys()         -> chaves
+- dic.values()        -> valores
+- dic.items()         -> pares (chave, valor)
+- dic.pop('chave')   -> remove chave
+
+ESTRUTURAS DE DECISAO
+--------------------------------------------
+if condicao:
+    ...
+elif outra_condicao:
+    ...
+else:
+    ...
+
+>> PEGADINHA: if vs elif
+   if SEMPRE e verificado (mesmo se anterior True)
+   elif SO e verificado se anteriores FALSE
+   Use elif quando condicoes sao mutuamente exclusivas
+
+ESTRUTURAS DE REPETICAO
+--------------------------------------------
+while condicao:
+    ...
+    break -> interrompe o loop
+
+for elemento in colecao:
+    ...
+
+for i, valor in enumerate(cocolecao):
+    # i = indice, valor = elemento
+
+len(colecao) -> tamanho (listas, dicts, etc.)
+
+FUNCOES
+--------------------------------------------
+def nome_funcao(parametros):
+    ...
+    return valor   # ou return None
+
+MODULOS vs PACOTES vs BIBLIOTECAS
+--------------------------------------------
+Modulo    = 1 arquivo .py (ex: sqlite3) [built-in]
+Pacote    = conjunto de modulos (ex: pandas) [pip install]
+Biblioteca= conjunto de pacotes (ex: seaborn, matplotlib)
+
+PANDAS - IMPORT E LEITURA
+--------------------------------------------
+import pandas as pd
+df = pd.read_csv('caminho.csv')
+
+>> PEGADINHA: int64 vira float64 quando tem NaN
+   (NaN e float em Pandas)
+
+PANDAS - RESUMO
+--------------------------------------------
+df.head(n)    -> primeiras n linhas (padrao 5)
+df.tail(n)    -> ultimas n linhas
+df.dtypes     -> tipos das colunas
+df.info()     -> linhas, colunas, non-null, tipos
+df.shape      -> (linhas, colunas) -> shape[0]=linhas, shape[1]=colunas
+
+PANDAS - SELECAO/FILTRO
+--------------------------------------------
+df.iloc[10:20]              -> linhas por indice (fatia)
+df.loc[df['col'] > 100]     -> por condicao booleana
+df.query('col > 100')       -> filtro por string
+df['coluna']                -> acessa coluna (formato padrao)
+
+PANDAS - AGREGACAO
+--------------------------------------------
+df['col'].sum()                           -> soma
+df['col'].mean()                          -> media
+df['col'].median()                        -> mediana
+df['col'].var()                           -> variancia
+df['col'].std()                           -> desvio padrao
+df['col'].value_counts()                  -> contagem
+df['col'].value_counts(normalize=True)    -> proporcao (0 a 1)
+df.groupby('col_A')['col_B'].mean()       -> agrupa e agrega
+
+PANDAS - MANIPULACAO
+--------------------------------------------
+df.drop('col', axis=1)                    -> remove coluna (axis=0 = linha)
+df.rename({'antigo':'novo'}, axis=1)      -> renomeia coluna
+df.sort_values('col', ascending=False)    -> ordena
+df.reset_index()                          -> redefine indice
+
+>> PEGADINHA: .drop() NAO e inplace por padrao
+   Precisa: df = df.drop(...) OU df.drop(..., inplace=True)
+
+PANDAS - STRINGS
+--------------------------------------------
+df.columns.str.lower()               -> nomes das colunas em minusculo
+df.columns.str.upper()               -> maiusculo
+df['col'].str.contains('texto')      -> verifica substring
+
+PANDAS - CORRELACAO
+--------------------------------------------
+df[['col1','col2']].corr(numeric_only=True)
+
+GRAFICOS (SEABORN + MATPLOTLIB)
+--------------------------------------------
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.barplot(data=, x=, y=)           -> barras (comparar valores)
+sns.countplot(data=, x= ou y=)       -> frequencia categorias
+sns.histplot(data=, x=, kde=True)    -> histograma (distribuicao)
+sns.boxplot(data=, x=, y=)           -> boxplot (mediana, quartis, outliers)
+sns.scatterplot(data=, x=, y=, hue=) -> dispersao (2 variaveis)
+sns.heatmap(data=, annot=True)       -> mapa de calor (correlacao)
+
+Customizacao: ax.set_title(), ax.set_xlabel(), ax.set_ylabel()
+plt.xticks(rotation=90), plt.show()
+
+TESTES DE HIPOTESES (SCIPY)
+--------------------------------------------
+from scipy.stats import normaltest, ttest_1samp, ttest_ind
+
+normaltest(amostra) -> H0: segue normal / H1: nao segue
+ttest_1samp(amostra, media, alternative='two-sided')
+ttest_ind(amostra_a, amostra_b, alternative='two-sided')
+
+>> CRITERIO: se pvalor < alpha (0.05) -> REJEITA H0
+   se pvalor >= alpha -> NAO ha evidencia para rejeitar H0
+
+>> QUANDO USAR t DE STUDENT: amostra < 30 E sigma (desvio padrao populacional) DESCONHECIDO
+
+MACHINE LEARNING - TREINO/TESTE
+--------------------------------------------
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+- Treino: modelo aprende padroes
+- Teste: avalia generalizacao
+- Overfitting: decora treino, ruim em teste (muito complexo)
+- Underfitting: simples demais, ruim em ambos
+
+>> PEGADINHA: Overfitting = bom em TREINO, ruim em TESTE
+   Underfitting = ruim em AMBOS
+
+REGRESSAO LINEAR
+--------------------------------------------
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X_train, y_train)         # ajuste com TREINO
+y_pred = model.predict(X_test)      # previsao com TESTE
+
+Metricas: R2, MAE, MSE, RMSE (= np.sqrt(MSE))
+
+REGRESSAO LOGISTICA (CLASSIFICACAO BINARIA)
+--------------------------------------------
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+>> PEGADINHA: Cutoff padrao = 0.5
+   P(x) >= 0.5 -> classe 1
+   P(x) < 0.5  -> classe 0
+
+MATRIZ DE CONFUSAO
+--------------------------------------------
+               Predito
+              0      1
+Real  0      TN     FP
+      1      FN     TP
+
+TP = Verdadeiro Positivo (acertou positivo)
+TN = Verdadeiro Negativo (acertou negativo)
+FP = Falso Positivo (erro tipo I)
+FN = Falso Negativo (erro tipo II)
+
+Metricas:
+  Acuracia  = (TP + TN) / Total
+  Precisao  = TP / (TP + FP)      -> qualidade da previsao positiva
+  Revocacao = TP / (TP + FN)      -> capacidade de identificar positivos
+  F1-Score  = 2 * (Prec * Revoc) / (Prec + Revoc)  -> media harmonica
+
+CLUSTERIZACAO (K-MEANS - NAO SUPERVISIONADO)
+--------------------------------------------
+from sklearn.cluster import KMeans
+
+Processo:
+1. Define K (numero de clusters) via METODO ELBOW
+2. Inicializa centrodies aleatoriamente
+3. Atribui observacoes ao centroid mais proximo
+4. Recalcula centroids (media das observacoes)
+5. Repete 3-4 ate convergir
+
+PCA - reduz dimensionalidade p/ visualizar (>2 vars)
+--------------------------------------------
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2)
+df_pca = pca.fit_transform(df)
+
+CONEXAO COM DESAFIO FINAL (DBT + POWER BI)
+--------------------------------------------
+- Python = analise exploratoria ESTATISTICA das tabelas BanVic (antes/deps do dbt)
+- K-Means = segmentar clientes pra insights que vao pro dashboard
+- Export to_csv() = ponte entre Python e Power BI (CSV tratado -> dataset)
+- Testes de hipotese = validam insights ANTES de colocar no dashboard (evita correlacao espuria)
+- Treino/Teste (ML) = reforca logica staging/marts do dbt (raw -> limpo -> modelo validado)
+- Regressao logista = prever churn (cliente sai/nao sai) -> alimenta KPI do Power BI

@@ -143,6 +143,28 @@
     "size": 83184
   },
   {
+    "id": "personal_3_decoreba_modulo3",
+    "label": "decoreba_modulo3.txt",
+    "title": "DECOREBA - MODULO 3: MODELAGEM DE DADOS",
+    "path": "Módulo 3 - Modelagem de dados/decoreba_modulo3.txt",
+    "cat": "Módulo 3 - Modelagem de dados",
+    "done": true,
+    "module": "3",
+    "sort": 3,
+    "size": 6854
+  },
+  {
+    "id": "personal_3_resumo_modulo3",
+    "label": "resumo_modulo3.md",
+    "title": "Resumo — Módulo 3: Modelagem de dados",
+    "path": "Módulo 3 - Modelagem de dados/resumo_modulo3.md",
+    "cat": "Módulo 3 - Modelagem de dados",
+    "done": true,
+    "module": "3",
+    "sort": 3,
+    "size": 9826
+  },
+  {
     "id": "en_3__english_fada_m_dulo_3_modelag",
     "label": "[English _ FADA] Módulo 3 - Modelagem de dados.pptx.md",
     "title": "Data modeling **Index**",
@@ -163,6 +185,28 @@
     "module": "IV",
     "sort": 3.5,
     "size": 75576
+  },
+  {
+    "id": "personal_iv_decoreba_moduloiv",
+    "label": "decoreba_moduloIV.txt",
+    "title": "DECOREBA - MODULO IV: ENGENHARIA DE DADOS COM DBT E SNOWFLAKE",
+    "path": "Módulo IV - Engenharia de Dados com dbt e Snowflake/decoreba_moduloIV.txt",
+    "cat": "Módulo IV - Engenharia de Dados com dbt e Snowflake",
+    "done": true,
+    "module": "IV",
+    "sort": 3.5,
+    "size": 7076
+  },
+  {
+    "id": "personal_iv_resumo_moduloiv",
+    "label": "resumo_moduloIV.md",
+    "title": "Resumo — Módulo IV: Engenharia de Dados com dbt e Snowflake",
+    "path": "Módulo IV - Engenharia de Dados com dbt e Snowflake/resumo_moduloIV.md",
+    "cat": "Módulo IV - Engenharia de Dados com dbt e Snowflake",
+    "done": true,
+    "module": "IV",
+    "sort": 3.5,
+    "size": 8868
   },
   {
     "id": "en_iv__academy_en_us_asynchronous_fe",
@@ -187,6 +231,28 @@
     "size": 97942
   },
   {
+    "id": "personal_4_decoreba_modulo4",
+    "label": "decoreba_modulo4.txt",
+    "title": "DECOREBA - MODULO 4: STORYTELLING COM DADOS",
+    "path": "Módulo 4 - Storytelling com Dados/decoreba_modulo4.txt",
+    "cat": "Módulo 4 - Storytelling com Dados",
+    "done": true,
+    "module": "4",
+    "sort": 4,
+    "size": 8306
+  },
+  {
+    "id": "personal_4_resumo_modulo4",
+    "label": "resumo_modulo4.md",
+    "title": "Resumo — Módulo 4: Storytelling com Dados",
+    "path": "Módulo 4 - Storytelling com Dados/resumo_modulo4.md",
+    "cat": "Módulo 4 - Storytelling com Dados",
+    "done": true,
+    "module": "4",
+    "sort": 4,
+    "size": 12672
+  },
+  {
     "id": "en_4__english_fada_m_dulo_4_storyte",
     "label": "[English _ FADA] Módulo 4 - Storytelling com Dados.pptx.md",
     "title": "**DATA-INK =**",
@@ -207,6 +273,28 @@
     "module": "5",
     "sort": 5,
     "size": 54932
+  },
+  {
+    "id": "personal_5_decoreba_modulo5",
+    "label": "decoreba_modulo5.txt",
+    "title": "DECOREBA - MODULO 5: DESIGN DE EXPERIENCIA",
+    "path": "Módulo 5 - Design de Experiência/decoreba_modulo5.txt",
+    "cat": "Módulo 5 - Design de Experiência",
+    "done": true,
+    "module": "5",
+    "sort": 5,
+    "size": 10344
+  },
+  {
+    "id": "personal_5_resumo_modulo5",
+    "label": "resumo_modulo5.md",
+    "title": "Resumo — Módulo 5: Design de Experiência",
+    "path": "Módulo 5 - Design de Experiência/resumo_modulo5.md",
+    "cat": "Módulo 5 - Design de Experiência",
+    "done": true,
+    "module": "5",
+    "sort": 5,
+    "size": 15575
   },
   {
     "id": "en_5_copy_of_fada_m_dulo_5_design_d",
@@ -231,6 +319,28 @@
     "size": 109846
   },
   {
+    "id": "personal_6_decoreba_modulo6",
+    "label": "decoreba_modulo6.txt",
+    "title": "DECOREBA - MODULO 6: DASHBOARDS COM POWER BI",
+    "path": "Módulo 6 - Criando dashboards com Power BI/decoreba_modulo6.txt",
+    "cat": "Módulo 6 - Dashboards com Power BI",
+    "done": true,
+    "module": "6",
+    "sort": 6,
+    "size": 7917
+  },
+  {
+    "id": "personal_6_resumo_modulo6",
+    "label": "resumo_modulo6.md",
+    "title": "Resumo — Módulo 6: Dashboards com Power BI",
+    "path": "Módulo 6 - Criando dashboards com Power BI/resumo_modulo6.md",
+    "cat": "Módulo 6 - Dashboards com Power BI",
+    "done": true,
+    "module": "6",
+    "sort": 6,
+    "size": 14859
+  },
+  {
     "id": "en_6__english_fada_m_dulo_6_criando",
     "label": "[English _ FADA] -  Módulo 6 - Criando dashboards com Power BI.docx.pptx.md",
     "title": "Components of **POWER BI**",
@@ -253,6 +363,28 @@
     "size": 194989
   },
   {
+    "id": "personal_7_decoreba_modulo7",
+    "label": "decoreba_modulo7.txt",
+    "title": "DECOREBA - MODULO 7: ESTATISTICA APLICADA A ANALISE DE DADOS",
+    "path": "Módulo 7 - Estatística aplicada à análise de dados/decoreba_modulo7.txt",
+    "cat": "Módulo 7 - Estatística aplicada à análise de dados",
+    "done": true,
+    "module": "7",
+    "sort": 7,
+    "size": 9265
+  },
+  {
+    "id": "personal_7_resumo_modulo7",
+    "label": "resumo_modulo7.md",
+    "title": "Resumo — Módulo 7: Estatística aplicada à análise de dados",
+    "path": "Módulo 7 - Estatística aplicada à análise de dados/resumo_modulo7.md",
+    "cat": "Módulo 7 - Estatística aplicada à análise de dados",
+    "done": true,
+    "module": "7",
+    "sort": 7,
+    "size": 12841
+  },
+  {
     "id": "en_7_copy_of_fada_m_dulo_7_estat_st",
     "label": "Copy of [FADA] Módulo 7 - Estatística aplicada à análise de dados.pptx.md",
     "title": "**Dispersion measures**",
@@ -273,6 +405,28 @@
     "module": "8",
     "sort": 8,
     "size": 176844
+  },
+  {
+    "id": "personal_8_decoreba_modulo8",
+    "label": "decoreba_modulo8.txt",
+    "title": "i = indice, valor = elemento",
+    "path": "Módulo 8 - Python/decoreba_modulo8.txt",
+    "cat": "Módulo 8 - Python",
+    "done": true,
+    "module": "8",
+    "sort": 8,
+    "size": 8799
+  },
+  {
+    "id": "personal_8_resumo_modulo8",
+    "label": "resumo_modulo8.md",
+    "title": "Resumo — Módulo 8: Python",
+    "path": "Módulo 8 - Python/resumo_modulo8.md",
+    "cat": "Módulo 8 - Python",
+    "done": true,
+    "module": "8",
+    "sort": 8,
+    "size": 11015
   },
   {
     "id": "en_8__english_fada_m_dulo_de_python",

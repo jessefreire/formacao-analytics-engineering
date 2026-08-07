@@ -1,0 +1,215 @@
+DECOREBA - MODULO 5: DESIGN DE EXPERIENCIA
+===================================================
+
+O QUE E UX
+--------------------------------------------
+- UX (User Experience) = experiencia do usuario
+- Conjunto de estimulos + contexto -> emocoes, comportamentos, pensamentos
+- Objetivo: produtos intuitivos, agradaveis e acessiveis (nao so funcionais)
+- Profissional na Indicium = DataX Designer
+
+>> PEGADINHA: UX e UI sao coisas DIFERENTES
+    UX = experiencia completa (guarda-chuva: pesquisa, arquitetura, interface, analise)
+    UI = Interface = so o ponto de contato visual/tocavel
+
+CONTEXTO HISTORICO
+--------------------------------------------
+- 1430: da Vinci (eficiencia/otimizacao)
+- 1955: Dreyfuss (design que encanta)
+- 1966: Disney (experiencia imersiva)
+- 1970: PARC - Xerox (mouse, GUI, Ethernet)
+- 1995: Don Norman = "Pai do UX"
+- 2007: iPhone (redefiniu design mobile)
+- Crescimento: 10 (1950) -> 1.000.000 (2020) -> 100.000.000 (2050 projecao)
+
+CONCEITOS FUNDAMENTAIS
+--------------------------------------------
+- Usuario = centro do design
+- Utilidade = atende necessidade real
+- Usabilidade = facil de usar
+- Desejabilidade = desperta desejo
+- Os 3 juntos = bom produto
+
+>> PEGADINHA: UTILIDADE x USABILIDADE
+    Utilidade = o produto SERVE pra algo (resolve o problema?)
+    Usabilidade = e FACIL de usar (da pra usar sem sofrimento?)
+    Pode ter utilidade sem usabilidade (ex: software poderoso mas impossivel de navegar)
+
+MULTIDISCIPLINARIDADE DO UX
+--------------------------------------------
+- Psicologia -> comportamento, percepcao, memoria, decisao
+- Ergonomia -> conforto, eficiencia, seguranca na interacao
+- Antropologia -> culturas e contextos socioculturais
+- Design -> estetica, funcionalidade, usabilidade
+- Computacao/HCI -> tecnologia para interacao humano-computador
+- Sociologia -> interacoes sociais e comunidades
+- Linguistica/Comunicacao -> clareza e estrutura da informacao
+
+COGNICAO HUMANA - CARGA COGNITIVA
+--------------------------------------------
+- John Sweller: mente tem capacidade limitada de processamento
+- "Menos e mais": interface minimalista reduz carga cognitiva
+- Facilidade de uso -> mais engajamento e satisfacao
+
+LEIS DA PSICOLOGIA APLICADAS A UX (Jon Yablonski)
+--------------------------------------------
+- Lei de Jakob: usuarios trazem experiencias anteriores -> use padroes familiares
+- Lei de Fitts: menor + distante = mais dificil -> posicione elementos estrategicamente
+- Lei de Hick: mais opcoes = mais tempo pra decidir -> simplifique
+- Efeito de Serialidade: lembramos melhor inicio e fim da lista
+- Lei de Miller: memoria de curto prazo = 7 (+/- 2) itens -> agrupe info
+- Lei de Tesler: complexidade e inevitavel -> simplifique o que der
+- Lei de Von Restorff: item que se destaca e mais lembrado -> use contraste
+- Lei de Aderencia: experiencia avaliada pelo ponto alto + final
+- Lei de Doherty: interface rapida mantem foco -> otimize desempenho
+
+>> PEGADINHA: LEI DE MILLER = 7 (+/- 2) ITENS
+    Nao e "7 itens" exato — e a faixa de 5 a 9 que a memoria de curto prazo aguenta
+
+GESTALT - 7 PRINCIPIOS
+--------------------------------------------
+1. Proximidade -> elementos proximos = grupo
+2. Semelhanza -> caracteristicas similares = grupo
+3. Continuidade -> linhas continuas (nao partes separadas)
+4. Cercamento -> cercados por linha/forma = grupo
+5. Fechamento -> cerebro completa figuras incompletas
+6. Figura-fundo -> distingue principal do secundario
+7. Pregnancia (Simplicidade) -> prefere formas simples/organizadas
+
+>> PEGADINHA: GESTALT = PERCEPCAO VISUAL
+    Gestalt responde "como o CEREBRO organiza o que ve" — nao e sobre beleza, e sobre organizacao perceptiva
+
+10 HEURISTICAS DE NIELSEN
+--------------------------------------------
+1. Visibilidade do status -> usuario sempre informado (barra progresso, breadcrumbs)
+2. Sistema <-> mundo real -> linguagem familiar, analogias reais
+3. Controle e liberdade -> desfazer (Ctrl+Z), saidas de emergencia
+4. Consistencia e padroes -> mesma logica entre telas
+5. Prevencao de erros -> antecipar e informar (confirmacao dupla)
+6. Reconhecimento > memorizacao -> tooltips, info visivel
+7. Flexibilidade e eficiencia -> novato E experiente (atalhos)
+8. Design estetico e minimalista -> funcao > estetica, remova excessos
+9. Recuperacao de erros -> mensagens claras e instrutivas
+10. Ajuda e documentacao -> FAQs, tooltips, bots
+
+>> PEGADINHA: PREVENCAO x RECUPERACAO DE ERROS
+    Prevencao = EVITAR que o erro aconteca (confirmacao antes de deletar)
+    Recuperacao = o erro JA ACONTECEU, informa claramente como corrigir
+
+METODOLOGIA - DUPOLO DIAMANTE (4 etapas)
+--------------------------------------------
+1. DESCOBERTA -> investiga o problema (UX Research, data mapping)
+2. DEFINICAO -> sintetiza info, define o problema (arquitetura, wireframes, guia)
+3. DESENVOLVIMENTO -> cria solucoes (dashboards, regras, campos calculados)
+4. ENTREGA -> testa e refina (treinamento, testes, manutencao)
+
+>> PEGADINHA: FOCO DA INDICIUM = DESCOBERTA + DEFINICAO
+    A equipe DataX foca nas 2 primeiras etapas, nao no ciclo completo
+
+UX RESEARCH - TIPOS DE PESQUISA
+--------------------------------------------
+QUALITATIVA = "por que/como" -> entrevistas, observacao, teste usabilidade
+QUANTITATIVA = "quanto" -> escalas, cliques, questionarios
+ATIDUDINAL = "o que dizem/acreditam" -> entrevistas, grupos focais
+COMPORTAMENTAL = "o que fazem" -> testes A/B, rastreamento ocular
+
+>> PEGADINHA: NAO CONFUNDIR QUALI/QUANTI COM ATIDUDINAL/COMPORTAMENTAL
+    Quali/Quanti = FORMA de coletar (direta vs indireta)
+    Atitudinal/Comportamental = OBJETO (atitude vs comportamento)
+
+MATRIZ CSD
+--------------------------------------------
+- Certezas = o que ja sabe comprovado
+- Supoicoes = acha que sabe, precisa comprovar
+- Duvidas = incerteza completa (sem hipotese ainda)
+
+METODOS DE PESQUISA P/ PRODUTOS DE DADOS
+--------------------------------------------
+- Desk Research = fontes pre-existentes (secundaria, baixo custo)
+- Entrevistas = qualitativo, aprofunda experiencias
+- Questionarios = quanti-quali, muitas respostas
+- Personas = perfis ficticios baseados em pesquisa
+- Teste de Usabilidade = observacao estruturada do usuario usando o produto
+
+DEFININDO O PROBLEMA
+--------------------------------------------
+- 5Ws 2Hs = O que, Por que, Quem, Onde, Quando, Como, Quanto
+- 5 Porques = causa raiz (perguntar "por que" repetidamente)
+- Mapa de Empatia = pensamentos, sentimentos, necessidades do usuario
+- Jornada do Usuario = visualiza experiencia, pontos de dor, oportunidades
+
+ARQUITETURA DA INFORMACAO (AI) - PASSO A PASSO
+--------------------------------------------
+1. Analisar dados da pesquisa (frequencia, necessidade principal)
+2. Definir indicadores
+3. Verificar se modelagem comporta os indicadores
+4. Matriz Impacto-Esforco (priorizar)
+5. Definir MVP (alto impacto + baixo esforco)
+6. Agrupar visualizacoes (Card Sorting)
+7. Definir hierarquia entre/dentro dos grupos
+8. Aplicar padroes de leitura (F ou Z)
+9. Esquema de funil: generalista (big numbers) -> especializada (graficos) -> granular (tabelas)
+
+>> PEGADINHA: PADRAO F x PADRAO Z
+    F = escaneamento textual (leitura de paginas/blogs) -> cima p/ baixo, esq p/ dir no achado
+    Z = varredura visual (dashboards/landing) -> topo esq->dir, diagonal baixo, baixo esq->dir
+
+>> PEGADINHA: CARD SORTING E COM USUARIO
+    Card sorting = usuario agrupa cartoes com elementos do dashboard
+    Voce NAO agrupa sozinho — o usuario revela como ELE categoriza
+
+WIREFRAME x MOCKUP x PROTOTIPO
+--------------------------------------------
+Wireframe = esqueleto/rascunho (estrutura, rapido, barato, testavel)
+Mockup = versao fiel ao final (estetica, identidade visual, mais recursos)
+Prototipo = interativo (clicavel, navegavel, alta fidelidade)
+
+>> PEGADINHA: ORDEM DE FIDELIDADE CRESCENTE
+    Wireframe (baixa) -> Media (Mockup) -> Alta (Prototipo)
+    Sempre nessa ordem — nao pula direto pra prototipo
+
+UI DESIGN - COR
+--------------------------------------------
+- Circulo cromatico: primarias (VM, AZ, AM), secundarias (VD, LJ, RX), terciarias
+- CMYK = impresso / RGB = telas (hexadecimal)
+- Matiz = familia da cor / Saturacao = intensidade / Luminosidade = luz ou sombra
+- Paleta: monocromatica, analogas, complementares
+- Contraste: WCAG exige >= 4.5:1 (texto/imagem)
+- Acessibilidade: considerar daltonismo (8 milhoes no Brasil)
+
+UI DESIGN - TIPOGRAFIA E LAYOUT
+--------------------------------------------
+- Usar fontes sem serifa (Roboto, Inter, Open Sans)
+- Maximo 2 fontes diferentes
+- Tamanho/peso diferentes = hierarquia
+- Espacos em branco = respiro + direcionam olhar
+- Alinhamento/Grid = coesao visual, legibilidade
+
+GUIA DE ESTILOS x DESIGN SYSTEM
+--------------------------------------------
+Guia de Estilos = manual com regras (tipografia, cores, espacamento)
+Design System = biblioteca de componentes reutilizaveis (tipo LEGO)
+- Barra navegacao, botoes, cards big number, cards grafico, barra filtros
+
+>> PEGADINHA: GUIA DE ESTILOS != DESIGN SYSTEM
+    Guia de Estilos = DOCUMENTO/REGRA (o que fazer e como)
+    Design System = COMPONENTES PRONTOS (pecas reutilizaveis de fato)
+
+FIGMA
+--------------------------------------------
+- Editor grafico colaborativo, nuvem, tem plano gratuito
+- 2 tipos de arquivo: Figma (design/interfaces) e FigJam (quadro branco/brainstorming)
+- 4 areas: area de trabalho, barra ferramentas, sidebar esquerda (camadas), sidebar direita (propriedades)
+- Ferramentas essenciais: Cursor, Frame, Texto
+- Camadas: ordem determina sobreposicao (cima cobra baixo)
+
+CONEXAO COM DESAFIO FINAL (DBT + POWER BI)
+--------------------------------------------
+- Duplo Diamante: DESCOBRIR (o que gestores Banvic precisam) -> DEFINIR (quais indicadores) antes de ir pro Power BI
+- UX Research + Matriz CSD: entrevistar "usuarios", mapear certezas/suposicoes/duvidas ANTES de modelar
+- AI + Padrao Z: organizar layout Power BI em funil (big numbers -> graficos -> tabelas)
+- Heuristicas de Nielsen + Gestalt: aplicar no dashboard (consistencia, status, minimalismo, proximidade, figura-fundo)
+- Design System + Guia: manter consistencia visual no Power BI
+- Wireframe -> Mockup -> Prototipo: fazer rascunho no papel/Figma ANTES de ir pro Power BI
+- Matriz Impacto-Esforco: priorizar visualizacoes no MVP (alto impacto, baixo esforco primeiro)
+- Card Sorting: deixar usuario agrupar elementos — NAO agrupa sozinho
