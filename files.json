@@ -7,7 +7,8 @@
     "cat": "Config",
     "done": true,
     "module": 0,
-    "size": 10156
+    "sort": 0,
+    "size": 10671
   },
   {
     "id": "diario",
@@ -17,6 +18,7 @@
     "cat": "Config",
     "done": true,
     "module": 0,
+    "sort": 0,
     "size": 15255
   },
   {
@@ -27,6 +29,7 @@
     "cat": "Config",
     "done": true,
     "module": 0,
+    "sort": 0,
     "size": 4436
   },
   {
@@ -37,17 +40,8 @@
     "cat": "Config",
     "done": true,
     "module": 0,
+    "sort": 0,
     "size": 9434
-  },
-  {
-    "id": "oficial_1__fada_english_slides_introduct",
-    "label": "[FADA _ English] Slides - Introduction to data analysis.pptx.md",
-    "title": "Course presentation",
-    "path": "Módulo 1 -  Introdução à Análise de Dados/[FADA _ English] Slides - Introduction to data analysis.pptx.md",
-    "cat": "Módulo 1 - Introdução à Análise de Dados",
-    "done": true,
-    "module": 1,
-    "size": 18601
   },
   {
     "id": "oficial_1__fada_conte_do_m_dulo_01_intro",
@@ -56,28 +50,42 @@
     "path": "Módulo 1 -  Introdução à Análise de Dados/[FADA] Conteúdo -  Módulo 01 - Introdução à Análise de Dados.docx.md",
     "cat": "Módulo 1 - Introdução à Análise de Dados",
     "done": true,
-    "module": 1,
+    "module": "1",
+    "sort": 1,
     "size": 145503
   },
   {
-    "id": "decoreba_1_decoreba_modulo1",
+    "id": "personal_1_decoreba_modulo1",
     "label": "decoreba_modulo1.txt",
     "title": "DECOREBA - MODULO 1: INTRODUCAO A ANALISE DE DADOS",
     "path": "Módulo 1 -  Introdução à Análise de Dados/decoreba_modulo1.txt",
     "cat": "Módulo 1 - Introdução à Análise de Dados",
     "done": true,
-    "module": 1,
+    "module": "1",
+    "sort": 1,
     "size": 4342
   },
   {
-    "id": "resumo_1_resumo_modulo1",
+    "id": "personal_1_resumo_modulo1",
     "label": "resumo_modulo1.md",
     "title": "Resumo — Módulo 1: Introdução à Análise de Dados",
     "path": "Módulo 1 -  Introdução à Análise de Dados/resumo_modulo1.md",
     "cat": "Módulo 1 - Introdução à Análise de Dados",
     "done": true,
-    "module": 1,
+    "module": "1",
+    "sort": 1,
     "size": 7379
+  },
+  {
+    "id": "en_1__fada_english_slides_introduct",
+    "label": "[FADA _ English] Slides - Introduction to data analysis.pptx.md",
+    "title": "Course presentation",
+    "path": "Módulo 1 -  Introdução à Análise de Dados/[FADA _ English] Slides - Introduction to data analysis.pptx.md",
+    "cat": "Módulo 1 - Introdução à Análise de Dados",
+    "done": true,
+    "module": "1",
+    "sort": 1,
+    "size": 18601
   },
   {
     "id": "oficial_2_conte_do_m_dulo_2_sql_1",
@@ -86,28 +94,9 @@
     "path": "Modulo 2 - SQL para Análise de Dados/Conteúdo -  Módulo 2 - SQL (1).md",
     "cat": "Módulo 2 - SQL",
     "done": true,
-    "module": 2,
+    "module": "2",
+    "sort": 2,
     "size": 72032
-  },
-  {
-    "id": "decoreba_2_decoreba_sql",
-    "label": "Decoreba_SQL.txt",
-    "title": "===================================================",
-    "path": "Modulo 2 - SQL para Análise de Dados/Decoreba_SQL.txt",
-    "cat": "Módulo 2 - SQL",
-    "done": true,
-    "module": 2,
-    "size": 12836
-  },
-  {
-    "id": "resumo_2_resumo_modulo_2_sql",
-    "label": "Resumo_Modulo_2_SQL.md",
-    "title": "Resumo de Estudo — Módulo 2: Consultando Dados com SQL",
-    "path": "Modulo 2 - SQL para Análise de Dados/Resumo_Modulo_2_SQL.md",
-    "cat": "Módulo 2 - SQL",
-    "done": true,
-    "module": 2,
-    "size": 12666
   },
   {
     "id": "oficial_2__academy_querying_data_with_sq",
@@ -116,7 +105,184 @@
     "path": "Modulo 2 - SQL para Análise de Dados/[Academy] Querying data with SQL - Slides.pptx.md",
     "cat": "Módulo 2 - SQL",
     "done": true,
-    "module": 2,
+    "module": "2",
+    "sort": 2,
     "size": 46920
+  },
+  {
+    "id": "personal_2_decoreba_sql",
+    "label": "Decoreba_SQL.txt",
+    "title": "DECOREBA DE SQL - PARA ENTENDER, NAO PARA DECORAR",
+    "path": "Modulo 2 - SQL para Análise de Dados/Decoreba_SQL.txt",
+    "cat": "Módulo 2 - SQL",
+    "done": true,
+    "module": "2",
+    "sort": 2,
+    "size": 12836
+  },
+  {
+    "id": "personal_2_resumo_modulo_2_sql",
+    "label": "Resumo_Modulo_2_SQL.md",
+    "title": "Resumo de Estudo — Módulo 2: Consultando Dados com SQL",
+    "path": "Modulo 2 - SQL para Análise de Dados/Resumo_Modulo_2_SQL.md",
+    "cat": "Módulo 2 - SQL",
+    "done": true,
+    "module": "2",
+    "sort": 2,
+    "size": 12666
+  },
+  {
+    "id": "oficial_3__fada_conte_do_m_dulo_3_modela",
+    "label": "[FADA] Conteúdo -  Módulo 3 - Modelagem de dados.docx.md",
+    "title": "Material Teórico",
+    "path": "Módulo 3 - Modelagem de dados/[FADA] Conteúdo -  Módulo 3 - Modelagem de dados.docx.md",
+    "cat": "Módulo 3 - Modelagem de dados",
+    "done": true,
+    "module": "3",
+    "sort": 3,
+    "size": 83184
+  },
+  {
+    "id": "en_3__english_fada_m_dulo_3_modelag",
+    "label": "[English _ FADA] Módulo 3 - Modelagem de dados.pptx.md",
+    "title": "Data modeling **Index**",
+    "path": "Módulo 3 - Modelagem de dados/[English _ FADA] Módulo 3 - Modelagem de dados.pptx.md",
+    "cat": "Módulo 3 - Modelagem de dados",
+    "done": true,
+    "module": "3",
+    "sort": 3,
+    "size": 27827
+  },
+  {
+    "id": "oficial_iv__fea_conte_do_m_dulo_iv_engenh",
+    "label": "[FEA] Conteúdo -  Módulo IV - Engenharia de Dados com dbt e Snowflake.md",
+    "title": "Material Teórico",
+    "path": "Módulo IV - Engenharia de Dados com dbt e Snowflake/[FEA] Conteúdo -  Módulo IV - Engenharia de Dados com dbt e Snowflake.md",
+    "cat": "Módulo IV - Engenharia de Dados com dbt e Snowflake",
+    "done": true,
+    "module": "IV",
+    "sort": 3.5,
+    "size": 75576
+  },
+  {
+    "id": "en_iv__academy_en_us_asynchronous_fe",
+    "label": "[Academy] EN-US - Asynchronous FEA - Analytics Engineering Class with dbt and Snowflake.pptx.md",
+    "title": "**ETL**",
+    "path": "Módulo IV - Engenharia de Dados com dbt e Snowflake/[Academy] EN-US - Asynchronous FEA - Analytics Engineering Class with dbt and Snowflake.pptx.md",
+    "cat": "Módulo IV - Engenharia de Dados com dbt e Snowflake",
+    "done": true,
+    "module": "IV",
+    "sort": 3.5,
+    "size": 31495
+  },
+  {
+    "id": "oficial_4_conte_do_m_dulo_4_storytelling",
+    "label": "Conteúdo -  Módulo 4 - Storytelling com Dados.docx.md",
+    "title": "Material Teórico",
+    "path": "Módulo 4 - Storytelling com Dados/Conteúdo -  Módulo 4 - Storytelling com Dados.docx.md",
+    "cat": "Módulo 4 - Storytelling com Dados",
+    "done": true,
+    "module": "4",
+    "sort": 4,
+    "size": 97942
+  },
+  {
+    "id": "en_4__english_fada_m_dulo_4_storyte",
+    "label": "[English _ FADA] Módulo 4 - Storytelling com Dados.pptx.md",
+    "title": "**DATA-INK =**",
+    "path": "Módulo 4 - Storytelling com Dados/[English _ FADA] Módulo 4 - Storytelling com Dados.pptx.md",
+    "cat": "Módulo 4 - Storytelling com Dados",
+    "done": true,
+    "module": "4",
+    "sort": 4,
+    "size": 29699
+  },
+  {
+    "id": "oficial_5__fada_apostila_m_dulo_5_design",
+    "label": "[FADA] - APOSTILA - Módulo 5 - Design de Experiência.docx.md",
+    "title": "Apostila",
+    "path": "Módulo 5 - Design de Experiência/[FADA] - APOSTILA - Módulo 5 - Design de Experiência.docx.md",
+    "cat": "Módulo 5 - Design de Experiência",
+    "done": true,
+    "module": "5",
+    "sort": 5,
+    "size": 54932
+  },
+  {
+    "id": "en_5_copy_of_fada_m_dulo_5_design_d",
+    "label": "Copy of [FADA] Módulo 5 - Design de Experiência.pptx.md",
+    "title": "Lesson 1 - Introduction",
+    "path": "Módulo 5 - Design de Experiência/Copy of [FADA] Módulo 5 - Design de Experiência.pptx.md",
+    "cat": "Módulo 5 - Design de Experiência",
+    "done": true,
+    "module": "5",
+    "sort": 5,
+    "size": 53396
+  },
+  {
+    "id": "oficial_6_conte_do_m_dulo_6_criando_dash",
+    "label": "Conteúdo -  Módulo 6 - Criando dashboards com Power BI.docx.md",
+    "title": "Material Teórico",
+    "path": "Módulo 6 - Criando dashboards com Power BI/Conteúdo -  Módulo 6 - Criando dashboards com Power BI.docx.md",
+    "cat": "Módulo 6 - Dashboards com Power BI",
+    "done": true,
+    "module": "6",
+    "sort": 6,
+    "size": 109846
+  },
+  {
+    "id": "en_6__english_fada_m_dulo_6_criando",
+    "label": "[English _ FADA] -  Módulo 6 - Criando dashboards com Power BI.docx.pptx.md",
+    "title": "Components of **POWER BI**",
+    "path": "Módulo 6 - Criando dashboards com Power BI/[English _ FADA] -  Módulo 6 - Criando dashboards com Power BI.docx.pptx.md",
+    "cat": "Módulo 6 - Dashboards com Power BI",
+    "done": true,
+    "module": "6",
+    "sort": 6,
+    "size": 21386
+  },
+  {
+    "id": "oficial_7__fada_conte_do_m_dulo_7_estat",
+    "label": "[FADA] Conteúdo -  Módulo 7 - Estatística aplicada à análise de dados.docx.md",
+    "title": "Material Teórico",
+    "path": "Módulo 7 - Estatística aplicada à análise de dados/[FADA] Conteúdo -  Módulo 7 - Estatística aplicada à análise de dados.docx.md",
+    "cat": "Módulo 7 - Estatística aplicada à análise de dados",
+    "done": true,
+    "module": "7",
+    "sort": 7,
+    "size": 194989
+  },
+  {
+    "id": "en_7_copy_of_fada_m_dulo_7_estat_st",
+    "label": "Copy of [FADA] Módulo 7 - Estatística aplicada à análise de dados.pptx.md",
+    "title": "**Dispersion measures**",
+    "path": "Módulo 7 - Estatística aplicada à análise de dados/Copy of [FADA] Módulo 7 - Estatística aplicada à análise de dados.pptx.md",
+    "cat": "Módulo 7 - Estatística aplicada à análise de dados",
+    "done": true,
+    "module": "7",
+    "sort": 7,
+    "size": 59879
+  },
+  {
+    "id": "oficial_8__fada_conte_do_m_dulo_8_python",
+    "label": "[FADA] Conteúdo -  Módulo 8  - Python.md",
+    "title": "Material Teórico",
+    "path": "Módulo 8 - Python/[FADA] Conteúdo -  Módulo 8  - Python.md",
+    "cat": "Módulo 8 - Python",
+    "done": true,
+    "module": "8",
+    "sort": 8,
+    "size": 176844
+  },
+  {
+    "id": "en_8__english_fada_m_dulo_de_python",
+    "label": "[English _ FADA] Módulo de Python.pptx.md",
+    "title": "Python",
+    "path": "Módulo 8 - Python/[English _ FADA] Módulo de Python.pptx.md",
+    "cat": "Módulo 8 - Python",
+    "done": true,
+    "module": "8",
+    "sort": 8,
+    "size": 67138
   }
 ]

@@ -170,16 +170,18 @@ SELECT * FROM cte2;
 
 ---
 
-## Módulo 3 — *(a preencher)*
+## Módulo 3 — Modelagem de dados
 
 **Status:** ⏳ Pendente  
-**Temas previstos:** *(a definir conforme syllabus)*
+**Temas previstos:** Modelagem relacional, normalização, star/snowflake schema, fato vs dimensão, lineage, dbt.
 
 ### Arquivos Oficiais
 | Tipo | Arquivo |
 |------|---------|
-| PDF | *(a adicionar)* |
-| MD | *(a adicionar)* |
+| PDF (Conteúdo) | `[FADA] Conteúdo - Módulo 3 - Modelagem de dados.docx.pdf` |
+| MD (Conteúdo) | `[FADA] Conteúdo - Módulo 3 - Modelagem de dados.docx.md` |
+| PDF (Slides EN) | `[English _ FADA] Módulo 3 - Modelagem de dados.pptx.pdf` |
+| MD (Slides EN) | `[English _ FADA] Módulo 3 - Modelagem de dados.pptx.md` |
 
 ### Resumos Pessoais
 | Arquivo | Descrição |
@@ -189,16 +191,39 @@ SELECT * FROM cte2;
 
 ---
 
-## Módulo 4 — *(a preencher)*
+## Módulo IV — Engenharia de Dados com dbt e Snowflake
 
 **Status:** ⏳ Pendente  
-**Temas previstos:** *(a definir conforme syllabus)*
+**Temas previstos:** dbt Core vs Cloud, transformação SQL, lineage, testes, documentação, Snowflake como DW.
 
 ### Arquivos Oficiais
 | Tipo | Arquivo |
 |------|---------|
-| PDF | *(a adicionar)* |
-| MD | *(a adicionar)* |
+| PDF (Conteúdo) | `[FEA] Conteúdo - Módulo IV - Engenharia de Dados com dbt e Snowflake.pdf` |
+| MD (Conteúdo) | `[FEA] Conteúdo - Módulo IV - Engenharia de Dados com dbt e Snowflake.md` |
+| PDF (Slides EN) | `[Academy] EN-US - Asynchronous FEA - Analytics Engineering Class with dbt and Snowflake.pptx.pdf` |
+| MD (Slides EN) | `[Academy] EN-US - Asynchronous FEA - Analytics Engineering Class with dbt and Snowflake.pptx.md` |
+
+### Resumos Pessoais
+| Arquivo | Descrição |
+|---------|-----------|
+| `resumo_moduloIV.md` | *(a criar)* |
+| `decoreba_moduloIV.txt` | *(a criar)* |
+
+---
+
+## Módulo 4 — Storytelling com Dados
+
+**Status:** ⏳ Pendente  
+**Temas previstos:** Narrativa com dados, data-ink ratio, gráficos escolhas, audiência, apresentação executiva.
+
+### Arquivos Oficiais
+| Tipo | Arquivo |
+|------|---------|
+| PDF (Conteúdo) | `Conteúdo - Módulo 4 - Storytelling com Dados.docx.pdf` |
+| MD (Conteúdo) | `Conteúdo - Módulo 4 - Storytelling com Dados.docx.md` |
+| PDF (Slides EN) | `[English _ FADA] Módulo 4 - Storytelling com Dados.pptx.pdf` |
+| MD (Slides EN) | `[English _ FADA] Módulo 4 - Storytelling com Dados.pptx.md` |
 
 ### Resumos Pessoais
 | Arquivo | Descrição |
@@ -208,16 +233,87 @@ SELECT * FROM cte2;
 
 ---
 
-## Módulos Futuros (5+)
+## Módulo 5 — Design de Experiência
 
-> Adicionar conforme forem liberados no curso.
+**Status:** ⏳ Pendente  
+**Temas previstos:** UX para dados, usabilidade em dashboards, percepção visual, acessibilidade.
 
-| Módulo | Status | Temas | Arquivos |
-|--------|--------|-------|----------|
-| Módulo 5 | ⏳ | *(a definir)* | — |
-| Módulo 6 | ⏳ | *(a definir)* | — |
-| Módulo 7 | ⏳ | *(a definir)* | — |
-| Módulo 8 | ⏳ | *(a definir)* | — |
+### Arquivos Oficiais
+| Tipo | Arquivo |
+|------|---------|
+| PDF (Apostila) | `[FADA] - APOSTILA - Módulo 5 - Design de Experiência.docx.pdf` |
+| MD (Apostila) | `[FADA] - APOSTILA - Módulo 5 - Design de Experiência.docx.md` |
+| PDF (Slides EN) | `Copy of [FADA] Módulo 5 - Design de Experiência.pptx.pdf` |
+| MD (Slides EN) | `Copy of [FADA] Módulo 5 - Design de Experiência.pptx.md` |
+
+### Resumos Pessoais
+| Arquivo | Descrição |
+|---------|-----------|
+| `resumo_modulo5.md` | *(a criar)* |
+| `decoreba_modulo5.txt` | *(a criar)* |
+
+---
+
+## Módulo 6 — Dashboards com Power BI
+
+**Status:** ⏳ Pendente  
+**Temas previstos:** Power BI Desktop, modelagem DAX, visuais, filtros, publicação, gateway.
+
+### Arquivos Oficiais
+| Tipo | Arquivo |
+|------|---------|
+| PDF (Conteúdo) | `Conteúdo - Módulo 6 - Criando dashboards com Power BI.docx.pdf` |
+| MD (Conteúdo) | `Conteúdo - Módulo 6 - Criando dashboards com Power BI.docx.md` |
+| PDF (Slides EN) | `[English _ FADA] - Módulo 6 - Criando dashboards com Power BI.docx.pptx.pdf` |
+| MD (Slides EN) | `[English _ FADA] - Módulo 6 - Criando dashboards com Power BI.docx.pptx.md` |
+
+### Resumos Pessoais
+| Arquivo | Descrição |
+|---------|-----------|
+| `resumo_modulo6.md` | *(a criar)* |
+| `decoreba_modulo6.txt` | *(a criar)* |
+
+---
+
+## Módulo 7 — Estatística aplicada à análise de dados
+
+**Status:** ⏳ Pendente  
+**Temas previstos:** Estatística descritiva, distribuições, testes de hipótese, correlação, regressão, p-valor.
+
+### Arquivos Oficiais
+| Tipo | Arquivo |
+|------|---------|
+| PDF (Conteúdo) | `[FADA] Conteúdo - Módulo 7 - Estatística aplicada à análise de dados.docx.pdf` |
+| MD (Conteúdo) | `[FADA] Conteúdo - Módulo 7 - Estatística aplicada à análise de dados.docx.md` |
+| PDF (Slides EN) | `Copy of [FADA] Módulo 7 - Estatística aplicada à análise de dados.pptx.pdf` |
+| MD (Slides EN) | `Copy of [FADA] Módulo 7 - Estatística aplicada à análise de dados.pptx.md` |
+
+### Resumos Pessoais
+| Arquivo | Descrição |
+|---------|-----------|
+| `resumo_modulo7.md` | *(a criar)* |
+| `decoreba_modulo7.txt` | *(a criar)* |
+
+---
+
+## Módulo 8 — Python
+
+**Status:** ⏳ Pendente  
+**Temas previstos:** Python para análise de dados, pandas, matplotlib/seaborn, Jupyter, ETL básico.
+
+### Arquivos Oficiais
+| Tipo | Arquivo |
+|------|---------|
+| PDF (Conteúdo) | `[FADA] Conteúdo - Módulo 8 - Python.pdf` |
+| MD (Conteúdo) | `[FADA] Conteúdo - Módulo 8 - Python.md` |
+| PDF (Slides EN) | `[English _ FADA] Módulo de Python.pptx.pdf` |
+| MD (Slides EN) | `[English _ FADA] Módulo de Python.pptx.md` |
+
+### Resumos Pessoais
+| Arquivo | Descrição |
+|---------|-----------|
+| `resumo_modulo8.md` | *(a criar)* |
+| `decoreba_modulo8.txt` | *(a criar)* |
 
 ---
 

@@ -21,8 +21,15 @@ Formação AE/                        # ← Repositório git local (commit "chor
 ├── server.py                    # Servidor local (http://localhost:8765)
 ├── .opencode/
 │   └── skill/ae_materials_app/  # Skill de auto-sync (templates + sync.py)
-├── Módulo 1 -  Introdução à Análise de Dados/   # PDF/MD + resumo + decoreba
-├── Modulo 2 - SQL para Análise de Dados/        # Oficial + resumo + decoreba
+├── Módulo 1 -  Introdução à Análise de Dados/   # Oficial + resumo + decoreba + EN
+├── Modulo 2 - SQL para Análise de Dados/        # Oficial + resumo + decoreba + EN
+├── Módulo 3 - Modelagem de dados/              # Oficial + EN
+├── Módulo IV - Engenharia de Dados (dbt/Snowflake)/  # Oficial + EN
+├── Módulo 4 - Storytelling com Dados/           # Oficial + EN
+├── Módulo 5 - Design de Experiência/            # Apostila + EN
+├── Módulo 6 - Dashboards com Power BI/          # Oficial + EN
+├── Módulo 7 - Estatística aplicada/             # Oficial + EN
+├── Módulo 8 - Python/                           # Oficial + EN
 ├── Desafio/
 │   ├── desafio-banvic-an-lise-de-dados-2024.ipynb
 │   └── Exemplos repo banvic/    # Referências de terceiros (NÃO versionar)
@@ -203,9 +210,68 @@ jupyter notebook  # abre analise_banvic.ipynb ou seu notebook
 | **Resumo (seu)** | `Resumo_Modulo_2_SQL.md` |
 | **Decoreba (seu)** | `Decoreba_SQL.txt` |
 
-### Módulos Futuros (a preencher)
-- Módulo 3 — *(a preencher)*
-- Módulo 4 — *(a preencher)*
-- ...
+### Módulo 2 — SQL
+| Tipo | Arquivo |
+|------|---------|
+| **Oficial (PDF)** | `Conteúdo - Módulo 2 - SQL (1).pdf` |
+| **Oficial (MD)** | `Conteúdo - Módulo 2 - SQL (1).md` |
+| **Slides EN (PDF)** | `[Academy] Querying data with SQL - Slides.pptx.pdf` |
+| **Slides EN (MD)** | `[Academy] Querying data with SQL - Slides.pptx.md` |
+| **Resumo (seu)** | `Resumo_Modulo_2_SQL.md` |
+| **Decoreba (seu)** | `Decoreba_SQL.txt` |
 
-> **Índice consolidado** será mantido em `INDICE_MODULOS.md` (atualizado conforme novos módulos).
+### Módulo 3 — Modelagem de dados
+| Tipo | Arquivo |
+|------|---------|
+| **Oficial (PDF)** | `[FADA] Conteúdo - Módulo 3 - Modelagem de dados.docx.pdf` |
+| **Oficial (MD)** | `[FADA] Conteúdo - Módulo 3 - Modelagem de dados.docx.md` |
+| **Slides EN (PDF)** | `[English _ FADA] Módulo 3 - Modelagem de dados.pptx.pdf` |
+| **Slides EN (MD)** | `[English _ FADA] Módulo 3 - Modelagem de dados.pptx.md` |
+
+### Módulo IV — Engenharia de Dados com dbt e Snowflake
+| Tipo | Arquivo |
+|------|---------|
+| **Oficial (PDF)** | `[FEA] Conteúdo - Módulo IV - Engenharia de Dados com dbt e Snowflake.pdf` |
+| **Oficial (MD)** | `[FEA] Conteúdo - Módulo IV - Engenharia de Dados com dbt e Snowflake.md` |
+| **Slides EN (PDF)** | `[Academy] EN-US - Asynchronous FEA - Analytics Engineering Class with dbt and Snowflake.pptx.pdf` |
+| **Slides EN (MD)** | `[Academy] EN-US - Asynchronous FEA - Analytics Engineering Class with dbt and Snowflake.pptx.md` |
+
+### Módulo 4 — Storytelling com Dados
+| Tipo | Arquivo |
+|------|---------|
+| **Oficial (PDF)** | `Conteúdo - Módulo 4 - Storytelling com Dados.docx.pdf` |
+| **Oficial (MD)** | `Conteúdo - Módulo 4 - Storytelling com Dados.docx.md` |
+| **Slides EN (PDF)** | `[English _ FADA] Módulo 4 - Storytelling com Dados.pptx.pdf` |
+| **Slides EN (MD)** | `[English _ FADA] Módulo 4 - Storytelling com Dados.pptx.md` |
+
+### Módulo 5 — Design de Experiência
+| Tipo | Arquivo |
+|------|---------|
+| **Apostila (PDF)** | `[FADA] - APOSTILA - Módulo 5 - Design de Experiência.docx.pdf` |
+| **Apostila (MD)** | `[FADA] - APOSTILA - Módulo 5 - Design de Experiência.docx.md` |
+| **Slides EN (PDF)** | `Copy of [FADA] Módulo 5 - Design de Experiência.pptx.pdf` |
+| **Slides EN (MD)** | `Copy of [FADA] Módulo 5 - Design de Experiência.pptx.md` |
+
+### Módulo 6 — Dashboards com Power BI
+| Tipo | Arquivo |
+|------|---------|
+| **Oficial (PDF)** | `Conteúdo - Módulo 6 - Criando dashboards com Power BI.docx.pdf` |
+| **Oficial (MD)** | `Conteúdo - Módulo 6 - Criando dashboards com Power BI.docx.md` |
+| **Slides EN (PDF)** | `[English _ FADA] - Módulo 6 - Criando dashboards com Power BI.docx.pptx.pdf` |
+| **Slides EN (MD)** | `[English _ FADA] - Módulo 6 - Criando dashboards com Power BI.docx.pptx.md` |
+
+### Módulo 7 — Estatística aplicada à análise de dados
+| Tipo | Arquivo |
+|------|---------|
+| **Oficial (PDF)** | `[FADA] Conteúdo - Módulo 7 - Estatística aplicada à análise de dados.docx.pdf` |
+| **Oficial (MD)** | `[FADA] Conteúdo - Módulo 7 - Estatística aplicada à análise de dados.docx.md` |
+| **Slides EN (PDF)** | `Copy of [FADA] Módulo 7 - Estatística aplicada à análise de dados.pptx.pdf` |
+| **Slides EN (MD)** | `Copy of [FADA] Módulo 7 - Estatística aplicada à análise de dados.pptx.md` |
+
+### Módulo 8 — Python
+| Tipo | Arquivo |
+|------|---------|
+| **Oficial (PDF)** | `[FADA] Conteúdo - Módulo 8 - Python.pdf` |
+| **Oficial (MD)** | `[FADA] Conteúdo - Módulo 8 - Python.md` |
+| **Slides EN (PDF)** | `[English _ FADA] Módulo de Python.pptx.pdf` |
+| **Slides EN (MD)** | `[English _ FADA] Módulo de Python.pptx.md` |
