@@ -7,8 +7,9 @@ Documento vivo de acompanhamento da formação em Análise de Dados (Indicium Ac
 ## Índice
 
 - [Módulo 1 — Introdução à Análise de Dados](#módulo-1--introdução-à-análise-de-dados)
+- [Módulo 2 — SQL](#módulo-2--sql-para-análise-de-dados)
 - [Conexões com o Desafio Final](#conexões-com-o-desafio-final-dbt--power-bi)
-- Módulo 2 — *(a preencher)*
+- Módulo 3 e seguintes — *(a preencher assim que estudar/continuar)*
 
 ---
 
@@ -112,6 +113,8 @@ Para estudar os PDFs/MDs do curso sem depender de pastas, montei um app HTML loc
 - **Servidor:** `python server.py` → `http://localhost:8765` (abre o navegador; precisa ser `http://`, não `file://`, por CORS).
 - **Sync automático:** `python .opencode/skill/ae_materials_app/sync.py` varre pastas de módulos (`.md`/`.txt`, **exclui PDFs** pra evitar duplicatas) e regenera `FILES` + `files.json`. A ordem dos itens vem de um `MODULE_TITLES` no script.
 - **Cuidados aprendidos:** `python -m ae_materials_app.sync` NÃO funciona (módulo fora do path) → usar o caminho direto `.opencode/skill/ae_materials_app/sync.py`. Atenção a encoding (UTF-8) no terminal Windows/PowerShell.
+- **Sidebar colapsável:** botão `⟨/⟩` no header (mesmo tamanho do toggle de tema) ou `Ctrl+B` recolhe pra um **rail de 64px com chips por módulo** (nº do módulo); clicar num chip navega pro 1º material sem expandir. Arrastar a borda direita expande/recolhe (usa `setPointerCapture`). Estado salvo em `localStorage`.
+- **Navegação flutuante:** barra fixa no rodapé com **‹ Anterior / Próximo ›** (~50% da largura cada), sempre visível (sem precisar scrollar até o fim); setas `←`/`→` também navegam. Títulos quebram linha em vez de truncar.
 - Ao adicionar novo material de curso: colocar na pasta do módulo → rodar o sync → `git commit`.
 
 #### Git local da pasta de estudo (inicializado)
@@ -209,4 +212,20 @@ Notas soltas para guiar o desafio quando chegar a hora:
 
 ---
 
-## Módulo 2 — *(a preencher)*
+## Módulo 2 — SQL para Análise de Dados
+
+Resumo técnico completo + guia prático ("como pensar na query") estão em `Resumo_Modulo_2_SQL.md` e `Decoreba_SQL.txt`.
+
+**Núcleo:** ordem de escrita `SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY → LIMIT` e de execução `FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT`.
+
+- **JOINs (horizontal):** INNER (interseção), LEFT/RIGHT/FULL, CROSS (cuidado), SELF (hierarquia).
+- **UNION (vertical):** `UNION` remove duplicatas, `UNION ALL` mantém; colunas precisam ser compatíveis.
+- **Regra de ouro GROUP BY:** toda coluna do `SELECT` que não é agregação precisa estar no `GROUP BY`.
+- **HAVING vs WHERE:** WHERE filtra linhas antes de agregar; HAVING filtra grupos depois (usa agregações).
+- **Window functions:** `ROW_NUMBER()`, `RANK()`, `DENSE_RANK()`, `LAG`/`LEAD`, `FIRST_VALUE`/`LAST_VALUE`; sintaxe `FUNÇÃO() OVER (PARTITION BY ... ORDER BY ...)`.
+- **CTEs:** `WITH x AS (...), y AS (...) SELECT * FROM y;` — organiza passos e reutiliza.
+- **Performance:** evitar `SELECT *`, filtrar cedo, indexar colunas filtradas, usar `EXPLAIN`.
+
+---
+
+## Módulo 3 — *(a preencher)*

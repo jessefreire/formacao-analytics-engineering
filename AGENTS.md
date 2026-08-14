@@ -33,15 +33,15 @@ Formação AE/                        # ← Repositório git local (commit "chor
 ├── Desafio/
 │   ├── desafio-banvic-an-lise-de-dados-2024.ipynb
 │   └── Exemplos repo banvic/    # Referências de terceiros (NÃO versionar)
-└── SEU_PROJETO/                 # ← Criar via fork de techindicium/banvic-dbt
-    ├── dbt_project.yml
-    ├── models/ (staging/ intermediate/ marts/)
-    ├── seeds/banvic/            # 8 CSVs (vêm do template)
-    ├── macros/, tests/
-    └── profiles.yml             # FORA do repo (~/.dbt/profiles.yml)
+├── banvic-dbt/                 # ← Fork de techindicium/banvic-dbt (repo git próprio, aninhado)
+│   ├── dbt_project.yml
+│   ├── models/ (staging/ intermediate/ marts/)
+│   ├── seeds/banvic/            # 8 CSVs (vêm do template)
+│   ├── macros/, tests/
+│   └── profiles.yml             # FORA do repo (~/.dbt/profiles.yml)
 ```
 
-**Seu projeto real** = fork de `https://github.com/techindicium/banvic-dbt` clonado localmente.
+**Seu projeto real** = fork de `https://github.com/techindicium/banvic-dbt` clonado localmente em `banvic-dbt/` (repo git próprio, aninhado; ignorado pelo repo do curso via `.gitignore`).
 **App de materiais** = local, sem build. Sempre abrir via `http://localhost:8765` (não `file://`, por CORS). Sync: `python .opencode/skill/ae_materials_app/sync.py` (o alias moderno `python -m ae_materials_app.sync` NÃO funciona — module fora do path).
 
 ---
@@ -108,6 +108,11 @@ jupyter notebook  # abre analise_banvic.ipynb ou seu notebook
 ### App de Materiais (HTML + Server)
 - **Sem build**: `index.html` lê `FILES` (array injetado pelo sync) + `marked.js` + `motion` (CDN)
 - **Design Apple**: sidebar translúcida (`backdrop-filter: blur`), springs `cubic-bezier(0.25,0.46,0.45,0.94)`, feedback no `pointerdown`, tipografia IBM Plex, respeita `prefers-reduced-motion` e dark mode
+- **Sidebar**: colapsa/recolhe via botão `⟨/⟩` no header (mesmo tamanho do toggle de tema, 32×32) ou `Ctrl+B`. Estado persistido em `localStorage`.
+  - **Recolhida** (`data-sidebar-collapsed="true"`): vira um rail estreito (64px) com **chips** por módulo (nº do módulo ou `●` p/ Config). Clicar num chip **navega pro 1º material do módulo sem expandir**.
+  - Arrastar o handle da borda direita (zona de 12px) **expande** (arrastando pra direita) ou **recolhe** (pra esquerda) — usa `pointermove`/`pointerup` + `setPointerCapture`.
+  - Scroll fica no `.nav`, não na `.sidebar` (pra scrollbar não tampar o handle).
+- **Navegação de materiais**: barra **flutuante fixa** no rodapé (`.file-nav`) com **‹ Anterior** e **Próximo**, cada um ocupando ~50% da largura. O botão sem vizinho some (`:disabled { display:none }`). Atalhos `←`/`→` no teclado. No mobile fica compacto (só setas).
 - **Servidor**: `python server.py` (porta 8765, abre navegador, header CORS)
 - **Sync**: `python .opencode/skill/ae_materials_app/sync.py` regenera `FILES` + `files.json`
 

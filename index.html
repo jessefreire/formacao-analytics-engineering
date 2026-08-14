@@ -70,7 +70,7 @@ body {
   backdrop-filter: blur(20px) saturate(180%);
   border-top: 1px solid rgba(255,255,255,0.4);
   display: flex; flex-direction: column;
-  overflow-y: auto; height: 100vh;
+  height: 100vh;
   position: relative;
   box-shadow: var(--shadow-md);
   z-index: 10;
@@ -87,23 +87,22 @@ body {
 .sidebar-title { font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .theme-toggle {
   background: var(--code-bg); border: 1px solid var(--border);
-  color: var(--fg); padding: 0.5rem 0.75rem;
-  border-radius: var(--radius-sm); cursor: pointer; font-size: 0.8125rem;
-  font-family: inherit;
+  color: var(--fg); width: 32px; height: 32px; padding: 0;
+  border-radius: var(--radius-sm); cursor: pointer; font-size: 0.875rem;
+  font-family: inherit; display: flex; align-items: center; justify-content: center;
   transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
 }
 .theme-toggle:active { transform: scale(0.94); }
 .theme-toggle:hover { background: var(--border); }
 .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-.nav { padding: 0.5rem; flex: 1; }
+.nav { padding: 0.5rem; flex: 1; overflow-y: auto; }
 .nav-section { margin-bottom: 1rem; }
 .nav-label { font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.375rem; padding: 0 0.5rem; }
 .nav-link {
   display: block; padding: 0.5625rem 0.75rem; border-radius: var(--radius-md);
   color: var(--fg); text-decoration: none; font-size: 0.875rem;
   transition: background 0.12s ease, color 0.12s ease, transform 0.1s ease;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .nav-link:active { transform: scale(0.98); }
 .nav-link:hover { background: var(--code-bg); }
@@ -111,39 +110,97 @@ body {
 .nav-link::before { content: "\2022 "; color: var(--muted); transition: color 0.12s ease; }
 .nav-link.active::before { content: "\25B8 "; color: inherit; }
 
-.sidebar-collapse-btn {
-  position: fixed; top: 0.75rem; left: calc(var(--sidebar-w) - 14px);
-  width: 28px; height: 28px; z-index: 30;
-  background: var(--bg); border: 1px solid var(--border); border-radius: 50%;
-  color: var(--fg); font-size: 0.8125rem; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: var(--shadow-sm);
-  transition: left var(--response) cubic-bezier(0.25,0.46,0.45,0.94), transform 0.15s ease, background 0.15s ease;
+.sidebar-actions { display: flex; align-items: center; gap: 0.375rem; }
+.sidebar-toggle {
+  background: var(--code-bg); border: 1px solid var(--border);
+  color: var(--fg); width: 32px; height: 32px; padding: 0;
+  border-radius: var(--radius-sm); cursor: pointer; font-size: 0.875rem;
+  font-family: inherit; display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
 }
-.sidebar-collapse-btn:hover { background: var(--code-bg); box-shadow: var(--shadow-md); }
-.sidebar-collapse-btn:active { transform: scale(0.92); }
-[data-sidebar-collapsed="true"] .sidebar-collapse-btn { left: 0.5rem; }
+.sidebar-toggle:hover { background: var(--border); }
+.sidebar-toggle:active { transform: scale(0.92); }
+.sidebar-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ========== COLLAPSED / REDUCED MODE ========== */
+[data-sidebar-collapsed="true"] .sidebar {
+  width: 64px !important; min-width: 64px !important; max-width: 64px !important;
+}
+[data-sidebar-collapsed="true"] .sidebar-header { flex-direction: column; justify-content: flex-start; padding: 0.75rem 0.25rem; gap: 0.5rem; }
+[data-sidebar-collapsed="true"] .sidebar-actions { flex-direction: column; }
+[data-sidebar-collapsed="true"] .sidebar-title { display: none; }
+[data-sidebar-collapsed="true"] .resize-handle { width: 12px; background: transparent; }
+[data-sidebar-collapsed="true"] .nav { padding: 0.25rem; }
+[data-sidebar-collapsed="true"] .nav-section { display: none; }
+[data-sidebar-collapsed="true"] .nav-chip {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; padding: 0.5rem 0; margin-bottom: 0.375rem;
+  background: transparent; border: 1px solid var(--border); border-radius: var(--radius-md);
+  color: var(--fg); cursor: pointer; font-family: inherit;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+[data-sidebar-collapsed="true"] .nav-chip:hover { background: var(--border); }
+[data-sidebar-collapsed="true"] .nav-chip:active { transform: scale(0.94); }
+[data-sidebar-collapsed="true"] .chip-key { font-size: 0.75rem; font-weight: 600; }
 
 /* ========== MOBILE ========== */
 
 .resize-handle {
   position: absolute; top: 0; right: 0; bottom: 0; width: 4px;
-  cursor: col-resize; background: transparent; z-index: 20;
+  cursor: col-resize; background: transparent; z-index: 40;
+  touch-action: none;
   transition: background 0.15s ease;
+}
+.resize-handle::before {
+  content: ''; position: absolute; top: 0; bottom: 0; left: -6px; width: 10px;
 }
 .resize-handle:hover, .resize-handle.dragging { background: var(--accent); }
 
 /* ========== MAIN ========== */
-.main { flex: 1; overflow-y: auto; padding: clamp(1.5rem, 3vw, 3rem); }
+.main { flex: 1; overflow-y: auto; padding: clamp(1.5rem, 3vw, 3rem); padding-bottom: 6rem; }
 .main-header { margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
 .main-header-empty { display: flex; align-items: center; gap: 0.5rem; min-height: 2.5rem; }
 .main-header-empty .empty-hint { color: var(--muted); font-size: 0.875rem; }
+
 .main-title {
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 600; line-height: 1.15;
   letter-spacing: -0.02em;
 }
 .main-meta { color: var(--muted); font-size: 0.8125rem; margin-top: 0.5rem; }
+
+/* ========== FILE NAV (floating) ========== */
+.file-nav {
+  position: fixed; right: 0; bottom: 0; z-index: 39;
+  left: var(--sidebar-w);
+  display: flex; gap: 0.75rem; align-items: stretch;
+  padding: 0.75rem 1.5rem;
+  background: rgba(var(--card-rgb, 250,250,250), 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid var(--border);
+  transition: left var(--response) cubic-bezier(0.25,0.46,0.45,0.94);
+}
+[data-sidebar-collapsed="true"] .file-nav { left: 64px; }
+[data-theme="dark"] .file-nav {
+  background: rgba(var(--card-rgb, 22,22,36), 0.85);
+}
+.file-nav-btn {
+  flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.75rem 1.25rem; border: 1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--code-bg); color: var(--fg); cursor: pointer; font-family: inherit;
+  text-align: left;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.file-nav-btn.next { flex-direction: row-reverse; text-align: right; }
+.file-nav-btn:hover:not(:disabled) { background: var(--border); border-color: var(--accent); }
+.file-nav-btn:active { transform: scale(0.98); }
+.file-nav-btn:disabled { display: none; }
+.file-nav-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.fn-arrow { font-size: 1.25rem; line-height: 1; color: var(--accent); flex-shrink: 0; }
+.fn-meta { display: flex; flex-direction: column; gap: 0.125rem; min-width: 0; flex: 1; }
+.file-nav-btn.next .fn-meta { align-items: flex-end; }
+.fn-caption { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.fn-title { font-size: 0.8125rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* ========== CONTENT ========== */
 .content { width: 100%; max-width: 100%; }
@@ -176,13 +233,17 @@ body {
 .module-badge:active { transform: scale(0.95); }
 /* ========== MOBILE ========== */
 @media (max-width: 900px) {
-  .sidebar-collapse-btn { display: none; }
+  .sidebar-toggle { display: none; }
   .sidebar { position: fixed; left: 0; top: 0; bottom: 0; z-index: 100; transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); box-shadow: var(--shadow-lg); }
   .sidebar.open { transform: none !important; }
-  .main { padding: 1.5rem; }
-  .mobile-toggle { display: block; position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 50; background: var(--accent); color: var(--bg); border: none; padding: 0.75rem 1.125rem; border-radius: var(--radius-md); font-weight: 500; font-size: 0.875rem; cursor: pointer; box-shadow: var(--shadow-lg); transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .main { padding: 1.5rem; padding-bottom: 9rem; }
+  .mobile-toggle { display: block; position: fixed; bottom: 5.5rem; right: 1.25rem; z-index: 50; background: var(--accent); color: var(--bg); border: none; padding: 0.75rem 1.125rem; border-radius: var(--radius-md); font-weight: 500; font-size: 0.875rem; cursor: pointer; box-shadow: var(--shadow-lg); transition: transform 0.15s ease, box-shadow 0.15s ease; }
   .mobile-toggle:active { transform: scale(0.95); box-shadow: var(--shadow-md); }
   .mobile-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .file-nav { flex-direction: row; }
+  .file-nav .fn-title { display: none; }
+  .file-nav-btn { max-width: none; padding: 0.625rem; }
+  .fn-arrow { font-size: 1rem; }
 }
 @media (min-width: 901px) { .mobile-toggle { display: none; } }
 
@@ -200,15 +261,27 @@ body {
 <div class="sidebar" id="sidebar">
   <header class="sidebar-header">
     <span class="sidebar-title">Formação AE</span>
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema" aria-pressed="false">☀️/🌙</button>
+    <div class="sidebar-actions">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Recolher painel" title="Recolher painel (Ctrl+B)" aria-expanded="true">⟨</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema" aria-pressed="false">☀️/🌙</button>
+    </div>
   </header>
   <nav class="nav" id="nav" role="navigation" aria-label="Materiais do curso"></nav>
   <div class="resize-handle" id="resizeHandle"></div>
 </div>
-<button class="sidebar-collapse-btn" id="sidebarToggle" aria-label="Expandir painel" title="Expandir painel (Ctrl+B)">⟩</button>
 <main class="main" id="main" role="main">
   <div class="main-header-empty" id="emptyHint"><span class="empty-hint">Selecione um material ⟶</span></div>
   <article class="content" id="content" hidden></article>
+  <nav class="file-nav" id="fileNav" aria-label="Navegação entre materiais" hidden>
+    <button class="file-nav-btn" id="prevBtn">
+      <span class="fn-arrow">‹</span>
+      <span class="fn-meta"><span class="fn-caption">Anterior</span><span class="fn-title" id="prevTitle"></span></span>
+    </button>
+    <button class="file-nav-btn next" id="nextBtn">
+      <span class="fn-meta"><span class="fn-caption">Próximo</span><span class="fn-title" id="nextTitle"></span></span>
+      <span class="fn-arrow">›</span>
+    </button>
+  </nav>
 </main>
 <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebar">☰ Menu</button>
 <script>
@@ -264,6 +337,7 @@ let sidebarOpen = false;
 let isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
 const MIN_SIDEBAR = 200;
 const MAX_SIDEBAR = 600;
+const COLLAPSE_W = 64;
 
 // ========== THEME ==========
 function initTheme() {
@@ -297,6 +371,7 @@ function toggleSidebarCollapse() {
   document.documentElement.setAttribute('data-sidebar-collapsed', isCollapsed);
   localStorage.setItem('sidebarCollapsed', isCollapsed);
   updateSidebarToggleBtn();
+  renderNav();
 }
 
 // ========== SIDEBAR RESIZE ==========
@@ -304,33 +379,59 @@ function initResizeHandle() {
   const handle = document.getElementById('resizeHandle');
   let startX = 0;
   let startW = 0;
+  let pointerId = null;
 
-  function onMouseMove(e) {
+  function onPointerMove(e) {
     const delta = e.clientX - startX;
     let newW = startW + delta;
+
+    if (isCollapsed) {
+      if (newW > COLLAPSE_W + 24) {
+        isCollapsed = false;
+        document.documentElement.setAttribute('data-sidebar-collapsed', 'false');
+        updateSidebarToggleBtn();
+        renderNav();
+      } else {
+        return;
+      }
+    } else if (newW < COLLAPSE_W + 24) {
+      isCollapsed = true;
+      document.documentElement.setAttribute('data-sidebar-collapsed', 'true');
+      updateSidebarToggleBtn();
+      renderNav();
+      return;
+    }
+
     newW = Math.max(MIN_SIDEBAR, Math.min(MAX_SIDEBAR, newW));
     document.documentElement.style.setProperty('--sidebar-w', newW + 'px');
   }
-  function onMouseUp() {
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
+  function onPointerUp() {
+    document.removeEventListener('pointermove', onPointerMove);
+    document.removeEventListener('pointerup', onPointerUp);
     handle.classList.remove('dragging');
     document.body.style.cursor = '';
     document.body.style.userSelect = '';
+
+    if (isCollapsed) {
+      localStorage.setItem('sidebarCollapsed', 'true');
+      return;
+    }
     const currentW = document.documentElement.style.getPropertyValue('--sidebar-w');
     localStorage.setItem('sidebarWidth', currentW);
+    if (handle.hasPointerCapture(pointerId)) handle.releasePointerCapture(pointerId);
   }
   handle.addEventListener('pointerdown', (e) => {
-    if (isCollapsed) return;
     e.preventDefault();
+    pointerId = e.pointerId;
     startX = e.clientX;
     const style = getComputedStyle(document.documentElement);
     startW = parseFloat(style.getPropertyValue('--sidebar-w')) || 280;
     handle.classList.add('dragging');
+    handle.setPointerCapture(e.pointerId);
     document.body.style.cursor = 'col-resize';
     document.body.style.userSelect = 'none';
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('pointermove', onPointerMove);
+    document.addEventListener('pointerup', onPointerUp);
   });
 }
 
@@ -365,13 +466,39 @@ function toggleSidebar(open) {
 function closeMobileMenu() { toggleSidebar(false); }
 
 // ========== NAV RENDER ==========
+function moduleKey(cat) {
+  const m = cat.match(/M[óo]dulo\s+(\d+|IV|[IV]+)/i);
+  if (m) return m[1].toUpperCase();
+  if (cat === 'Config') return '\u25cf';
+  return cat;
+}
+
 function renderNav() {
   const nav = document.getElementById('nav');
   const byCat = FILES.reduce((acc, f) => {
     (acc[f.cat] = acc[f.cat] || []).push(f);
     return acc;
   }, {});
-  
+
+  if (isCollapsed) {
+    // Modo reduzido: um chip por módulo, clica para expandir e mostrar
+    nav.innerHTML = Object.keys(byCat).map(cat => `
+      <button class="nav-chip" data-cat="${escapeHtml(cat)}" title="${escapeHtml(cat)}">
+        <span class="chip-key">${escapeHtml(moduleKey(cat))}</span>
+      </button>
+    `).join('');
+    nav.querySelectorAll('.nav-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const first = FILES.find(f => f.cat === chip.dataset.cat);
+        if (first) loadFile(first.id);
+      });
+      chip.addEventListener('pointerdown', () => { chip.style.transform = 'scale(0.94)'; });
+      chip.addEventListener('pointerup', () => { chip.style.transform = ''; });
+      chip.addEventListener('pointerleave', () => { chip.style.transform = ''; });
+    });
+    return;
+  }
+
   nav.innerHTML = Object.entries(byCat).map(([cat, files]) => `
     <section class="nav-section" aria-labelledby="cat-${cat.toLowerCase().replace(/\s+/g, '-')}">
       <h2 class="nav-label" id="cat-${cat.toLowerCase().replace(/\s+/g, '-')}">${cat}</h2>
@@ -401,6 +528,7 @@ async function loadFile(id) {
   
   currentFile = id;
   renderNav();
+  updateFileNav();
   showLoading();
   
   try {
@@ -411,6 +539,23 @@ async function loadFile(id) {
   } catch (err) {
     renderError(file, err.message);
   }
+}
+
+// ========== FILE NAV ==========
+function updateFileNav() {
+  const nav = document.getElementById('fileNav');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const idx = FILES.findIndex(f => f.id === currentFile);
+  if (idx === -1) { nav.hidden = true; return; }
+
+  nav.hidden = false;
+  const prev = FILES[idx - 1];
+  const next = FILES[idx + 1];
+  document.getElementById('prevTitle').textContent = prev ? (prev.title || prev.label) : '';
+  document.getElementById('nextTitle').textContent = next ? (next.title || next.label) : '';
+  prevBtn.disabled = !prev;
+  nextBtn.disabled = !next;
 }
 
 function showLoading() {
@@ -494,6 +639,17 @@ document.getElementById('sidebarToggle').addEventListener('click', toggleSidebar
 document.getElementById('mobileToggle').addEventListener('click', () => toggleSidebar(!sidebarOpen));
 initResizeHandle();
 
+function goPrev() {
+  const idx = FILES.findIndex(f => f.id === currentFile);
+  if (idx > 0) loadFile(FILES[idx - 1].id);
+}
+function goNext() {
+  const idx = FILES.findIndex(f => f.id === currentFile);
+  if (idx >= 0 && idx < FILES.length - 1) loadFile(FILES[idx + 1].id);
+}
+document.getElementById('prevBtn').addEventListener('click', goPrev);
+document.getElementById('nextBtn').addEventListener('click', goNext);
+
 // Click on main content area closes mobile menu
 document.getElementById('main').addEventListener('click', () => {
   if (window.innerWidth <= 900) closeMobileMenu();
@@ -503,6 +659,8 @@ document.getElementById('main').addEventListener('click', () => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && sidebarOpen) closeMobileMenu();
   if (e.key === 'b' && e.ctrlKey) { e.preventDefault(); toggleSidebarCollapse(); }
+  if (e.key === 'ArrowLeft' && currentFile) { e.preventDefault(); goPrev(); }
+  if (e.key === 'ArrowRight' && currentFile) { e.preventDefault(); goNext(); }
   if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
     e.preventDefault();
     document.getElementById('nav').querySelector('.nav-link')?.focus();

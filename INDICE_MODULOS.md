@@ -186,8 +186,8 @@ SELECT * FROM cte2;
 ### Resumos Pessoais
 | Arquivo | Descrição |
 |---------|-----------|
-| `resumo_modulo3.md` | *(a criar)* |
-| `decoreba_modulo3.txt` | *(a criar)* |
+| `resumo_modulo3.md` | Resumo estruturado da modelagem de dados |
+| `decoreba_modulo3.txt` | Pontos-chave para memorização |
 
 ---
 
@@ -207,8 +207,8 @@ SELECT * FROM cte2;
 ### Resumos Pessoais
 | Arquivo | Descrição |
 |---------|-----------|
-| `resumo_moduloIV.md` | *(a criar)* |
-| `decoreba_moduloIV.txt` | *(a criar)* |
+| `resumo_moduloIV.md` | Resumo estruturado de dbt/Snowflake (local vs Cloud) |
+| `decoreba_moduloIV.txt` | Pontos-chave para memorização |
 
 ---
 
@@ -228,8 +228,8 @@ SELECT * FROM cte2;
 ### Resumos Pessoais
 | Arquivo | Descrição |
 |---------|-----------|
-| `resumo_modulo4.md` | *(a criar)* |
-| `decoreba_modulo4.txt` | *(a criar)* |
+| `resumo_modulo4.md` | Resumo estruturado de storytelling com dados |
+| `decoreba_modulo4.txt` | Pontos-chave para memorização |
 
 ---
 
@@ -249,8 +249,8 @@ SELECT * FROM cte2;
 ### Resumos Pessoais
 | Arquivo | Descrição |
 |---------|-----------|
-| `resumo_modulo5.md` | *(a criar)* |
-| `decoreba_modulo5.txt` | *(a criar)* |
+| `resumo_modulo5.md` | Resumo estruturado de design de experiência/UX |
+| `decoreba_modulo5.txt` | Pontos-chave para memorização |
 
 ---
 
@@ -270,8 +270,8 @@ SELECT * FROM cte2;
 ### Resumos Pessoais
 | Arquivo | Descrição |
 |---------|-----------|
-| `resumo_modulo6.md` | *(a criar)* |
-| `decoreba_modulo6.txt` | *(a criar)* |
+| `resumo_modulo6.md` | Resumo estruturado de dashboards no Power BI |
+| `decoreba_modulo6.txt` | Pontos-chave para memorização |
 
 ---
 
@@ -291,8 +291,8 @@ SELECT * FROM cte2;
 ### Resumos Pessoais
 | Arquivo | Descrição |
 |---------|-----------|
-| `resumo_modulo7.md` | *(a criar)* |
-| `decoreba_modulo7.txt` | *(a criar)* |
+| `resumo_modulo7.md` | Resumo estruturado de estatística aplicada |
+| `decoreba_modulo7.txt` | Pontos-chave para memorização |
 
 ---
 
@@ -312,8 +312,8 @@ SELECT * FROM cte2;
 ### Resumos Pessoais
 | Arquivo | Descrição |
 |---------|-----------|
-| `resumo_modulo8.md` | *(a criar)* |
-| `decoreba_modulo8.txt` | *(a criar)* |
+| `resumo_modulo8.md` | Resumo estruturado de Python para dados |
+| `decoreba_modulo8.txt` | Pontos-chave para memorização |
 
 ---
 
