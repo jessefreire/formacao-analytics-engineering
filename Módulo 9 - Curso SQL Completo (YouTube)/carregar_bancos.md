@@ -118,6 +118,11 @@ psql "$NEON_CONNECTION_STRING" -c "\copy orders FROM 'northwind_csv/orders.csv' 
 
 ## 3. AdventureWorks (o `.bak`)
 
+> ⚠️ **Este `.bak` (~48 MB) NÃO está no git** (ignorado via `.gitignore` — `*.bak`).
+> `bancoNorthwind.txt` e os CSVs já estão versionados; só o `.bak` precisa ser
+> copiado manualmente ao trocar de máquina (pendrive/Drive). Se você ainda não o
+> tem na máquina atual, procure-o em `Módulo 9 - Curso SQL Completo (YouTube)/`.
+
 O `AdventureWorks2017.bak` é um **backup binário do SQL Server** — não há como
 ler sem um SQL Server. O caminho prático é extrair as tabelas para CSV usando um
 SQL Server em container (você já tem Docker instalado):

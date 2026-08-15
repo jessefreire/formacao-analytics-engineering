@@ -46,6 +46,8 @@ Formação AE/                        # ← Repositório git local (commit "chor
 **Seu projeto real** = fork de `https://github.com/techindicium/banvic-dbt` clonado localmente em `banvic-dbt/` (repo git próprio, aninhado; ignorado pelo repo do curso via `.gitignore`).
 **App de materiais** = local, sem build. Sempre abrir via `http://localhost:8765` (não `file://`, por CORS). Sync: `python .opencode/skill/ae_materials_app/sync.py` (o alias moderno `python -m ae_materials_app.sync` NÃO funciona — module fora do path).
 
+> ⚠️ **Fora do git (copiar à mão ao trocar de máquina):** `Módulo 9 - Curso SQL Completo (YouTube)/AdventureWorks2017.bak` (~48 MB) está no `.gitignore` (`*.bak`) de propósito. `bancoNorthwind.txt` (1 MB) e tudo mais ESTÁ versionado. Se o usuário estiver configurando uma máquina nova, só esse `.bak` precisa ser copiado manualmente (pendrive/Drive); todo o resto vem do clone. Ao converter o `.bak` para CSV/Databricks (guia em `carregar_bancos.md`), pode descartar o `.bak` se quiser liberar espaço.
+
 ---
 
 ## Comandos Corretos
