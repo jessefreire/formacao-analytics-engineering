@@ -23,6 +23,7 @@ FILES_JSON = ROOT / "files.json"
 
 # Módulos na ordem do curso. `sort` controla ordenação (IV=3.5 fica entre 3 e 4)
 MODULES = [
+    {"num": 0,  "sort": 0.5, "title": "Banco de Dados BanVic"},
     {"num": 1,  "sort": 1,   "title": "Introdução à Análise de Dados"},
     {"num": 2,  "sort": 2,   "title": "SQL"},
     {"num": 3,  "sort": 3,   "title": "Modelagem de dados"},
@@ -32,6 +33,7 @@ MODULES = [
     {"num": 6,  "sort": 6,   "title": "Dashboards com Power BI"},
     {"num": 7,  "sort": 7,   "title": "Estatística aplicada à análise de dados"},
     {"num": 8,  "sort": 8,   "title": "Python"},
+    {"num": 9,  "sort": 9,   "title": "Curso SQL Completo (YouTube)"},
 ]
 
 # Mapa sort -> módulo para lookup

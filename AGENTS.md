@@ -21,6 +21,7 @@ Formação AE/                        # ← Repositório git local (commit "chor
 ├── server.py                    # Servidor local (http://localhost:8765)
 ├── .opencode/
 │   └── skill/ae_materials_app/  # Skill de auto-sync (templates + sync.py)
+├── Módulo 0 - Banco de Dados BanVic/   # Referência do banco BanVic (visão geral, schema, queries)
 ├── Módulo 1 -  Introdução à Análise de Dados/   # Oficial + resumo + decoreba + EN
 ├── Modulo 2 - SQL para Análise de Dados/        # Oficial + resumo + decoreba + EN
 ├── Módulo 3 - Modelagem de dados/              # Oficial + EN
@@ -30,6 +31,7 @@ Formação AE/                        # ← Repositório git local (commit "chor
 ├── Módulo 6 - Dashboards com Power BI/          # Oficial + EN
 ├── Módulo 7 - Estatística aplicada/             # Oficial + EN
 ├── Módulo 8 - Python/                           # Oficial + EN
+├── Módulo 9 - Curso SQL Completo (YouTube)/    # Curso SQL (Dev Aprender) + Northwind (CSVs prontos p/ Databricks/Neon) + AdventureWorks (.bak p/ extrair via Docker)
 ├── Desafio/
 │   ├── desafio-banvic-an-lise-de-dados-2024.ipynb
 │   └── Exemplos repo banvic/    # Referências de terceiros (NÃO versionar)

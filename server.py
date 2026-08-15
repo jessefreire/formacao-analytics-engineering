@@ -13,14 +13,16 @@ PORT = 8765
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 class Handler(http.server.SimpleHTTPRequestHandler):
+    protocol_version = 'HTTP/1.1'
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
-    
+
     def end_headers(self):
         # Permite fetch dos .md/.txt (CORS local)
         self.send_header('Access-Control-Allow-Origin', '*')
         super().end_headers()
-    
+
     def log_message(self, format, *args):
         # Silencia logs de assets estáticos
         msg = format % args
@@ -29,7 +31,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
 if __name__ == '__main__':
     os.chdir(DIRECTORY)
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    with socketserver.ThreadingTCPServer(("", PORT), Handler) as httpd:
+        httpd.daemon_threads = True
         url = f"http://localhost:{PORT}"
         print(f"[SERVER] Rodando em {url}")
         print("   Pressione Ctrl+C para parar")

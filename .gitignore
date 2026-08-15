@@ -10,6 +10,7 @@ __pycache__/
 # ==== Materiais pesados (não versionar) ====
 *.pdf
 *.zip
+*.bak
 
 # ==== Repos de referência do desafio (cópias de terceiros) ====
 Desafio/Exemplos repo banvic/
