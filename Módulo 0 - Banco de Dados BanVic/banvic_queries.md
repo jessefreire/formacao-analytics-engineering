@@ -3,31 +3,34 @@
 Exemplos prontos para usar como referência. Assumem as seeds já carregadas
 (`dbt seed`) no schema raw `erp_banvic` ou nas views `staging`.
 
+> Convenção: colunas em MAIÚSCULAS (igual ao schema em `banvic_tabelas.md`).
+> Sintaxe Databricks/Spark SQL (usa `- INTERVAL n UNIT` em vez de `DATEADD`).
+
 ## Joins básicos
 
 ```sql
 -- Contas com nome do cliente e UF
 SELECT
-    c.num_conta,
-    cl.primeiro_nome || ' ' || cl.ultimo_nome AS nome_cliente,
-    l.uf
+    c.NUM_CONTA,
+    cl.PRIMEIRO_NOME || ' ' || cl.ULTIMO_NOME AS NOME_CLIENTE,
+    l.UF
 FROM erp_banvic.contas c
-JOIN erp_banvic.clientes cl ON cl.cod_cliente = c.cod_cliente
-JOIN erp_banvic.localidades l ON l.cod_localidade = cl.cod_localidade;
+JOIN erp_banvic.clientes cl ON cl.COD_CLIENTE = c.COD_CLIENTE
+JOIN erp_banvic.localidades l ON l.COD_LOCALIDADE = cl.COD_LOCALIDADE;
 ```
 
 ```sql
 -- Transações enriquecidas com cliente e agência
 SELECT
-    t.cod_transacao,
-    t.data_transacao,
-    t.nome_transacao,
-    t.valor_transacao,
-    c.num_conta,
-    a.nome AS agencia
+    t.COD_TRANSACAO,
+    t.DATA_TRANSACAO,
+    t.NOME_TRANSACAO,
+    t.VALOR_TRANSACAO,
+    c.NUM_CONTA,
+    a.NOME AS AGENCIA
 FROM erp_banvic.transacoes t
-JOIN erp_banvic.contas c ON c.num_conta = t.num_conta
-JOIN erp_banvic.agencias a ON a.cod_agencia = c.cod_agencia;
+JOIN erp_banvic.contas c ON c.NUM_CONTA = t.NUM_CONTA
+JOIN erp_banvic.agencias a ON a.COD_AGENCIA = c.COD_AGENCIA;
 ```
 
 ## Filtros e agregações
@@ -35,36 +38,36 @@ JOIN erp_banvic.agencias a ON a.cod_agencia = c.cod_agencia;
 ```sql
 -- Saldo médio por UF
 SELECT
-    l.uf,
-    COUNT(*)              AS num_contas,
-    ROUND(AVG(c.saldo_total), 2) AS saldo_medio
+    l.UF,
+    COUNT(*)                       AS NUM_CONTAS,
+    ROUND(AVG(c.SALDO_TOTAL), 2)   AS SALDO_MEDIO
 FROM erp_banvic.contas c
-JOIN erp_banvic.clientes cl ON cl.cod_cliente = c.cod_cliente
-JOIN erp_banvic.localidades l ON l.cod_localidade = cl.cod_localidade
-GROUP BY l.uf
-ORDER BY saldo_medio DESC;
+JOIN erp_banvic.clientes cl ON cl.COD_CLIENTE = c.COD_CLIENTE
+JOIN erp_banvic.localidades l ON l.COD_LOCALIDADE = cl.COD_LOCALIDADE
+GROUP BY l.UF
+ORDER BY SALDO_MEDIO DESC;
 ```
 
 ```sql
 -- Volume de transações por tipo (últimos 30 dias da base)
 SELECT
-    nome_transacao,
-    COUNT(*)                       AS qtd,
-    ROUND(SUM(valor_transacao), 2) AS total
+    NOME_TRANSACAO,
+    COUNT(*)                        AS QTD,
+    ROUND(SUM(VALOR_TRANSACAO), 2)  AS TOTAL
 FROM erp_banvic.transacoes
-WHERE data_transacao >= DATEADD(DAY, -30, (SELECT MAX(data_transacao) FROM erp_banvic.transacoes))
-GROUP BY nome_transacao
-ORDER BY qtd DESC;
+WHERE DATA_TRANSACAO >= (SELECT MAX(DATA_TRANSACAO) FROM erp_banvic.transacoes) - INTERVAL 30 DAYS
+GROUP BY NOME_TRANSACAO
+ORDER BY QTD DESC;
 ```
 
 ```sql
 -- Propostas aprovadas por mês
 SELECT
-    DATE_TRUNC('month', data_entrada_proposta) AS mes,
-    COUNT(*)                                   AS propostas_aprovadas,
-    ROUND(SUM(valor_financiamento), 2)         AS valor_total
+    DATE_TRUNC('month', DATA_ENTRADA_PROPOSTA) AS MES,
+    COUNT(*)                            AS PROPOSTAS_APROVADAS,
+    ROUND(SUM(VALOR_FINANCIAMENTO), 2)  AS VALOR_TOTAL
 FROM erp_banvic.propostas_credito
-WHERE status_proposta = 'Aprovada'
+WHERE STATUS_PROPOSTA = 'Aprovada'
 GROUP BY 1
 ORDER BY 1;
 ```
@@ -74,38 +77,38 @@ ORDER BY 1;
 ```sql
 -- Clientes com maior saldo total (top 10)
 SELECT
-    cl.cod_cliente,
-    cl.primeiro_nome || ' ' || cl.ultimo_nome AS nome_cliente,
-    c.saldo_total
+    cl.COD_CLIENTE,
+    cl.PRIMEIRO_NOME || ' ' || cl.ULTIMO_NOME AS NOME_CLIENTE,
+    c.SALDO_TOTAL
 FROM erp_banvic.contas c
-JOIN erp_banvic.clientes cl ON cl.cod_cliente = c.cod_cliente
-ORDER BY c.saldo_total DESC
+JOIN erp_banvic.clientes cl ON cl.COD_CLIENTE = c.COD_CLIENTE
+ORDER BY c.SALDO_TOTAL DESC
 LIMIT 10;
 ```
 
 ```sql
 -- Agências por movimentação (ranking com window function)
 SELECT
-    a.nome,
-    SUM(t.valor_transacao) AS movimentacao,
-    RANK() OVER (ORDER BY SUM(t.valor_transacao) DESC) AS posicao
+    a.NOME,
+    SUM(t.VALOR_TRANSACAO)                    AS MOVIMENTACAO,
+    RANK() OVER (ORDER BY SUM(t.VALOR_TRANSACAO) DESC) AS POSICAO
 FROM erp_banvic.transacoes t
-JOIN erp_banvic.contas c ON c.num_conta = t.num_conta
-JOIN erp_banvic.agencias a ON a.cod_agencia = c.cod_agencia
-GROUP BY a.nome
-ORDER BY posicao;
+JOIN erp_banvic.contas c ON c.NUM_CONTA = t.NUM_CONTA
+JOIN erp_banvic.agencias a ON a.COD_AGENCIA = c.COD_AGENCIA
+GROUP BY a.NOME
+ORDER BY POSICAO;
 ```
 
 ## Conversão de tipos / tratamento
 
 ```sql
 -- CEP como string de 8 dígitos (importante para joins com clientes)
-SELECT cod_cliente, LPAD(CEP, 8, '0') AS cep_8 FROM erp_banvic.clientes;
+SELECT COD_CLIENTE, LPAD(CEP, 8, '0') AS CEP_8 FROM erp_banvic.clientes;
 
 -- Data em fuso local (se o raw vier em UTC)
 SELECT
-    data_transacao,
-    DATEADD(HOUR, -3, data_transacao) AS data_local
+    DATA_TRANSACAO,
+    DATA_TRANSACAO - INTERVAL 3 HOURS AS DATA_LOCAL
 FROM erp_banvic.transacoes;
 ```
 
@@ -113,7 +116,7 @@ FROM erp_banvic.transacoes;
 
 ```sql
 -- PK duplicada
-SELECT cod_cliente, COUNT(*) AS qtd
+SELECT COD_CLIENTE, COUNT(*) AS QTD
 FROM erp_banvic.clientes
 GROUP BY 1
 HAVING COUNT(*) > 1;
@@ -121,8 +124,8 @@ HAVING COUNT(*) > 1;
 -- FK órfã (transação apontando para conta inexistente)
 SELECT t.*
 FROM erp_banvic.transacoes t
-LEFT JOIN erp_banvic.contas c ON c.num_conta = t.num_conta
-WHERE c.num_conta IS NULL;
+LEFT JOIN erp_banvic.contas c ON c.NUM_CONTA = t.NUM_CONTA
+WHERE c.NUM_CONTA IS NULL;
 ```
 
 > Lembre-se: nos models `staging` do dbt, use `{{ source('erp_banvic', 'clientes') }}`

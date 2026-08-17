@@ -101,4 +101,4 @@ agência tem vários colaboradores.
 | `VALOR_PRESTACAO` | decimal | Valor da parcela |
 | `QUANTIDADE_PARCELAS` | int | Nº de parcelas |
 | `CARENCIA` | int | Carência em meses |
-| `STATUS_PROPOSTA` | string | `Enviada`, `Aprovada`, `Em análise`, `Validação documentos` |
+| `STATUS_PROPOSTA` | string | `Enviada`(0), `Aprovada`(1), `Recusada`(2), `Cancelada`(3), `Em análise`(4) |
