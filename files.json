@@ -8,7 +8,7 @@
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 15579
+    "size": 16157
   },
   {
     "id": "diario",
@@ -19,7 +19,7 @@
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 17305
+    "size": 17074
   },
   {
     "id": "guia",
@@ -30,7 +30,7 @@
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 4515
+    "size": 4436
   },
   {
     "id": "indice",
@@ -41,7 +41,7 @@
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 14321
+    "size": 13973
   },
   {
     "id": "oficial_0_banvic_queries",
@@ -52,7 +52,7 @@
     "done": true,
     "module": "0",
     "sort": 0.5,
-    "size": 3485
+    "size": 3662
   },
   {
     "id": "oficial_0_banvic_tabelas",
@@ -63,7 +63,7 @@
     "done": true,
     "module": "0",
     "sort": 0.5,
-    "size": 4030
+    "size": 4148
   },
   {
     "id": "oficial_0_banvic_visao_geral",
@@ -74,7 +74,7 @@
     "done": true,
     "module": "0",
     "sort": 0.5,
-    "size": 2608
+    "size": 2668
   },
   {
     "id": "oficial_1__fada_conte_do_m_dulo_01_intro",
@@ -85,7 +85,7 @@
     "done": true,
     "module": "1",
     "sort": 1,
-    "size": 148526
+    "size": 145503
   },
   {
     "id": "personal_1_decoreba_modulo1",
@@ -96,7 +96,7 @@
     "done": true,
     "module": "1",
     "sort": 1,
-    "size": 4435
+    "size": 4342
   },
   {
     "id": "personal_1_resumo_modulo1",
@@ -107,7 +107,7 @@
     "done": true,
     "module": "1",
     "sort": 1,
-    "size": 7488
+    "size": 7379
   },
   {
     "id": "en_1__fada_english_slides_introduct",
@@ -118,7 +118,7 @@
     "done": true,
     "module": "1",
     "sort": 1,
-    "size": 19443
+    "size": 18601
   },
   {
     "id": "oficial_2_conte_do_m_dulo_2_sql_1",
@@ -129,7 +129,7 @@
     "done": true,
     "module": "2",
     "sort": 2,
-    "size": 74076
+    "size": 72032
   },
   {
     "id": "oficial_2__academy_querying_data_with_sq",
@@ -140,7 +140,7 @@
     "done": true,
     "module": "2",
     "sort": 2,
-    "size": 48992
+    "size": 46920
   },
   {
     "id": "personal_2_decoreba_sql",
@@ -151,7 +151,7 @@
     "done": true,
     "module": "2",
     "sort": 2,
-    "size": 13199
+    "size": 12836
   },
   {
     "id": "personal_2_resumo_modulo_2_sql",
@@ -162,7 +162,7 @@
     "done": true,
     "module": "2",
     "sort": 2,
-    "size": 12947
+    "size": 12666
   },
   {
     "id": "oficial_3__fada_conte_do_m_dulo_3_modela",
@@ -173,7 +173,7 @@
     "done": true,
     "module": "3",
     "sort": 3,
-    "size": 84167
+    "size": 83184
   },
   {
     "id": "personal_3_decoreba_modulo3",
@@ -184,7 +184,7 @@
     "done": true,
     "module": "3",
     "sort": 3,
-    "size": 7002
+    "size": 6854
   },
   {
     "id": "personal_3_resumo_modulo3",
@@ -195,7 +195,7 @@
     "done": true,
     "module": "3",
     "sort": 3,
-    "size": 10022
+    "size": 9826
   },
   {
     "id": "en_3__english_fada_m_dulo_3_modelag",
@@ -206,7 +206,7 @@
     "done": true,
     "module": "3",
     "sort": 3,
-    "size": 29152
+    "size": 27827
   },
   {
     "id": "oficial_iv__fea_conte_do_m_dulo_iv_engenh",
@@ -217,7 +217,7 @@
     "done": true,
     "module": "IV",
     "sort": 3.5,
-    "size": 76796
+    "size": 75576
   },
   {
     "id": "personal_iv_decoreba_moduloiv",
@@ -228,7 +228,7 @@
     "done": true,
     "module": "IV",
     "sort": 3.5,
-    "size": 7253
+    "size": 7076
   },
   {
     "id": "personal_iv_resumo_moduloiv",
@@ -239,7 +239,7 @@
     "done": true,
     "module": "IV",
     "sort": 3.5,
-    "size": 9069
+    "size": 8868
   },
   {
     "id": "en_iv__academy_en_us_asynchronous_fe",
@@ -250,7 +250,7 @@
     "done": true,
     "module": "IV",
     "sort": 3.5,
-    "size": 32665
+    "size": 31495
   },
   {
     "id": "oficial_4_conte_do_m_dulo_4_storytelling",
@@ -261,7 +261,7 @@
     "done": true,
     "module": "4",
     "sort": 4,
-    "size": 99061
+    "size": 97942
   },
   {
     "id": "personal_4_decoreba_modulo4",
@@ -272,7 +272,7 @@
     "done": true,
     "module": "4",
     "sort": 4,
-    "size": 8497
+    "size": 8306
   },
   {
     "id": "personal_4_resumo_modulo4",
@@ -283,7 +283,7 @@
     "done": true,
     "module": "4",
     "sort": 4,
-    "size": 12913
+    "size": 12672
   },
   {
     "id": "en_4__english_fada_m_dulo_4_storyte",
@@ -294,7 +294,7 @@
     "done": true,
     "module": "4",
     "sort": 4,
-    "size": 31079
+    "size": 29699
   },
   {
     "id": "oficial_5__fada_apostila_m_dulo_5_design",
@@ -305,7 +305,7 @@
     "done": true,
     "module": "5",
     "sort": 5,
-    "size": 56052
+    "size": 54932
   },
   {
     "id": "personal_5_decoreba_modulo5",
@@ -316,7 +316,7 @@
     "done": true,
     "module": "5",
     "sort": 5,
-    "size": 10559
+    "size": 10344
   },
   {
     "id": "personal_5_resumo_modulo5",
@@ -327,7 +327,7 @@
     "done": true,
     "module": "5",
     "sort": 5,
-    "size": 15824
+    "size": 15575
   },
   {
     "id": "en_5_copy_of_fada_m_dulo_5_design_d",
@@ -338,7 +338,7 @@
     "done": true,
     "module": "5",
     "sort": 5,
-    "size": 55664
+    "size": 53396
   },
   {
     "id": "oficial_6_conte_do_m_dulo_6_criando_dash",
@@ -349,7 +349,7 @@
     "done": true,
     "module": "6",
     "sort": 6,
-    "size": 111004
+    "size": 109846
   },
   {
     "id": "personal_6_decoreba_modulo6",
@@ -360,7 +360,7 @@
     "done": true,
     "module": "6",
     "sort": 6,
-    "size": 8081
+    "size": 7917
   },
   {
     "id": "personal_6_resumo_modulo6",
@@ -371,7 +371,7 @@
     "done": true,
     "module": "6",
     "sort": 6,
-    "size": 15125
+    "size": 14859
   },
   {
     "id": "en_6__english_fada_m_dulo_6_criando",
@@ -382,7 +382,7 @@
     "done": true,
     "module": "6",
     "sort": 6,
-    "size": 22313
+    "size": 21386
   },
   {
     "id": "oficial_7__fada_conte_do_m_dulo_7_estat",
@@ -393,7 +393,7 @@
     "done": true,
     "module": "7",
     "sort": 7,
-    "size": 197807
+    "size": 194989
   },
   {
     "id": "personal_7_decoreba_modulo7",
@@ -404,7 +404,7 @@
     "done": true,
     "module": "7",
     "sort": 7,
-    "size": 9512
+    "size": 9265
   },
   {
     "id": "personal_7_resumo_modulo7",
@@ -415,7 +415,7 @@
     "done": true,
     "module": "7",
     "sort": 7,
-    "size": 13140
+    "size": 12841
   },
   {
     "id": "en_7_copy_of_fada_m_dulo_7_estat_st",
@@ -426,7 +426,7 @@
     "done": true,
     "module": "7",
     "sort": 7,
-    "size": 62862
+    "size": 59879
   },
   {
     "id": "oficial_8__fada_conte_do_m_dulo_8_python",
@@ -437,7 +437,7 @@
     "done": true,
     "module": "8",
     "sort": 8,
-    "size": 179516
+    "size": 176844
   },
   {
     "id": "personal_8_decoreba_modulo8",
@@ -448,7 +448,7 @@
     "done": true,
     "module": "8",
     "sort": 8,
-    "size": 9051
+    "size": 8799
   },
   {
     "id": "personal_8_resumo_modulo8",
@@ -459,7 +459,7 @@
     "done": true,
     "module": "8",
     "sort": 8,
-    "size": 11345
+    "size": 11015
   },
   {
     "id": "en_8__english_fada_m_dulo_de_python",
@@ -470,7 +470,7 @@
     "done": true,
     "module": "8",
     "sort": 8,
-    "size": 69547
+    "size": 67138
   },
   {
     "id": "oficial_9_adventureworks_banco_referenci",
@@ -481,7 +481,7 @@
     "done": true,
     "module": "9",
     "sort": 9,
-    "size": 4657
+    "size": 4765
   },
   {
     "id": "oficial_9_banconorthwind",
@@ -503,7 +503,7 @@
     "done": true,
     "module": "9",
     "sort": 9,
-    "size": 5588
+    "size": 6104
   },
   {
     "id": "oficial_9_curso_sql_completo_2025",
@@ -514,7 +514,7 @@
     "done": true,
     "module": "9",
     "sort": 9,
-    "size": 3598
+    "size": 3687
   },
   {
     "id": "oficial_9_northwind_banco_referencia",
@@ -525,6 +525,6 @@
     "done": true,
     "module": "9",
     "sort": 9,
-    "size": 4302
+    "size": 4425
   }
 ]
