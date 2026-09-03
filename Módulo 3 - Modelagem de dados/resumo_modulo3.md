@@ -86,6 +86,17 @@ Processo de representar e organizar informações por meio de modelos conceituai
 
 > O **Star Schema** é o formato recomendado para Power BI.
 
+### Kimball vs Inmon (estratégias de DW)
+
+| | Kimball (bottom-up) | Inmon (top-down) |
+|---|---|---|
+| **Abordagem** | Constrói data marts por processo de negócio, um de cada vez | Constrói o DW corporativo normalizado (3NF) primeiro; marts derivam depois |
+| **Modelo** | Dimensional (star/snowflake) já no mart | Relacional normalizado como "fonte única da verdade" |
+| **Velocidade** | Entrega valor cedo, em ciclos rápidos | Mais demorado (custo inicial alto) |
+| **Foco** | Pragmático, voltado ao negócio/analistas | Enterprise, centralizado, padrão corporativo |
+
+> A proposta de Kimball é a mais conhecida e é a que o banvic-dbt segue: staging (normalizado) → intermediate → marts (star schema por processo).
+
 ---
 
 ## 5. Tabelas Fato
@@ -96,6 +107,8 @@ Armazenam **métricas/medidas numéricas** de negócio (vendas, transações, va
 - Medidas numéricas agregáveis (soma, média, contagem)
 - **Chaves estrangeiras** → conectam às dimensões
 - **Granularidade**: nível de detalhe (transação individual, diária, mensal)
+
+> **Dados atômicos** = dados no **menor nível de detalhe possível** (cada transação individual). Não é "dado pequeno" — é **granularidade mínima**. Regra Kimball: *"go as granular as possible"* — os resumos derivam do fato atômico; se nascer agregado, o detalhe se perde para sempre. ⚠️ "Atômico" tem **dois sentidos** no módulo: (1) aqui, granularidade da fato; (2) na 1ª Forma Normal, atributo indivisível.
 
 **Tipos:**
 

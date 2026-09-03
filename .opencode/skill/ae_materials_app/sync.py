@@ -43,7 +43,7 @@ MODULE_BY_SORT = {m["sort"]: m for m in MODULES}
 EN_RE = re.compile(r'(English|EN-US|Copy of|Asynchronous)', re.IGNORECASE)
 
 # Regex para detectar resumos/decorebas pessoais (não são material oficial)
-PERSONAL_RE = re.compile(r'(resumo|decoreba)', re.IGNORECASE)
+PERSONAL_RE = re.compile(r'(resumo|decoreba|aprofundamento)', re.IGNORECASE)
 
 # Heading genéricos de fechamento de apresentação (não são títulos reais)
 GENERIC_HEADINGS = {
@@ -57,6 +57,8 @@ CONFIG_FILES = {
     "INDICE_MODULOS.md": ("indice", True),
     "Analytics Engineer Training 2026.md": ("diario", True),
     "GUIA_DBT_BANVIC.md": ("guia", True),
+    "SETUP_AMBIENTE_AULAS.md": ("setup", True),
+    "CONVENCOES_GIT.md": ("convencoes", True),
 }
 
 

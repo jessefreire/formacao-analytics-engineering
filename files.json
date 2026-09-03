@@ -8,7 +8,7 @@
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 16157
+    "size": 16474
   },
   {
     "id": "diario",
@@ -20,6 +20,17 @@
     "module": 0,
     "sort": 0,
     "size": 17074
+  },
+  {
+    "id": "convencoes",
+    "label": "CONVENCOES_GIT.md",
+    "title": "Convenções de Git — Conventional Commits e Branches",
+    "path": "CONVENCOES_GIT.md",
+    "cat": "Config",
+    "done": true,
+    "module": 0,
+    "sort": 0,
+    "size": 3840
   },
   {
     "id": "guia",
@@ -42,6 +53,17 @@
     "module": 0,
     "sort": 0,
     "size": 13973
+  },
+  {
+    "id": "setup",
+    "label": "SETUP_AMBIENTE_AULAS.md",
+    "title": "Setup do Ambiente das Aulas Práticas — GitHub + Databricks + dbt Cloud",
+    "path": "SETUP_AMBIENTE_AULAS.md",
+    "cat": "Config",
+    "done": true,
+    "module": 0,
+    "sort": 0,
+    "size": 6439
   },
   {
     "id": "oficial_0_banvic_queries",
@@ -184,7 +206,7 @@
     "done": true,
     "module": "3",
     "sort": 3,
-    "size": 6854
+    "size": 8992
   },
   {
     "id": "personal_3_resumo_modulo3",
@@ -195,7 +217,7 @@
     "done": true,
     "module": "3",
     "sort": 3,
-    "size": 9826
+    "size": 10991
   },
   {
     "id": "en_3__english_fada_m_dulo_3_modelag",
@@ -218,6 +240,17 @@
     "module": "IV",
     "sort": 3.5,
     "size": 75576
+  },
+  {
+    "id": "personal_iv_aprofundamento_moduloiv",
+    "label": "aprofundamento_moduloIV.md",
+    "title": "Aprofundamento — Módulo IV: Ingestão, Transformação e Camadas de Dados",
+    "path": "Módulo IV - Engenharia de Dados com dbt e Snowflake/aprofundamento_moduloIV.md",
+    "cat": "Módulo IV - Engenharia de Dados com dbt e Snowflake",
+    "done": true,
+    "module": "IV",
+    "sort": 3.5,
+    "size": 66306
   },
   {
     "id": "personal_iv_decoreba_moduloiv",
@@ -360,7 +393,7 @@
     "done": true,
     "module": "6",
     "sort": 6,
-    "size": 7917
+    "size": 10835
   },
   {
     "id": "personal_6_resumo_modulo6",
@@ -371,7 +404,7 @@
     "done": true,
     "module": "6",
     "sort": 6,
-    "size": 14859
+    "size": 22406
   },
   {
     "id": "en_6__english_fada_m_dulo_6_criando",

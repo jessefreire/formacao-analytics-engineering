@@ -67,12 +67,35 @@ ESQUEMAS DIMENSIONAIS (Kimball)
     Snowflake = normalizado -> menos duplicacao -> mais joins -> mais complexo
     Em DW analitico, normalizar demais (Snowflake) torna o modelo complexo e lento
 
+KIMBALL x INMON (estrategia de DW)
+--------------------------------------------
+- Kimball = BOTTOM-UP: constroi data marts por processo de negocio (star schema),
+  um de cada vez, entrega valor cedo, pragmatico (foco no negocio)
+- Inmon = TOP-DOWN: constroi o DW corporativo normalizado (3NF) primeiro,
+  marts derivam depois, enterprise/centralizado (fonte unica da verdade)
+- Kimball e a proposta mais conhecida; o curso segue ela
+  (banvic-dbt: staging -> intermediate -> marts)
+
+>> PEGADINHA: DATA MART x DW
+    Data Mart = pedaco do DW de UMA area/processo (ex: financeiro, banco)
+    Kimball monta o DW juntando marts; Inmon deriva marts do DW central
+    Marts = camada final do dbt (models/marts) pronta p/ BI
+
 TABELAS FATO
 --------------------------------------------
 - Armazam METRICAS NUMERICAS de negocio (vendas, transacoes, valores)
 - Cada linha = UM EVENTO (transacao individual ou agregada)
 - Contem: medidas numericas + chaves estrangeiras (FK) p/ dimensoes
 - Granularidade = nivel de detalhe (transacao individual, dia, mes)
+
+DADOS ATOMICOS = menor nivel de detalhe possivel (cada transacao individual)
+- NAO e "dado pequeno" -> e GRANULARIDADE MINIMA
+- Regra Kimball: "go as granular as possible" -> fato atomico e a base;
+  os resumos/agregados derivam dele
+- Se nascer agregado, o detalhe se perde pra sempre
+- ATENCAO: "atomico" tem 2 sentidos no modulo:
+  (1) granularidade da fato (este)
+  (2) 1a Forma Normal = atributo indivisivel
 
 Tipos:
 - Transacional = cada linha e uma transacao (alta granularidade)
@@ -122,6 +145,26 @@ BOAS PRATICAS DATABRICKS (Lakehouse)
 --------------------------------------------
 - Delta Lake = armazenamento c/ transacoes ACID
 - Unity Catalog = governanca centralizada + RBAC
+
+ACID = 4 garantias de transacao (mnemonico PT: "A Certeza de Isolamento e Durabilidade")
+--------------------------------------------
+- A = Atomicidade: TUDO ou NADA (transferencia debita+credita juntas; falhou, volta tudo)
+- C = Consistencia: regras/restricoes nunca violadas (estado final sempre valido)
+- I = Isolamento: transacoes concorrentes nao se veem pela metade
+- D = Durabilidade: depois do commit, fica gravado p/ sempre (ate c/ queda de energia)
+
+>> PEGADINHA: ATOMICIDADE x CONSISTENCIA
+    Atomicidade = a transacao completa ou falha INTEIRA
+    Consistencia = o BANCO respeita as regras no estado final
+    Sao garantias diferentes! Nao confundir.
+
+>> PEGADINHA: ACID x DATA LAKE
+    Data Lake puro NAO tem ACID -> risco de data swamp
+    Data Lakehouse traz ACID via DELTA LAKE (transaction log)
+    = "Parquet com ACID" -> por isso Delta e a base do Databricks
+
+>> CONEXAO: no desafio, os marts sao tabelas Delta -> herdam ACID
+    Quando o dbt run grava, nada fica "pela metade" no DW
 
 Otimizacoes:
 - Optimize = compacta arquivos Parquet (16MB-1GB)

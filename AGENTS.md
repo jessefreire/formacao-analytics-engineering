@@ -20,7 +20,9 @@ Formação AE/                        # ← Repositório git local (commit "chor
 ├── files.json                   # Manifest gerado pelo sync
 ├── server.py                    # Servidor local (http://localhost:8765)
 ├── .opencode/
-│   └── skill/ae_materials_app/  # Skill de auto-sync (templates + sync.py)
+│   └── skill/
+│       ├── ae_materials_app/      # Skill de auto-sync (templates + sync.py)
+│       └── dbt-packages-tests/    # Skill de lições: packages, testes dbt_utils, erros comuns
 ├── Módulo 0 - Banco de Dados BanVic/   # Referência do banco BanVic (visão geral, schema, queries)
 ├── Módulo 1 -  Introdução à Análise de Dados/   # Oficial + resumo + decoreba + EN
 ├── Modulo 2 - SQL para Análise de Dados/        # Oficial + resumo + decoreba + EN
@@ -175,9 +177,9 @@ jupyter notebook  # abre analise_banvic.ipynb ou seu notebook
 
 ## Checklist de Entrega do Desafio Final
 
-- [ ] Fork `techindicium/banvic-dbt` → clone local
-- [ ] `profiles.yml` configurado + `dbt debug` OK
-- [ ] `dbt seed` todas as 8 tabelas
+- [x] Fork `techindicium/banvic-dbt` → clone local (`jessefreireufc/banvic-dbt`)
+- [x] Ambiente dbt Cloud configurado (Databricks free + catálogo `dev` + ambiente Development) — `dbt debug` OK no Studio; ver `SETUP_AMBIENTE_AULAS.md`
+- [x] `dbt seed` todas as 8 tabelas (em `dev.erp_banvic`, via dbt Cloud, 24/08/2026)
 - [ ] Models `staging/` (8) com testes
 - [ ] Models `intermediate/` (joins/enriquecimento)
 - [ ] Models `marts/` (facts + dims + KPIs) materializados como `table`

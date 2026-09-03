@@ -155,6 +155,57 @@ DESKTOP x SERVICE - RESUMO
 - Service: publicar, compartilhar, configurar RLS, criar dashboards, configurar atualizacao
 - Desktop = desenvolvimento. Service = distribuicao/colaboracao.
 
+BOA PRATICA DO FLUXO (PASSO A PASSO)
+--------------------------------------------
+- 1) Criar o fluxo no Service (nao relatorio por relatorio no Desktop)
+- 2) Selecionar SO as tabelas necessarias (ex BanVic: excluir dim_clientes da analise de credito por colaborador)
+- 3) No Power Query online: so ajustes leves (tipo, nome comercial, excluir colunas)
+- 4) No Desktop: modelo semantico conecta NO FLUXO (fluxo vira a fonte) e cria DAX
+- 5) Organizar fluxos por fonte/area/frente/tabela (como workspaces)
+
+>> PEGADINHA: Menos tabelas no fluxo = fluxo menor + menos refresh + menos dado sensivel circulando.
+
+RISCOS OPERACIONAIS DO IMPORT
+--------------------------------------------
+- Dado stale: entre refreshes o relatorio mostra snapshot antigo
+- Falha silenciosa: refresh falha (credencial/schema) e relatorio segue com dado velho sem avisar
+- Refresh redundante: cada relatorio com sua copia (ex: dim_datas N vezes/dia) -> mitigar com FLUXO DE DADOS
+- Modelo pesado: colunas calculadas/tabelas inuteis inflam o .pbix
+
+CUSTOS DO DIRECTQUERY
+--------------------------------------------
+- Latencia: cada clique/filtro = nova query no DW
+- Carga na origem: N usuarios = N queries simultaneas
+- DAX/M restritos: nem toda funcao traduz p/ SQL da origem
+- Sem cache: perde compactacao VertiPaq (~10x)
+
+>> PEGADINHA: Meio-termo = modelo DUPLO. Ex BanVic: fact_transacoes (milhoes de linhas) em DQ + dims pequenas importadas.
+
+CAPACIDADE COMPARTILHADA x DEDICADA
+--------------------------------------------
+- Compartilhada = multi-tenant (divide HW). Pro/Free. Limite: 1GB + 8 refreshes/dia.
+- Dedicada = HW reservado. Premium/PPU/Fabric. Limite: ate 400GB + 48 refreshes/dia.
+- "Meu workspace" = compartilhada (testes, nao producao)
+- Modelo > 1GB na compartilhada NAO publica nem atualiza
+
+>> PEGADINHA: Precisa > 8 refreshes/dia ou modelo grande? So na dedicada.
+
+DATABRICKS (DBT) -> POWER BI (PASSO A PASSO)
+--------------------------------------------
+- Pre-req: dbt build OK + warehouse rodando + token (Settings -> Developer -> Access tokens)
+- Desktop: Obter Dados -> conector Databricks -> hostname + HTTP path (Connection details do warehouse)
+- BanVic = pequeno -> IMPORTACAO. Marcar tabelas dos MARTS (dim_*, fact_*)
+- Modelagem: 1:* direcao UNICA, juncao SK -> FK (agencia_sk -> agencia_fk). Ocultar *_sk/*_fk
+- Publicar -> nascem modelo semantico + relatorio no Service. Reconfigurar credencial + refresh agendado
+
+>> PEGADINHA: dim_agencias x fact_transacoes em "Ambas" = fato filtra a dimensao (esconde agencias, ambiguidade, lentidao). Padrao = UNICA.
+
+TREINO LOCAL (SEM DATABRICKS)
+--------------------------------------------
+- dbt build --target local (DuckDB, profile ~/.dbt) -> python export_marts_local.py -> dados_treino/*.csv
+- PBI: Obter Dados -> CSV (4 arquivos) -> conferir tipos -> Carregar
+- Relacoes 1:* UNICA com pk -> fk: pk_agencia->fk_agencia, pk_cliente->fk_cliente, pk_data->fk_data
+
 DESAFINAL FINAL (DBT + POWER BI)
 --------------------------------------------
 - dbt = constroi o esquema estrela (staging -> intermediate -> marts)

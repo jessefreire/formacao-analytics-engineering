@@ -45,6 +45,19 @@ O Power BI tem dois componentes principais:
 
 **RLS (Row Level Security):** segurança a nível de linha. Configura-se as regras no Desktop (Modelagem) e finaliza-se no Service (atribuindo usuários).
 
+### Como conectar o Databricks (dbt) ao Power BI — passo a passo
+
+(A aula oficial não cobre; fluxo usado no desafio BanVic.)
+
+1. **Pré-requisitos:** `dbt build` executado (marts existem no warehouse); SQL Warehouse rodando; token de acesso (Databricks → Settings → Developer → Access tokens).
+2. **No Desktop:** Obter Dados → conector **Databricks** → colar **Server hostname** + **HTTP path** (SQL Warehouses → warehouse → *Connection details*).
+3. **Modo:** BanVic é pequeno → **Importação** (DAX/M completos, mais rápido).
+4. **Autenticar** com o token (PAT) → no Navegador, marcar as tabelas dos **marts** (`dim_*`, `fact_*`) → Carregar.
+5. **Na Modelagem:** conferir relacionamentos 1:* com direção **Única** e junção **SK → FK** (`agencia_sk` → `agencia_fk`, `cliente_sk` → `cliente_fk`, `data_sk` → `data_fk`). Ocultar `*_sk`/`*_fk` da exibição.
+6. **Publicar** no workspace → nascem as duas caixas no Service: **modelo semântico** + **relatório**. No Service, reinserir credencial da fonte e configurar atualização agendada.
+
+> **Treino local via CSV (sem Databricks):** o dashboard de treino da aula usa as 4 tabelas via CSV. Gere a partir dos seus marts: `dbt build --target local` em `banvic-dbt/` (roda no DuckDB, profile `~/.dbt/profiles.yml`) → `python export_marts_local.py` → importa em `dados_treino/` via Obter Dados → CSV. Para o desafio final, use o conector Databricks direto (`export_marts_csv.py` gera os mesmos CSVs a partir do warehouse).
+
 **Dashboards vs Relatórios no Service:** Dashboard no Service é um painel de alto nível que agrupa relatórios (diferente do dashboard como conceito geral).
 
 ## 3. Fluxo de dados e modelo semântico
@@ -62,6 +75,14 @@ Funcionalidade do **Power BI Service** (online) que permite criar e gerenciar fl
 
 **O que fazer no fluxo de dados:** mudanças de tipo, tradução de nomes técnico → comercial, ajustes simples.
 **O que NÃO fazer:** regras de negócio complexas (deixar para o ELT/DW).
+
+### Boa prática: fonte → fluxo → modelo (passo a passo)
+
+1. **Criar o fluxo no Service** (online), não relatório por relatório no Desktop.
+2. **Selecionar só as tabelas necessárias** para aquele grupo de analistas. Exemplo BanVic (análise de crédito por colaborador): incluir `dim_agencias`, `dim_datas`, `dim_colaboradores` e `fact_propostas` — e **excluir** `dim_clientes`, que não interessa à análise. Menos tabelas = fluxo menor + menos refresh + menos dado sensível circulando.
+3. **No Power Query online, só ajustes leves** (tipo, nome comercial, excluir colunas). Regra de negócio → dbt/ELT.
+4. **No Desktop, conectar o modelo semântico ao fluxo** (o fluxo vira a fonte) e aí criar relacionamentos + DAX.
+5. **Organizar os fluxos com inteligência:** por fonte, por área, por frente de trabalho ou por tabela — o que for mais claro e barato de manter (análogo à divisão de workspaces).
 
 ### Modelo semântico (antigo "conjunto de dados")
 
@@ -98,6 +119,41 @@ Quando há apenas um relatório vinculado, modelo semântico + relatório = mesm
 2. Preciso de todas as funções DAX, M e tabelas calculadas? **Sim → Importação**
 3. Preciso de atualização em tempo real? **Sim → DirectQuery**
 4. Preciso de espaço para grandes volumes? **Sim → Duplo** / **Não → Importação**
+
+### Riscos operacionais da Importação
+
+Além das 3 limitações acima:
+
+| Risco | Explicação | Mitigação |
+|---|---|---|
+| **Dado desatualizado (stale)** | Entre um refresh e outro o relatório exibe snapshot antigo | Alinhar frequência de refresh com a necessidade do negócio |
+| **Falha silenciosa de refresh** | Credencial expirada ou schema mudou no DW → refresh falha e o relatório segue mostrando dado velho sem avisar | Monitorar histórico de atualização no Service |
+| **Refresh redundante** | Cada relatório importa sua própria cópia (ex.: dimensão de datas atualizada N vezes/dia) — custo no DW | Usar **Fluxo de Dados** (atualiza uma vez, serve a todos) |
+| **Modelo pesado** | Colunas calculadas e tabelas desnecessárias inflam o .pbix; refresh e abertura ficam lentos | Filtragem vertical/horizontal, Star Schema |
+
+### Custos do DirectQuery
+
+- **Performance menor:** cada clique/filtro dispara query no DW → latência nos visuais.
+- **Carga na origem:** N usuários filtrando = N queries simultâneas no banco.
+- **DAX e M restritos:** nem toda função DAX, tabela calculada ou transformação M funciona (precisa ser traduzível p/ SQL da origem).
+- **Sem cache:** perde a compactação VertiPaq (~10x) e a velocidade do Import.
+
+### Exemplo de modelo Duplo (BanVic)
+
+`fact_transacoes` (milhões de linhas, cresce o dia todo) em **DirectQuery** + dimensões pequenas (`dim_agencias`, `dim_datas`) **importadas** = relatório rápido sem estourar o limite de 1 GB.
+
+### Capacidade compartilhada × dedicada
+
+Hardware onde o modelo roda no Service — define limites de tamanho e refresh:
+
+| Aspecto | **Compartilhada** | **Dedicada** |
+|---|---|---|
+| **O que é** | Infra multi-tenant: divide CPU/memória com outros usuários | Hardware reservado para a organização |
+| **Onde vive** | Workspaces comuns (Pro) ou "Meu workspace" (Free, sem compartilhar) | Premium (P-SKU), Premium por Usuário (PPU) ou Fabric (F-SKU) |
+| **Modelo Import máx.** | **1 GB** compactado (se passar, não publica nem atualiza) | Até **400 GB** (varia por SKU) |
+| **Refreshes/dia** | **8×** | **48×** |
+
+**Conexão com as decisões:** na compartilhada, o teto de 1 GB empurra modelos grandes ao DirectQuery; precisa de > 8 refreshes/dia → só na dedicada. "Meu workspace" = compartilhada (testes, não produção).
 
 ## 5. Estrutura das tabelas — Esquema Estrela (Star Schema)
 
@@ -194,6 +250,66 @@ Declaradas com **VAR**, finalizadas com **RETURN**. Benefícios:
 | **Relação** | USERELATIONSHIP, CROSSFILTER |
 | **Iteradoras ("X")** | SUMX, MINX, MAXX, AVERAGEX, COUNTX, RANKX — operam a nível de linha e coluna |
 
+### Exemplos práticos (BanVic)
+
+**Colunas calculadas** (classificam a linha; valor fixo):
+
+```dax
+-- Status da proposta por extenso (eixo em gráfico de barras por status)
+Status Proposta = SWITCH(dim_propostas[status_proposta],
+    0, "Enviada", 1, "Aprovada", 2, "Recusada",
+    3, "Cancelada", 4, "Em análise")
+
+-- Faixa de valor (categoria em slicer ou colunas empilhadas)
+Faixa Valor = IF(fact_transacoes[valor] < 0, "Saída",
+    IF(fact_transacoes[valor] <= 1000, "Até R$ 1 mil", "Acima de R$ 1 mil"))
+```
+
+**Medidas** (agregam; reagem aos filtros do visual):
+
+```dax
+-- Cards de KPI
+Total Transacionado = SUM(fact_transacoes[valor])
+Qtd Transações = COUNTROWS(fact_transacoes)
+Ticket Médio = DIVIDE([Total Transacionado], [Qtd Transações])
+
+-- Série temporal (gráfico de linhas): mês anterior
+Valor Mês Anterior =
+    CALCULATE([Total Transacionado], PREVIOUSMONTH(dim_datas[data]))
+
+-- Percentual (matriz por agência/UF): taxa de aprovação
+Taxa Aprovação =
+VAR Aprovadas = CALCULATE(COUNTROWS(fact_propostas),
+    fact_propostas[status_proposta] = 1)
+VAR Total = COUNTROWS(fact_propostas)
+RETURN DIVIDE(Aprovadas, Total)
+
+-- Ranking (barras horizontais)
+Rank Agência = RANKX(ALL(dim_agencias[nome_agencia]), [Total Transacionado])
+```
+
+**Relacionamentos especiais** (dimensão com função múltipla + cross-filter):
+
+```dax
+-- USERELATIONSHIP: ativa um relacionamento INATIVO (linha pontilhada) só nesta medida.
+-- Ex.: dim_dates ligada à fact_proposta por [Data entrada] (ativo) e [Data efetivacao] (inativo)
+Propostas Efetivadas =
+CALCULATE(
+    COUNTROWS(fact_proposta),
+    USERELATIONSHIP(dim_dates[Data], fact_proposta[Data efetivacao])
+)
+
+-- CROSSFILTER: muda a direção do filtro (Única -> Ambas) só nesta medida,
+-- sem alterar o modelo (que segue seguro com direção Única)
+Ticket Médio (filtro reverso) =
+CALCULATE(
+    [Ticket Médio],
+    CROSSFILTER(dim_agencias[agencia_sk], fact_transacoes[agencia_fk], Both)
+)
+```
+
+**Guia visual:** cards → medidas de agregação; linhas → medidas temporais (`CALCULATE` + inteligência temporal); matriz → medidas com `VAR`/`DIVIDE`; barras horizontais → contagem + `RANKX`; slicer → coluna calculada categórica. Regra de negócio em coluna calculada? Prefira fazer no **dbt** e importar pronta.
+
 ## 8. Criação de relatórios
 
 ### Estrutura de um dashboard
@@ -253,6 +369,9 @@ Declaradas com **VAR**, finalizadas com **RETURN**. Benefícios:
 - **Direção única x Ambas:** Única = dimensão filtra fato (padrão, seguro). Ambas = bidirecional (mais poder, risco de ambiguidade e perda de desempenho).
 - **Fluxo de dados x Modelo semântico:** Fluxo = camada de consolidação no Service (reutilização). Modelo semântico = camada de dados no Desktop (relacionamentos + DAX).
 - **Star Schema:** Sempre preferir 1:muitos. Evitar 1:1 (consolidar) e *:* (usar Bridge Table).
+- **Compartilhada x Dedicada:** Compartilhada = 1 GB + 8 refreshes/dia (multi-tenant). Dedicada = até 400 GB + 48 refreshes/dia (hardware reservado: Premium/PPU/Fabric).
+- **Riscos do Import:** dado stale entre refreshes, falha silenciosa de refresh, refresh redundante (mitiga com fluxo de dados).
+- **Custos do DirectQuery:** latência por query, carga no DW, DAX/M restritos, sem cache VertiPaq. Meio-termo = modelo Duplo (fato grande em DQ + dims importadas).
 
 ---
 
