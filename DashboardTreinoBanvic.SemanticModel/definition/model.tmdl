@@ -13,6 +13,8 @@ annotation PBI_QueryOrder = ["dim_agencias","dim_clientes","dim_datas","fact_tra
 
 annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
 
+ref expression PastaDados
+
 ref table dim_agencias
 ref table dim_clientes
 ref table dim_datas

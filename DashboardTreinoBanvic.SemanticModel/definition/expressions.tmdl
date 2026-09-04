@@ -1,0 +1,6 @@
+/// Pasta que contém os CSVs exportados do dbt (marts). Trocar aqui ao mover o
+/// projeto de máquina — as 4 tabelas leem deste parâmetro.
+expression PastaDados = "D:\\Documentos\\Indicium AI\\Formação AE\\dados_treino\\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 6438dd43-3f10-4046-a543-872c134b06fa
+
+	annotation PBI_ResultType = Text

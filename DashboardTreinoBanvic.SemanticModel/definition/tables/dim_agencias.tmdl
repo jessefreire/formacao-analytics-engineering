@@ -66,7 +66,7 @@ table dim_agencias
 		mode: import
 		source =
 				let
-				  Origem = Csv.Document(File.Contents("D:\\Documentos\\Indicium AI\\Formação AE\\dados_treino\\dim_agencias.csv"), [Delimiter = ",", Columns = 7, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  Origem = Csv.Document(File.Contents(PastaDados & "dim_agencias.csv"), [Delimiter = ",", Columns = 7, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
 				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
 				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"pk_agencia", Int64.Type}, {"nome_agencia", type text}, {"tipo_agencia", type text}, {"cidade_agencia", type text}, {"uf_agencia", type text}, {"endereco", type text}, {"abertura", type date}}),
 				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo de coluna alterado",{{"nome_agencia", "Nome da Agência"}})
