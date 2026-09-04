@@ -41,5 +41,5 @@ Repositório de formação em Analytics Engineering: curso Indicium (módulos 0-
 2. **Fechar Desktop sem salvar** antes de editar JSON externamente
 3. **Salvar após cada lote MCP** (memória é volátil)
 4. **Canvas 1280×720**, tema Storm (Fluent2 quebra cards)
-5. **`isHidden` não existe** no page.json — ocultar via UI
+5. **Ocultar página**: campo `visibility: HiddenInViewMode` no page.json (`isHidden` não existe)
 6. **Textbox**: `paragraphs` como array nativo (ver skill textbox.md)

@@ -35,7 +35,8 @@ Formação AE/                        # ← Repositório git local (commit "chor
 ├── Módulo 6 - Dashboards com Power BI/          # Oficial + EN
 ├── Módulo 7 - Estatística aplicada/             # Oficial + EN
 ├── Módulo 8 - Python/                           # Oficial + EN
-├── Módulo 9 - Curso SQL Completo (YouTube)/    # Curso SQL (Dev Aprender) + Northwind (CSVs prontos p/ Databricks/Neon) + AdventureWorks (.bak p/ extrair via Docker)
+├── Módulo 9 - AI-Powered Productivity/         # Módulo oficial do curso (a preencher)
+├── Extra - Curso SQL Completo (YouTube)/       # FORA da grade oficial: Curso SQL (Dev Aprender) + Northwind (CSVs prontos p/ Databricks/Neon) + AdventureWorks (.bak p/ extrair via Docker)
 ├── Desafio/
 │   ├── desafio-banvic-an-lise-de-dados-2024.ipynb
 │   └── Exemplos repo banvic/    # Referências de terceiros (NÃO versionar)
@@ -50,7 +51,7 @@ Formação AE/                        # ← Repositório git local (commit "chor
 **Seu projeto real** = fork de `https://github.com/techindicium/banvic-dbt` clonado localmente em `banvic-dbt/` (repo git próprio, aninhado; ignorado pelo repo do curso via `.gitignore`).
 **App de materiais** = local, sem build. Sempre abrir via `http://localhost:8765` (não `file://`, por CORS). Sync: `python .opencode/skill/ae_materials_app/sync.py` (o alias moderno `python -m ae_materials_app.sync` NÃO funciona — module fora do path).
 
-> ⚠️ **Fora do git (copiar à mão ao trocar de máquina):** `Módulo 9 - Curso SQL Completo (YouTube)/AdventureWorks2017.bak` e `AdventureWorks2025.bak` (~48 MB cada) estão no `.gitignore` (`*.bak`) de propósito. `bancoNorthwind.txt` (1 MB) e tudo mais ESTÁ versionado. Se o usuário estiver configurando uma máquina nova, só esse `.bak` precisa ser copiado manualmente (pendrive/Drive); todo o resto vem do clone. Ao converter o `.bak` para CSV/Databricks (guia em `carregar_bancos.md`), pode descartar o `.bak` se quiser liberar espaço.
+> ⚠️ **Fora do git (copiar à mão ao trocar de máquina):** `Extra - Curso SQL Completo (YouTube)/AdventureWorks2017.bak` e `AdventureWorks2025.bak` (~48 MB cada) estão no `.gitignore` (`*.bak`) de propósito. `bancoNorthwind.txt` (1 MB) e tudo mais ESTÁ versionado. Se o usuário estiver configurando uma máquina nova, só esse `.bak` precisa ser copiado manualmente (pendrive/Drive); todo o resto vem do clone. Ao converter o `.bak` para CSV/Databricks (guia em `carregar_bancos.md`), pode descartar o `.bak` se quiser liberar espaço.
 
 ---
 
@@ -126,6 +127,36 @@ jupyter notebook  # abre analise_banvic.ipynb ou seu notebook
 
 ---
 
+## Dois Ambientes dbt (importante não confundir)
+
+O projeto roda em **dois lugares diferentes**, e só um deles está conectado nesta máquina:
+
+| Ambiente | Onde | Status local | Para que serve |
+|---|---|---|---|
+| **dbt Cloud + Databricks** | `cloud.getdbt.com` + workspace Databricks | ❌ **não conectado localmente** | Foi o ambiente das aulas; onde saiu o 61/61 de testes |
+| **dbt Core + DuckDB** | `banvic-dbt/dev.duckdb` (target `local`) | ✅ ativo | É o que gera os CSVs que alimentam o dashboard |
+
+**Fluxo real do dashboard hoje** (não passa por Databricks):
+
+```
+banvic-dbt/  ──dbt build --target local──>  dev.duckdb
+                                                │
+                        python export_marts_local.py
+                                                │
+                                                v
+                              dados_treino/*.csv (4 marts)
+                                                │
+                                                v
+                        DashboardTreinoBanvic.pbip (param PastaDados)
+```
+
+- `dev.duckdb` está no `.gitignore` (`*.duckdb*`) — é artefato local, reconstruível com `dbt build --target local`.
+- Adapters instalados: `dbt-databricks` **e** `dbt-duckdb`. O target default é `local` (DuckDB).
+- Os CSVs em `dados_treino/` foram gerados por `export_marts_local.py` — ver o script para a lista de tabelas exportadas.
+- **Consequência prática:** mudança de model só chega no dashboard depois de `dbt build --target local` + `python export_marts_local.py` + refresh no Desktop.
+
+---
+
 ## Regras de Negócio Descobertas (BanVic)
 
 | Domínio | Regra |
@@ -179,7 +210,8 @@ jupyter notebook  # abre analise_banvic.ipynb ou seu notebook
 - **Colunas renomeadas**: renomear no model (TMDL) para nomes amigáveis (`nome_agencia` → `Nome da Agência`). CSVs mantêm nomes originais.
 - **Relacionamentos**: `BothDirections` seguro quando há apenas1 fact table (filtra dim ↔ fact bidirecionalmente).
 - **Edição externa × Desktop**: ao editar JSON externamente, **fechar Desktop sem salvar** e reabrir para carregar mudanças.
-- **Páginas ocultas**: `isHidden` NÃO existe no schema do page.json. Criar página normal e ocultar via UI (botão direito → Ocultar página).
+- **Caminho dos CSVs = parâmetro M `PastaDados`** (`SemanticModel/definition/expressions.tmdl`). As 4 partições fazem `File.Contents(PastaDados & "arquivo.csv")` — ao trocar de máquina, editar **um** valor (Desktop → Transformar dados → Gerenciar parâmetros) em vez de 4 partições.
+- **Páginas ocultas**: o campo é `"visibility": "HiddenInViewMode"` no `page.json` (`isHidden` NÃO existe no schema). Ocultar via UI do Desktop (botão direito → Ocultar página) grava esse campo; escrevê-lo à mão também funciona. Ver as páginas Style Guide e Theme JSON como referência.
 - **Textbox estático**: usar tipo `textbox` com `paragraphs` como **array nativo** (não embrulhar em `expr`). Ver `powerbi-report-authoring/references/textbox.md`.
 - **Swatches de cor**: usar tipo `shape` (retângulo) com `fill` da cor. `cardVisual` vazio não renderiza.
 - **Nomes de visuais**: nunca vazios, 1-50 caracteres. Usar ID da pasta.
@@ -209,7 +241,7 @@ jupyter notebook  # abre analise_banvic.ipynb ou seu notebook
 - [x] Models `staging/` (8) com testes
 - [x] Models `intermediate/` (joins/enriquecimento)
 - [x] Models `marts/` (facts + dims + KPIs) materializados como `table`
-- [x] `dbt test` passa 100% (61/61)
+- [x] `dbt test` passa 100% — **38/38 no local (DuckDB, medido em 04/09/2026)**; o 61/61 registrado antes veio do dbt Cloud/Databricks e o local não reproduz esse número (contagens de teste diferentes entre os dois ambientes; a divergência não foi investigada)
 - [x] Dataset consolidado exportado para Power BI (4 CSVs em `dados_treino/`)
 - [x] Dashboard Power BI publicado (2 páginas, 22 visuais, PBIP format)
 - [ ] Relatório PDF (LaTeX/Overleaf) com insights + recomendações
@@ -236,16 +268,6 @@ jupyter notebook  # abre analise_banvic.ipynb ou seu notebook
 | **Slides EN (MD)** | `[FADA _ English] Slides - Introduction to data analysis.pptx.md` |
 | **Resumo (seu)** | `resumo_modulo1.md` |
 | **Decoreba (seu)** | `decoreba_modulo1.txt` |
-
-### Módulo 2 — SQL
-| Tipo | Arquivo |
-|------|---------|
-| **Oficial (PDF)** | `Conteúdo - Módulo 2 - SQL (1).pdf` |
-| **Oficial (MD)** | `Conteúdo - Módulo 2 - SQL (1).md` |
-| **Slides (PDF)** | `[Academy] Querying data with SQL - Slides.pptx.pdf` |
-| **Slides (MD)** | `[Academy] Querying data with SQL - Slides.pptx.md` |
-| **Resumo (seu)** | `Resumo_Modulo_2_SQL.md` |
-| **Decoreba (seu)** | `Decoreba_SQL.txt` |
 
 ### Módulo 2 — SQL
 | Tipo | Arquivo |

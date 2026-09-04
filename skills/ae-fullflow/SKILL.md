@@ -259,7 +259,7 @@ Antes de criar o Style Guide, auditar todos os visuais:
 ```
 
 #### 7.2 Página Style Guide (ocultar via UI após criar)
-> `isHidden` NÃO existe no schema do page.json. Criar página normal, depois ocultar via Desktop (botão direito → Ocultar página).
+> O campo correto é `"visibility": "HiddenInViewMode"` no `page.json` — `isHidden` NÃO existe no schema. Ocultar via Desktop (botão direito → Ocultar página) grava esse campo; escrevê-lo direto no JSON também funciona.
 
 - **SVG de fundo**: header teal + 2 painéis brancos (Cores | Tipografia), mesmo estilo do dashboard
 - **Cores**: `shape` (retângulo) com `fill` da cor + `textbox` ao lado com hex + descrição. NÃO usar `cardVisual` vazio (não renderiza).
