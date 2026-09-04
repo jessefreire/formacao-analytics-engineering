@@ -6,7 +6,11 @@
       "Bash(python -c \"import fitz\")",
       "Bash(pip list *)",
       "WebFetch(domain:www.udemy.com)",
-      "WebFetch(domain:www.youtube.com)"
+      "WebFetch(domain:www.youtube.com)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git checkout *)",
+      "Bash(git branch *)"
     ]
   }
 }
