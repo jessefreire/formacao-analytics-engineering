@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "powerbi-modeling-mcp": {
+      "command": [
+        "C:\\Users\\SEU-USUARIO\\.vscode-insiders\\extensions\\analysis-services.powerbi-modeling-mcp-VERSAO-win32-x64\\server\\powerbi-modeling-mcp.exe",
+        "--start"
+      ],
+      "enabled": true,
+      "type": "local"
+    }
+  }
+}
