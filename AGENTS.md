@@ -167,6 +167,17 @@ jupyter notebook  # abre analise_banvic.ipynb ou seu notebook
 - **Salvar após cada lote MCP** (medidas, colunas): objetos criados via XMLA vivem só na memória — kill/fechamento sem save perde tudo (caso real: tabela `Medidas` inteira perdida).
 - **Tema Storm nos relatórios de treino** (padrão da aula): o tema base Fluent2 (build 2.155) não renderiza `cardVisual` (cards em branco); Storm renderiza. Suspeita também para outros arquivos com big numbers apagados.
 
+### Power BI Dashboard — boas práticas (construção BanVic)
+- **Canvas padrão**: 1280×720 (não 1920×1080). SVGs de fundo devem ter `viewBox="0 0 1280 720"`.
+- **SVG backgrounds**: criam a identidade visual (header, filtros, painéis). Power BI visuals ficam por cima com preenchimento/borda transparentes.
+- **Navegação por chips**: botões `actionButton` tipo `PageNavigation` com `fill.show=false`, `text.show=false`, `outline.show=false`, `border.show=false`. Posicionados exatamente sobre os chips SVG (só captam clique).
+- **Sincronização de slicers cross-page**: configurar `syncGroups` em `filtersState` para manter filtros sincronizados entre páginas.
+- **Cards de data dinâmica**: card `cardVisual` posicionado sobre área do timestamp no SVG (mostra hora real, nunca hardcoded no SVG).
+- **Medidas**: criar tabela calculada `Medidas` para agrupar todas as DAX measures. Formato `0.00` ou `0.00%` conforme tipo.
+- **Colunas renomeadas**: renomear no model (TMDL) para nomes amigáveis (`nome_agencia` → `Nome da Agência`). CSVs mantêm nomes originais.
+- **Relacionamentos**: `BothDirections` seguro quando há apenas1 fact table (filtra dim ↔ fact bidirecionalmente).
+- **Edição externa × Desktop**: ao editar JSON externamente, **fechar Desktop sem salvar** e reabrir para carregar mudanças.
+
 ---
 
 ## Como Validar Alterações
@@ -188,12 +199,12 @@ jupyter notebook  # abre analise_banvic.ipynb ou seu notebook
 - [x] Fork `techindicium/banvic-dbt` → clone local (`jessefreireufc/banvic-dbt`)
 - [x] Ambiente dbt Cloud configurado (Databricks free + catálogo `dev` + ambiente Development) — `dbt debug` OK no Studio; ver `SETUP_AMBIENTE_AULAS.md`
 - [x] `dbt seed` todas as 8 tabelas (em `dev.erp_banvic`, via dbt Cloud, 24/08/2026)
-- [ ] Models `staging/` (8) com testes
-- [ ] Models `intermediate/` (joins/enriquecimento)
-- [ ] Models `marts/` (facts + dims + KPIs) materializados como `table`
-- [ ] `dbt test` passa 100%
-- [ ] Dataset consolidado exportado para Power BI
-- [ ] Dashboard Power BI publicado
+- [x] Models `staging/` (8) com testes
+- [x] Models `intermediate/` (joins/enriquecimento)
+- [x] Models `marts/` (facts + dims + KPIs) materializados como `table`
+- [x] `dbt test` passa 100% (61/61)
+- [x] Dataset consolidado exportado para Power BI (4 CSVs em `dados_treino/`)
+- [x] Dashboard Power BI publicado (2 páginas, 22 visuais, PBIP format)
 - [ ] Relatório PDF (LaTeX/Overleaf) com insights + recomendações
 
 ---
