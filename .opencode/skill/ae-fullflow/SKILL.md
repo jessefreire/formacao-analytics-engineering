@@ -244,6 +244,8 @@ Projeto.SemanticModel/    # Modelo semântico
 
 ### Fase 7: Style Guide & Páginas Ocultas
 
+> **PADRÃO OBRIGATÓRIO:** todo relatório Power BI deve ter N páginas visíveis + 2 ocultas: **Style Guide** (cores + tipografia) e **Theme JSON** (tema copiável). Isso garante consistência visual e reuso entre relatórios do mesmo cliente.
+
 #### 7.1 Auditoria de Estilos
 Antes de criar o Style Guide, auditar todos os visuais:
 ```python
