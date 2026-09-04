@@ -1,7 +1,7 @@
 {
-  "sha": "de7a053b8c49b2c5c4a34a22f0ac2b36bd093ddf",
-  "short": "de7a053",
+  "sha": "6e3c296ba3e1ac18c512805cb9131a56f1431c6b",
+  "short": "6e3c296",
   "date": "2026-09-04",
-  "message": "feat: aviso de atualizacoes na plataforma (version.json + badge + GitHub API)",
+  "message": "fix: badge de versao compacto (so hash, sem data)",
   "repo": "jessefreire/formacao-analytics-engineering"
 }
