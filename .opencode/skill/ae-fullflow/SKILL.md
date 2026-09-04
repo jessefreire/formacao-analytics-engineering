@@ -242,6 +242,43 @@ Projeto.SemanticModel/    # Modelo semântico
 2. Referenciar no `report.json` → `theme.name`
 3. Ou importar via Power BI Desktop → Visualizar → Temas → Navegar
 
+### Fase 7: Style Guide & Páginas Ocultas
+
+#### 7.1 Auditoria de Estilos
+Antes de criar o Style Guide, auditar todos os visuais:
+```python
+# Coletar de cada visual.json:
+# - fontSize (em objects.value.properties.fontSize)
+# - fontColor (em objects.value.properties.fontColor)
+# - fontFace (em objects.value.properties.fontFamily)
+# - Cores de dataPoint (em objects.dataPoint.properties.fill)
+```
+
+#### 7.2 Página Style Guide (oculta)
+Criar página `isHidden: true` com:
+- **Cores**: swatches (shapes) + hex + descrição
+- **Tipografia**: amostras de cada tamanho de fonte + uso
+- **Espaçamento**: referência de padding/margin
+
+#### 7.3 Página Theme JSON (oculta)
+Criar página `isHidden: true` com:
+- Card `cardVisual` mostrando o JSON do tema (fonte monospaced: Consolas)
+- Copiável pelo usuário para outros relatórios
+
+#### 7.4 Padrões BanVic (referência)
+| Elemento | Valor |
+|----------|-------|
+| **Canvas** | 1280×720 |
+| **Cor primária** | `#0F7E8C` |
+| **Cor secundária** | `#235362` |
+| **Cor terciária** | `#1F4858` |
+| **Texto** | `#4E6E77` |
+| **Fundo** | `#EDF1F5` |
+| **Painéis** | `#FFFFFF` |
+| **Fonte KPI** | 24px, Segoe UI, #235362 |
+| **Fonte eixo** | 9px, Segoe UI, #4E6E77 |
+| **Fonte data** | 10px, Segoe UI |
+
 ---
 
 ## Checklist de Projeto AE
