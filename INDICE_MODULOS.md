@@ -319,8 +319,8 @@ SELECT * FROM cte2;
 
 ## Módulo 9 — AI-Powered Productivity
 
-**Status:** ⏳ Em andamento (vídeos baixados; transcrições, resumo e decoreba pendentes)
-**Temas previstos:** produtividade com IA aplicada a dados, Claude Code, Claude para Analytics Engineer, uso de agentes no fluxo de trabalho.
+**Status:** ✅ Concluído (18 aulas transcritas; 3 resumos + 3 decorebas, um par por subcurso)
+**Temas principais:** **AI/BI no Databricks** — dashboard, publicação, permissões, agendamento, alertas, RLS, mascaramento de coluna e treinamento da IA Genie/Dini (13 aulas); **Claude Code** — agentes, skills, commands, hooks, MCP, plugins e marketplace (3 aulas); **Claude for AE** — padrões de uso, exploração de projeto e refatoração dbt (2 aulas).
 
 ### Arquivos Oficiais
 | Tipo | Arquivo |
@@ -329,13 +329,34 @@ SELECT * FROM cte2;
 | 2 | Claude for AE — 2× `ACA_FEA_CLAUDE_FOR_AE-A01..A02.mp4` |
 | 3 | Aulas do módulo — 13× `ACA_FADA_M9_A01..A13.mp4` |
 
-> **Ordem oficial do curso** (confirmada em 04/09/2026): os dois subcursos da FEA vêm **antes** das 13 aulas do FADA. Os 18 MP4 (~32 GB) estão no `.gitignore`; as **transcrições** serão versionadas e são a base do resumo.
+> **Ordem oficial do curso** (confirmada em 04/09/2026): os dois subcursos da FEA vêm **antes** das 13 aulas do FADA. Os 18 MP4 (~32 GB) estão no `.gitignore`, e as **transcrições** também — repo público, conteúdo proprietário. Ficam locais em `transcricoes/`.
 
 ### Resumos Pessoais
 | Arquivo | Descrição |
 |---------|-----------|
-| `resumo_modulo9.md` | ⏳ pendente |
-| `decoreba_modulo9.txt` | ⏳ pendente |
+| `resumo_modulo9_intro_claude_code.md` | Claude Code: as 4 formas de estender (agentes, skills, commands, hooks), MCP, plugins e marketplace |
+| `decoreba_modulo9_intro_claude_code.txt` | Cola do acima |
+| `resumo_modulo9_claude_for_ae.md` | Os 4 modos de falha do uso de IA, os 3 princípios, exploração de projeto e refatoração dbt (staging × regra de negócio, CTEs) |
+| `decoreba_modulo9_claude_for_ae.txt` | Cola do acima |
+| `resumo_modulo9_aulas.md` | AI/BI Databricks ponta a ponta: query no lugar do modelo semântico, visuais, publicação, permissões, RLS, mascaramento e as 9 boas práticas do Dini |
+| `decoreba_modulo9_aulas.txt` | Cola do acima |
+
+### Conceitos-Chave (Referência Rápida)
+| Conceito | Detalhe |
+|----------|---------|
+| **AI/BI × Power BI** | Não há modelo semântico com relacionamentos: a junção dim↔fato é **uma query SQL** (`create from SQL`) |
+| **Cálculos customizados** | Medidas sem SQL de agregação. O **comentário** é lido pela IA — não é opcional |
+| **`enable dual axis`** | Obrigatório para dois indicadores de escalas diferentes; sem ele o gráfico mente |
+| **Sem hierarquia de datas** | AI/BI não tem drill down/up — granularidade decidida na configuração |
+| **Share × Individual data permission** | No modo padrão (share) a **RLS é contornada**; produção pede `individual` |
+| **RLS: dimensão × fato** | Dimensão = vê o total, detalha só o seu. Fato = isolamento completo |
+| **Mascaramento de coluna** | Proteção tem que estar **no dado**, não em omitir a coluna — o usuário pergunta ao Dini |
+| **Alerta depende da query** | Não dispara fora do agendamento da query; agendar a query **antes** do alerta |
+| **Benchmark do Dini** | SQL diferente não é erro; corrige-se com **contexto** (instrução/query exemplo), não editando SQL |
+| **Claude Code: 4 extensões** | Agente (persona), skill (automática), command (só manual), hook (sempre) |
+| **`CLAUDE.md`** | Readme para a máquina; **máx. 500 linhas** |
+| **Os 3 princípios (AE)** | Processos antes de ferramentas; conhecimento antes da execução; revisão antes da geração |
+| **Staging** | Transformação mínima (renomear, cast). **Regra de negócio vai para int/marts** |
 
 ---
 

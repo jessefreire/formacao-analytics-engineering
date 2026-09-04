@@ -1,0 +1,391 @@
+DECOREBA - MODULO 9: AULAS DO MODULO (AI/BI DATABRICKS)
+===================================================
+
+OS 4 OBJETIVOS DO CLIENTE (guiam TODA decisao visual)
+--------------------------------------------
+1. Valor total, quantidade e media do valor das transacoes AO LONGO DO TEMPO
+2. Quais agencias tiveram mais transacoes EM QUANTIDADE
+3. Valor total e quantidade transacionada POR TIPO DE OPERACAO
+4. Detalhamento dos indicadores POR AGENCIA
+
+>> Guarde essa lista: e o criterio de decisao em toda aula (por que 2 graficos
+   e nao 4, por que uma 2a pagina, qual coluna destacar na matriz)
+
+A DIFERENCA FUNDAMENTAL DO AI/BI
+--------------------------------------------
+Power BI e similares          -> AI/BI Databricks
+- relacionamento dim x fato   -> NAO existe modelagem na ferramenta
+  modelado na ferramenta
+- relacionamentos + DAX       -> UMA QUERY SQL (create from SQL)
+- consome o modelo semantico  -> consome o DATASET DA QUERY
+
+Fluxo: data -> add data source -> tabelas do Unity Catalog
+       -> create from SQL -> escrever o join
+
+3 habitos:
+- COMENTAR os objetivos dentro da query (nao perder de vista as colunas)
+- NAO deixar SELECT * -> listar as colunas explicitamente
+- APAGAR as tabelas soltas do dataset depois de criar a query
+
+>> dev x prod: a aula demonstra no esquema dev, mas repete que em projeto real
+   se usa PRODUCAO - e isso que garante que atualizacao de dado reflita no BI
+
+CALCULOS CUSTOMIZADOS (as "medidas" do AI/BI)
+--------------------------------------------
+- Criam medida SEM escrever SQL de agregacao
+- Quantidade de transacoes -> COUNT(DISTINCT numero_transacao)
+- Valor total              -> SUM(valor_transacao)
+- Media do valor           -> AVG(valor_transacao)
+
+>> PEGADINHA: o campo de COMENTARIO do calculo NAO e opcional
+   Funciona como a descricao de uma coluna e e LIDO PELA IA DINI.
+   Comentar mal aqui degrada as respostas da IA depois.
+
+TEMA, CONTRASTE E CABECALHO
+--------------------------------------------
+- Config globais na aba direita: tema, fonte, tipografia, background, cor de
+  widget, borda, cor de selecao, alinhamento, cores customizadas
+
+>> TESTAR O DARK MODE NAO E CAPRICHO
+   Muitos usuarios usam o Databricks em modo escuro. Verificar contraste nas
+   duas versoes. E acessibilidade, nao estetica.
+
+- AS PRIMEIRAS CORES da lista customizada viram o PADRAO dos graficos
+- Canvas e MODULAR (grade)
+- Cabecalho leva: titulo + subtitulo, LINK pra doc externa/regra de negocio,
+  LOGOTIPO (URL publica ou Drive/SharePoint com link publico), e os filtros
+- 3 filtros: data (range), agencia (multipla), estado (UF, multipla)
+
+>> Quais filtros existir e decisao CONJUNTA COM O USUARIO, na etapa de MOCKUP.
+   Nao e escolha do desenvolvedor no meio da construcao.
+
+COUNTERS (big numbers)
+--------------------------------------------
+- Valor vem de MEDIDA calculada OU de COLUNA com agregacao implicita
+- style -> tamanho da fonte; compacto ou None (numero completo)
+- Posicao do titulo e AUTOMATICA pela forma do widget
+  (alongado -> ao lado | quadrado -> acima)
+- Ctrl+C / Ctrl+V clona o widget COM a formatacao, so troca o dado
+- target = campo de meta, se o dataset tiver
+- DESCRICAO vira TOOLTIP automaticamente quando nao ha espaco no widget
+  (e onde entra regra de negocio ou qual filtro esta aplicado)
+- Destaque: background de outra cor ou cor condicional no dado
+
+GRAFICO DE LINHA E EIXO DUPLO
+--------------------------------------------
+- Linha = serie temporal. Granularidade escolhida (yearly, COMBINADO com o usuario)
+
+>> PEGADINHA: o AI/BI NAO TEM HIERARQUIA DE DATAS
+   Logo, NAO existe drill down / drill up. A granularidade e decidida na
+   configuracao do grafico. Feature mapeada no roadmap, mas nao existe na aula.
+
+>> 2 indicadores de escalas diferentes = ENABLE DUAL AXIS e OBRIGATORIO
+   Sem isso a escala fica errada e o grafico MENTE.
+
+- display name renomeia a legenda (que vem como "Count of Unique ...")
+
+>> METODO: o grafico gera a pergunta seguinte
+   Qtd de transacoes SOBE e valor medio CAI -> entraram novos clientes?
+   Adiciona contagem distinta de fk_cliente -> confirma a elevacao.
+
+BARRAS
+--------------------------------------------
+- Eixo X categorico
+- Nome da agencia ilegivel? A solucao NAO e aumentar o grafico e ocupar o
+  dashboard - e TROCAR OS EIXOS e deixar horizontal
+- Ordem decrescente, rotulo de dados, formatacao customizada (PONTO como
+  separador de grupo, sem abreviacao)
+
+>> PEGADINHA: a aula mostra empilhar 2o indicador e usar faixa de cor
+   como 3a informacao - PARA DEPOIS REMOVER as duas.
+   Criterio: o objetivo e mostrar qual agencia se destaca em QUANTIDADE.
+   Informacao a mais que nao serve ao objetivo e SOBRECARGA, nao riqueza.
+
+MATRIZ (PIVOT)
+--------------------------------------------
+- rows    -> as agencias (linhas)
+- columns -> agrupamento opcional (por ano)
+- values  -> os 3 indicadores
+- Valores vem em linhas por padrao; virar coluna nos 3 pontos de values
+- Formatar cada medida (R$, separador), ordenar decrescente
+- display total na formatacao de rows acrescenta o total
+
+>> FORMATACAO CONDICIONAL E ESCOLHA, NAO ENFEITE
+   "se tudo tiver destaque, nao damos enfase a nenhum dado"
+   Aplicar escala de cor em UMA coluna, justificando pelo negocio.
+
+DIAGRAMACAO E QUANDO CRIAR OUTRA PAGINA
+--------------------------------------------
+- info que se complementam            -> MESMA pagina
+- aprofundamento de um indicador      -> pagina SEPARADA
+- analise nao ligada ao ja construido -> pagina SEPARADA
+
+>> ATALHO: em vez de pagina em branco, CLONE a primeira pagina e apague os
+   visuais. Reaproveita cabecalho, logotipo e filtros prontos.
+
+- Valores NEGATIVOS aparecem naturalmente por tipo de operacao
+- display name + TOOLTIPS adicionais deixam o hover legivel
+- TESTAR OS FILTROS ANTES DE PUBLICAR achou defeito real: filtro de data vinha
+  com granularidade de HORA -> trocar para daily
+- Filtros sao POR PAGINA; filtro global e configurado a parte
+- Filtro de data tem presets (ultimos 7 dias, esse mes, esse ano)
+
+PUBLICAR: A DECISAO DE PERMISSAO (a mais importante)
+--------------------------------------------
+SHARE DATA PERMISSION (padrao)      | INDIVIDUAL DATA PERMISSION
+- roda com as permissoes DO EDITOR  | - roda com as credenciais DE CADA USUARIO
+- usuario NAO precisa de acesso     | - usuario PRECISA de acesso (garantir antes)
+- vantagem: simplicidade            | - vantagem: respeita seguranca de dados
+- risco: divulgar demais            | - custo: preparo de acesso por pessoa
+
+>> PEGADINHA GRAVE: no modo PADRAO a RLS E CONTORNADA
+   Se ha RLS pra certos usuarios, eles veem os dados de qualquer forma, porque
+   olham o dashboard com as SUAS permissoes.
+   A aula usa o padrao so por ser demo. EM PRODUCAO: individual.
+
+- Publicado: exporta PDF e exporta VISUAL POR VISUAL (apresentacao, Excel, CSV)
+
+>> A PUBLICACAO E TAMBEM O TESTE DE LAYOUT
+   So no publicado apareceram logotipo grande demais (barra de rolagem) e
+   titulo cortado.
+
+COMPARTILHAMENTO
+--------------------------------------------
+- Por usuario ou grupo (e-mail / nome do grupo)
+- "anyone in my account can view" -> todos os registrados na CONTA Databricks,
+  MESMO FORA do workspace original (precisam de conta ativa)
+- embed dashboard -> incorporar em intranet / SharePoint
+
+>> PEGADINHA: normalmente o usuario ainda faz login no Databricks
+   EXCETO se o dashboard foi publicado com as SUAS credenciais. Nesse caso,
+   incorporado num sistema externo, basta acesso ao sistema externo.
+   E a combinacao que EXPOE DADOS a quem nao deveria ver as fontes.
+
+OS 4 NIVEIS DE PERMISSAO
+--------------------------------------------
+- can view -> so visualizar. NAO PODE PERGUNTAR AO DINI
+- can run  -> atualizar o dashboard e executar queries
+- can edit -> editar layout, consultas, criar visualizacoes
+- manage   -> controle total (inclui excluir e gerenciar compartilhamento)
+
+AS 3 CAMADAS DE ACESSO (precisa das TRES)
+--------------------------------------------
+1. acesso ao OBJETO do dashboard
+2. LEITURA nas tabelas/views do Unity Catalog
+3. acesso ao SQL WAREHOUSE (can use warehouse)
+
+- Publicado com as suas credenciais -> caem as camadas 2 e 3,
+  mas o usuario AINDA precisa de conta no Databricks
+
+AGENDAMENTO DE ATUALIZACAO
+--------------------------------------------
+- Por padrao as consultas rodam SOB DEMANDA (abrir/filtrar dispara a query)
+- Entao por que agendar? 3 beneficios:
+  DESEMPENHO   -> pre-carrega consultas e popula o CACHE de resultados
+  CONSISTENCIA -> todos veem os mesmos dados ate o proximo refresh
+  CUSTO        -> 100 usuarios clicando NAO disparam 100 execucoes
+- Frequencia: de 1x por minuto a 1x por semana
+- SUBSCRIBERS recebem por e-mail imagem estatica + PDF a cada atualizacao
+
+>> PEGADINHA: se o dashboard tem mais de uma pagina, o e-mail leva SO A PRIMEIRA
+   E a aula questiona o recurso: refresh diario -> assinatura e bom lembrete;
+   refresh a cada minuto -> enxurrada de e-mail.
+   "Nem todo recurso serve para todos os casos."
+
+ALERTAS
+--------------------------------------------
+>> ALERTA NAO E CRIADO NO DASHBOARD NEM NO WIDGET
+   E criado na ABA DE ALERTAS - e antes dele precisa de uma QUERY.
+
+Estrutura da query do exemplo (queda > 50% de um mes pro outro):
+  CTE transacoes_dezembro -> conta transacoes distintas do periodo
+  CTE transacoes_janeiro  -> conta transacoes distintas do periodo
+  CTE percentual          -> join das duas + variacao percentual
+  SELECT principal        -> devolve como TEXTO, LIMITADO A UMA LINHA
+
+- A restricao a UMA LINHA e o que permite usar a opcao FIRST ROW na condicao
+- Condicao do exemplo: coluna percentual <= -50
+
+>> A DEPENDENCIA QUE QUEBRA O ALERTA
+   O alerta NAO dispara fora do agendamento da QUERY. A query precisa ter
+   rodado naquele agendamento.
+   Agende a query ANTES do alerta: query 17:30 -> alerta 18:00.
+   Alerta antes da query nao tem dado pra avaliar.
+
+- Template de e-mail customizavel com HTML e variaveis
+- O LINK PRO DASHBOARD NAO E NATIVO no template: incluir a mao
+- Dica de teste: aproxime os dois agendamentos pra ver o e-mail chegar
+
+RLS - ROW LEVEL SECURITY
+--------------------------------------------
+- Restringe LINHAS conforme a identidade de quem consulta
+- Aplica o PRINCIPIO DO PRIVILEGIO MINIMO
+- Configura no UNITY CATALOG, NAO no dashboard
+- UC = camada unificada de governanca; hierarquia catalogo -> esquema -> tabela
+
+>> LIMITACAO DE VERSAO: a FREE EDITION tem restricoes nesses recursos.
+   O que se ensina de RLS e mascaramento vale pra VERSAO PAGA.
+
+Fluxo:
+  1. criar FUNCAO em SQL mapeando grupo (ou e-mail) -> agencias permitidas
+  2. rodar a funcao
+  3. Unity Catalog -> tabela -> row filter -> escolher a funcao e a coluna
+
+>> PEGADINHA: a funcao precisa listar TODOS os grupos.
+   GRUPO QUE NAO ESTIVER NA FUNCAO NAO TEM PERMISSAO NENHUMA.
+
+DIMENSAO OU FATO - a escolha muda o resultado
+--------------------------------------------
+- RLS na DIMENSAO de agencias -> ve o TOTAL GERAL da empresa, mas so o
+  DETALHAMENTO da sua agencia. As outras aparecem agrupadas como NULO
+- RLS na FATO de transacoes  -> isolamento COMPLETO, dashboard todo filtrado,
+  SEM totais gerais
+
+>> Ou seja: escolher a tabela e escolher entre "ve o todo, detalha o seu" e
+   "so ve o seu". DECISAO DE NEGOCIO, nao tecnica.
+
+>> OBRIGACAO DE COMUNICAR
+   Ao aplicar RLS, deixe EXPLICITO que o usuario ve apenas os dados da sua
+   agencia (caixa de texto no dashboard, home do espaco Dini).
+   Sem isso o usuario INTERPRETA O DADO ERRADO achando que ve tudo.
+
+- Acesso total a alguem: basta REMOVER a condicao do usuario na funcao
+  (nao precisa listar todas as agencias)
+- A RLS e respeitada TAMBEM no Dini (foi testado)
+
+MASCARAMENTO DE COLUNAS
+--------------------------------------------
+- RLS protege LINHA; mascaramento protege COLUNA (CPF, nome, num. transacao)
+- Mesmo fluxo: funcao + aplicacao no UC, na coluna
+- 2 variacoes: retornar NULO, ou retornar TEXTO tipo "restrito" (mais intuitivo)
+- Atencao a NAO SOBREPOR mascaras: remova a anterior antes de aplicar a nova
+
+>> PEGADINHA: no BI tradicional bastaria nao colocar a coluna no visual.
+   Aqui NAO BASTA - o usuario tem autonomia e pode perguntar o detalhe ao Dini.
+   A protecao tem que estar NO DADO, nao no visual.
+   (O Dini respeita o mascaramento - foi testado.)
+
+DINI - O QUE E E ONDE VIVE
+--------------------------------------------
+- Problema que resolve: voce entregou o dashboard e UM usuario lembra de uma
+  analise fora dos requisitos, que nao interessa aos outros 25
+- AI/BI = interface de analise SEM CODIGO movida por IA; usuario de negocio
+  pergunta em linguagem natural
+- Resposta a demanda de AUTOATENDIMENTO; democratiza o acesso ao insight
+
+>> SEU PAPEL MUDA: em vez de criar a visualizacao, voce passa a TREINAR A IA
+   e CONFIGURAR O ESPACO pra que as respostas sejam confiaveis.
+
+Onde esta presente:
+- UNITY CATALOG      -> gera/melhora descricao de tabela e coluna (AI generate)
+- DASHBOARD publicado -> botao Ask Dini (dataset do dash, ou link do Dini Space)
+- DINI SPACE         -> conversa sobre as TABELAS ORIGINAIS
+
+>> PEGADINHA: funcionar nao e o mesmo que estar CERTO.
+   "estar atento a forma como o Dini esta calculando e conferir sempre que
+   possivel". A aula valida as respostas contra os numeros do dashboard.
+
+- Ele mantem CONTEXTO: depois de comparar 2020 e 2021, entende "qual foi o
+  pior mes de ambos os anos?" como referencia a pergunta anterior
+
+CONFIGURAR O DINI SPACE
+--------------------------------------------
+Dini -> new -> escolher tabelas -> nome + descricao
+(trouxe fato, dim_agencias e TAMBEM dim_clientes, pra atender perguntas de
+cliente que ficaram fora do dashboard)
+
+>> 1a ACAO DEPOIS DE CRIAR: PEDIR PRA ELE EXPLICAR O DATASET
+   E o teste de que entendeu as tabelas e as chaves, antes da config fina.
+
+INSTRUCOES (regem COMO a resposta aparece):
+- ao perguntar de agencia, mostrar o NOME, nao o codigo
+- variacao percentual com o simbolo % ao lado
+- valor de transacao e monetario em real -> usar R$ antes do numero
+- vale DECLARAR OS JOINS explicitamente, mesmo que ele ja tenha acertado
+
+PERGUNTAS EM DESTAQUE (5 na primeira pagina):
+- DEFINIDAS CONVERSANDO COM OS USUARIOS
+- depois: levar cada uma ate FEEDBACK POSITIVO, corrigindo antes de compartilhar
+- correcao 1: interpretou "crescimento" como valor total -> instruir que
+  crescimento = QUANTIDADE DE CLIENTES
+- correcao 2: nao agrupou por mes -> "agrupe todos os dados por mes"
+
+>> ACHADO SOBRE OS DADOS: perguntando ao Dini, descobriu-se que 2023 tem SO
+   4 DIAS de registro, todos de janeiro. Por isso "10 clientes de 2023" so
+   retornava 5 - e a pergunta virou 2022.
+   METODO: a IA serve tambem pra INVESTIGAR A COMPLETUDE DO DADO.
+
+- Graficos do Dini sao editaveis (cor, barra horizontal pra ler nomes, rotulo)
+  e podem ser BAIXADOS EM PNG pra apresentacao
+- MONITORING lista todas as perguntas e feedbacks. Olhar as SEM CLASSIFICACAO.
+  Quanto mais feedback, mais rapido o treinamento.
+
+>> PEGADINHA: no DINI SPACE nao existe incorporar as suas credenciais.
+   Todo usuario precisa de leitura no UC + SQL Warehouse + objeto do espaco,
+   com no minimo CAN RUN.
+
+AS 9 BOAS PRATICAS PRA TREINAR A IA
+--------------------------------------------
+1. DESCRICAO em tabelas e colunas -> traduz termo tecnico em linguagem de negocio
+2. Colunas PK/FK explicitas -> pk_agencia x fk_agencia e mais logico que
+   "codigo" x "ID"
+3. Aba de INSTRUCOES -> define conceito de negocio na SUA definicao
+4. SINONIMOS nas colunas -> faturamento e receita na mesma coluna
+5. VALUE DICTIONARY em coluna string -> traduz sigla e codigo
+6. QUERIES SQL DE EXEMPLO -> ensina regra de negocio muito especifica
+7. BENCHMARKING -> mede a qualidade e mostra onde melhorar
+8. FEEDBACK em cada resposta -> e o mecanismo de aprendizado
+9. MONITORAR o feedback dos usuarios -> evolui o espaco e aumenta a confianca
+
+EXEMPLOS QUE MOSTRAM O PODER DAS PRATICAS 3, 4 E 6
+--------------------------------------------
+- SINONIMO: em tipo_cliente cadastrar "tipo de cliente", "segmento de cliente",
+  "segmento". Depois "qual o segmento que mais transacionou em 2022?" resolve
+  pra coluna certa.
+- INSTRUCAO: "quantos clientes ativos em 2011?" sem instrucao contou clientes
+  DISTINTOS. Com a instrucao "considere ativo quem fez pelo menos uma transacao
+  a cada 20 dias", a resposta muda e o SQL aplica a regra.
+- QUERY DE EXEMPLO (o caso mais rico): "top performance" nao tem significado
+  universal. No BanVic e crescimento em QUANTIDADE e em VALOR, ponderados
+  40% quantidade / 60% valor, gerando um SCORE. Sem exemplo, o Dini assumiu
+  "maior valor total". Com a query salva, passou a reproduzir a ponderacao.
+  Detalhe: COALESCE garante crescimento ZERO quando nao ha ano anterior.
+
+BENCHMARKS
+--------------------------------------------
+- Perguntas de teste com uma QUERY DE REFERENCIA que voce sabe estar correta
+- Ao rodar: o Dini gera o SQL, executa, responde e COMPARA com a referencia
+- Serve pra MEDIR A ACURACIA ANTES DE LIBERAR o espaco
+
+>> PEGADINHA: SQL DIFERENTE NAO E ERRO
+   Nos 2 testes o Dini escreveu queries distintas e chegou aos MESMOS
+   resultados; a diferenca era so formatacao (sem simbolo de %, menos casas).
+   Avaliacao boa, acuracia 100%.
+
+>> REGRA DE OURO DO BENCHMARK
+   Voce NAO CORRIGE O SQL ali. Voce adiciona CONTEXTO na configuracao
+   (query de exemplo e/ou instrucao) e RODA O BENCHMARK DE NOVO.
+   E reexecuta os testes sempre que os dados mudarem: coluna nova, tabela
+   nova, join novo, dado novo.
+
+CONEXAO COM DESAFIO FINAL (DBT + POWER BI)
+--------------------------------------------
+- Os 4 objetivos da gerencia de operacoes SAO praticamente o escopo do dashboard
+  Power BI deste repo. As paginas "Visao Geral" e "Tipos de transacao" do PBIP
+  tem os mesmos nomes e o mesmo recorte.
+- O contraste com o Power BI e a licao de ARQUITETURA: aqui nao existe modelo
+  semantico com relacionamento e DAX; a juncao e uma query SQL. Sabendo os dois,
+  voce ESCOLHE a ferramenta em vez de so operar a que conhece.
+- As 3 medidas do AI/BI sao as mesmas do modelo semantico daqui:
+  COUNT(DISTINCT) na PK da fato = Qtd Transacoes em DAX; SUM e AVG equivalentes.
+- PK/FK explicitas (pratica 2) e argumento a favor da convencao do banvic-dbt:
+  nomear pk_agencia / fk_agencia e o que faz uma IA inferir o join certo.
+- Descricao de coluna deixou de ser burocracia: os .yml dos models e as
+  descricoes no TMDL alimentam qualquer camada de IA por cima.
+- Regra de negocio como QUERY DE EXEMPLO e o padrao pra metrica composta do
+  BanVic: "agencia top performance" precisa de definicao explicita e versionada.
+- RLS na dimensao x na fato e decisao que o dashboard daqui enfrentaria ao ir
+  pra producao com dado real.
+- Guardrail de dados REFORCADO: a aula mostra o usuario chegando em CPF ou nome
+  de cliente via Dini. Protecao tem que estar NO DADO (mascaramento no UC),
+  nao em omitir a coluna do visual.

@@ -347,9 +347,15 @@ banvic-dbt/  ──dbt build --target local──>  dev.duckdb
 | **1. Vídeos (fora do git)** | 3× `ACA_FEA_IA_INTRO_AO_CLAUDE_CODE-AULA01..03.mp4` (Intro ao Claude Code) |
 | **2. Vídeos (fora do git)** | 2× `ACA_FEA_CLAUDE_FOR_AE-A01..A02.mp4` (Claude for AE) |
 | **3. Vídeos (fora do git)** | 13× `ACA_FADA_M9_A01..A13.mp4` (aulas do módulo) |
-| **Transcrições** | ⏳ pendente |
-| **Resumo (seu)** | ⏳ pendente — `resumo_modulo9.md` |
-| **Decoreba (seu)** | ⏳ pendente — `decoreba_modulo9.txt` |
+| **Transcrições** | locais, **fora do git** — `transcricoes/` (ver nota abaixo) |
+| **Resumo — Intro ao Claude Code** | `resumo_modulo9_intro_claude_code.md` |
+| **Resumo — Claude for AE** | `resumo_modulo9_claude_for_ae.md` |
+| **Resumo — Aulas do módulo** | `resumo_modulo9_aulas.md` |
+| **Decoreba — Intro ao Claude Code** | `decoreba_modulo9_intro_claude_code.txt` |
+| **Decoreba — Claude for AE** | `decoreba_modulo9_claude_for_ae.txt` |
+| **Decoreba — Aulas do módulo** | `decoreba_modulo9_aulas.txt` |
+
+> **Um par de resumo+decoreba por subcurso**, não um por módulo — os três blocos tratam de assuntos distintos (as 13 aulas FADA são sobre **AI/BI no Databricks**, não sobre Claude Code). Áudio (`audio/`) e transcrições (`transcricoes/`) ficam **fora do git**: este repo é público e o conteúdo integral das videoaulas é material proprietário da Indicium. Só os derivados são versionados. As subpastas também são invisíveis para o `sync.py`, cujo glob não é recursivo — o que evita o `files.json` (versionado) apontar para arquivo ausente do clone.
 
 ### Módulo 10 — Curso SQL Completo (YouTube)
 > Material extra, fora da grade oficial da Indicium.

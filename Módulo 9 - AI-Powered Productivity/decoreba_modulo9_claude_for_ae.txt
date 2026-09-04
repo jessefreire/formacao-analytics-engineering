@@ -1,0 +1,192 @@
+DECOREBA - MODULO 9: CLAUDE FOR AE
+===================================================
+
+ONDE O GANHO APARECE
+--------------------------------------------
+- Velocidade de execucao -> reduz SEMANAS, mantendo qualidade
+- Onboarding em projeto novo -> assistente com acesso ao repo = senior sempre disponivel
+- Trabalho mecanico (slide, doc, boilerplate) -> libera tempo pro conteudo
+- Curva de aprendizado -> menos tempo decorando sintaxe
+
+>> POR QUE O ONBOARDING E O MAIOR GANHO
+   Nem sempre existe documentacao organizada no projeto e nem sempre tem outro
+   dev disponivel pra te desbloquear. O assistente cobre esse vao.
+
+A BARREIRA QUE CAIU
+--------------------------------------------
+- Encurtou a distancia entre ENTENDER o problema e EXPRESSAR em codigo
+- Fluencia de sintaxe em Python/SQL custava ANOS; hoje custa pouco
+- Consequencia contra-intuitiva: SOFT SKILLS E BOAS PRATICAS ganharam destaque
+  (comunicar, trabalhar com colega, ser organizado = diferencial agora)
+
+OS 4 MODOS DE FALHA (reais, vistos na empresa)
+--------------------------------------------
+1. ENTREGA RAPIDO E ERRADO
+   - pulou o processo correto na pressa
+   - custo: perde confianca, e confianca e caro de recuperar
+2. NAO SEI JUSTIFICAR
+   - Team Lead pergunta "por que essa decisao?" e nao ha resposta
+   - custo: lido como falta de dominio tecnico, perde relevancia
+3. EXECUTOR DE BRIEFING
+   - recebe task, joga na IA, repassa a saida
+   - custo: vira intermediario entre ferramenta e task, perde o lugar de consultor
+4. CICLO DA ADOCAO IRREFLETIDA
+   - delega sem entender -> entrega -> falsa confianca -> nao conhece o projeto
+   - custo: bola de neve; quem percebe e a lideranca ou, pior, o CLIENTE
+
+>> PEGADINHA: o modo mais perigoso e o que PARECE sucesso
+   Voce entrega, passa, conclui que vai bem - e nao entende o projeto.
+   O erro aparece depois, e nao e voce que encontra.
+
+- Intencao da aula: NAO e assustar, e incentivar uso CONSCIENTE
+- Meta: a ferramenta te FORTALECER, nao virar muleta
+
+>> CASO DO "VOU PEDIR PRO CLAUDE"
+   Cliente pediu demanda, a pessoa respondeu que ia pedir pro Claude.
+   Mesmo que seja verdade, NAO SE DIZ. Voce comunica que nao vai fazer seu
+   trabalho. Queima seu filme e o da empresa.
+
+O QUE O CLIENTE COMPRA
+--------------------------------------------
+>> FRASE CHAVE: o cliente nao compra o CODIGO, compra CONFIANCA e EXPERTISE
+
+3 pernas do posicionamento:
+  1. Clientes Enterprise (grandes, estruturados, exigentes) -> erro custa caro
+  2. Velocidade sem comprometer qualidade -> a IA e NECESSARIA aqui
+  3. The best people (vendidos como especialistas) -> a IA NAO substitui:
+     e VOCE que explica ao cliente por que fez e por que nao fez
+
+- FDE = forward deployed engineer, o mais proximo do cliente
+- Mercado com muita IA irrefletida sem retorno -> cresce a demanda por quem
+  sabe dizer "isso e hype, isso nao e hype"
+
+OS 3 PRINCIPIOS (decorar a ordem)
+--------------------------------------------
+1. PROCESSOS antes de FERRAMENTAS
+   - menos importancia a qual modelo e o da vez; mais ao processo e a dor do cliente
+   - a ferramenta e CONSEQUENCIA da compreensao do processo, nao o contrario
+   - nao adotar so pra adotar
+2. CONHECIMENTO antes da EXECUCAO
+   - somos vendidos como especialistas; nao faz sentido delegar a COMPREENSAO
+   - delegar compreensao = se alienar do processo
+   - a entrega vai com o SEU nome, nao com o nome da IA
+3. REVISAO antes da GERACAO
+   - a habilidade migrou de ESCREVER com sintaxe certa para LER e ENTENDER
+
+WORKFLOW BASICO
+--------------------------------------------
+entender o processo -> construir conhecimento (inclusive doc propria)
+  -> executar com a IA -> revisar com leitura critica
+
+EXPLORAR O PROJETO ANTES DE MEXER
+--------------------------------------------
+- Fazer pergunta e HABITO que se desenvolve; o Claude Code e otimo em LER
+- /init  -> gera o CLAUDE.md
+- CLAUDE.md = README PARA A MAQUINA
+  (readme comum = markdown pra outro DEV; CLAUDE.md = readme pro proprio Claude)
+- Traz: resumo do que o projeto faz, config de plataforma, comandos basicos
+
+>> PROMPT DIRECIONADO GANHA DE LEITURA CRUA
+   Ler o CLAUDE.md inteiro e muita informacao. Melhor pedir:
+   "estrutura do projeto, explique simplificado o que faz, como as camadas se
+   relacionam, e quais convencoes e cuidados um AE JUNIOR precisa conhecer"
+
+- Dizer "AE JUNIOR" no prompt NAO e detalhe: reduz o escopo e muda o nivel da linguagem
+
+AS 2 ALAVANCAS DE CONTEXTO
+--------------------------------------------
+- pergunta generica -> "o que e Bus Matrix?" (conhecimento geral)
+- @arquivo          -> aponta arquivo especifico como referencia
+- Combinadas = pesquisa COM o contexto do seu projeto
+
+INVESTIGAR MODELO
+--------------------------------------------
+- Pedir dependencias de um modelo devolve: DAG, materializacao, macros, chaves
+
+>> CONCEITO MAIS IMPORTANTE: modelo NAO e unidade fechada
+   Tem coisa antes e coisa depois. Se voce mexe aqui, o DOWNSTREAM pode quebrar.
+   Ter essa visualizacao antes de alterar separa refatoracao de estrago.
+
+- Passo alem da modelagem: QUAL processo de negocio esta modelado e QUEM consome
+  (vendas: o vendedor vendo se bateu meta? o gerente acompanhando o time?)
+
+DOCUMENTACAO PROPRIA SEM SUJAR O REPO
+--------------------------------------------
+- Fazer fichamento seu dentro do repositorio e simplesmente NAO COMITAR
+- Fica local, nao vai pra producao, e voce ganha material de referencia
+
+CASO 1 - REFATORACAO ("ninho de rato")
+--------------------------------------------
+Dois problemas concretos:
+- SELECT dentro do FROM = SUBQUERY
+  em vez de ver "from dim_clientes", voce ve outra tabela construida inline
+- alias tipo T3 -> ninguem sabe o que e cada join; usar nome DESCRITIVO
+
+Refatoracao em 2 passos, e a ORDEM importa:
+  1. "reorganize o modelo para facilitar a leitura"
+     -> ficou legivel, mas as deficiencias continuaram
+  2. "reescreva com CTEs descritivas"
+     -> WITH purchasing_orders AS (...), products AS (...), shipping AS (...)
+
+- CTE = common table expression = bloco nomeado e reaproveitavel
+  em vez de query dentro de query, cada parte no seu lugar com nome que diz o que e
+
+>> PEGADINHA: modelo ficar BONITO nao significa que esta CORRETO
+   A segmentacao em CTEs pode nao refletir o processo de negocio real.
+   Testar, validar com lideranca ou cliente, e COMPARAR O OUTPUT antigo x novo.
+   Ganho de produtividade sem validacao e risco, nao ganho.
+
+REGRA DE CAMADA (a que o exemplo violava)
+--------------------------------------------
+>> STAGING NAO CARREGA REGRA DE NEGOCIO
+   staging = transformacao MINIMA: renomear e fazer cast de formato
+   regra de negocio vai pra INTERMEDIATE ou MARTS
+
+- Otimo uso da IA: separar um modelo que mistura tudo em staging + int/marts
+- lift and shift   -> traz o legado como esta
+- lift and reshape -> pega o legado, reformula e refatora (onde a IA brilha)
+
+CASO 2 - DOCUMENTACAO
+--------------------------------------------
+- Pasta de staging sem doc nenhuma vira YAML descrito automaticamente
+- RESSALVA 1: confirmar a necessidade antes ("isso e mesmo necessario?")
+- RESSALVA 2: cuidado com teste gerado no automatico. Voce decide quais fazem
+  sentido, e precisa conferir o GRAO da tabela pra saber se o teste esta certo
+
+CASO 3 - OTIMIZACAO
+--------------------------------------------
+- Exemplo: calculo ineficiente puxando um modelo dentro de outro SELECT + cast
+  no lugar errado
+- Correcao: trazer a tabela UMA VEZ numa CTE e REUTILIZAR a CTE no codigo
+
+Ciclo fecha com MEDICAO, nao com impressao:
+  1. medir o tempo de run atual (dbt ou data warehouse)
+  2. pedir a refatoracao pensando em performance
+  3. medir de novo e comparar
+
+AS 5 PERGUNTAS DE FECHAMENTO (checklist de entrega)
+--------------------------------------------
+1. JUSTIFICATIVA -> por que essa escolha e nao outra?
+2. NECESSIDADE   -> isso e realmente necessario aqui?
+3. TRADEOFF      -> o que essa abordagem ganha e o que cobra?
+4. RISCO         -> o que pode quebrar em producao?
+5. VALIDACAO     -> qual o impacto DOWNSTREAM?
+
+>> Se voce nao sabe responder as 5, NAO TERMINOU - mesmo que o codigo rode.
+
+CONEXAO COM DESAFIO FINAL (DBT + POWER BI)
+--------------------------------------------
+- Staging sem regra de negocio = o que o banvic-dbt ja faz: stg_erp__* so renomeia
+  e faz cast; o enriquecimento fica nos int_*. A aula explica o PORQUE da fronteira.
+- CTEs descritivas = padrao dos models daqui (with transacoes as..., contas as...).
+  Regua de revisao: model com SELECT dentro do FROM e candidato a refatoracao.
+- Impacto downstream = risco real do fact_transacoes. Mexer no GRAO dele quebra o
+  dashboard do Power BI, que consome os CSVs dos marts. Olhar quem consome antes.
+- Comparar output antes/depois = o que FALTA no fluxo atual deste repo. Hoje e
+  dbt build --target local -> export_marts_local.py -> refresh, sem comparar
+  contagem entre versoes. Checar linhas e somas pegaria regressao silenciosa.
+- Grao + documentacao = os .yml daqui testam unique + not_null na PK. O aviso da
+  aula sobre conferir o grao e o erro que o teste de unicidade pega.
+- As 5 perguntas valem pras decisoes ja tomadas aqui: por que bothDirections no
+  relacionamento de agencia, por que DuckDB local em vez de Databricks, o que
+  quebra se o caminho dos CSVs mudar de maquina.

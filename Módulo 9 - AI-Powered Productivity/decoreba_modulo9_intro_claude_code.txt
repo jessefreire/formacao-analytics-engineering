@@ -1,0 +1,186 @@
+DECOREBA - MODULO 9: INTRO AO CLAUDE CODE
+===================================================
+
+O QUE E O CLAUDE CODE
+--------------------------------------------
+- Interface de LINHA DE COMANDO (CLI) pra trabalhar com o Claude no projeto
+- Integra em qualquer IDE: VS Code, Databricks, Neovim
+- NAO precisa plugin extra; roda direto no terminal tambem
+- Contexto = a arvore de arquivos DE ONDE VOCE ABRIU (pasta + subpastas)
+- Executa shell: roda teste, instala dependencia, roda script, faz commit
+- Extensivel por design: agentes, skills, commands, hooks
+
+>> PEGADINHA: o ambiente e o SEU, nao o dele
+   Se a skill/MCP precisa de Docker, Python ou Node e voce nao tem, ele FALHA
+   e devolve o erro. Nao instala sozinho.
+
+LINUX x WINDOWS
+--------------------------------------------
+- Ferramentas de leitura de arquivo funcionam MELHOR em Linux
+- Linux (Ubuntu, Arch)     -> cenario ideal
+- Windows corporativo      -> usar WSL (tudo num SO so)
+- Quer Linux de verdade    -> dual boot funciona
+- OpenCode                 -> SO LINUX, nao instala no Windows
+- WSL: facilita (um SO so) mas obriga a usar linha de comando
+
+OS TRES MODELOS
+--------------------------------------------
+- Opus   -> topo de linha, faz tudo com excelencia, CARO
+            usar pra PLANEJAR o que voce nao conhece
+- Sonnet -> intermediario, funciona bem pra tudo -> DIA A DIA
+- Haiku  -> focado em VELOCIDADE -> tarefa simples ou rapida
+
+>> PEGADINHA: Opus nao e "o melhor dos mundos" pro dia a dia
+   Plano trabalha em SESSAO DE 5 HORAS de tokens. Opus em tarefa trivial
+   encurta seu dia de trabalho.
+
+TOOLS NATIVAS
+--------------------------------------------
+- read   -> le arquivo
+- write  -> cria arquivo
+- edit   -> edita arquivo existente
+- bash   -> comando de shell (ls, tree, cd, mkdir)
+- glob   -> localiza ARQUIVO por padrao na arvore
+- grep   -> filtra CONTEUDO dentro dos arquivos
+- web search / web fetch -> pesquisa e coleta da internet
+- Se nao da conta com as tools existentes, ele escreve script proprio
+
+AS 4 FORMAS DE ESTENDER (a diferenca e COMO DISPARA)
+--------------------------------------------
+- AGENTE  -> persona de um dominio | voce chama ou o Claude delega
+- SKILL   -> procedimento reusavel | AUTOMATICO (pelo texto) ou /manual
+- COMMAND -> igual skill na estrutura | SO MANUAL, nunca automatico
+- HOOK    -> acontece SEMPRE | disparado por evento do ciclo de vida
+
+AGENTE
+--------------------------------------------
+- Redireciona o Claude pra um dominio SEM TROCAR O MODELO
+- Estrutura: front matter OBRIGATORIO + definicao em markdown abaixo
+- Front matter: name, description, model
+- Abaixo do front matter: markdown puro, linguagem natural
+
+>> O PULO DO GATO: encadeamento
+   agente -> chama skill -> skill chama script -> script bate na API
+   (ex: API do Databricks) e traz dado real. E isso que vira automacao.
+
+- Limite honesto: nao ha garantia de que agente "de Airflow" fique so em
+  Airflow, mas na pratica ele MELHORA no dominio
+
+SKILL
+--------------------------------------------
+- Mesma estrutura do agente, muda o front matter
+- Diferencial: INVOCACAO AUTOMATICA
+- O Claude le a DESCRIPTION e ativa a skill sozinho
+- Logo: description e o campo que MAIS importa
+- Boa pratica: escrever QUANDO USAR e QUANDO NAO USAR
+  (sem o negativo, a skill dispara fora de hora)
+
+3 formas de acionar:
+  1. automatica -> o Claude decide pela description
+  2. direta     -> /nome-da-skill + prompt
+  3. so manual  -> disableModelInvocation: true
+
+COMMAND
+--------------------------------------------
+- Quase identico a skill, com UMA diferenca que e tudo:
+  NAO tem invocacao automatica
+- Dispara digitando / + nome
+
+>> PEGADINHA: skill e command se parecem no arquivo
+   Regua: quer que o Claude decida sozinho -> SKILL
+          quer manter o controle do gatilho -> COMMAND
+
+HOOK
+--------------------------------------------
+- Pro que deve acontecer SEMPRE, sem depender da decisao do modelo
+- Exemplo de seguranca: bloquear leitura de .env via script bash
+
+Ciclo de vida onde o hook se pendura:
+  sessionStart
+    -> prompt do usuario
+       -> loop do agente
+          pre-use            (antes de usar a tool)
+          permission request (o Claude pede autorizacao)
+          execucao da tool
+          post-use           (depois da tool)
+          taskCreated / taskCompleted
+          falha de tool
+  sessionEnd
+
+Exemplos:
+  pre-use  + matcher bash          -> roda validate_bash.sh antes
+  post-use + matcher write ou edit -> roda ruff format no arquivo
+
+>> PEGADINHA: hook herda a dependencia da ferramenta que chama
+   post-use com ruff format SO funciona se o ruff estiver instalado.
+
+- Por padrao o Claude PEDE PERMISSAO antes de executar
+- Existe modo automatico que libera, mas e OPCIONAL, nao e o padrao
+
+MCP (MODEL CONTEXT PROTOCOL)
+--------------------------------------------
+- E conjunto de ferramentas E servidor de tools
+- Existe MCP pra quase tudo: Notion, Slack, Jira, GitHub
+- Da pra construir os seus (offline) e usar os de terceiros (online)
+
+>> ARGUMENTO CHAVE: reutilize em vez de reimplementar
+   O MCP do GitHub foi feito pelo GitHub. Nao escreva chamada de API pra
+   gerenciar pull request se o MCP oficial ja abstrai isso.
+
+LSP (LANGUAGE SERVER PROTOCOL)
+--------------------------------------------
+- Servidor de linguagem dando inteligencia de codigo EM TEMPO REAL
+- Sem parsing manual
+- Aula foi transparente: instrutor tem pouca experiencia com isso
+- Distincao util: MCP = ferramenta que voce invoca
+                  LSP = contexto continuo, em tempo real
+
+PLUGIN E MARKETPLACE (distribuir pro time)
+--------------------------------------------
+- Construir e uma coisa; DISTRIBUIR e outra. Plugin resolve a segunda.
+- Motivacao: separar por PAPEL
+  skill de slide, skill de dbt (AE) e skill de Airflow (DE) NAO no mesmo lugar
+- Cada papel -> seu plugin | plugins ficam no MARKETPLACE | cada um instala o seu
+
+Estrutura:
+  meu-plugin/
+    plugin.json   -> name, version, description, author
+    agents/
+    skills/
+    commands/
+    hooks.json    -> hooks PRECISAM ser declarados em JSON na raiz
+
+- Pasta por tipo = boa pratica, NAO obrigacao. Excecao: hooks.json e obrigatorio.
+- plugin.json usa VERSIONAMENTO SEMANTICO -> feature nova sobe a versao
+- Marketplace do exemplo: 14 plugins, 54 skills, 15 agentes
+
+PLUGIN DE ECONOMIA DE CONTEXTO (o mais util dos simples)
+--------------------------------------------
+1. hook BLOQUEIA a leitura direta de arquivo grande
+2. script indexa o arquivo em banco local que simula banco vetorial
+3. a busca passa a ser por palavra
+4. resultado volta SEM o Claude ter lido o arquivo inteiro
+-> troca leitura cara em tokens por consulta barata
+
+LIMITES DE TAMANHO
+--------------------------------------------
+- CLAUDE.md      -> MAXIMO 500 LINHAS (e carregado como contexto do projeto)
+- Skill          -> nao deixar virar 2500 linhas de markdown
+- Solucao: COMPOSICAO. Skill referencia skill, formando arvore de dependencia.
+  Mantem arquivo pequeno e permite reaproveitar peca.
+
+CONEXAO COM DESAFIO FINAL (DBT + POWER BI)
+--------------------------------------------
+- CLAUDE.md max 500 linhas -> vale pra ESTE repo agora. AGENTS.md e o documento
+  longo, CLAUDE.md e o enxuto que aponta pra ele. E o padrao da aula.
+- Agente de analytics engineer = o exemplo LITERAL da aula (dbt, modelagem,
+  camada semantica). Encadeamento agente -> skill -> script e o que as skills
+  ae-fullflow e dbt-packages-tests deste repo fazem.
+- MCP em vez de API propria -> powerbi-modeling-mcp no .mcp.json e a aplicacao
+  direta: nao escrever integracao XMLA a mao.
+- Hook como guardrail -> o bloqueio de .env e o mesmo mecanismo que resolveria
+  os guardrails de Power BI que hoje sao TEXTO no AGENTS.md (nunca remover
+  background, fechar Desktop antes de editar TMDL). Texto depende do agente ler;
+  hook nao depende.
+- Guardrail de dados CONTINUA valendo: skill, agente e MCP so com dado de treino
+  ou com autorizacao explicita do cliente.

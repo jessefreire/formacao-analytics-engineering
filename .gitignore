@@ -12,14 +12,21 @@ __pycache__/
 *.zip
 *.bak
 
-# Vídeos das aulas (ex: Módulo 9, ~31 GB) — acima do limite de 100 MB/arquivo
-# do GitHub. Transcrições (.txt/.srt/.vtt/.md) SIM devem ser versionadas.
+# Vídeos das aulas (ex: Módulo 9, ~32 GB) — acima do limite de 100 MB/arquivo
+# do GitHub.
 *.mp4
 *.mkv
 *.mov
 *.avi
 *.webm
 *.m4v
+
+# Áudio extraído e transcrições verbatim das aulas. NÃO versionar: este repo é
+# público e o conteúdo integral das videoaulas é material proprietário da
+# Indicium. Só os derivados (resumo_*.md, decoreba_*.txt) vão para o git.
+*.mp3
+**/audio/
+**/transcricoes/
 
 # ==== Repos de referência do desafio (cópias de terceiros) ====
 Desafio/Exemplos repo banvic/

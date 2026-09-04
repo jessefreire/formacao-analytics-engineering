@@ -8,7 +8,7 @@
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 24930
+    "size": 25873
   },
   {
     "id": "diario",
@@ -19,7 +19,7 @@
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 18430
+    "size": 18989
   },
   {
     "id": "convencoes",
@@ -52,7 +52,7 @@
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 16190
+    "size": 18642
   },
   {
     "id": "setup",
@@ -504,6 +504,72 @@
     "module": "8",
     "sort": 8,
     "size": 67138
+  },
+  {
+    "id": "personal_9_decoreba_modulo9_aulas",
+    "label": "decoreba_modulo9_aulas.txt",
+    "title": "DECOREBA - MODULO 9: AULAS DO MODULO (AI/BI DATABRICKS)",
+    "path": "Módulo 9 - AI-Powered Productivity/decoreba_modulo9_aulas.txt",
+    "cat": "Módulo 9 - AI-Powered Productivity",
+    "done": true,
+    "module": "9",
+    "sort": 9,
+    "size": 19173
+  },
+  {
+    "id": "personal_9_decoreba_modulo9_claude_for_ae",
+    "label": "decoreba_modulo9_claude_for_ae.txt",
+    "title": "DECOREBA - MODULO 9: CLAUDE FOR AE",
+    "path": "Módulo 9 - AI-Powered Productivity/decoreba_modulo9_claude_for_ae.txt",
+    "cat": "Módulo 9 - AI-Powered Productivity",
+    "done": true,
+    "module": "9",
+    "sort": 9,
+    "size": 9235
+  },
+  {
+    "id": "personal_9_decoreba_modulo9_intro_claude",
+    "label": "decoreba_modulo9_intro_claude_code.txt",
+    "title": "DECOREBA - MODULO 9: INTRO AO CLAUDE CODE",
+    "path": "Módulo 9 - AI-Powered Productivity/decoreba_modulo9_intro_claude_code.txt",
+    "cat": "Módulo 9 - AI-Powered Productivity",
+    "done": true,
+    "module": "9",
+    "sort": 9,
+    "size": 7919
+  },
+  {
+    "id": "personal_9_resumo_modulo9_aulas",
+    "label": "resumo_modulo9_aulas.md",
+    "title": "Resumo — Módulo 9: Aulas do Módulo (AI/BI Databricks)",
+    "path": "Módulo 9 - AI-Powered Productivity/resumo_modulo9_aulas.md",
+    "cat": "Módulo 9 - AI-Powered Productivity",
+    "done": true,
+    "module": "9",
+    "sort": 9,
+    "size": 25239
+  },
+  {
+    "id": "personal_9_resumo_modulo9_claude_for_ae",
+    "label": "resumo_modulo9_claude_for_ae.md",
+    "title": "Resumo — Módulo 9: Claude for AE",
+    "path": "Módulo 9 - AI-Powered Productivity/resumo_modulo9_claude_for_ae.md",
+    "cat": "Módulo 9 - AI-Powered Productivity",
+    "done": true,
+    "module": "9",
+    "sort": 9,
+    "size": 12998
+  },
+  {
+    "id": "personal_9_resumo_modulo9_intro_claude_co",
+    "label": "resumo_modulo9_intro_claude_code.md",
+    "title": "Resumo — Módulo 9: Intro ao Claude Code",
+    "path": "Módulo 9 - AI-Powered Productivity/resumo_modulo9_intro_claude_code.md",
+    "cat": "Módulo 9 - AI-Powered Productivity",
+    "done": true,
+    "module": "9",
+    "sort": 9,
+    "size": 11368
   },
   {
     "id": "oficial_10_adventureworks_banco_referenci",
