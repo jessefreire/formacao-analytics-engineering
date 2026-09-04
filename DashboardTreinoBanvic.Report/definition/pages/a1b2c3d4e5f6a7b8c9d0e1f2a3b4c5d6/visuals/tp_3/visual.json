@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "typo_title",
+  "name": "tp_3",
   "position": {
     "x": 40,
-    "y": 520,
+    "y": 680,
     "z": 1000,
-    "width": 300,
+    "width": 100,
     "height": 30
   },
   "visual": {
@@ -20,10 +20,10 @@
                   {
                     "textRuns": [
                       {
-                        "value": "'TIPOGRAFIA'",
+                        "value": "'11-13px'",
                         "textStyle": {
-                          "fontSize": "14pt",
-                          "color": "#1F4858",
+                          "fontSize": "12pt",
+                          "color": "#0F7E8C",
                           "isBold": true
                         }
                       }

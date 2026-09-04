@@ -9,145 +9,94 @@
     "height": 600
   },
   "visual": {
-    "visualType": "cardVisual",
+    "visualType": "textbox",
     "objects": {
-      "value": [
+      "general": [
         {
           "properties": {
-            "fontSize": {
+            "paragraphs": {
+              "expr": {
+                "Paragraphs": [
+                  {
+                    "textRuns": [
+                      {
+                        "value": "'{ |   \"name\": \"BanVic\", |   \"dataColors\": [\"#0F7E8C\",\"#1F4858\",\"#235362\",\"#4E6E77\",\"#A8C5D0\",\"#EDF1F5\"], |   \"background\": \"#EDF1F5\", |   \"foreground\": \"#1F4858\", |   \"tableAccent\": \"#0F7E8C\", |   \"good\": \"#2E7D32\", \"neutral\": \"#F9A825\", \"bad\": \"#C62828\", |   \"textClasses\": { |     \"callout\": {\"fontSize\":24,\"fontFace\":\"Segoe UI\",\"color\":\"#235362\"}, |     \"categoryAxisLabel\": {\"fontSize\":9,\"color\":\"#4E6E77\"}, |     \"title\": {\"fontSize\":14,\"fontWeight\":\"600\",\"color\":\"#1F4858\"}, |     \"label\": {\"fontSize\":10,\"color\":\"#4E6E77\"} |   } | }'",
+                        "textStyle": {
+                          "fontSize": "9pt",
+                          "color": "#1F4858",
+                          "isBold": false
+                        }
+                      }
+                    ],
+                    "horizontalTextAlignment": "left"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "'true'"
                 }
               }
             },
-            "fontColor": {
+            "color": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1F4858'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
               }
             },
-            "fontFamily": {
+            "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "'Consolas'"
-                }
-              }
-            },
-            "fontWeight": {
-              "expr": {
-                "Literal": {
-                  "Value": "'400'"
-                }
-              }
-            },
-            "horizontalAlignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
-          },
-          "selector": {
-            "id": "default"
           }
         }
       ],
-      "label": [
+      "border": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "outline": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "layout": [
-        {
-          "properties": {
-            "backgroundShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+                  "Value": "'true'"
                 }
               }
             },
-            "topOuterMargin": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E0E0E0'"
+                    }
+                  }
                 }
               }
             },
-            "bottomOuterMargin": {
+            "weight": {
               "expr": {
                 "Literal": {
-                  "Value": "0L"
-                }
-              }
-            },
-            "leftOuterMargin": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
-                }
-              }
-            },
-            "rightOuterMargin": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
+                  "Value": "1D"
                 }
               }
             }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "fillCustom": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
           }
         }
       ]

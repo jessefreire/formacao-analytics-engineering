@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "typo_title",
+  "name": "de_2",
   "position": {
-    "x": 40,
-    "y": 520,
+    "x": 170,
+    "y": 270,
     "z": 1000,
-    "width": 300,
-    "height": 30
+    "width": 500,
+    "height": 40
   },
   "visual": {
     "visualType": "textbox",
@@ -20,11 +20,11 @@
                   {
                     "textRuns": [
                       {
-                        "value": "'TIPOGRAFIA'",
+                        "value": "'Medium Teal - valores KPI, linha'",
                         "textStyle": {
-                          "fontSize": "14pt",
-                          "color": "#1F4858",
-                          "isBold": true
+                          "fontSize": "10pt",
+                          "color": "#4E6E77",
+                          "isBold": false
                         }
                       }
                     ],
