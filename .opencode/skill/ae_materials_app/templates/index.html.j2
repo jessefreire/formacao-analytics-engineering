@@ -657,7 +657,7 @@ async function initVersion() {
   } catch (e) { /* sem version.json */ }
   const badge = document.getElementById('versionBadge');
   if (local && local.short) {
-    badge.textContent = 'v' + local.short;
+    badge.textContent = 'v' + local.short + ' - ' + (local.date || '').slice(5);
     badge.title = (local.message || '') + '\n' + (local.sha || '');
     const seen = localStorage.getItem('ae_seen_version');
     if (seen && seen !== local.sha) {

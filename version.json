@@ -1,7 +1,7 @@
 {
-  "sha": "2ddcd415f2df537b83ec295db206d6397626626d",
-  "short": "2ddcd41",
+  "sha": "ab07f07d75788d1f6563f09bdf2b9e2f4e98a17d",
+  "short": "ab07f07",
   "date": "2026-09-04",
-  "message": "fix: footer de versao em coluna (badge + botao empilhados)",
+  "message": "fix: chama initVersion() na inicializacao (badge nunca atualizava)",
   "repo": "jessefreire/formacao-analytics-engineering"
 }
