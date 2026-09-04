@@ -1,7 +1,7 @@
 {
-  "sha": "4ade78d295fa868fb5d99daa8e5bc2a81109f265",
-  "short": "4ade78d",
+  "sha": "de7a053b8c49b2c5c4a34a22f0ac2b36bd093ddf",
+  "short": "de7a053",
   "date": "2026-09-04",
-  "message": "docs: adiciona guardrail de dados (so treino ou com autorizacao)",
+  "message": "feat: aviso de atualizacoes na plataforma (version.json + badge + GitHub API)",
   "repo": "jessefreire/formacao-analytics-engineering"
 }
