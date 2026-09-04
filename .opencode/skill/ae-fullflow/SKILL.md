@@ -254,16 +254,34 @@ Antes de criar o Style Guide, auditar todos os visuais:
 # - Cores de dataPoint (em objects.dataPoint.properties.fill)
 ```
 
-#### 7.2 Página Style Guide (oculta)
-Criar página `isHidden: true` com:
-- **Cores**: swatches (shapes) + hex + descrição
-- **Tipografia**: amostras de cada tamanho de fonte + uso
-- **Espaçamento**: referência de padding/margin
+#### 7.2 Página Style Guide (ocultar via UI após criar)
+> `isHidden` NÃO existe no schema do page.json. Criar página normal, depois ocultar via Desktop (botão direito → Ocultar página).
 
-#### 7.3 Página Theme JSON (oculta)
-Criar página `isHidden: true` com:
-- Card `cardVisual` mostrando o JSON do tema (fonte monospaced: Consolas)
-- Copiável pelo usuário para outros relatórios
+- **SVG de fundo**: header teal + 2 painéis brancos (Cores | Tipografia), mesmo estilo do dashboard
+- **Cores**: `shape` (retângulo) com `fill` da cor + `textbox` ao lado com hex + descrição. NÃO usar `cardVisual` vazio (não renderiza).
+- **Tipografia**: `textbox` com amostra de cada tamanho + uso
+- **Nomes de visuais**: nunca vazios (usar ID da pasta), 1-50 caracteres
+
+#### 7.3 Página Theme JSON (ocultar via UI após criar)
+- **SVG de fundo**: header + 1 painel branco grande
+- **Conteúdo**: `textbox` com instruções + JSON do tema (fonte Consolas) + resumo de cores/fontes
+- **Textbox correto**: `paragraphs` como **array nativo** (não embrulhar em `expr`). Ver `powerbi-report-authoring/references/textbox.md`:
+```json
+"objects": {
+  "general": [{
+    "properties": {
+      "paragraphs": [{
+        "textRuns": [{
+          "value": "texto aqui",
+          "textStyle": {"fontFamily": "Segoe UI", "fontSize": "12px", "color": "#1F4858"}
+        }],
+        "horizontalTextAlignment": "left"
+      }]
+    }
+  }]
+}
+```
+- **Border**: só `show` e `color`. Propriedade `weight` é inválida.
 
 #### 7.4 Padrões BanVic (referência)
 | Elemento | Valor |
@@ -298,6 +316,9 @@ Criar página `isHidden: true` com:
 - [ ] Slicers sincronizados cross-page
 - [ ] Navegação por chips configurada
 - [ ] Medidas DAX criadas
+- [ ] Página Style Guide criada (cores + tipografia)
+- [ ] Página Theme JSON criada (copiável)
+- [ ] Páginas ocultas via UI do Desktop
 - [ ] Commit git realizado
 - [ ] Dashboard validado no Desktop
 

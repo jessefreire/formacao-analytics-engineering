@@ -177,6 +177,11 @@ jupyter notebook  # abre analise_banvic.ipynb ou seu notebook
 - **Colunas renomeadas**: renomear no model (TMDL) para nomes amigáveis (`nome_agencia` → `Nome da Agência`). CSVs mantêm nomes originais.
 - **Relacionamentos**: `BothDirections` seguro quando há apenas1 fact table (filtra dim ↔ fact bidirecionalmente).
 - **Edição externa × Desktop**: ao editar JSON externamente, **fechar Desktop sem salvar** e reabrir para carregar mudanças.
+- **Páginas ocultas**: `isHidden` NÃO existe no schema do page.json. Criar página normal e ocultar via UI (botão direito → Ocultar página).
+- **Textbox estático**: usar tipo `textbox` com `paragraphs` como **array nativo** (não embrulhar em `expr`). Ver `powerbi-report-authoring/references/textbox.md`.
+- **Swatches de cor**: usar tipo `shape` (retângulo) com `fill` da cor. `cardVisual` vazio não renderiza.
+- **Nomes de visuais**: nunca vazios, 1-50 caracteres. Usar ID da pasta.
+- **Border**: propriedade `weight` é inválida. Só `show`, `color`.
 
 ---
 
