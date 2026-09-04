@@ -57,7 +57,16 @@ AGENTE
 - Redireciona o Claude pra um dominio SEM TROCAR O MODELO
 - Estrutura: front matter OBRIGATORIO + definicao em markdown abaixo
 - Front matter: name, description, model
+  ex: model: claude-sonnet-4-6
 - Abaixo do front matter: markdown puro, linguagem natural
+
+>> DOS SLIDES (nao foi dito em voz alta):
+   - agente mora em agents/ na RAIZ DO PLUGIN
+   - sao AUTO-DESCOBERTOS: nao precisam constar no plugin.json
+   - o modelo e POR AGENTE: Opus p/ task complexa, Haiku p/ triagem rapida
+   - outros agentes do marketplace: data-engineer (Airflow, Databricks,
+     PySpark), data-platform-engineer (AWS, Azure, CDK, Terraform),
+     project-auditor (audita conformidade tecnica contra requisitos)
 
 >> O PULO DO GATO: encadeamento
    agente -> chama skill -> skill chama script -> script bate na API
@@ -76,9 +85,17 @@ SKILL
   (sem o negativo, a skill dispara fora de hora)
 
 3 formas de acionar:
-  1. automatica -> o Claude decide pela description
-  2. direta     -> /nome-da-skill + prompt
-  3. so manual  -> disableModelInvocation: true
+  1. automatica -> o Claude decide pela description  ex: "add tests to my models"
+  2. direta     -> /nome-da-skill + prompt           ex: /dbt:tests
+  3. so manual  -> disable-model-invocation: true    (com hifen!)
+
+- 4o campo que refina a decisao: WHEN_TO_USE
+  diz a CONDICAO em que a skill se aplica (ex: existe schema.yml no projeto)
+  mais preciso que empurrar tudo pra description
+
+>> NAMESPACING evita colisao entre plugins
+   skill de plugin e chamada como /nome-do-plugin:nome-da-skill
+   e o que permite dois plugins terem uma skill "tests" sem conflito
 
 COMMAND
 --------------------------------------------
@@ -95,24 +112,49 @@ HOOK
 - Pro que deve acontecer SEMPRE, sem depender da decisao do modelo
 - Exemplo de seguranca: bloquear leitura de .env via script bash
 
-Ciclo de vida onde o hook se pendura:
-  sessionStart
-    -> prompt do usuario
-       -> loop do agente
-          pre-use            (antes de usar a tool)
-          permission request (o Claude pede autorizacao)
+NOMES REAIS DOS EVENTOS (dos slides - decorar assim):
+  SessionStart
+    -> UserPromptSubmit
+       -> LOOP DO AGENTE
+          PreToolUse
+          PermissionRequest
           execucao da tool
-          post-use           (depois da tool)
-          taskCreated / taskCompleted
-          falha de tool
-  sessionEnd
+          PostToolUse / PostToolUseFailure
+          SubagentStart / SubagentStop
+          TaskCreated
+          TaskCompleted        -> volta pro PreToolUse (proxima tool)
+       -> Stop                 -> volta pro UserPromptSubmit (proximo turno)
+    -> PreCompact / PostCompact
+  SessionEnd
 
-Exemplos:
-  pre-use  + matcher bash          -> roda validate_bash.sh antes
-  post-use + matcher write ou edit -> roda ruff format no arquivo
+Configuracao em settings.json:
+  global      -> ~/.claude/settings.json
+  por projeto -> .claude/settings.json
+
+  "hooks": {
+    "PreToolUse":  [{ "matcher": "Bash",
+                      "hooks": [{"type":"command","command":"validate-bash.sh"}] }],
+    "PostToolUse": [{ "matcher": "Write|Edit",
+                      "hooks": [{"type":"command","command":"ruff format $FILE"}] }],
+    "Stop":        [{ "hooks": [{"type":"command","command":"notify-slack.sh"}] }]
+  }
+
+- matcher aceita alternativa: Write|Edit
+- o comando recebe o arquivo em $FILE
+
+>> PEGADINHA MAIS IMPORTANTE: O EXIT CODE E A INTERFACE DO HOOK
+   exit 2 no PreToolUse       -> BLOQUEIA a tool e mostra o stderr ao usuario
+   qualquer outro nao-zero    -> falha SILENCIOSA: nao bloqueia e voce nao sabe
+   Hook de seguranca que sai com 1 NAO esta protegendo nada.
+
+OS 4 USOS DE HOOK (dos slides):
+  Validacao e bloqueio -> PreToolUse  -> impede tool proibida (ler .env)
+  Notificacao          -> Stop        -> avisa no Slack/Teams em tarefa longa
+  Auditoria            -> PostToolUse -> loga chamada c/ timestamp p/ compliance
+  Auto-formatacao      -> PostToolUse -> roda prettier ou ruff format
 
 >> PEGADINHA: hook herda a dependencia da ferramenta que chama
-   post-use com ruff format SO funciona se o ruff estiver instalado.
+   PostToolUse com ruff format SO funciona se o ruff estiver instalado.
 
 - Por padrao o Claude PEDE PERMISSAO antes de executar
 - Existe modo automatico que libera, mas e OPCIONAL, nao e o padrao

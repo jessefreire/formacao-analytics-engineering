@@ -85,13 +85,32 @@ um *front matter* obrigatório e, abaixo dele, a definição em markdown.
 ```yaml
 ---
 name: analytics-engineer
-description: Especialista em transformações dbt, modelagem de dados e camada semântica
-model: sonnet
+description: Especialista em transformações dbt, modelagem de dados,
+             boas práticas de modelagem e design de camada semântica
+model: claude-sonnet-4-6
 ---
 
 Aqui para baixo é markdown puro: linguagem natural explicando
 o que o agente faz, o que ele usa, quais skills ele deve chamar.
 ```
+
+| Campo | Papel |
+|---|---|
+| `name`, `description`, `model` | Definem a identidade. O Claude **adota a persona** ao ser invocado |
+| Corpo em markdown | Instruções específicas do domínio — dbt, Airflow, Terraform, AWS |
+
+Duas coisas que a aula mostra no slide e não diz em voz alta:
+
+- **Onde o agente mora:** em `agents/` no diretório raiz do plugin. Eles são
+  **auto-descobertos** — não precisam ser listados no `plugin.json`.
+- **O modelo é por agente.** Pode ser diferente do default: Opus para tarefas complexas,
+  Haiku para triagem rápida. Ou seja, a escolha de custo/velocidade da seção 3 vale
+  **por agente**, não só por sessão.
+
+Outros agentes do mesmo marketplace, para dar ideia do recorte por domínio:
+`data-engineer` (DAGs de Airflow, Databricks, PySpark, pipelines de ingestão),
+`data-platform-engineer` (AWS, Azure, CDK, Terraform — infraestrutura como código) e
+`project-auditor` (audita conformidade técnica de projeto contra requisitos).
 
 > **O pulo do gato é o encadeamento:** dentro do markdown do agente você aponta quais skills ele
 > usa; a skill aponta o script que executa; o script conversa com a API do Databricks e traz dado
@@ -112,10 +131,18 @@ Por isso a `description` é o campo que mais importa. A boa prática que a aula 
 Três formas de acionar:
 
 ```
-1. Automática  — o Claude decide pela description
-2. Direta      — /nome-da-skill + seu prompt
-3. Só manual   — disableModelInvocation: true no front matter
+1. Automática  — o Claude decide pela description        ex: "add tests to my models"
+2. Direta      — /nome-da-skill + seu prompt             ex: /dbt:tests
+3. Só manual   — disable-model-invocation: true          impede a invocação automática
 ```
+
+Há ainda um quarto campo que refina a decisão: **`when_to_use`**. Ele é o lugar de dizer
+em que condição a skill se aplica (por exemplo, *existe `schema.yml` no projeto*) — mais
+preciso que empurrar tudo para a `description`.
+
+> **Namespacing evita colisão entre plugins:** skill que vem de plugin é chamada como
+> `/nome-do-plugin:nome-da-skill`. É o que permite dois plugins terem uma skill `tests`
+> sem conflito.
 
 ### Commands
 
@@ -132,30 +159,43 @@ manter o controle do gatilho, é command.
 Para o que deve acontecer **sempre**, sem depender da decisão do modelo. O exemplo da aula é
 segurança: bloquear a leitura de `.env` por um script bash que intercepta a tentativa `(A02)`.
 
-Os hooks se penduram no ciclo de vida do agente:
+Os hooks se penduram em eventos nomeados do ciclo de vida:
 
+![Ciclo de vida dos hooks do Claude Code](diagrama_hooks_ciclo_vida.svg)
+
+A configuração vive em `settings.json` — global em `~/.claude/settings.json` ou por projeto
+em `.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "PreToolUse":  [{ "matcher": "Bash",
+                      "hooks": [{ "type": "command", "command": "validate-bash.sh" }] }],
+    "PostToolUse": [{ "matcher": "Write|Edit",
+                      "hooks": [{ "type": "command", "command": "ruff format $FILE" }] }],
+    "Stop":        [{ "hooks": [{ "type": "command", "command": "notify-slack.sh" }] }]
+  }
+}
 ```
-sessionStart
-   └─ prompt do usuário
-        └─ loop do agente
-             ├─ pre-use          (antes de usar uma tool)
-             ├─ permission request (o Claude pede autorização)
-             ├─ execução da tool
-             ├─ post-use         (depois de usar a tool)
-             ├─ taskCreated / taskCompleted
-             └─ falha de tool
-sessionEnd
-```
 
-Dois exemplos concretos:
+O `matcher` aceita alternativa (`Write|Edit`) e o comando recebe o arquivo em `$FILE`.
 
-| Evento | Matcher | Ação |
+**Pegadinha — o código de saída é a interface do hook com o Claude:** `exit 2` no `PreToolUse`
+**bloqueia** a tool e mostra o `stderr` ao usuário. Qualquer outro código não-zero falha em
+**silêncio**: não bloqueia nada e você não fica sabendo. Se o seu hook de segurança sai com 1,
+ele não está protegendo nada.
+
+**Pegadinha:** o hook de `PostToolUse` com `ruff format` só funciona se o `ruff` estiver instalado
+no ambiente. Hook que chama ferramenta externa herda a dependência dela.
+
+Os quatro usos que a aula destaca:
+
+| Uso | Evento | O que faz |
 |---|---|---|
-| `pre-use` | tool é `bash` | roda `validate_bash.sh` antes de deixar executar |
-| `post-use` | tool é `write` ou `edit` | roda `ruff format` no arquivo alterado |
-
-**Pegadinha:** o hook de `post-use` com `ruff format` só funciona se o `ruff` estiver instalado no
-ambiente — senão o hook falha. Hook que depende de ferramenta externa herda a dependência dela.
+| **Validação e bloqueio** | `PreToolUse` | Impede tool proibida (ler `.env`), valida comando |
+| **Notificação** | `Stop` | Avisa no Slack/Teams quando o agente conclui tarefa longa |
+| **Auditoria** | `PostToolUse` | Loga cada chamada com timestamp e parâmetros, para compliance |
+| **Auto-formatação** | `PostToolUse` | Roda `prettier` ou `ruff format` após cada edição |
 
 Sobre o pedido de permissão: por padrão o Claude **pede autorização** antes de executar. Existe um
 modo automático que libera, mas ele é opcional — não é o comportamento padrão `(A02)`.

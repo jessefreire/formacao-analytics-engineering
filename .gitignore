@@ -28,6 +28,13 @@ __pycache__/
 **/audio/
 **/transcricoes/
 
+# Frames extraídos dos vídeos (mesma razão: são reprodução literal dos slides
+# da Indicium). Servem de referência local para escrever os resumos e desenhar
+# diagramas próprios — estes sim versionados.
+**/frames/
+Módulo 9 - AI-Powered Productivity/*.jpg
+Módulo 9 - AI-Powered Productivity/*.png
+
 # ==== Repos de referência do desafio (cópias de terceiros) ====
 Desafio/Exemplos repo banvic/
 

@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 1010" width="820" height="1010" role="img" aria-label="Ciclo de vida dos eventos de hook do Claude Code">
+<title>Ciclo de vida dos eventos de hook do Claude Code</title>
+<style>
+  :root { color-scheme: light dark; }
+  .bg   { fill: #ffffff; }
+  .zone { fill: #f4f6f8; stroke: #d8dee4; stroke-width: 1; }
+  .zlbl { fill: #8a949e; font: 600 11px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing: .08em; }
+  .ev   { fill: #ffffff; stroke: #c4ccd4; stroke-width: 1.2; }
+  .ev-s { fill: #e6f4ea; stroke: #78b48c; }
+  .ev-x { fill: #fdeaea; stroke: #d99a9a; }
+  .ev-t { fill: #e8f0fb; stroke: #90aed6; }
+  .name { fill: #1f2933; font: 600 13px/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .note { fill: #5b6672; font: 400 11.5px/1.35 ui-sans-serif, system-ui, sans-serif; }
+  .arw  { stroke: #7b8794; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+  .back { stroke: #90aed6; stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; marker-end: url(#b); }
+  .hd   { fill: #1f2933; font: 700 16px/1 ui-sans-serif, system-ui, sans-serif; }
+  .sub  { fill: #5b6672; font: 400 12px/1 ui-sans-serif, system-ui, sans-serif; }
+  .warn { fill: #7a4a00; font: 400 11.5px/1.35 ui-sans-serif, system-ui, sans-serif; }
+  .warnbox { fill: #fff6e5; stroke: #e0b872; stroke-width: 1; }
+  @media (prefers-color-scheme: dark) {
+    .bg   { fill: #14181c; }
+    .zone { fill: #1c2126; stroke: #2f3841; }
+    .zlbl { fill: #7d8894; }
+    .ev   { fill: #232a31; stroke: #3d4854; }
+    .ev-s { fill: #1e3326; stroke: #4a7a5c; }
+    .ev-x { fill: #33201f; stroke: #7d4a48; }
+    .ev-t { fill: #1e2a3d; stroke: #4a6a9c; }
+    .name { fill: #e6ebf0; }
+    .note { fill: #9aa5b1; }
+    .hd   { fill: #e6ebf0; }
+    .sub  { fill: #9aa5b1; }
+    .arw  { stroke: #6b7683; }
+    .warnbox { fill: #2e2513; stroke: #7a6430; }
+    .warn { fill: #e0bd76; }
+  }
+</style>
+<defs>
+  <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,1 L9,5 L0,9 z" fill="#7b8794"/>
+  </marker>
+  <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,1 L9,5 L0,9 z" fill="#90aed6"/>
+  </marker>
+</defs>
+
+<rect class="bg" width="820" height="1010"/>
+<text class="hd" x="24" y="32">Ciclo de vida dos hooks do Claude Code</text>
+<text class="sub" x="24" y="52">Cada evento é um ponto de engate. O hook roda sozinho, sem decisão do modelo.</text>
+
+<!-- zona: sessao -->
+<rect class="zone" x="24" y="72" width="452" height="66" rx="8"/>
+<text class="zlbl" x="38" y="92">SESSÃO</text>
+<rect class="ev ev-s" x="150" y="96" width="200" height="30" rx="6"/>
+<text class="name" x="250" y="115" text-anchor="middle">SessionStart</text>
+<text class="note" x="492" y="108">Preparar ambiente, carregar contexto</text>
+<text class="note" x="492" y="124">do projeto no começo da sessão.</text>
+
+<path class="arw" d="M250,138 L250,160"/>
+
+<!-- turno -->
+<rect class="ev" x="150" y="162" width="200" height="30" rx="6"/>
+<text class="name" x="250" y="181" text-anchor="middle">UserPromptSubmit</text>
+<text class="note" x="492" y="174">Validar ou enriquecer o prompt antes</text>
+<text class="note" x="492" y="190">de o agente começar a trabalhar.</text>
+
+<path class="arw" d="M250,192 L250,216"/>
+
+<!-- zona: loop do agente -->
+<rect class="zone" x="24" y="218" width="452" height="420" rx="8"/>
+<text class="zlbl" x="38" y="238">LOOP DO AGENTE — repete a cada tool</text>
+
+<rect class="ev" x="150" y="250" width="200" height="30" rx="6"/>
+<text class="name" x="250" y="269" text-anchor="middle">PreToolUse</text>
+<text class="note" x="492" y="262">Bloquear tool proibida (ler .env),</text>
+<text class="note" x="492" y="278">validar comando antes de executar.</text>
+<path class="arw" d="M250,280 L250,304"/>
+
+<rect class="ev" x="150" y="306" width="200" height="30" rx="6"/>
+<text class="name" x="250" y="325" text-anchor="middle">PermissionRequest</text>
+<text class="note" x="492" y="325">O Claude pede autorização. É o padrão —</text>
+<text class="note" x="492" y="341">o modo automático é opcional.</text>
+<path class="arw" d="M250,336 L250,360"/>
+
+<rect class="ev ev-t" x="150" y="362" width="200" height="30" rx="6"/>
+<text class="name" x="250" y="381" text-anchor="middle">execução da tool</text>
+<path class="arw" d="M250,392 L250,416"/>
+
+<rect class="ev" x="150" y="418" width="200" height="30" rx="6"/>
+<text class="name" x="250" y="437" text-anchor="middle">PostToolUse</text>
+<text class="note" x="492" y="411">Auto-formatar o arquivo alterado</text>
+<text class="note" x="492" y="427">(ruff, prettier); logar a chamada com</text>
+<text class="note" x="492" y="443">timestamp e parâmetros p/ auditoria.</text>
+<path class="arw" d="M250,448 L250,472"/>
+
+<rect class="ev" x="150" y="474" width="200" height="30" rx="6"/>
+<text class="name" x="250" y="493" text-anchor="middle">SubagentStart / Stop</text>
+<path class="arw" d="M250,504 L250,528"/>
+
+<rect class="ev" x="150" y="530" width="200" height="30" rx="6"/>
+<text class="name" x="250" y="549" text-anchor="middle">TaskCreated</text>
+<text class="note" x="492" y="542">O agente quebra pedido grande em</text>
+<text class="note" x="492" y="558">tasks e resolve passo a passo.</text>
+<path class="arw" d="M250,560 L250,584"/>
+
+<rect class="ev" x="150" y="586" width="200" height="30" rx="6"/>
+<text class="name" x="250" y="605" text-anchor="middle">TaskCompleted</text>
+
+<!-- volta ao PreToolUse -->
+<path class="back" d="M350,601 L400,601 L400,265 L352,265"/>
+<text class="zlbl" x="406" y="600">próxima tool</text>
+
+<path class="arw" d="M250,638 L250,662"/>
+
+<!-- fim de turno -->
+<rect class="ev ev-x" x="150" y="664" width="200" height="30" rx="6"/>
+<text class="name" x="250" y="683" text-anchor="middle">Stop</text>
+<text class="note" x="492" y="676">Notificar no Slack/Teams quando o</text>
+<text class="note" x="492" y="692">agente conclui uma tarefa longa.</text>
+
+<!-- volta ao prompt -->
+<path class="back" d="M150,679 L110,679 L110,177 L148,177"/>
+<text class="zlbl" x="30" y="712">PRÓXIMO TURNO</text>
+
+<path class="arw" d="M250,694 L250,718"/>
+
+<!-- zona: encerramento -->
+<rect class="zone" x="24" y="720" width="452" height="120" rx="8"/>
+<text class="zlbl" x="38" y="740">ENCERRAMENTO</text>
+
+<rect class="ev" x="150" y="748" width="200" height="28" rx="6"/>
+<text class="name" x="250" y="766" text-anchor="middle">PreCompact / PostCompact</text>
+<text class="note" x="492" y="766">Ao compactar o contexto — salvar ou</text>
+<text class="note" x="492" y="782">reinjetar o que não pode se perder.</text>
+<path class="arw" d="M250,776 L250,798"/>
+
+<rect class="ev" x="150" y="800" width="200" height="28" rx="6"/>
+<text class="name" x="250" y="818" text-anchor="middle">SessionEnd</text>
+
+<!-- caixa do exit code -->
+<rect class="warnbox" x="24" y="862" width="772" height="72" rx="8"/>
+<text class="warn" x="40" y="884" font-weight="600">O código de saída é a interface do hook com o Claude:</text>
+<text class="warn" x="40" y="904">· exit 2 em PreToolUse — bloqueia a tool e mostra o stderr ao usuário.</text>
+<text class="warn" x="40" y="922">· qualquer outro código não-zero — falha silenciosa: o hook não bloqueia e você não fica sabendo.</text>
+
+<text class="note" x="24" y="962">Escopo da configuração: global em ~/.claude/settings.json, ou por projeto em .claude/settings.json.</text>
+<text class="note" x="24" y="980">O matcher aceita alternativa (Write|Edit) e o comando recebe o arquivo em $FILE.</text>
+<text class="note" x="24" y="998">Hook herda a dependência do que chama: post-use com ruff format só funciona se o ruff estiver instalado.</text>
+</svg>

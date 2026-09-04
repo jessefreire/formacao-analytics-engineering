@@ -553,8 +553,26 @@ function renderContent(file, text) {
   content.hidden = false;
   
   const isMd = file.path.endsWith('.md');
-  const html = isMd ? marked.parse(text) : '<pre><code>' + escapeHtml(text) + '</code></pre>';
-  
+  let html = isMd ? marked.parse(text) : '<pre><code>' + escapeHtml(text) + '</code></pre>';
+
+  // O .md e injetado na pagina raiz, entao caminho relativo dentro dele
+  // resolveria contra a raiz e nao contra a pasta do material. Reescreve
+  // src/href relativos com o diretorio do proprio arquivo, pra imagem
+  // (ex: diagrama.svg ao lado do resumo) funcionar aqui e no GitHub.
+  if (isMd) {
+    const dir = file.path.includes('/') ? file.path.replace(/\/[^/]*$/, '/') : '';
+    if (dir) {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      tmp.querySelectorAll('img[src], a[href]').forEach(el => {
+        const attr = el.tagName === 'IMG' ? 'src' : 'href';
+        const v = el.getAttribute(attr) || '';
+        if (v && !/^([a-z]+:|\/|#|\?)/i.test(v)) el.setAttribute(attr, dir + v);
+      });
+      html = tmp.innerHTML;
+    }
+  }
+
   content.innerHTML = `
     <header class="main-header">
       <span class="module-badge">${escapeHtml(file.cat)}</span>

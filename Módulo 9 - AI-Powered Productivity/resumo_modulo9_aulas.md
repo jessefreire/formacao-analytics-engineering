@@ -314,6 +314,8 @@ tem permissão nenhuma.**
 
 Esta é a parte mais sutil da aula:
 
+![RLS na dimensão versus na fato: o efeito no dashboard](diagrama_rls_dimensao_vs_fato.svg)
+
 | RLS aplicada na… | Efeito no dashboard |
 |---|---|
 | **Dimensão** de agências | Vê o **total geral** da empresa, mas só o **detalhamento** da sua agência. As linhas das outras agências aparecem agrupadas como **nulo** |
