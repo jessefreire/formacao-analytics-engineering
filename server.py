@@ -29,8 +29,17 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if not any(x in msg for x in ('.ico', '.map', '.woff', '.woff2')):
             super().log_message(format, *args)
 
+def refresh_version():
+    """Regenera version.json a partir do git, pro badge nunca ficar defasado."""
+    try:
+        import update_version
+        update_version.main()
+    except Exception as e:
+        print(f"[SERVER] version.json nao regenerado: {e}")
+
 if __name__ == '__main__':
     os.chdir(DIRECTORY)
+    refresh_version()
     with socketserver.ThreadingTCPServer(("", PORT), Handler) as httpd:
         httpd.daemon_threads = True
         url = f"http://localhost:{PORT}"

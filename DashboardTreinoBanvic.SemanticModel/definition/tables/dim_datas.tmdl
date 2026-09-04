@@ -97,7 +97,7 @@ table dim_datas
 		mode: import
 		source =
 				let
-				  Origem = Csv.Document(File.Contents("D:\\Documentos\\Indicium AI\\Formação AE\\dados_treino\\dim_datas.csv"), [Delimiter = ",", Columns = 10, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  Origem = Csv.Document(File.Contents(PastaDados & "dim_datas.csv"), [Delimiter = ",", Columns = 10, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
 				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
 				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"pk_data", Int64.Type}, {"dt_data", type date}, {"dia", Int64.Type}, {"mes", Int64.Type}, {"ano", Int64.Type}, {"trimestre", Int64.Type}, {"dia_da_semana", Int64.Type}, {"is_final_de_semana", type logical}, {"dia_ano", Int64.Type}, {"nome_dia", type text}})
 				in

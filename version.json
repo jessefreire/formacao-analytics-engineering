@@ -1,7 +1,7 @@
 {
-  "sha": "ab07f07d75788d1f6563f09bdf2b9e2f4e98a17d",
-  "short": "ab07f07",
+  "sha": "475ccb443d72e7fe2be957332ddc6d45eec19570",
+  "short": "475ccb4",
   "date": "2026-09-04",
-  "message": "fix: chama initVersion() na inicializacao (badge nunca atualizava)",
+  "message": "feat: badge mostra data junto (vHASH - MM-DD)",
   "repo": "jessefreire/formacao-analytics-engineering"
 }

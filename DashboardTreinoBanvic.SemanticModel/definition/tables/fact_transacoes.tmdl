@@ -110,7 +110,7 @@ table fact_transacoes
 		mode: import
 		source =
 				let
-				  Origem = Csv.Document(File.Contents("D:\\Documentos\\Indicium AI\\Formação AE\\dados_treino\\fact_transacoes.csv"), [Delimiter = ",", Columns = 11, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  Origem = Csv.Document(File.Contents(PastaDados & "fact_transacoes.csv"), [Delimiter = ",", Columns = 11, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
 				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
 				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"pk_transacao", Int64.Type}, {"fk_conta", Int64.Type}, {"fk_cliente", Int64.Type}, {"fk_agencia", Int64.Type}, {"fk_colaborador", Int64.Type}, {"fk_data", Int64.Type}, {"ts_transacao", type datetime}, {"NOME_TRANSACAO", type text}, {"valor_transacao", type number}, {"num_conta", Int64.Type}, {"saldo", type number}})
 				in

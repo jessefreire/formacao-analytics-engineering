@@ -34,8 +34,19 @@ MODULES = [
     {"num": 6,  "sort": 6,   "title": "Dashboards com Power BI"},
     {"num": 7,  "sort": 7,   "title": "Estatística aplicada à análise de dados"},
     {"num": 8,  "sort": 8,   "title": "Python"},
-    {"num": 9,  "sort": 9,   "title": "Curso SQL Completo (YouTube)"},
+    {"num": 9,  "sort": 9,   "title": "AI-Powered Productivity"},
+    # Material extra (fora da grade oficial): pasta e rotulo explicitos, porque
+    # o regex ^Modulo N nao casa e o numero 9 ja e do modulo oficial acima.
+    {
+        "num": "Extra", "sort": 9.5,
+        "title": "Curso SQL Completo (YouTube)",
+        "folder": "Extra - Curso SQL Completo (YouTube)",
+        "cat": "Extra - Curso SQL Completo (YouTube)",
+    },
 ]
+
+# Padrão de nome de pasta de módulo (usado por find_module_folder)
+MODULE_FOLDER_RE = r"^[Mm][óo]dulo\s+{num}\b"
 
 # Mapa sort -> módulo para lookup
 MODULE_BY_SORT = {m["sort"]: m for m in MODULES}
@@ -91,10 +102,16 @@ def discover_files() -> List[Dict[str, Any]]:
         sort = mod["sort"]
         num = mod["num"]
         title = mod["title"]
-        cat = f"Módulo {num}" + (f" - {title}" if title else "")
+        cat = mod.get("cat") or (f"Módulo {num}" + (f" - {title}" if title else ""))
 
-        # Encontra a pasta do módulo
-        folder = find_module_folder(num)
+        # Encontra a pasta do módulo: `folder` explícito ganha do regex por número
+        if mod.get("folder"):
+            folder = ROOT / mod["folder"]
+            if not folder.is_dir():
+                print(f"   [SYNC] Aviso: pasta declarada '{mod['folder']}' nao existe.")
+                continue
+        else:
+            folder = find_module_folder(num, title)
         if not folder:
             continue
 
@@ -149,15 +166,43 @@ def discover_files() -> List[Dict[str, Any]]:
     return files
 
 
-def find_module_folder(num) -> Path | None:
-    """Encontra a pasta do módulo pelo número (aceita 'IV' ou '4', com/sem acento)."""
-    pattern = re.compile(rf'^[Mm][óo]dulo\s+{re.escape(str(num))}\b')
-    for d in ROOT.iterdir():
-        if not d.is_dir():
-            continue
-        if pattern.match(d.name):
-            return d
-    return None
+def find_module_folder(num, title="") -> Path | None:
+    """Encontra a pasta do módulo pelo número (aceita 'IV' ou '4', com/sem acento).
+
+    Pode existir mais de uma pasta com o mesmo número (ex: "Módulo 9 - AI-Powered
+    Productivity" e "Módulo 9 - Curso SQL Completo (YouTube)"). Nesse caso desempata
+    pelo título declarado em MODULES — nunca pela ordem alfabética do disco, que já
+    fez o sync descartar em silêncio os 5 materiais do Curso SQL. Pasta que sobrar
+    sem dono vira aviso no console, nunca descarte silencioso.
+    """
+    pattern = re.compile(MODULE_FOLDER_RE.format(num=re.escape(str(num))))
+    matches = sorted(d for d in ROOT.iterdir() if d.is_dir() and pattern.match(d.name))
+    if not matches:
+        return None
+    if len(matches) == 1:
+        return matches[0]
+
+    # Desempate 1: pasta cujo nome contém o título declarado do módulo
+    if title:
+        for d in matches:
+            if title.lower() in d.name.lower():
+                _warn_unclaimed(num, [o for o in matches if o != d])
+                return d
+
+    # Desempate 2: sem título, fica com a que tem material (não perde arquivo)
+    with_files = [d for d in matches if any(d.glob("*.md")) or any(d.glob("*.txt"))]
+    chosen = with_files[0] if with_files else matches[0]
+    _warn_unclaimed(num, [o for o in matches if o != chosen])
+    return chosen
+
+
+def _warn_unclaimed(num, others):
+    """Avisa sobre pastas do mesmo número que ficaram fora do sync."""
+    for d in others:
+        n = len(list(d.glob("*.md"))) + len(list(d.glob("*.txt")))
+        detail = f"{n} material(is) NAO sincronizado(s)" if n else "vazia"
+        print(f"   [SYNC] Aviso: '{d.name}' tambem casa com Modulo {num} - {detail}."
+              f" Declare-a em MODULES com num/titulo proprios.")
 
 
 def extract_title(path: Path) -> str:
@@ -226,32 +271,22 @@ def write_files_json(files: List[Dict[str, Any]]):
 
 
 def write_version_json():
-    """Gera version.json com commit atual para o banner de atualizações."""
-    import subprocess
-    info = {"sha": "", "short": "", "date": "", "message": "", "repo": ""}
+    """Gera version.json com o commit atual para o banner de atualizações.
+
+    Delega para `update_version.py` na raiz do repo — fonte única da lógica de
+    versão, também usada pelo `server.py` no startup. Evita as duas
+    implementações divergirem (foi assim que o badge ficou defasado).
+    """
+    import sys as _sys
+    if str(ROOT) not in _sys.path:
+        _sys.path.insert(0, str(ROOT))
     try:
-        info["sha"] = subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
-        ).strip()
-        info["short"] = info["sha"][:7]
-        info["date"] = subprocess.check_output(
-            ["git", "log", "-1", "--format=%ad", "--date=short"],
-            cwd=ROOT, text=True,
-        ).strip()
-        info["message"] = subprocess.check_output(
-            ["git", "log", "-1", "--format=%s"], cwd=ROOT, text=True
-        ).strip()
-        remote = subprocess.check_output(
-            ["git", "remote", "get-url", "origin"], cwd=ROOT, text=True
-        ).strip()
-        # https://github.com/owner/repo.git -> owner/repo
-        m = re.search(r'github\.com[:/](.+?)(?:\.git)?$', remote)
-        if m:
-            info["repo"] = m.group(1)
+        import update_version
+        info = update_version.write_version(quiet=True)
     except Exception as e:
-        print(f"   [SYNC] Aviso: sem info git ({e})")
-    VERSION_JSON.write_text(json.dumps(info, ensure_ascii=False, indent=2), encoding="utf-8")
-    return info
+        print(f"   [SYNC] Aviso: version.json nao gerado ({e})")
+        info = None
+    return info or {"sha": "", "short": "", "date": "", "message": "", "repo": ""}
 
 
 def main():
