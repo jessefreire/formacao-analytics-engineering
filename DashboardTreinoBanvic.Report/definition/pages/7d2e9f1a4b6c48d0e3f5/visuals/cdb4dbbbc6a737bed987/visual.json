@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "73d1a2b3c4d5e6f70836",
+  "name": "cdb4dbbbc6a737bed987",
   "position": {
-    "x": 520,
-    "y": 95.33,
-    "z": 1020,
-    "height": 53.33,
-    "width": 240,
-    "tabOrder": 1020
+    "x": 329.85221674876846,
+    "y": 88.669950738916256,
+    "z": 2002,
+    "height": 63.842364532019708,
+    "width": 240.29556650246306,
+    "tabOrder": 2002
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_clientes"
+                      "Entity": "dim_agencias"
                     }
                   },
-                  "Property": "Nome do Cliente"
+                  "Property": "Nome da Agência"
                 }
               },
-              "queryRef": "dim_clientes.Nome do Cliente",
-              "nativeQueryRef": "Nome do Cliente",
+              "queryRef": "dim_agencias.Nome da Agência",
+              "nativeQueryRef": "Nome da Agência",
               "active": true
             }
           ]
@@ -61,7 +61,58 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Nome do Cliente'"
+                  "Value": "'Nome da Agência'"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "items": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "date": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ],
+      "pendingChangesIcon": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -106,7 +157,7 @@
       ]
     },
     "syncGroup": {
-      "groupName": "sg_cliente",
+      "groupName": "sg_agencia",
       "fieldChanges": true,
       "filterChanges": true
     }

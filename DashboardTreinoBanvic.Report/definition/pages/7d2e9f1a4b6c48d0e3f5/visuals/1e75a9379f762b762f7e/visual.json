@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "71d1a2b3c4d5e6f70834",
+  "name": "1e75a9379f762b762f7e",
   "position": {
-    "x": 72.70935960591133,
-    "y": 95.12,
-    "z": 1000,
-    "height": 96.65024630541872,
-    "width": 247.38916256157637,
-    "tabOrder": 1000
+    "x": 577.11607867317082,
+    "y": 89.553227256660065,
+    "z": 2003,
+    "height": 62.857142857142861,
+    "width": 239.28571428571431,
+    "tabOrder": 2003
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_datas"
+                      "Entity": "dim_clientes"
                     }
                   },
-                  "Property": "dt_data"
+                  "Property": "Nome do Cliente"
                 }
               },
-              "queryRef": "dim_datas.dt_data",
-              "nativeQueryRef": "dt_data",
+              "queryRef": "dim_clientes.Nome do Cliente",
+              "nativeQueryRef": "Nome do Cliente",
               "active": true
             }
           ]
@@ -41,7 +41,7 @@
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Between'"
+                  "Value": "'Dropdown'"
                 }
               }
             }
@@ -61,7 +61,40 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Data'"
+                  "Value": "'Nome do Cliente'"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "items": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "date": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }
@@ -106,7 +139,7 @@
       ]
     },
     "syncGroup": {
-      "groupName": "sg_dt_data",
+      "groupName": "sg_cliente",
       "fieldChanges": true,
       "filterChanges": true
     }

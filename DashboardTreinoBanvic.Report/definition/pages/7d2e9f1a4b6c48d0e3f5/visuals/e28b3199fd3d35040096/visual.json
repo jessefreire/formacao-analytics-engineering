@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "54d1a2b3c4d5e6f70822",
+  "name": "e28b3199fd3d35040096",
   "position": {
-    "x": 822.969937458064,
-    "y": 89.553227256660065,
-    "z": 8000,
-    "height": 62.857142857142861,
-    "width": 240.00000000000003,
-    "tabOrder": 8000
+    "x": 80.7285581477195,
+    "y": 89.819877502965483,
+    "z": 2001,
+    "height": 72.709359605911331,
+    "width": 242.95566502463055,
+    "tabOrder": 2001
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fact_transacoes"
+                      "Entity": "dim_datas"
                     }
                   },
-                  "Property": "nome_transacao"
+                  "Property": "dt_data"
                 }
               },
-              "queryRef": "fact_transacoes.nome_transacao",
-              "nativeQueryRef": "nome_transacao",
+              "queryRef": "dim_datas.dt_data",
+              "nativeQueryRef": "dt_data",
               "active": true
             }
           ]
@@ -35,19 +35,6 @@
       }
     },
     "objects": {
-      "data": [
-        {
-          "properties": {
-            "mode": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Dropdown'"
-                }
-              }
-            }
-          }
-        }
-      ],
       "header": [
         {
           "properties": {
@@ -61,7 +48,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tipo da transação'"
+                  "Value": "'Data'"
                 }
               }
             },
@@ -71,17 +58,11 @@
                   "Value": "10D"
                 }
               }
-            }
-          }
-        }
-      ],
-      "items": [
-        {
-          "properties": {
-            "textSize": {
+            },
+            "outlineStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "0D"
                 }
               }
             }
@@ -94,7 +75,46 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "orientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "slider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "pendingChangesIcon": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -136,10 +156,23 @@
             }
           }
         }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "syncGroup": {
-      "groupName": "sg_tipo",
+      "groupName": "sg_dt_data",
       "fieldChanges": true,
       "filterChanges": true
     }

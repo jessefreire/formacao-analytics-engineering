@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "72d1a2b3c4d5e6f70835",
+  "name": "518059d193865100d268",
   "position": {
-    "x": 264,
-    "y": 95.33,
-    "z": 1010,
-    "height": 53.33,
-    "width": 240,
-    "tabOrder": 1010
+    "x": 822.969937458064,
+    "y": 89.553227256660065,
+    "z": 2004,
+    "height": 62.857142857142861,
+    "width": 240.00000000000003,
+    "tabOrder": 2004
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_agencias"
+                      "Entity": "fact_transacoes"
                     }
                   },
-                  "Property": "Nome da Agência"
+                  "Property": "nome_transacao"
                 }
               },
-              "queryRef": "dim_agencias.Nome da Agência",
-              "nativeQueryRef": "Nome da Agência",
+              "queryRef": "fact_transacoes.nome_transacao",
+              "nativeQueryRef": "nome_transacao",
               "active": true
             }
           ]
@@ -61,7 +61,40 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Nome da Agência'"
+                  "Value": "'Tipo da transação'"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "items": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "date": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }
@@ -106,7 +139,7 @@
       ]
     },
     "syncGroup": {
-      "groupName": "sg_agencia",
+      "groupName": "sg_tipo",
       "fieldChanges": true,
       "filterChanges": true
     }
