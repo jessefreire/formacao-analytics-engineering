@@ -2,6 +2,8 @@
 
 Guia para configurar o ambiente completo de Analytics Engineering usado neste repositório.
 
+> **🔒 GUARDRAIL DE DADOS** — Este toolkit só deve ser usado com dados fictícios/de treino ou quando o cliente autorizar explicitamente o uso de IA. Confirme com a gestão antes de usar em projeto real.
+
 ## Pré-requisitos
 
 | Ferramenta | Versão | Download |

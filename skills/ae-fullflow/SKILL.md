@@ -2,6 +2,8 @@
 
 > Fluxo ponta a ponta de um Analytics Engineer: Databricks → SQL → dbt → GitHub → Power BI → Figma/SVG → Tema JSON.
 
+> **🔒 GUARDRAIL DE DADOS** — Só usar com dados fictícios/de treino ou com autorização explícita do cliente. Confirmar com a gestão antes de usar IA em projeto real.
+
 ## Quando usar
 
 - Criar um dashboard completo do zero (dados → visual)

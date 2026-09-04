@@ -2,6 +2,8 @@
 
 > Guia de contexto para Claude Code. Para detalhes completos, ler `AGENTS.md`.
 
+> **🔒 GUARDRAIL DE DADOS** — Só usar este toolkit com dados fictícios/de treino ou com autorização explícita do cliente. Confirmar com a gestão antes de usar IA em projeto real.
+
 ## Projeto
 
 Repositório de formação em Analytics Engineering: curso Indicium (módulos 0-9), projeto dbt BanVic (Databricks), dashboard Power BI (PBIP) e toolkit de skills.

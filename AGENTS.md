@@ -4,6 +4,8 @@
 
 > Guia persistente para sessões futuras. Atualize quando houver mudanças estruturais.
 
+> **🔒 GUARDRAIL DE DADOS** — As ferramentas de IA deste toolkit (agentes, MCPs, skills) só devem ser usadas com **dados fictícios/de treino** (como o BanVic) ou quando o **cliente autorizar explicitamente** o uso de IA sobre seus dados. Antes de usar em projeto real, o Engenheiro **deve confirmar com a gestão** se o uso de IA foi aprovado. Nunca envie dados sensíveis, PII ou informações confidenciais para modelos de IA sem autorização formal.
+
 ---
 
 ## Arquitetura do Projeto
