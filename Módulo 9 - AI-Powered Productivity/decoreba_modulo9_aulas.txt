@@ -135,13 +135,20 @@ PUBLICAR: A DECISAO DE PERMISSAO (a mais importante)
 SHARE DATA PERMISSION (padrao)      | INDIVIDUAL DATA PERMISSION
 - roda com as permissoes DO EDITOR  | - roda com as credenciais DE CADA USUARIO
 - usuario NAO precisa de acesso     | - usuario PRECISA de acesso (garantir antes)
-- vantagem: simplicidade            | - vantagem: respeita seguranca de dados
+- vantagem: CACHE COMPARTILHADO     | - vantagem: respeita seguranca de dados
+  (melhora a performance)           | - custo: REFRESH MAIS FREQUENTE +
+                                    |   preparar acesso por pessoa
 - risco: divulgar demais            | - custo: preparo de acesso por pessoa
 
 >> PEGADINHA GRAVE: no modo PADRAO a RLS E CONTORNADA
    Se ha RLS pra certos usuarios, eles veem os dados de qualquer forma, porque
    olham o dashboard com as SUAS permissoes.
    A aula usa o padrao so por ser demo. EM PRODUCAO: individual.
+
+>> O TRADE-OFF NAO E SO DE GOVERNANCA, E DE PERFORMANCE
+   O modo padrao habilita CACHE COMPARTILHADO; o individual leva a MAIS refresh.
+   Na mesma caixa: checkbox Notify viewers, Copy link e botao UNPUBLISH
+   (despublica sem apagar o dashboard).
 
 - Publicado: exporta PDF e exporta VISUAL POR VISUAL (apresentacao, Excel, CSV)
 
@@ -163,10 +170,11 @@ COMPARTILHAMENTO
 
 OS 4 NIVEIS DE PERMISSAO
 --------------------------------------------
-- can view -> so visualizar. NAO PODE PERGUNTAR AO GENIE
-- can run  -> atualizar o dashboard e executar queries
-- can edit -> editar layout, consultas, criar visualizacoes
-- manage   -> controle total (inclui excluir e gerenciar compartilhamento)
+Rotulos exatos do menu (Title Case, e nesta ordem na lista):
+- Can Manage -> controle total (inclui excluir e gerenciar compartilhamento)
+- Can Edit   -> editar layout, consultas, criar visualizacoes
+- Can Run    -> atualizar o dashboard e executar queries
+- Can View   -> so visualizar. NAO PODE PERGUNTAR AO GENIE
 
 AS 3 CAMADAS DE ACESSO (precisa das TRES)
 --------------------------------------------
@@ -206,6 +214,18 @@ Estrutura da query do exemplo (queda > 50% de um mes pro outro):
 - A restricao a UMA LINHA e o que permite usar a opcao FIRST ROW na condicao
 - Condicao do exemplo: coluna percentual <= -50
 
+Formulario do alerta (cada peca e um campo):
+  Trigger condition: [Value column] [First row] [Operator] [Threshold value]
+                      percentual                    <=          -50
+
+>> CASO DE BORDA QUE NINGUEM LEMBRA
+   Campo: When query result has no rows, set state to -> padrao UNKNOWN
+   Query sem linha NAO significa "esta tudo bem": fica num TERCEIRO estado,
+   nem disparado nem normal. Decida conscientemente o que isso quer dizer.
+
+- Notificacao: enviar JUST ONCE ate voltar ao normal
+- E, separado, notificar QUANDO VOLTA AO NORMAL (aviso de que passou)
+
 >> A DEPENDENCIA QUE QUEBRA O ALERTA
    O alerta NAO dispara fora do agendamento da QUERY. A query precisa ter
    rodado naquele agendamento.
@@ -230,6 +250,15 @@ Fluxo:
   1. criar FUNCAO em SQL mapeando grupo (ou e-mail) -> agencias permitidas
   2. rodar a funcao
   3. Unity Catalog -> tabela -> row filter -> escolher a funcao e a coluna
+
+>> ONDE FICA CADA COISA NA PAGINA DA TABELA (lugares DIFERENTES):
+   Row filter          -> painel DIREITO, ao lado de Tags, botao Add filter
+                          -> e da TABELA
+   Column masking rule -> uma COLUNA DA GRADE de colunas
+                          -> e POR COLUNA
+   Abas da pagina: Overview, Sample Data, Details, Permissions, History,
+                   Lineage, Insights, Quality
+   E ali que aparece a AI Suggested Description (Accept/Edit) e o AI generate
 
 >> PEGADINHA: a funcao precisa listar TODOS os grupos.
    GRUPO QUE NAO ESTIVER NA FUNCAO NAO TEM PERMISSAO NENHUMA.
@@ -297,7 +326,13 @@ cliente que ficaram fora do dashboard)
 >> 1a ACAO DEPOIS DE CRIAR: PEDIR PRA ELE EXPLICAR O DATASET
    E o teste de que entendeu as tabelas e as chaves, antes da config fina.
 
-INSTRUCOES (regem COMO a resposta aparece):
+PAINEL Configure -> Instructions TEM 4 ABAS (e o mesmo lugar!):
+  Text            -> instrucoes gerais de comportamento (aceita markdown)
+  Joins           -> declarar as chaves de relacionamento
+  SQL Expressions -> expressoes reutilizaveis nomeadas
+  SQL Queries     -> as queries de exemplo (pratica 6)
+
+INSTRUCOES DE TEXTO (regem COMO a resposta aparece):
 - ao perguntar de agencia, mostrar o NOME, nao o codigo
 - variacao percentual com o simbolo % ao lado
 - valor de transacao e monetario em real -> usar R$ antes do numero
@@ -317,7 +352,11 @@ PERGUNTAS EM DESTAQUE (5 na primeira pagina):
 
 - Graficos do Genie sao editaveis (cor, barra horizontal pra ler nomes, rotulo)
   e podem ser BAIXADOS EM PNG pra apresentacao
-- MONITORING lista todas as perguntas e feedbacks. Olhar as SEM CLASSIFICACAO.
+- Feedback aparece sob cada resposta: "Is this correct? / Yes / Fix it"
+  E esse clique que treina o espaco.
+- O proprio Genie roda com aviso fixo: always review the accuracy of responses
+- MONITORING (aba irma de Configure e Benchmarks) lista perguntas e feedbacks.
+  Olhar as SEM CLASSIFICACAO.
   Quanto mais feedback, mais rapido o treinamento.
 
 >> PEGADINHA: no GENIE SPACE nao existe incorporar as suas credenciais.

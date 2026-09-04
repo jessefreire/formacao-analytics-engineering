@@ -192,13 +192,23 @@ do subcurso `(A05)`.
 |---|---|---|
 | As queries rodam com | As permissões **do editor** (você) | As credenciais **de cada usuário** |
 | O usuário precisa de acesso aos dados? | Não | **Sim**, você tem que garantir antes |
-| Vantagem | Simplicidade no compartilhamento | Respeita a segurança de dados |
+| Vantagem | **Cache compartilhado** — melhora a performance | Respeita a segurança de dados |
+| Custo | Divulgar mais do que o usuário deveria ver | **Refresh mais frequente** + preparar acesso por pessoa |
 | Risco | Divulgar mais do que o usuário deveria ver | Exige preparo de acesso por pessoa |
 
 **Pegadinha grave:** no modo padrão, **a RLS é contornada**. Se você tem RLS aplicada para
 determinados usuários, eles vão ver os dados de qualquer forma, porque estão olhando o dashboard com
 as **suas** permissões. A aula usa o modo padrão só porque são dados de demonstração e afirma que
 **em produção a opção mais segura costuma ser `individual`**.
+
+A caixa de publicação explicita o mecanismo de cada modo, e é aí que a decisão fica clara:
+o modo padrão faz todos os leitores usarem **as suas** permissões, o que habilita um **cache
+compartilhado**; o modo individual faz cada leitor rodar com as próprias credenciais, o que
+leva a **operações de refresh mais frequentes**. Ou seja, o trade-off não é só de governança —
+é também de performance e custo de execução.
+
+Na mesma caixa ficam o checkbox **Notify viewers**, o **Copy link** e o botão **Unpublish**,
+que despublica sem apagar o dashboard.
 
 Publicado, dá para exportar em PDF e **exportar visual por visual** (para apresentação, Excel ou
 CSV).
@@ -224,8 +234,8 @@ fontes**. Usar com atenção `(A06)`.
 
 | Permissão | O que libera |
 |---|---|
-| `can view` | Só visualizar — **não pode perguntar ao Genie** |
-| `can run` | Atualizar o dashboard e executar queries |
+| `Can View` | Só visualizar — **não pode perguntar ao Genie** |
+| `Can Run` | Atualizar o dashboard e executar queries |
 | `can edit` | Editar layout, consultas e criar visualizações |
 | `manage` | Controle total, incluindo exclusão e gestão de compartilhamento |
 
@@ -277,7 +287,22 @@ SELECT principal         -> devolve o valor como texto, LIMITADO A UMA LINHA
 ```
 
 A restrição a **uma linha** não é detalhe estético: é o que permite configurar a condição com a
-opção **`first row`**. Condição do exemplo: coluna `percentual` `<= -50`.
+opção **`First row`**. Condição do exemplo: coluna `percentual` `<= -50`.
+
+O formulário do alerta se lê como uma frase, e cada peça é um campo:
+
+```
+Trigger condition:  [Value column]  [First row]  [Operator]  [Threshold value]
+                     percentual                      <=            -50
+```
+
+> **O caso de borda que ninguém lembra:** existe um campo *When query result has no rows, set
+> state to* — e o padrão é **`UNKNOWN`**. Query sem linha não significa "está tudo bem": o alerta
+> fica num terceiro estado, nem disparado nem normal. Se a sua query pode não retornar nada,
+> decida conscientemente o que isso quer dizer.
+
+Nas notificações dá para escolher enviar **`just once` até voltar ao normal** — e, separadamente,
+**notificar quando o alerta volta ao normal**, que é o aviso de que o problema passou.
 
 > **A dependência que quebra o alerta:** o alerta **não dispara fora do agendamento da query**. A
 > query precisa ter rodado naquele agendamento. Logo, agende a query **antes** do alerta — no
@@ -293,7 +318,20 @@ chegar.
 **RLS** (*row level security*) restringe **linhas** conforme a identidade de quem consulta, aplicando
 o **princípio do privilégio mínimo** `(A10)`.
 
-Configura-se no **Unity Catalog**, não no dashboard. O UC é a camada unificada de governança —
+Configura-se no **Unity Catalog**, não no dashboard — e vale saber **onde** na tela, porque são
+dois lugares diferentes na página da tabela (Catalog Explorer → catálogo → esquema → tabela):
+
+| O quê | Onde fica |
+|---|---|
+| **Row filter** | Painel direito, ao lado de Tags — botão `Add filter`. É **da tabela** |
+| **Column masking rule** | Uma **coluna da grade** de colunas. É **por coluna** |
+
+A mesma página tem as abas `Overview`, `Sample Data`, `Details`, `Permissions`, `History`,
+`Lineage`, `Insights` e `Quality` — e é onde aparece a **AI Suggested Description** com os
+botões `Accept` / `Edit`, além do `AI generate` para descrever as colunas (a prática 1 da
+seção 14, na tela).
+
+O UC é a camada unificada de governança —
 centraliza permissões, metadados e políticas na hierarquia catálogo → esquema → tabela.
 
 > **Limitação de versão:** a **Free Edition** do Databricks tem restrições nesses recursos. O que se
@@ -387,7 +425,17 @@ as tabelas e as chaves de relacionamento, antes de qualquer configuração fina.
 
 ### Instruções
 
-Regem **como** a resposta é apresentada. As três do exemplo:
+O painel `Configure → Instructions` tem **quatro abas**, e a aula usa três delas em momentos
+diferentes — vale saber que são o mesmo lugar:
+
+| Aba | Para quê |
+|---|---|
+| **Text** | Instruções gerais de comportamento (aceita markdown) |
+| **Joins** | Declarar explicitamente as chaves de relacionamento |
+| **SQL Expressions** | Expressões reutilizáveis nomeadas |
+| **SQL Queries** | As queries de exemplo (a prática 6 da seção 14) |
+
+As instruções de texto regem **como** a resposta é apresentada. As três do exemplo:
 
 - Ao perguntar sobre agência, mostrar o **nome**, não o código
 - Variação percentual com o símbolo **%** ao lado
@@ -416,8 +464,14 @@ compartilhar. Duas correções reais do exemplo:
 Os gráficos gerados pelo Genie são editáveis (trocar cor — vermelho comunica negativo sem motivo —,
 virar barra horizontal para ler nomes, pôr rótulo) e podem ser **baixados em PNG** para apresentação.
 
-O **monitoring** lista todas as perguntas e feedbacks. É onde o analista deve olhar as perguntas
-**sem classificação** e avaliá-las: quanto mais feedback, mais rápido o treinamento.
+O feedback aparece embaixo de cada resposta como **Is this correct? / Yes / Fix it** — e é esse
+clique que treina o espaço. O **Monitoring** (aba irmã de `Configure` e `Benchmarks`) lista todas
+as perguntas e feedbacks. É onde o analista deve olhar as perguntas **sem classificação** e
+avaliá-las: quanto mais feedback, mais rápido o treinamento.
+
+> O próprio Genie roda com um aviso fixo no rodapé — *always review the accuracy of responses*.
+> A ferramenta não se apresenta como fonte final, e o resumo da seção 12 vale: funcionar não é
+> o mesmo que estar certo.
 
 **Pegadinha de compartilhamento:** no Genie Space **não existe incorporar as suas credenciais**. Todo
 usuário precisa de leitura nas tabelas/views do UC, acesso ao SQL Warehouse e ao objeto do espaço —
