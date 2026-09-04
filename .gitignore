@@ -27,6 +27,10 @@ __pycache__/
 *.mp3
 **/audio/
 **/transcricoes/
+# legendas ficam ao lado do .mp4 pro player carregar sozinho - mesmo
+# motivo das transcricoes: e o conteudo verbatim da aula.
+*.srt
+*.vtt
 
 # Frames extraídos dos vídeos (mesma razão: são reprodução literal dos slides
 # da Indicium). Servem de referência local para escrever os resumos e desenhar
