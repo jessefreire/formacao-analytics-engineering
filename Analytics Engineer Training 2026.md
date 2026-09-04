@@ -244,7 +244,7 @@ dois subcursos da FEA e só depois vai para as aulas do módulo:
 2. **Claude for AE** — 2 aulas (`ACA_FEA_CLAUDE_FOR_AE-A01..A02`)
 3. **Aulas do módulo** — 13 aulas (`ACA_FADA_M9_A01..A13`)
 
-**A correção de rota que importou:** as 13 aulas FADA **não são sobre Claude Code** — são sobre construir dashboard **AI/BI no Databricks** com os dados do BanVic (Unity Catalog, `create from SQL`, cálculos customizados, RLS, mascaramento e a IA Genie/Dini). O Claude Code aparece apenas nos dois subcursos FEA. Por isso o subcurso das aulas é o que tem conexão mais forte com o desafio final.
+**A correção de rota que importou:** as 13 aulas FADA **não são sobre Claude Code** — são sobre construir dashboard **AI/BI no Databricks** com os dados do BanVic (Unity Catalog, `create from SQL`, cálculos customizados, RLS, mascaramento e a IA Genie). O Claude Code aparece apenas nos dois subcursos FEA. Por isso o subcurso das aulas é o que tem conexão mais forte com o desafio final.
 
 Ver `resumo_modulo9_aulas.md`, `resumo_modulo9_claude_for_ae.md` e `resumo_modulo9_intro_claude_code.md`.
 

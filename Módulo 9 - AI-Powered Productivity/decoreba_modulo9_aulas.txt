@@ -38,7 +38,7 @@ CALCULOS CUSTOMIZADOS (as "medidas" do AI/BI)
 - Media do valor           -> AVG(valor_transacao)
 
 >> PEGADINHA: o campo de COMENTARIO do calculo NAO e opcional
-   Funciona como a descricao de uma coluna e e LIDO PELA IA DINI.
+   Funciona como a descricao de uma coluna e e LIDO PELA IA GENIE.
    Comentar mal aqui degrada as respostas da IA depois.
 
 TEMA, CONTRASTE E CABECALHO
@@ -163,7 +163,7 @@ COMPARTILHAMENTO
 
 OS 4 NIVEIS DE PERMISSAO
 --------------------------------------------
-- can view -> so visualizar. NAO PODE PERGUNTAR AO DINI
+- can view -> so visualizar. NAO PODE PERGUNTAR AO GENIE
 - can run  -> atualizar o dashboard e executar queries
 - can edit -> editar layout, consultas, criar visualizacoes
 - manage   -> controle total (inclui excluir e gerenciar compartilhamento)
@@ -246,12 +246,12 @@ DIMENSAO OU FATO - a escolha muda o resultado
 
 >> OBRIGACAO DE COMUNICAR
    Ao aplicar RLS, deixe EXPLICITO que o usuario ve apenas os dados da sua
-   agencia (caixa de texto no dashboard, home do espaco Dini).
+   agencia (caixa de texto no dashboard, home do espaco Genie).
    Sem isso o usuario INTERPRETA O DADO ERRADO achando que ve tudo.
 
 - Acesso total a alguem: basta REMOVER a condicao do usuario na funcao
   (nao precisa listar todas as agencias)
-- A RLS e respeitada TAMBEM no Dini (foi testado)
+- A RLS e respeitada TAMBEM no Genie (foi testado)
 
 MASCARAMENTO DE COLUNAS
 --------------------------------------------
@@ -261,11 +261,11 @@ MASCARAMENTO DE COLUNAS
 - Atencao a NAO SOBREPOR mascaras: remova a anterior antes de aplicar a nova
 
 >> PEGADINHA: no BI tradicional bastaria nao colocar a coluna no visual.
-   Aqui NAO BASTA - o usuario tem autonomia e pode perguntar o detalhe ao Dini.
+   Aqui NAO BASTA - o usuario tem autonomia e pode perguntar o detalhe ao Genie.
    A protecao tem que estar NO DADO, nao no visual.
-   (O Dini respeita o mascaramento - foi testado.)
+   (O Genie respeita o mascaramento - foi testado.)
 
-DINI - O QUE E E ONDE VIVE
+GENIE - O QUE E E ONDE VIVE
 --------------------------------------------
 - Problema que resolve: voce entregou o dashboard e UM usuario lembra de uma
   analise fora dos requisitos, que nao interessa aos outros 25
@@ -278,19 +278,19 @@ DINI - O QUE E E ONDE VIVE
 
 Onde esta presente:
 - UNITY CATALOG      -> gera/melhora descricao de tabela e coluna (AI generate)
-- DASHBOARD publicado -> botao Ask Dini (dataset do dash, ou link do Dini Space)
-- DINI SPACE         -> conversa sobre as TABELAS ORIGINAIS
+- DASHBOARD publicado -> botao Ask Genie (dataset do dash, ou link do Genie Space)
+- GENIE SPACE         -> conversa sobre as TABELAS ORIGINAIS
 
 >> PEGADINHA: funcionar nao e o mesmo que estar CERTO.
-   "estar atento a forma como o Dini esta calculando e conferir sempre que
+   "estar atento a forma como o Genie esta calculando e conferir sempre que
    possivel". A aula valida as respostas contra os numeros do dashboard.
 
 - Ele mantem CONTEXTO: depois de comparar 2020 e 2021, entende "qual foi o
   pior mes de ambos os anos?" como referencia a pergunta anterior
 
-CONFIGURAR O DINI SPACE
+CONFIGURAR O GENIE SPACE
 --------------------------------------------
-Dini -> new -> escolher tabelas -> nome + descricao
+Genie -> new -> escolher tabelas -> nome + descricao
 (trouxe fato, dim_agencias e TAMBEM dim_clientes, pra atender perguntas de
 cliente que ficaram fora do dashboard)
 
@@ -310,17 +310,17 @@ PERGUNTAS EM DESTAQUE (5 na primeira pagina):
   crescimento = QUANTIDADE DE CLIENTES
 - correcao 2: nao agrupou por mes -> "agrupe todos os dados por mes"
 
->> ACHADO SOBRE OS DADOS: perguntando ao Dini, descobriu-se que 2023 tem SO
+>> ACHADO SOBRE OS DADOS: perguntando ao Genie, descobriu-se que 2023 tem SO
    4 DIAS de registro, todos de janeiro. Por isso "10 clientes de 2023" so
    retornava 5 - e a pergunta virou 2022.
    METODO: a IA serve tambem pra INVESTIGAR A COMPLETUDE DO DADO.
 
-- Graficos do Dini sao editaveis (cor, barra horizontal pra ler nomes, rotulo)
+- Graficos do Genie sao editaveis (cor, barra horizontal pra ler nomes, rotulo)
   e podem ser BAIXADOS EM PNG pra apresentacao
 - MONITORING lista todas as perguntas e feedbacks. Olhar as SEM CLASSIFICACAO.
   Quanto mais feedback, mais rapido o treinamento.
 
->> PEGADINHA: no DINI SPACE nao existe incorporar as suas credenciais.
+>> PEGADINHA: no GENIE SPACE nao existe incorporar as suas credenciais.
    Todo usuario precisa de leitura no UC + SQL Warehouse + objeto do espaco,
    com no minimo CAN RUN.
 
@@ -347,18 +347,18 @@ EXEMPLOS QUE MOSTRAM O PODER DAS PRATICAS 3, 4 E 6
   a cada 20 dias", a resposta muda e o SQL aplica a regra.
 - QUERY DE EXEMPLO (o caso mais rico): "top performance" nao tem significado
   universal. No BanVic e crescimento em QUANTIDADE e em VALOR, ponderados
-  40% quantidade / 60% valor, gerando um SCORE. Sem exemplo, o Dini assumiu
+  40% quantidade / 60% valor, gerando um SCORE. Sem exemplo, o Genie assumiu
   "maior valor total". Com a query salva, passou a reproduzir a ponderacao.
   Detalhe: COALESCE garante crescimento ZERO quando nao ha ano anterior.
 
 BENCHMARKS
 --------------------------------------------
 - Perguntas de teste com uma QUERY DE REFERENCIA que voce sabe estar correta
-- Ao rodar: o Dini gera o SQL, executa, responde e COMPARA com a referencia
+- Ao rodar: o Genie gera o SQL, executa, responde e COMPARA com a referencia
 - Serve pra MEDIR A ACURACIA ANTES DE LIBERAR o espaco
 
 >> PEGADINHA: SQL DIFERENTE NAO E ERRO
-   Nos 2 testes o Dini escreveu queries distintas e chegou aos MESMOS
+   Nos 2 testes o Genie escreveu queries distintas e chegou aos MESMOS
    resultados; a diferenca era so formatacao (sem simbolo de %, menos casas).
    Avaliacao boa, acuracia 100%.
 
@@ -387,5 +387,5 @@ CONEXAO COM DESAFIO FINAL (DBT + POWER BI)
 - RLS na dimensao x na fato e decisao que o dashboard daqui enfrentaria ao ir
   pra producao com dado real.
 - Guardrail de dados REFORCADO: a aula mostra o usuario chegando em CPF ou nome
-  de cliente via Dini. Protecao tem que estar NO DADO (mascaramento no UC),
+  de cliente via Genie. Protecao tem que estar NO DADO (mascaramento no UC),
   nao em omitir a coluna do visual.

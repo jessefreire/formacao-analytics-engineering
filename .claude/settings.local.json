@@ -10,7 +10,8 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git checkout *)",
-      "Bash(git branch *)"
+      "Bash(git branch *)",
+      "Bash(python .opencode/skill/ae_materials_app/sync.py)"
     ]
   }
 }

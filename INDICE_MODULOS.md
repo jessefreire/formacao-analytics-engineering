@@ -320,7 +320,7 @@ SELECT * FROM cte2;
 ## Módulo 9 — AI-Powered Productivity
 
 **Status:** ✅ Concluído (18 aulas transcritas; 3 resumos + 3 decorebas, um par por subcurso)
-**Temas principais:** **AI/BI no Databricks** — dashboard, publicação, permissões, agendamento, alertas, RLS, mascaramento de coluna e treinamento da IA Genie/Dini (13 aulas); **Claude Code** — agentes, skills, commands, hooks, MCP, plugins e marketplace (3 aulas); **Claude for AE** — padrões de uso, exploração de projeto e refatoração dbt (2 aulas).
+**Temas principais:** **AI/BI no Databricks** — dashboard, publicação, permissões, agendamento, alertas, RLS, mascaramento de coluna e treinamento da IA Genie (13 aulas); **Claude Code** — agentes, skills, commands, hooks, MCP, plugins e marketplace (3 aulas); **Claude for AE** — padrões de uso, exploração de projeto e refatoração dbt (2 aulas).
 
 ### Arquivos Oficiais
 | Tipo | Arquivo |
@@ -338,7 +338,7 @@ SELECT * FROM cte2;
 | `decoreba_modulo9_intro_claude_code.txt` | Cola do acima |
 | `resumo_modulo9_claude_for_ae.md` | Os 4 modos de falha do uso de IA, os 3 princípios, exploração de projeto e refatoração dbt (staging × regra de negócio, CTEs) |
 | `decoreba_modulo9_claude_for_ae.txt` | Cola do acima |
-| `resumo_modulo9_aulas.md` | AI/BI Databricks ponta a ponta: query no lugar do modelo semântico, visuais, publicação, permissões, RLS, mascaramento e as 9 boas práticas do Dini |
+| `resumo_modulo9_aulas.md` | AI/BI Databricks ponta a ponta: query no lugar do modelo semântico, visuais, publicação, permissões, RLS, mascaramento e as 9 boas práticas do Genie |
 | `decoreba_modulo9_aulas.txt` | Cola do acima |
 
 ### Conceitos-Chave (Referência Rápida)
@@ -350,9 +350,9 @@ SELECT * FROM cte2;
 | **Sem hierarquia de datas** | AI/BI não tem drill down/up — granularidade decidida na configuração |
 | **Share × Individual data permission** | No modo padrão (share) a **RLS é contornada**; produção pede `individual` |
 | **RLS: dimensão × fato** | Dimensão = vê o total, detalha só o seu. Fato = isolamento completo |
-| **Mascaramento de coluna** | Proteção tem que estar **no dado**, não em omitir a coluna — o usuário pergunta ao Dini |
+| **Mascaramento de coluna** | Proteção tem que estar **no dado**, não em omitir a coluna — o usuário pergunta ao Genie |
 | **Alerta depende da query** | Não dispara fora do agendamento da query; agendar a query **antes** do alerta |
-| **Benchmark do Dini** | SQL diferente não é erro; corrige-se com **contexto** (instrução/query exemplo), não editando SQL |
+| **Benchmark do Genie** | SQL diferente não é erro; corrige-se com **contexto** (instrução/query exemplo), não editando SQL |
 | **Claude Code: 4 extensões** | Agente (persona), skill (automática), command (só manual), hook (sempre) |
 | **`CLAUDE.md`** | Readme para a máquina; **máx. 500 linhas** |
 | **Os 3 princípios (AE)** | Processos antes de ferramentas; conhecimento antes da execução; revisão antes da geração |

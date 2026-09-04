@@ -2,7 +2,7 @@
 
 > 13 aulas (~3,1 h). Constrói um dashboard completo no **AI/BI do Databricks** para o cliente
 > fictício **Banco BanVic** — os mesmos dados do módulo de Power BI — e vai até governança (RLS,
-> mascaramento) e treinamento da IA **Genie/Dini**.
+> mascaramento) e treinamento da IA **Genie**.
 >
 > Referências como `(A04)` apontam a aula de origem.
 
@@ -58,7 +58,7 @@ Permitem criar medidas **sem escrever SQL de agregação** `(A02)`. As três do 
 | Média do valor de transação | `AVG(valor_transacao)` |
 
 **Pegadinha:** o campo de comentário do cálculo parece opcional e não é. Ele funciona como a
-descrição de uma coluna — e é lido pela **IA Dini** para entender o que a medida significa. Comentar
+descrição de uma coluna — e é lido pela **IA Genie** para entender o que a medida significa. Comentar
 mal aqui degrada as respostas da IA depois `(A02)`.
 
 ## 4. Tema, contraste e cabeçalho
@@ -224,7 +224,7 @@ fontes**. Usar com atenção `(A06)`.
 
 | Permissão | O que libera |
 |---|---|
-| `can view` | Só visualizar — **não pode perguntar ao Dini** |
+| `can view` | Só visualizar — **não pode perguntar ao Genie** |
 | `can run` | Atualizar o dashboard e executar queries |
 | `can edit` | Editar layout, consultas e criar visualizações |
 | `manage` | Controle total, incluindo exclusão e gestão de compartilhamento |
@@ -322,10 +322,10 @@ Esta é a parte mais sutil da aula:
 Ou seja: a escolha da tabela é a escolha entre "vê o todo, detalha o seu" e "só vê o seu". Decisão
 de negócio, não técnica.
 
-A RLS foi testada também no Dini e é respeitada nos dois casos.
+A RLS foi testada também no Genie e é respeitada nos dois casos.
 
 > **Obrigação de comunicar:** ao aplicar RLS, deixe explícito para os usuários que eles veem apenas
-> os dados da sua agência — em caixa de texto no dashboard, na página inicial do espaço Dini, onde
+> os dados da sua agência — em caixa de texto no dashboard, na página inicial do espaço Genie, onde
 > for. Sem isso o usuário **interpreta o dado errado** achando que está vendo tudo `(A10)`.
 
 Para dar acesso total a alguém, não é preciso listar todas as agências: basta remover a condição do
@@ -340,10 +340,10 @@ Duas variações mostradas: retornar **nulo**, ou retornar um **texto tipo "rest
 para o usuário). Atenção a **não sobrepor máscaras** — remova a anterior antes de aplicar a nova.
 
 **Pegadinha:** no BI tradicional bastaria não colocar a coluna sensível no visual. Aqui **não basta**
-— o usuário tem autonomia e pode perguntar o detalhe ao Dini. É por isso que a proteção tem que
-estar no dado, não no visual. (O Dini respeita o mascaramento — foi testado.)
+— o usuário tem autonomia e pode perguntar o detalhe ao Genie. É por isso que a proteção tem que
+estar no dado, não no visual. (O Genie respeita o mascaramento — foi testado.)
 
-## 12. Dini: o que é e onde vive
+## 12. Genie: o que é e onde vive
 
 O problema que ele resolve, na forma como a aula apresenta: você entregou o dashboard, e dias depois
 **um** usuário lembra de uma análise que ficou fora dos requisitos — e que não interessa aos outros
@@ -361,20 +361,20 @@ Onde a IA está presente:
 | Lugar | O que faz |
 |---|---|
 | **Unity Catalog** | Gera e melhora descrição de tabela e de coluna (`AI generate`); responde perguntas em Sample Data |
-| **Dashboard publicado** | Botão `Ask Dini` — sobre o dataset do dashboard, ou apontando para um Dini Space |
-| **Dini Space** | Conversa sobre as **tabelas originais**, com configuração própria |
+| **Dashboard publicado** | Botão `Ask Genie` — sobre o dataset do dashboard, ou apontando para um Genie Space |
+| **Genie Space** | Conversa sobre as **tabelas originais**, com configuração própria |
 
 A aula valida as respostas conferindo contra os números do próprio dashboard — e elas batem. Também
 testa continuidade de contexto: depois de comparar 2020 e 2021, pergunta "qual foi o pior mês de
 ambos os anos?" e a IA entende que se refere à pergunta anterior.
 
 **Pegadinha:** funcionar não é o mesmo que estar certo. A aula conclui explicitamente que é preciso
-"estar atento à forma como o Dini está calculando e conferir as informações sempre que possível".
+"estar atento à forma como o Genie está calculando e conferir as informações sempre que possível".
 
-## 13. Configurar o Dini Space
+## 13. Configurar o Genie Space
 
 ```
-Dini -> new -> escolher tabelas -> nome + descrição
+Genie -> new -> escolher tabelas -> nome + descrição
 ```
 
 Trouxe fato, `dim_agencias` e também `dim_clientes` — esta última justamente para atender perguntas
@@ -406,18 +406,18 @@ compartilhar. Duas correções reais do exemplo:
 | Interpretou "crescimento" como valor total | Instruir: crescimento = **quantidade de clientes** |
 | Não agrupou por mês | Corrigir na resposta: "agrupe todos os dados por mês" |
 
-> **O achado sobre os dados:** perguntando ao Dini, descobriu-se que **2023 tem só 4 dias** de
+> **O achado sobre os dados:** perguntando ao Genie, descobriu-se que **2023 tem só 4 dias** de
 > registro, todos de janeiro. Por isso a pergunta dos "10 clientes que mais transacionaram em 2023"
 > só retornava 5 — e a pergunta foi trocada para **2022**. Vale como método: a IA serve também para
 > **investigar a completude do dado**, não só para responder ao usuário `(A12)`.
 
-Os gráficos gerados pelo Dini são editáveis (trocar cor — vermelho comunica negativo sem motivo —,
+Os gráficos gerados pelo Genie são editáveis (trocar cor — vermelho comunica negativo sem motivo —,
 virar barra horizontal para ler nomes, pôr rótulo) e podem ser **baixados em PNG** para apresentação.
 
 O **monitoring** lista todas as perguntas e feedbacks. É onde o analista deve olhar as perguntas
 **sem classificação** e avaliá-las: quanto mais feedback, mais rápido o treinamento.
 
-**Pegadinha de compartilhamento:** no Dini Space **não existe incorporar as suas credenciais**. Todo
+**Pegadinha de compartilhamento:** no Genie Space **não existe incorporar as suas credenciais**. Todo
 usuário precisa de leitura nas tabelas/views do UC, acesso ao SQL Warehouse e ao objeto do espaço —
 com no mínimo **`can run`**.
 
@@ -447,17 +447,17 @@ cada 20 dias"*, a resposta muda e o SQL aplica a regra.
 
 **Query de exemplo — o caso mais rico.** "Top performance" não tem significado universal. No BanVic
 a regra é crescimento em quantidade **e** em valor, ponderados **40% quantidade / 60% valor**,
-gerando um score. Sem exemplo, o Dini assumiu "maior valor total". Salvando a query de exemplo com
+gerando um score. Sem exemplo, o Genie assumiu "maior valor total". Salvando a query de exemplo com
 nome que cita a expressão, ele passou a reproduzir a lógica ponderada. (Detalhe da query:
 **`COALESCE` garante crescimento zero quando não há ano anterior.**)
 
 ### Benchmarks
 
-Perguntas de teste com uma **query de referência que você sabe estar correta**. Ao rodar, o Dini gera
+Perguntas de teste com uma **query de referência que você sabe estar correta**. Ao rodar, o Genie gera
 o SQL, executa, responde e **compara com a referência**. Serve para **medir a acurácia antes de
 liberar o espaço**.
 
-**Pegadinha:** SQL diferente não é erro. Nos dois testes do exemplo o Dini escreveu queries distintas
+**Pegadinha:** SQL diferente não é erro. Nos dois testes do exemplo o Genie escreveu queries distintas
 das de referência e chegou aos **mesmos resultados** — a diferença era só formatação (sem símbolo de
 %, menos casas decimais). Avaliação boa, acurácia 100%.
 
@@ -489,5 +489,5 @@ Este subcurso é o mais diretamente aplicável, porque usa **os mesmos dados do 
   para produção com dados reais, e a diferença ("vê o total, detalha o seu" vs "só vê o seu") vale
   igual.
 - **O guardrail de dados deste projeto tem reforço aqui:** a aula mostra que o usuário pode perguntar
-  ao Dini e chegar em CPF ou nome de cliente. Proteção precisa estar **no dado** (mascaramento no
+  ao Genie e chegar em CPF ou nome de cliente. Proteção precisa estar **no dado** (mascaramento no
   UC), não em omitir a coluna do visual.
