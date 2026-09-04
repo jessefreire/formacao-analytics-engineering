@@ -1,6 +1,7 @@
 # Resumo — Módulo 9: Claude for AE
 
-> Subcurso FEA, 2 aulas (~40 min), com Cauê (AE, ex-Lighthouse). Primeira vez que a Indicium dá
+> Subcurso FEA, 2 aulas (~40 min), com **Kauê Oliveira** (Analytics Engineer, ex-Lighthouse).
+> A segunda aula se chama *Refatoração, documentação e otimização*. Primeira vez que a Indicium dá
 > essa aula. A primeira metade é sobre **como não se enfraquecer usando IA**; a segunda é um
 > hands-on de exploração e refatoração num projeto dbt real.
 >
@@ -107,6 +108,26 @@ ler, e a pergunta certa direciona a ferramenta para te fortalecer `(A02)`.
 
 ### `/init` e o `CLAUDE.md`
 
+Vale ver o que ele faz **antes** de escrever, porque isso explica por que o arquivo sai bom:
+
+```
+/init
+ → analisa o codebase para criar o CLAUDE.md; explora a estrutura primeiro
+ → busca por padrões, lê arquivo, lista diretório
+ → reconhece que é um projeto dbt
+ → lê os arquivos de config principais e o README
+ → só então escreve  (~14s, ~637 tokens no exemplo)
+```
+
+Ou seja: o `/init` não é um template. Ele **investiga** e escreve sobre o que encontrou — é a
+razão de o resultado ser específico do projeto em vez de genérico.
+
+> **O repo de referência mostra o que um projeto dbt maduro carrega.** Além de `models/`,
+> `macros/`, `seeds/`, `snapshots/` e `tests/`, aparecem `.sqlfluff` (lint de SQL),
+> `.dbt-checkpoint.yaml` (hooks de pre-commit para dbt), `.pre-commit-config.yaml`,
+> `bitbucket-pipelines.yml` (CI), `hooks/`, `bus_matrix/` e `target-defer-databricks` /
+> `target-defer-snowflake` (defer do dbt). Vale como checklist do que falta no seu projeto.
+
 O `/init` gera o `CLAUDE.md`, e a analogia da aula é boa: **é um readme para a máquina**. O readme
 comum é markdown para outro desenvolvedor ler; o `CLAUDE.md` é o readme para o próprio Claude. Ele
 já traz resumo do que o projeto faz, configurações de plataforma e comandos básicos (instalar
@@ -176,6 +197,23 @@ A refatoração foi feita em dois passos deliberados, e a ordem importa:
 **CTE** (*common table expression*) é bloco de código nomeado e reaproveitável: em vez de query
 dentro de query, cada parte no seu lugar, com nome que diz o que é.
 
+A justificativa que aparece escrita na tela é a formulação mais precisa do benefício: refatorar
+para CTE dá **um nome significativo a cada etapa** e permite **ler a query de cima para baixo,
+em vez de de dentro para fora**. É isso que a subquery aninhada impede.
+
+Dois detalhes práticos do exemplo:
+
+- A chave surrogada é gerada com **`dbt_utils.generate_surrogate_key`** — a mesma macro do
+  package que já está no `banvic-dbt`.
+- O resultado foi salvo como um **arquivo novo** (`..._refactored.sql`), sem sobrescrever o
+  legado. Refatoração como proposta, não como fato consumado.
+
+> **A IA levantou o risco de governança sozinha.** Depois de refatorar, ela avisou que o
+> resultado era idêntico em execução **mas** que o arquivo estava em `legacy/` marcado como
+> *DO NOT TOUCH*, e que era melhor confirmar com o time antes de commitar — mesmo sendo só
+> formatação. É o princípio "revisão antes da geração" acontecendo do lado da ferramenta, e um
+> bom argumento para marcar convenção desse tipo no `CLAUDE.md`: o que está escrito, ela lê.
+
 **Pegadinha:** o modelo ficar bonito não significa que está correto. A segmentação em CTEs pode não
 refletir o processo de negócio real. A aula insiste: **testar, validar com liderança ou cliente, e
 comparar o output** do modelo antigo com o novo. Ganho de produtividade sem validação é risco, não
@@ -203,6 +241,12 @@ Duas ressalvas que a aula faz, e que evitam retrabalho:
   quais fazem sentido — e precisa conferir o **grão** da tabela para saber se o teste está certo.
 
 ## 8. Caso de uso 3 — Otimização
+
+Um detalhe de interface que passa batido e muda o risco do que você faz: a barra de status do
+Claude Code mostra o **modo de permissão ativo** — `manual mode on` (pede autorização a cada
+passo) ou `accept edits on` (aplica edição sem perguntar), alternável com `shift+tab`. Em
+refatoração de modelo legado, saber em qual modo você está é a diferença entre revisar um diff e
+descobrir a alteração depois.
 
 O exemplo é um modelo deliberadamente lento: cálculo ineficiente puxando um modelo dentro de outro
 `SELECT`, com casts no lugar errado. O que ele deveria fazer é trazer o `sales_order` **uma vez**

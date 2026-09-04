@@ -82,6 +82,27 @@ EXPLORAR O PROJETO ANTES DE MEXER
 --------------------------------------------
 - Fazer pergunta e HABITO que se desenvolve; o Claude Code e otimo em LER
 - /init  -> gera o CLAUDE.md
+
+O QUE O /init FAZ ANTES DE ESCREVER (visto no terminal):
+  1. analisa o codebase, explora a estrutura PRIMEIRO
+  2. busca padroes, le arquivo, lista diretorio
+  3. reconhece que e projeto dbt
+  4. le os configs principais e o README
+  5. SO ENTAO escreve  (~14s, ~637 tokens no exemplo)
+
+>> /init NAO e template: ele INVESTIGA e escreve sobre o que achou.
+   E por isso que o resultado e especifico do projeto, nao generico.
+
+O QUE UM PROJETO DBT MADURO CARREGA (do repo de referencia):
+  models/ macros/ seeds/ snapshots/ tests/  (o basico)
+  .sqlfluff              -> lint de SQL
+  .dbt-checkpoint.yaml   -> hooks de pre-commit pra dbt
+  .pre-commit-config.yaml
+  bitbucket-pipelines.yml -> CI
+  hooks/  bus_matrix/
+  target-defer-databricks / target-defer-snowflake -> defer do dbt
+  Serve de checklist do que falta no seu projeto.
+
 - CLAUDE.md = README PARA A MAQUINA
   (readme comum = markdown pra outro DEV; CLAUDE.md = readme pro proprio Claude)
 - Traz: resumo do que o projeto faz, config de plataforma, comandos basicos
@@ -130,6 +151,28 @@ Refatoracao em 2 passos, e a ORDEM importa:
 
 - CTE = common table expression = bloco nomeado e reaproveitavel
   em vez de query dentro de query, cada parte no seu lugar com nome que diz o que e
+
+>> A JUSTIFICATIVA MAIS PRECISA (estava escrita na tela):
+   refatorar pra CTE da NOME SIGNIFICATIVO A CADA ETAPA e permite LER A QUERY
+   DE CIMA PRA BAIXO, em vez de DE DENTRO PRA FORA.
+   E exatamente isso que a subquery aninhada impede.
+
+- Chave surrogada: dbt_utils.generate_surrogate_key (macro que ja esta no banvic-dbt)
+- O refatorado foi salvo como ARQUIVO NOVO (..._refactored.sql), sem sobrescrever
+  o legado -> refatoracao como PROPOSTA, nao fato consumado
+
+>> A IA LEVANTOU O RISCO DE GOVERNANCA SOZINHA
+   Avisou que o resultado era identico em execucao MAS que o arquivo estava em
+   legacy/ marcado "DO NOT TOUCH", e que era melhor confirmar com o time antes
+   de comitar - mesmo sendo so formatacao.
+   Licao: o que esta escrito no CLAUDE.md, ela le. Marque convencao desse tipo.
+
+>> MODO DE PERMISSAO NA BARRA DE STATUS (passa batido e muda o risco):
+   manual mode on   -> pede autorizacao a cada passo
+   accept edits on  -> aplica edicao SEM perguntar
+   alterna com shift+tab
+   Em refatoracao de legado, saber o modo e a diferenca entre revisar um diff
+   e descobrir a alteracao depois.
 
 >> PEGADINHA: modelo ficar BONITO nao significa que esta CORRETO
    A segmentacao em CTEs pode nao refletir o processo de negocio real.
