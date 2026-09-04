@@ -78,6 +78,16 @@
           "name": "mockup_visao_geral022025852460712536.svg",
           "path": "mockup_visao_geral022025852460712536.svg",
           "type": "Image"
+        },
+        {
+          "name": "mockup_style_guide.svg",
+          "path": "mockup_style_guide.svg",
+          "type": "Image"
+        },
+        {
+          "name": "mockup_theme_json.svg",
+          "path": "mockup_theme_json.svg",
+          "type": "Image"
         }
       ]
     }
@@ -88,6 +98,7 @@
     "defaultDrillFilterOtherVisuals": true,
     "allowChangeFilterTypes": true,
     "useEnhancedTooltips": true,
+    "filterPaneHiddenInEditMode": true,
     "useDefaultAggregateDisplayName": true,
     "queryLimitOption": "None",
     "customMemoryLimit": "1048576",
