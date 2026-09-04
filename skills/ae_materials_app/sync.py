@@ -20,6 +20,7 @@ ROOT = find_root()
 INDEX = ROOT / "index.html"
 TEMPLATE = Path(__file__).parent / "templates" / "index.html.j2"
 FILES_JSON = ROOT / "files.json"
+VERSION_JSON = ROOT / "version.json"
 
 # Módulos na ordem do curso. `sort` controla ordenação (IV=3.5 fica entre 3 e 4)
 MODULES = [
@@ -224,6 +225,35 @@ def write_files_json(files: List[Dict[str, Any]]):
     FILES_JSON.write_text(json.dumps(files, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def write_version_json():
+    """Gera version.json com commit atual para o banner de atualizações."""
+    import subprocess
+    info = {"sha": "", "short": "", "date": "", "message": "", "repo": ""}
+    try:
+        info["sha"] = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+        ).strip()
+        info["short"] = info["sha"][:7]
+        info["date"] = subprocess.check_output(
+            ["git", "log", "-1", "--format=%ad", "--date=short"],
+            cwd=ROOT, text=True,
+        ).strip()
+        info["message"] = subprocess.check_output(
+            ["git", "log", "-1", "--format=%s"], cwd=ROOT, text=True
+        ).strip()
+        remote = subprocess.check_output(
+            ["git", "remote", "get-url", "origin"], cwd=ROOT, text=True
+        ).strip()
+        # https://github.com/owner/repo.git -> owner/repo
+        m = re.search(r'github\.com[:/](.+?)(?:\.git)?$', remote)
+        if m:
+            info["repo"] = m.group(1)
+    except Exception as e:
+        print(f"   [SYNC] Aviso: sem info git ({e})")
+    VERSION_JSON.write_text(json.dumps(info, ensure_ascii=False, indent=2), encoding="utf-8")
+    return info
+
+
 def main():
     print("[SYNC] Descobrindo arquivos...")
     files = discover_files()
@@ -238,6 +268,11 @@ def main():
 
     print("[SYNC] Gerando files.json...")
     write_files_json(files)
+
+    print("[SYNC] Gerando version.json...")
+    ver = write_version_json()
+    if ver["short"]:
+        print(f"   Versao: {ver['short']} ({ver['date']}) {ver['message'][:60]}")
 
     print("[SYNC] Pronto! Rode `python server.py` para ver.")
 

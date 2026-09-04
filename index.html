@@ -255,6 +255,17 @@ body {
 
 /* ========== FOCUS VISIBLE ========== */
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ========== VERSION FOOTER + UPDATE BANNER ========== */
+.sidebar-footer { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-top: 1px solid var(--border, #e0e0e0); font-size: 0.75rem; }
+.version-badge { font-family: monospace; background: var(--accent-soft, #e8f0f2); color: var(--accent, #0F7E8C); padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+.version-check { font-size: 0.75rem; padding: 2px 10px; border-radius: 10px; border: 1px solid var(--border, #e0e0e0); background: transparent; cursor: pointer; }
+.version-check:hover { background: var(--accent-soft, #e8f0f2); }
+.version-check:disabled { opacity: 0.5; cursor: wait; }
+.update-banner { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #fff8e1; border-top: 1px solid #ffe082; font-size: 0.78rem; }
+.update-banner[hidden] { display: none; }
+.update-banner a { color: #0F7E8C; font-weight: 600; }
+.update-banner button { margin-left: auto; background: none; border: none; font-size: 1.1rem; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -267,6 +278,15 @@ body {
     </div>
   </header>
   <nav class="nav" id="nav" role="navigation" aria-label="Materiais do curso"></nav>
+  <div class="sidebar-footer" id="versionFooter">
+    <span class="version-badge" id="versionBadge" title="Versao local">v...</span>
+    <button class="version-check" id="checkUpdates" title="Verificar atualizacoes no GitHub">Verificar</button>
+  </div>
+  <div class="update-banner" id="updateBanner" hidden>
+    <span id="updateText"></span>
+    <a id="updateLink" href="#" target="_blank" rel="noopener">Ver diff</a>
+    <button id="updateDismiss" aria-label="Fechar aviso">&times;</button>
+  </div>
   <div class="resize-handle" id="resizeHandle"></div>
 </div>
 <main class="main" id="main" role="main">
@@ -677,6 +697,63 @@ document.addEventListener('keydown', (e) => {
     document.getElementById('nav').querySelector('.nav-link')?.focus();
   }
 });
+
+
+// ==== Version + update check ====
+async function initVersion() {
+  let local = null;
+  try {
+    const r = await fetch('version.json', { cache: 'no-store' });
+    if (r.ok) local = await r.json();
+  } catch (e) { /* sem version.json */ }
+  const badge = document.getElementById('versionBadge');
+  if (local && local.short) {
+    badge.textContent = 'v' + local.short + ' ' + (local.date || '');
+    badge.title = (local.message || '') + '\n' + (local.sha || '');
+    const seen = localStorage.getItem('ae_seen_version');
+    if (seen && seen !== local.sha) {
+      showBanner('Conteudo atualizado localmente (' + local.short + ').', null);
+    }
+    localStorage.setItem('ae_seen_version', local.sha || '');
+    localStorage.setItem('ae_repo', local.repo || '');
+  } else {
+    badge.textContent = 'v?';
+  }
+  document.getElementById('checkUpdates').addEventListener('click', checkRemote);
+  document.getElementById('updateDismiss').addEventListener('click', () => {
+    document.getElementById('updateBanner').hidden = true;
+  });
+}
+function showBanner(text, diffUrl) {
+  document.getElementById('updateText').textContent = text;
+  const link = document.getElementById('updateLink');
+  if (diffUrl) { link.href = diffUrl; link.style.display = ''; }
+  else { link.style.display = 'none'; }
+  document.getElementById('updateBanner').hidden = false;
+}
+async function checkRemote() {
+  const btn = document.getElementById('checkUpdates');
+  btn.disabled = true; btn.textContent = '...';
+  try {
+    const repo = localStorage.getItem('ae_repo') || '';
+    if (!repo) { showBanner('Repo GitHub nao configurado no version.json.', null); return; }
+    const r = await fetch('https://api.github.com/repos/' + repo + '/commits?per_page=1');
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const arr = await r.json();
+    const latest = arr[0];
+    const localR = await (await fetch('version.json', { cache: 'no-store' })).json();
+    if (latest.sha !== localR.sha) {
+      showBanner('Ha atualizacoes! Local v' + (localR.short || '?') + ' > remoto v' + latest.sha.slice(0, 7) + '. Rode git pull + sync.',
+        'https://github.com/' + repo + '/compare/' + localR.sha + '...' + latest.sha);
+    } else {
+      showBanner('Voce esta atualizado (v' + (localR.short || '?') + ').', null);
+    }
+  } catch (e) {
+    showBanner('Nao foi possivel verificar: ' + e.message, null);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Verificar';
+  }
+}
 
 // Init
 initTheme();
