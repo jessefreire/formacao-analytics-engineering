@@ -21,6 +21,9 @@ Desafio/Exemplos repo banvic/
 # ==== Skills instalados de terceiros ====
 .agents/
 
+# ==== Gerado no startup do server.py (sempre reflete o HEAD local) ====
+version.json
+
 # ==== Power BI PBIP: cache local e settings da máquina (não versionar) ====
 *.abf
 **/.pbi/localSettings.json
