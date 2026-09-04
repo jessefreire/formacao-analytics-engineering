@@ -3,11 +3,11 @@
   "name": "58d1a2b3c4d5e6f70826",
   "position": {
     "x": 331.63,
-    "y": 168.47,
-    "z": 1070,
+    "y": 198.47,
+    "z": 3000,
     "height": 86.9,
     "width": 300.59,
-    "tabOrder": 1070
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -40,7 +40,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "36D"
+                  "Value": "28D"
                 }
               }
             },

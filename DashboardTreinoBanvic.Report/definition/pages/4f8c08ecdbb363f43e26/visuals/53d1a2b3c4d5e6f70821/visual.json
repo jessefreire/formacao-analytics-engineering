@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "53d1a2b3c4d5e6f70821",
   "position": {
-    "x": 506.89,
-    "y": 85.33,
-    "z": 2000,
-    "height": 53.33,
-    "width": 240.0,
-    "tabOrder": 2000
+    "x": 556.1814574314574,
+    "y": 89.29,
+    "z": 6000,
+    "height": 62.85714285714286,
+    "width": 239.2857142857143,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "slicer",
@@ -64,6 +64,13 @@
                   "Value": "'Nome do Cliente'"
                 }
               }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
             }
           }
         }
@@ -74,7 +81,20 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "9D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "date": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }

@@ -25,7 +25,7 @@
   <text x="1186" y="37" font-size="13" font-weight="600" text-anchor="middle" fill="#FFFFFF">Tipo de transação</text>
 
   <!-- Filter bar -->
-  <rect x="16" y="80" width="1248" height="64" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="16" y="80" width="1248" height="94" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
   <g stroke="#0F7E8C" stroke-width="2" stroke-linecap="round">
     <line x1="40" y1="102" x2="68" y2="102"/><circle cx="52" cy="102" r="4" fill="#FFFFFF"/>
     <line x1="40" y1="112" x2="68" y2="112"/><circle cx="60" cy="112" r="4" fill="#FFFFFF"/>
@@ -35,23 +35,23 @@
 
   <!-- KPI cards -->
   <g filter="url(#sh)">
-    <rect x="16" y="160" width="300" height="96" rx="8" fill="#FFFFFF"/>
-    <rect x="332" y="160" width="300" height="96" rx="8" fill="#FFFFFF"/>
-    <rect x="648" y="160" width="300" height="96" rx="8" fill="#FFFFFF"/>
-    <rect x="964" y="160" width="300" height="96" rx="8" fill="#FFFFFF"/>
+    <rect x="16" y="190" width="300" height="86" rx="8" fill="#FFFFFF"/>
+    <rect x="332" y="190" width="300" height="86" rx="8" fill="#FFFFFF"/>
+    <rect x="648" y="190" width="300" height="86" rx="8" fill="#FFFFFF"/>
+    <rect x="964" y="190" width="300" height="86" rx="8" fill="#FFFFFF"/>
   </g>
   <g font-size="12" font-weight="600" fill="#4E6E77" text-anchor="middle">
-    <text x="166" y="188">Total Transacionado</text>
-    <text x="482" y="188">Quantidade de Transações</text>
-    <text x="798" y="188">Média de Valor Transacionado</text>
-    <text x="1114" y="188">% de Agência Digital</text>
+    <text x="166" y="218">Total Transacionado</text>
+    <text x="482" y="218">Quantidade de Transações</text>
+    <text x="798" y="218">Média de Valor Transacionado</text>
+    <text x="1114" y="218">% de Agência Digital</text>
   </g>
 
   <!-- Evolution panel -->
-  <rect x="16" y="272" width="1248" height="200" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
-  <text x="36" y="300" font-size="13" font-weight="600" fill="#4E6E77">Evolução das Transações</text>
+  <rect x="16" y="302" width="1248" height="190" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
+  <text x="36" y="330" font-size="13" font-weight="600" fill="#4E6E77">Evolução das Transações</text>
 
   <!-- Detail panel -->
-  <rect x="16" y="488" width="1248" height="216" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
-  <text x="36" y="516" font-size="13" font-weight="600" fill="#4E6E77">Detalhamento</text>
+  <rect x="16" y="518" width="1248" height="196" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
+  <text x="36" y="546" font-size="13" font-weight="600" fill="#4E6E77">Detalhamento</text>
 </svg>

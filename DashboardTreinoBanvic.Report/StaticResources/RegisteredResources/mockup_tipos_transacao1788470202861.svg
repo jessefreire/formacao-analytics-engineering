@@ -25,7 +25,7 @@
   <text x="1186" y="37" font-size="13" font-weight="600" text-anchor="middle" fill="#0F7E8C">Tipo de transação</text>
 
   <!-- Filter bar -->
-  <rect x="16" y="80" width="1248" height="64" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="16" y="80" width="1248" height="94" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
   <g stroke="#0F7E8C" stroke-width="2" stroke-linecap="round">
     <line x1="40" y1="102" x2="68" y2="102"/><circle cx="52" cy="102" r="4" fill="#FFFFFF"/>
     <line x1="40" y1="112" x2="68" y2="112"/><circle cx="60" cy="112" r="4" fill="#FFFFFF"/>
@@ -34,10 +34,10 @@
   <text x="1232" y="116" font-size="13" font-weight="600" text-anchor="end" fill="#0F7E8C">Limpar filtros</text>
 
   <!-- Left panel -->
-  <rect x="16" y="160" width="608" height="544" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
-  <text x="36" y="188" font-size="13" font-weight="600" fill="#4E6E77">Quantidade de transações por tipo</text>
+  <rect x="16" y="190" width="608" height="520" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
+  <text x="36" y="218" font-size="13" font-weight="600" fill="#4E6E77">Quantidade de transações por tipo</text>
 
   <!-- Right panel -->
-  <rect x="656" y="160" width="608" height="544" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
-  <text x="676" y="188" font-size="13" font-weight="600" fill="#4E6E77">Valor transacionado por tipo</text>
+  <rect x="656" y="190" width="608" height="520" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
+  <text x="676" y="218" font-size="13" font-weight="600" fill="#4E6E77">Valor transacionado por tipo</text>
 </svg>

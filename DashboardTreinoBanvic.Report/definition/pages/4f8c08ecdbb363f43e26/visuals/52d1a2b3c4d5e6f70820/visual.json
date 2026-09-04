@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "52d1a2b3c4d5e6f70820",
   "position": {
-    "x": 238.37,
-    "y": 85.12,
+    "x": 304.20815295815294,
+    "y": 89.58,
     "z": 1000,
-    "height": 53.2,
-    "width": 239.41,
+    "height": 62.91666666666667,
+    "width": 239.58333333333334,
     "tabOrder": 1000
   },
   "visual": {
@@ -64,6 +64,13 @@
                   "Value": "'Nome da Agência'"
                 }
               }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
             }
           }
         }
@@ -74,7 +81,20 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "date": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }

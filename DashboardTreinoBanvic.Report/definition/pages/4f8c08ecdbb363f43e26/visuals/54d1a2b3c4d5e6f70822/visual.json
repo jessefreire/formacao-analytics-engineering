@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "54d1a2b3c4d5e6f70822",
   "position": {
-    "x": 776.0,
-    "y": 85.33,
-    "z": 3000,
-    "height": 53.33,
-    "width": 240.0,
-    "tabOrder": 3000
+    "x": 807.8571428571428,
+    "y": 89.29,
+    "z": 8000,
+    "height": 62.85714285714286,
+    "width": 240.00000000000003,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "slicer",
@@ -64,6 +64,13 @@
                   "Value": "'Tipo da transação'"
                 }
               }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
             }
           }
         }
@@ -74,7 +81,20 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "9D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "date": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }

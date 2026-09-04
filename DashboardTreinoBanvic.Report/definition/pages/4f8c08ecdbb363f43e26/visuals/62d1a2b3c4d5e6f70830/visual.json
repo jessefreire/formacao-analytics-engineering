@@ -3,11 +3,11 @@
   "name": "62d1a2b3c4d5e6f70830",
   "position": {
     "x": 31.92,
-    "y": 527.59,
-    "z": 11000,
-    "height": 169.36,
+    "y": 557.59,
+    "z": 12000,
+    "height": 158.4,
     "width": 1215.67,
-    "tabOrder": 11000
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -127,6 +127,42 @@
         ]
       }
     },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "dim_clientes.uf_cliente"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_clientes"
+                    }
+                  },
+                  "Property": "uf_cliente"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "dim_agencias.Nome da Agência"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
     "objects": {
       "columnHeaders": [
         {
