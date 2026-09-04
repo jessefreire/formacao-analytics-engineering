@@ -325,11 +325,11 @@ SELECT * FROM cte2;
 ### Arquivos Oficiais
 | Tipo | Arquivo |
 |------|---------|
-| Vídeos das aulas (**fora do git**) | 13× `ACA_FADA_M9_A01..A13.mp4` |
-| Vídeos — Claude for AE (**fora do git**) | 2× `ACA_FEA_CLAUDE_FOR_AE-A0*.mp4` |
-| Vídeos — Intro ao Claude Code (**fora do git**) | 3× `ACA_FEA_IA_INTRO_AO_CLAUDE_CODE-AULA0*.mp4` |
+| 1 | Intro ao Claude Code — 3× `ACA_FEA_IA_INTRO_AO_CLAUDE_CODE-AULA01..03.mp4` |
+| 2 | Claude for AE — 2× `ACA_FEA_CLAUDE_FOR_AE-A01..A02.mp4` |
+| 3 | Aulas do módulo — 13× `ACA_FADA_M9_A01..A13.mp4` |
 
-> Os 18 MP4 (~32 GB) estão no `.gitignore`. As **transcrições** serão versionadas e são a base do resumo.
+> **Ordem oficial do curso** (confirmada em 04/09/2026): os dois subcursos da FEA vêm **antes** das 13 aulas do FADA. Os 18 MP4 (~32 GB) estão no `.gitignore`; as **transcrições** serão versionadas e são a base do resumo.
 
 ### Resumos Pessoais
 | Arquivo | Descrição |

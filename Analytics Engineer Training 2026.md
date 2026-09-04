@@ -237,9 +237,12 @@ Resumo técnico completo + guia prático ("como pensar na query") estão em `Res
 
 **Status:** vídeos baixados (18 MP4, ~32 GB, fora do git); transcrições e resumo pendentes.
 
-Módulo sobre produtividade com IA aplicada ao trabalho de dados. Além das 13 aulas do módulo
-(`ACA_FADA_M9_A01..A13`), inclui dois subcursos da FEA: **Claude for AE** (2 aulas) e
-**Intro ao Claude Code** (3 aulas).
+Módulo sobre produtividade com IA aplicada ao trabalho de dados. A ordem oficial começa pelos
+dois subcursos da FEA e só depois vai para as aulas do módulo:
+
+1. **Intro ao Claude Code** — 3 aulas (`ACA_FEA_IA_INTRO_AO_CLAUDE_CODE-AULA01..03`)
+2. **Claude for AE** — 2 aulas (`ACA_FEA_CLAUDE_FOR_AE-A01..A02`)
+3. **Aulas do módulo** — 13 aulas (`ACA_FADA_M9_A01..A13`)
 
 *(a preencher a partir das transcrições)*
 

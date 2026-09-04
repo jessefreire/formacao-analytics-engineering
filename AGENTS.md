@@ -344,9 +344,9 @@ banvic-dbt/  ──dbt build --target local──>  dev.duckdb
 ### Módulo 9 — AI-Powered Productivity
 | Tipo | Arquivo |
 |------|---------|
-| **Vídeos (fora do git)** | 13× `ACA_FADA_M9_A01..A13.mp4` (aulas do módulo) |
-| **Vídeos (fora do git)** | 2× `ACA_FEA_CLAUDE_FOR_AE-A0*.mp4` (Claude for AE) |
-| **Vídeos (fora do git)** | 3× `ACA_FEA_IA_INTRO_AO_CLAUDE_CODE-AULA0*.mp4` (Intro ao Claude Code) |
+| **1. Vídeos (fora do git)** | 3× `ACA_FEA_IA_INTRO_AO_CLAUDE_CODE-AULA01..03.mp4` (Intro ao Claude Code) |
+| **2. Vídeos (fora do git)** | 2× `ACA_FEA_CLAUDE_FOR_AE-A01..A02.mp4` (Claude for AE) |
+| **3. Vídeos (fora do git)** | 13× `ACA_FADA_M9_A01..A13.mp4` (aulas do módulo) |
 | **Transcrições** | ⏳ pendente |
 | **Resumo (seu)** | ⏳ pendente — `resumo_modulo9.md` |
 | **Decoreba (seu)** | ⏳ pendente — `decoreba_modulo9.txt` |
