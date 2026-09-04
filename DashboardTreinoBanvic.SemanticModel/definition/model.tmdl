@@ -9,11 +9,9 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["dim_agencias","dim_clientes","dim_datas","fact_transacoes"]
+annotation PBI_QueryOrder = ["dim_agencias","dim_clientes","dim_datas","fact_transacoes","PastaDados"]
 
 annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
-
-ref expression PastaDados
 
 ref table dim_agencias
 ref table dim_clientes
