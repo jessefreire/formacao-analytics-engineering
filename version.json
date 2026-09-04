@@ -1,7 +1,7 @@
 {
-  "sha": "6e3c296ba3e1ac18c512805cb9131a56f1431c6b",
-  "short": "6e3c296",
+  "sha": "2ddcd415f2df537b83ec295db206d6397626626d",
+  "short": "2ddcd41",
   "date": "2026-09-04",
-  "message": "fix: badge de versao compacto (so hash, sem data)",
+  "message": "fix: footer de versao em coluna (badge + botao empilhados)",
   "repo": "jessefreire/formacao-analytics-engineering"
 }

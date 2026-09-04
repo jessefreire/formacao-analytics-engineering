@@ -757,6 +757,7 @@ async function checkRemote() {
 
 // Init
 initTheme();
+initVersion();
 initSidebarState();
 renderNav();
 if (FILES.length) loadFile(FILES[0].id); else document.getElementById('emptyHint').hidden = false;
