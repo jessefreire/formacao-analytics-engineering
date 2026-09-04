@@ -11,7 +11,9 @@ Servidor MCP para modelagem semântica do Power BI (formato PBIP/TMDL) via Analy
    ```
    C:\Users\<seu-usuario>\.vscode-insiders\extensions\analysis-services.powerbi-modeling-mcp-<versao>-win32-x64\server\powerbi-modeling-mcp.exe
    ```
-3. Configurar no `opencode.json` (ver `opencode-mcp-exemplo.json`)
+3. Configurar na sua IDE com IA:
+   - **Claude Code**: usa `.mcp.json` na raiz do projeto (já incluído)
+   - **OpenCode**: configurar em `~/.config/opencode/opencode.json` (ver `mcp-exemplo.json`)
 
 ### Operações Disponíveis (16)
 
@@ -37,9 +39,9 @@ Servidor MCP para modelagem semântica do Power BI (formato PBIP/TMDL) via Analy
 
 ### Arquivos
 
-- `opencode-mcp-exemplo.json` — template de configuração para `~/.config/opencode/opencode.json`
+- `mcp-exemplo.json` — template de configuração (formato OpenCode; para Claude Code ver `.mcp.json` na raiz)
 - `README.md` (este arquivo) — documentação
 
 ### Atenção
 
-> O caminho do executável contém o número de versão da extensão. Se o MCP parar de conectar após atualização, confira o caminho atual com `ls ~/.vscode-insiders/extensions` e ajuste no `opencode.json`.
+> O caminho do executável contém o número de versão da extensão. Se o MCP parar de conectar após atualização, confira o caminho atual com `ls ~/.vscode-insiders/extensions` e ajuste na config da sua IDE.

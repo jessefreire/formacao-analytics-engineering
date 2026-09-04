@@ -1,6 +1,6 @@
 # Skills do Projeto
 
-Skills versionadas neste repositório para uso com OpenCode e Claude Code.
+Skills versionadas neste repositório para uso com qualquer IDE com IA (Claude Code, OpenCode).
 
 ## Skills Incluídas
 
@@ -12,11 +12,9 @@ Skills versionadas neste repositório para uso com OpenCode e Claude Code.
 
 ## Como Usar
 
-### OpenCode
-As skills em `.opencode/skill/` são carregadas automaticamente. Esta pasta `skills/` é um espelho para compartilhamento — copie para `.opencode/skill/` ou referencie diretamente.
+As skills já estão ativas em `.claude/skills/` (Claude Code) e `.opencode/skill/` (OpenCode). Esta pasta `skills/` é o espelho canônico para compartilhamento.
 
-### Claude Code
-Copie a pasta da skill para `~/.claude/skills/`:
+Para uso global (fora deste projeto), copie para `~/.claude/skills/`:
 ```bash
 cp -r skills/ae-fullflow ~/.claude/skills/
 ```

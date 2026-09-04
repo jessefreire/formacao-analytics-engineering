@@ -15,7 +15,7 @@ Formação AE/                        # ← Repositório git local (commit "chor
 ├── GUIA_DBT_BANVIC.md           # Guia prático dbt (local vs Cloud)
 ├── INDICE_MODULOS.md            # Índice consolidado de módulos
 ├── .gitignore                   # Exclui *.pdf, *.zip, Desafio/referências, .agents/
-├── .claude/settings.local.json  # Permissões opencode
+├── .claude/settings.local.json  # Permissões da IDE com IA
 ├── index.html                   # App de visualização de materiais (design Apple)
 ├── files.json                   # Manifest gerado pelo sync
 ├── server.py                    # Servidor local (http://localhost:8765)

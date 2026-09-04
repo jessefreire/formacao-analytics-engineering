@@ -11,7 +11,7 @@ Guia para configurar o ambiente completo de Analytics Engineering usado neste re
 | **Git** | 2.x | https://git-scm.com/ |
 | **VS Code Insiders** | latest | https://code.visualstudio.com/insiders/ |
 | **Power BI Desktop** | latest | https://powerbi.microsoft.com/desktop/ |
-| **OpenCode** | latest | https://opencode.ai/docs/ |
+| **IDE com IA** | latest | OpenCode (https://opencode.ai/docs/) ou Claude Code (https://claude.ai/download) |
 
 ## 1. Python + dbt
 
@@ -61,30 +61,27 @@ default:
 npm install -g @microsoft/powerbi-report-author
 ```
 
-## 4. OpenCode + MCP
+## 4. IDE com IA + MCP
 
-1. Instalar OpenCode: https://opencode.ai/docs/
-2. Configurar MCP em `~/.config/opencode/opencode.json` (ver `mcp/opencode-mcp-exemplo.json`):
-```json
-{
-  "mcp": {
-    "powerbi-modeling-mcp": {
-      "command": [
-        "C:\\Users\\SEU-USUARIO\\.vscode-insiders\\extensions\\analysis-services.powerbi-modeling-mcp-VERSAO-win32-x64\\server\\powerbi-modeling-mcp.exe",
-        "--start"
-      ],
-      "enabled": true,
-      "type": "local"
-    }
-  }
-}
-```
-3. Ajustar `SEU-USUARIO` e `VERSAO` conforme sua máquina
+Escolha sua IDE com IA (ou use ambas):
+
+### Opção A: Claude Code (recomendado)
+1. Instalar: https://claude.ai/download
+2. O MCP é configurado via `.mcp.json` na raiz do projeto (já incluído)
+3. Skills do projeto em `.claude/skills/` (já incluídas)
+
+### Opção B: OpenCode
+1. Instalar: https://opencode.ai/docs/
+2. Configurar MCP em `~/.config/opencode/opencode.json` (ver `mcp/mcp-exemplo.json`)
+3. Skills do projeto em `.opencode/skill/` (já incluídas)
+
+### Configuração MCP (ambas as IDEs)
+Ajustar `SEU-USUARIO` e `VERSAO` conforme sua máquina. Ver `mcp/README.md` para detalhes.
 
 ## 5. Skills
 
 ### Skills do projeto (já no repo)
-Estão em `skills/` e `.opencode/skill/`:
+Estão em `skills/`, `.claude/skills/` e `.opencode/skill/`:
 - `ae-fullflow` — fluxo AE completo
 - `ae_materials_app` — sync de materiais
 - `dbt-packages-tests` — lições dbt
@@ -114,8 +111,9 @@ dbt debug
 # Power BI CLI
 powerbi-report-author --version
 
-# OpenCode
-opencode --version
+# IDE com IA (uma das duas)
+opencode --version  # OpenCode
+claude --version    # Claude Code
 
 # Git
 git status
@@ -125,11 +123,14 @@ git status
 
 ```
 Formação AE/
-├── skills/              # Skills versionadas (espelho de .opencode/skill/)
+├── skills/              # Skills versionadas (espelho)
 ├── mcp/                 # Config e docs do MCP
 ├── INSTALACAO.md        # Este arquivo
 ├── AGENTS.md            # Guia do projeto + boas práticas
-├── .opencode/skill/     # Skills ativas do OpenCode
+├── CLAUDE.md            # Contexto para Claude Code
+├── .claude/skills/      # Skills ativas (Claude Code)
+├── .opencode/skill/     # Skills ativas (OpenCode)
+├── .mcp.json            # MCP para Claude Code
 ├── DashboardTreinoBanvic.pbip  # Projeto Power BI
 ├── dados_treino/        # CSVs para Power BI
 ├── banvic-dbt/          # Projeto dbt (repo aninhado)

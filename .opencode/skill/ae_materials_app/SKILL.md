@@ -21,7 +21,7 @@
 ```bash
 # Na raiz do projeto (Formação AE/)
 git init  # se ainda não tiver
-# A skill já está em .opencode/skill/ae_materials_app/
+# A skill já está em skills/, .claude/skills/ e .opencode/skill/ae_materials_app/
 ```
 
 ---
