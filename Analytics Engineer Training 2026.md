@@ -205,6 +205,11 @@ Para estudar os PDFs/MDs do curso sem depender de pastas, montei um app HTML loc
 
 ## Conexões com o Desafio Final (dbt + Power BI)
 
+> ⚠️ **Correção de escopo (04/09/2026):** o desafio final é **AdventureWorks**, não BanVic.
+> O BanVic foi o banco de treino do curso. As notas abaixo valem como **método** (definir
+> KPIs antes de modelar, análise explicativa em vez de exploratória); os exemplos de tabela
+> e domínio precisam ser relidos com o briefing na mão.
+
 Notas soltas para guiar o desafio quando chegar a hora:
 
 - O quadro "Plataforma de dados → Produtos de dados" do Módulo 1 já mapeia onde cada ferramenta entra: **dbt** = Engenheiro de Analytics (Data Marts), **Power BI** = Dashboards (Analista de Dados).

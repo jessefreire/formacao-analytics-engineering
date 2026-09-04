@@ -239,7 +239,10 @@ banvic-dbt/  ──dbt build --target local──>  dev.duckdb
 
 ---
 
-## Checklist de Entrega do Desafio Final
+## Trilha Prática do Curso (BanVic) — concluída
+
+> Estes itens são o **treino** feito ao longo dos módulos, com os dados fictícios do
+> BanVic. Não confundir com o desafio final, que usa outro banco (ver seção seguinte).
 
 - [x] Fork `techindicium/banvic-dbt` → clone local (`jessefreireufc/banvic-dbt`)
 - [x] Ambiente dbt Cloud configurado (Databricks free + catálogo `dev` + ambiente Development) — `dbt debug` OK no Studio; ver `SETUP_AMBIENTE_AULAS.md`
@@ -250,7 +253,29 @@ banvic-dbt/  ──dbt build --target local──>  dev.duckdb
 - [x] `dbt test` passa 100% — **38/38 no local (DuckDB, medido em 04/09/2026)**; o 61/61 registrado antes veio do dbt Cloud/Databricks e o local não reproduz esse número (contagens de teste diferentes entre os dois ambientes; a divergência não foi investigada)
 - [x] Dataset consolidado exportado para Power BI (4 CSVs em `dados_treino/`)
 - [x] Dashboard Power BI publicado (2 páginas, 22 visuais, PBIP format)
+
+---
+
+## Desafio Final (AdventureWorks) — não iniciado
+
+> ⚠️ **Mudança de escopo confirmada pelo briefing (04/09/2026):** o desafio final **não é BanVic**
+> — é **AdventureWorks**. O BanVic foi a base de treino do curso; o desafio é outro banco. O
+> notebook `Desafio/desafio-banvic-an-lise-de-dados-2024.ipynb` é da edição **2024** e não vale
+> como referência de escopo para esta.
+
+- [ ] Ler o briefing oficial e registrar aqui os requisitos (ainda não feito)
 - [ ] Relatório PDF (LaTeX/Overleaf) com insights + recomendações
+
+**Material de AdventureWorks que já existe no repo** (veio do Módulo 10, não do desafio):
+
+| Arquivo | O que é |
+|---|---|
+| `Módulo 10 - Curso SQL Completo (YouTube)/adventureworks_banco_referencia.md` | Referência do schema |
+| `Módulo 10 - Curso SQL Completo (YouTube)/carregar_bancos.md` | Guia de carga, inclui extrair o `.bak` via Docker |
+| `AdventureWorks2017.bak` / `AdventureWorks2025.bak` | ~48 MB cada, **fora do git** (`*.bak`) |
+
+> Nada do desafio foi iniciado. Ao começar, revisar se a trilha BanVic (dbt local em DuckDB,
+> export para CSV, PBIP) se transfere ou se o briefing pede outro caminho.
 
 ---
 
