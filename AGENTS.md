@@ -35,8 +35,8 @@ Formação AE/                        # ← Repositório git local (commit "chor
 ├── Módulo 6 - Dashboards com Power BI/          # Oficial + EN
 ├── Módulo 7 - Estatística aplicada/             # Oficial + EN
 ├── Módulo 8 - Python/                           # Oficial + EN
-├── Módulo 9 - AI-Powered Productivity/         # Módulo oficial do curso (a preencher)
-├── Extra - Curso SQL Completo (YouTube)/       # FORA da grade oficial: Curso SQL (Dev Aprender) + Northwind (CSVs prontos p/ Databricks/Neon) + AdventureWorks (.bak p/ extrair via Docker)
+├── Módulo 9 - AI-Powered Productivity/         # 18 vídeos das aulas (~32 GB, FORA do git); transcrições/resumo pendentes
+├── Módulo 10 - Curso SQL Completo (YouTube)/   # Curso SQL (Dev Aprender) + Northwind (CSVs prontos p/ Databricks/Neon) + AdventureWorks (.bak p/ extrair via Docker)
 ├── Desafio/
 │   ├── desafio-banvic-an-lise-de-dados-2024.ipynb
 │   └── Exemplos repo banvic/    # Referências de terceiros (NÃO versionar)
@@ -51,7 +51,9 @@ Formação AE/                        # ← Repositório git local (commit "chor
 **Seu projeto real** = fork de `https://github.com/techindicium/banvic-dbt` clonado localmente em `banvic-dbt/` (repo git próprio, aninhado; ignorado pelo repo do curso via `.gitignore`).
 **App de materiais** = local, sem build. Sempre abrir via `http://localhost:8765` (não `file://`, por CORS). Sync: `python .opencode/skill/ae_materials_app/sync.py` (o alias moderno `python -m ae_materials_app.sync` NÃO funciona — module fora do path).
 
-> ⚠️ **Fora do git (copiar à mão ao trocar de máquina):** `Extra - Curso SQL Completo (YouTube)/AdventureWorks2017.bak` e `AdventureWorks2025.bak` (~48 MB cada) estão no `.gitignore` (`*.bak`) de propósito. `bancoNorthwind.txt` (1 MB) e tudo mais ESTÁ versionado. Se o usuário estiver configurando uma máquina nova, só esse `.bak` precisa ser copiado manualmente (pendrive/Drive); todo o resto vem do clone. Ao converter o `.bak` para CSV/Databricks (guia em `carregar_bancos.md`), pode descartar o `.bak` se quiser liberar espaço.
+> ⚠️ **Vídeos das aulas fora do git:** os 18 MP4 do `Módulo 9 - AI-Powered Productivity/` (~32 GB, o maior com 7,7 GB) estão no `.gitignore` (`*.mp4` e afins) porque o GitHub rejeita arquivo acima de 100 MB. **Transcrições** (`.txt`, `.srt`, `.vtt`, `.md`) SIM devem ser versionadas — é delas que saem o resumo e o decoreba.
+
+> ⚠️ **Fora do git (copiar à mão ao trocar de máquina):** `Módulo 10 - Curso SQL Completo (YouTube)/AdventureWorks2017.bak` e `AdventureWorks2025.bak` (~48 MB cada) estão no `.gitignore` (`*.bak`) de propósito. `bancoNorthwind.txt` (1 MB) e tudo mais ESTÁ versionado. Se o usuário estiver configurando uma máquina nova, só esse `.bak` precisa ser copiado manualmente (pendrive/Drive); todo o resto vem do clone. Ao converter o `.bak` para CSV/Databricks (guia em `carregar_bancos.md`), pode descartar o `.bak` se quiser liberar espaço.
 
 ---
 
@@ -338,3 +340,24 @@ banvic-dbt/  ──dbt build --target local──>  dev.duckdb
 | **Oficial (MD)** | `[FADA] Conteúdo - Módulo 8 - Python.md` |
 | **Slides EN (PDF)** | `[English _ FADA] Módulo de Python.pptx.pdf` |
 | **Slides EN (MD)** | `[English _ FADA] Módulo de Python.pptx.md` |
+
+### Módulo 9 — AI-Powered Productivity
+| Tipo | Arquivo |
+|------|---------|
+| **Vídeos (fora do git)** | 13× `ACA_FADA_M9_A01..A13.mp4` (aulas do módulo) |
+| **Vídeos (fora do git)** | 2× `ACA_FEA_CLAUDE_FOR_AE-A0*.mp4` (Claude for AE) |
+| **Vídeos (fora do git)** | 3× `ACA_FEA_IA_INTRO_AO_CLAUDE_CODE-AULA0*.mp4` (Intro ao Claude Code) |
+| **Transcrições** | ⏳ pendente |
+| **Resumo (seu)** | ⏳ pendente — `resumo_modulo9.md` |
+| **Decoreba (seu)** | ⏳ pendente — `decoreba_modulo9.txt` |
+
+### Módulo 10 — Curso SQL Completo (YouTube)
+> Material extra, fora da grade oficial da Indicium.
+
+| Tipo | Arquivo |
+|------|---------|
+| **Curso (MD)** | `curso_sql_completo_2025.md` |
+| **Referência Northwind** | `northwind_banco_referencia.md` + `northwind_csv/` |
+| **Referência AdventureWorks** | `adventureworks_banco_referencia.md` |
+| **Guia de carga** | `carregar_bancos.md` |
+| **Dump Northwind** | `bancoNorthwind.txt` |

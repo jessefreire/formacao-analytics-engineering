@@ -35,14 +35,9 @@ MODULES = [
     {"num": 7,  "sort": 7,   "title": "Estatística aplicada à análise de dados"},
     {"num": 8,  "sort": 8,   "title": "Python"},
     {"num": 9,  "sort": 9,   "title": "AI-Powered Productivity"},
-    # Material extra (fora da grade oficial): pasta e rotulo explicitos, porque
-    # o regex ^Modulo N nao casa e o numero 9 ja e do modulo oficial acima.
-    {
-        "num": "Extra", "sort": 9.5,
-        "title": "Curso SQL Completo (YouTube)",
-        "folder": "Extra - Curso SQL Completo (YouTube)",
-        "cat": "Extra - Curso SQL Completo (YouTube)",
-    },
+    # Material extra (fora da grade oficial da Indicium), mas numerado como
+    # modulo 10 pra entrar na ordem natural da navegacao.
+    {"num": 10, "sort": 10,  "title": "Curso SQL Completo (YouTube)"},
 ]
 
 # Padrão de nome de pasta de módulo (usado por find_module_folder)

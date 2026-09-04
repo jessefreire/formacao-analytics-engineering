@@ -317,6 +317,47 @@ SELECT * FROM cte2;
 
 ---
 
+## Módulo 9 — AI-Powered Productivity
+
+**Status:** ⏳ Em andamento (vídeos baixados; transcrições, resumo e decoreba pendentes)
+**Temas previstos:** produtividade com IA aplicada a dados, Claude Code, Claude para Analytics Engineer, uso de agentes no fluxo de trabalho.
+
+### Arquivos Oficiais
+| Tipo | Arquivo |
+|------|---------|
+| Vídeos das aulas (**fora do git**) | 13× `ACA_FADA_M9_A01..A13.mp4` |
+| Vídeos — Claude for AE (**fora do git**) | 2× `ACA_FEA_CLAUDE_FOR_AE-A0*.mp4` |
+| Vídeos — Intro ao Claude Code (**fora do git**) | 3× `ACA_FEA_IA_INTRO_AO_CLAUDE_CODE-AULA0*.mp4` |
+
+> Os 18 MP4 (~32 GB) estão no `.gitignore`. As **transcrições** serão versionadas e são a base do resumo.
+
+### Resumos Pessoais
+| Arquivo | Descrição |
+|---------|-----------|
+| `resumo_modulo9.md` | ⏳ pendente |
+| `decoreba_modulo9.txt` | ⏳ pendente |
+
+---
+
+## Módulo 10 — Curso SQL Completo (YouTube)
+
+**Status:** 📎 Material extra (fora da grade oficial da Indicium)
+**Temas principais:** curso completo de SQL (canal Dev Aprender) + dois bancos de referência para praticar (Northwind e AdventureWorks).
+
+### Arquivos
+| Arquivo | Descrição |
+|---------|-----------|
+| `curso_sql_completo_2025.md` | Notas do curso de SQL |
+| `northwind_banco_referencia.md` | Schema e queries de referência do Northwind |
+| `northwind_csv/` | CSVs prontos para carga (Databricks/Neon) + `northwind_schema_databricks.sql` |
+| `adventureworks_banco_referencia.md` | Referência do AdventureWorks |
+| `carregar_bancos.md` | Guia de carga dos bancos (inclui extrair o `.bak` via Docker) |
+| `bancoNorthwind.txt` | Dump T-SQL do Northwind |
+
+> Os `.bak` do AdventureWorks (~48 MB cada) estão no `.gitignore` — copiar à mão ao trocar de máquina.
+
+---
+
 ## Como Atualizar Este Índice
 
 1. **Ao concluir um módulo:**

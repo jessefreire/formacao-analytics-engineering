@@ -8,7 +8,7 @@
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 22420
+    "size": 24912
   },
   {
     "id": "diario",
@@ -19,7 +19,7 @@
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 17074
+    "size": 18266
   },
   {
     "id": "convencoes",
@@ -52,7 +52,7 @@
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 13973
+    "size": 16125
   },
   {
     "id": "setup",
@@ -506,58 +506,58 @@
     "size": 67138
   },
   {
-    "id": "oficial_extra_adventureworks_banco_referenci",
+    "id": "oficial_10_adventureworks_banco_referenci",
     "label": "adventureworks_banco_referencia.md",
     "title": "AdventureWorks — Referência do Banco de Dados",
-    "path": "Extra - Curso SQL Completo (YouTube)/adventureworks_banco_referencia.md",
-    "cat": "Extra - Curso SQL Completo (YouTube)",
+    "path": "Módulo 10 - Curso SQL Completo (YouTube)/adventureworks_banco_referencia.md",
+    "cat": "Módulo 10 - Curso SQL Completo (YouTube)",
     "done": true,
-    "module": "Extra",
-    "sort": 9.5,
+    "module": "10",
+    "sort": 10,
     "size": 4765
   },
   {
-    "id": "oficial_extra_banconorthwind",
+    "id": "oficial_10_banconorthwind",
     "label": "bancoNorthwind.txt",
     "title": "/*",
-    "path": "Extra - Curso SQL Completo (YouTube)/bancoNorthwind.txt",
-    "cat": "Extra - Curso SQL Completo (YouTube)",
+    "path": "Módulo 10 - Curso SQL Completo (YouTube)/bancoNorthwind.txt",
+    "cat": "Módulo 10 - Curso SQL Completo (YouTube)",
     "done": true,
-    "module": "Extra",
-    "sort": 9.5,
+    "module": "10",
+    "sort": 10,
     "size": 1059068
   },
   {
-    "id": "oficial_extra_carregar_bancos",
+    "id": "oficial_10_carregar_bancos",
     "label": "carregar_bancos.md",
     "title": "Como Carregar os Bancos do Curso (Databricks / Neon)",
-    "path": "Extra - Curso SQL Completo (YouTube)/carregar_bancos.md",
-    "cat": "Extra - Curso SQL Completo (YouTube)",
+    "path": "Módulo 10 - Curso SQL Completo (YouTube)/carregar_bancos.md",
+    "cat": "Módulo 10 - Curso SQL Completo (YouTube)",
     "done": true,
-    "module": "Extra",
-    "sort": 9.5,
+    "module": "10",
+    "sort": 10,
     "size": 6104
   },
   {
-    "id": "oficial_extra_curso_sql_completo_2025",
+    "id": "oficial_10_curso_sql_completo_2025",
     "label": "curso_sql_completo_2025.md",
     "title": "Curso SQL Completo 2025 — Conteúdo do Curso",
-    "path": "Extra - Curso SQL Completo (YouTube)/curso_sql_completo_2025.md",
-    "cat": "Extra - Curso SQL Completo (YouTube)",
+    "path": "Módulo 10 - Curso SQL Completo (YouTube)/curso_sql_completo_2025.md",
+    "cat": "Módulo 10 - Curso SQL Completo (YouTube)",
     "done": true,
-    "module": "Extra",
-    "sort": 9.5,
+    "module": "10",
+    "sort": 10,
     "size": 3687
   },
   {
-    "id": "oficial_extra_northwind_banco_referencia",
+    "id": "oficial_10_northwind_banco_referencia",
     "label": "northwind_banco_referencia.md",
     "title": "Northwind — Referência do Banco de Dados",
-    "path": "Extra - Curso SQL Completo (YouTube)/northwind_banco_referencia.md",
-    "cat": "Extra - Curso SQL Completo (YouTube)",
+    "path": "Módulo 10 - Curso SQL Completo (YouTube)/northwind_banco_referencia.md",
+    "cat": "Módulo 10 - Curso SQL Completo (YouTube)",
     "done": true,
-    "module": "Extra",
-    "sort": 9.5,
+    "module": "10",
+    "sort": 10,
     "size": 4425
   }
 ]

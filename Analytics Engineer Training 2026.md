@@ -9,7 +9,9 @@ Documento vivo de acompanhamento da formação em Análise de Dados (Indicium Ac
 - [Módulo 1 — Introdução à Análise de Dados](#módulo-1--introdução-à-análise-de-dados)
 - [Módulo 2 — SQL](#módulo-2--sql-para-análise-de-dados)
 - [Conexões com o Desafio Final](#conexões-com-o-desafio-final-dbt--power-bi)
-- Módulo 3 e seguintes — *(a preencher assim que estudar/continuar)*
+- [Módulo 9 — AI-Powered Productivity](#módulo-9--ai-powered-productivity)
+- [Módulo 10 — Curso SQL Completo (YouTube)](#módulo-10--curso-sql-completo-youtube) — *extra*
+- Módulos 3 a 8 — *(a preencher assim que estudar/continuar)*
 
 ---
 
@@ -229,3 +231,25 @@ Resumo técnico completo + guia prático ("como pensar na query") estão em `Res
 ---
 
 ## Módulo 3 — *(a preencher)*
+---
+
+## Módulo 9 — AI-Powered Productivity
+
+**Status:** vídeos baixados (18 MP4, ~32 GB, fora do git); transcrições e resumo pendentes.
+
+Módulo sobre produtividade com IA aplicada ao trabalho de dados. Além das 13 aulas do módulo
+(`ACA_FADA_M9_A01..A13`), inclui dois subcursos da FEA: **Claude for AE** (2 aulas) e
+**Intro ao Claude Code** (3 aulas).
+
+*(a preencher a partir das transcrições)*
+
+---
+
+## Módulo 10 — Curso SQL Completo (YouTube)
+
+Material **extra**, fora da grade oficial. Curso de SQL do canal Dev Aprender, com dois bancos
+de referência para praticar: **Northwind** (CSVs prontos para Databricks/Neon) e
+**AdventureWorks** (`.bak` para extrair via Docker). Guia de carga em `carregar_bancos.md`.
+
+*(a preencher conforme estudar)*
+
