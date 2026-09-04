@@ -1,12 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "tp_0",
   "position": {
     "x": 40,
     "y": 560,
     "z": 1000,
+    "height": 30,
     "width": 100,
-    "height": 30
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "textbox",
@@ -14,25 +15,22 @@
       "general": [
         {
           "properties": {
-            "paragraphs": {
-              "expr": {
-                "Paragraphs": [
+            "paragraphs": [
+              {
+                "textRuns": [
                   {
-                    "textRuns": [
-                      {
-                        "value": "'24px'",
-                        "textStyle": {
-                          "fontSize": "12pt",
-                          "color": "#0F7E8C",
-                          "isBold": true
-                        }
-                      }
-                    ],
-                    "horizontalTextAlignment": "left"
+                    "value": "24px",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "12px",
+                      "color": "#0F7E8C",
+                      "isBold": true
+                    }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               }
-            }
+            ]
           }
         }
       ]
@@ -44,25 +42,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'false'"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#EDF1F5'"
-                    }
-                  }
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
                 }
               }
             }
@@ -75,18 +55,41 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'true'"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E0E0E0'"
-                    }
-                  }
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
