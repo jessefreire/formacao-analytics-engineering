@@ -1,0 +1,120 @@
+table fact_transacoes
+	lineageTag: 300d6b50-5034-4301-8bc3-cf15ad436287
+
+	column pk_transacao
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b47b3e22-d28d-42a4-ae9b-7e50d513150c
+		summarizeBy: none
+		sourceColumn: pk_transacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column fk_conta
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 817fe129-252b-4af9-996a-06c29546ca32
+		summarizeBy: none
+		sourceColumn: fk_conta
+
+		annotation SummarizationSetBy = Automatic
+
+	column fk_cliente
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 956f88c3-459c-46b9-8b32-4f8657d761a6
+		summarizeBy: none
+		sourceColumn: fk_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column fk_agencia
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c3938a4f-f6f4-4bbb-bf4b-2b14df797ddc
+		summarizeBy: none
+		sourceColumn: fk_agencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column fk_colaborador
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a560de2a-7c29-4b28-b9cd-56b1cbad75ab
+		summarizeBy: none
+		sourceColumn: fk_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column fk_data
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2d18f911-4f61-4402-8a46-7fcd0b7d78b3
+		summarizeBy: none
+		sourceColumn: fk_data
+
+		annotation SummarizationSetBy = Automatic
+
+	column ts_transacao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4f6cc716-0ff3-4279-a616-fd76873cd8f6
+		summarizeBy: none
+		sourceColumn: ts_transacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_transacao
+		dataType: string
+		lineageTag: 7c672cd3-26c5-429f-85ff-555b85e251e4
+		summarizeBy: none
+		sourceColumn: NOME_TRANSACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_transacao
+		dataType: double
+		formatString: 0
+		lineageTag: 3b95017a-879f-48cd-b571-b35540fa32e2
+		summarizeBy: sum
+		sourceColumn: valor_transacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_conta
+		dataType: int64
+		formatString: 0
+		lineageTag: 0491ccd5-c63f-437b-ace6-12072c10e3e0
+		summarizeBy: none
+		sourceColumn: num_conta
+
+		annotation SummarizationSetBy = Automatic
+
+	column saldo
+		dataType: double
+		lineageTag: db293eb8-1d0b-4984-96fc-b76c518855a4
+		summarizeBy: sum
+		sourceColumn: saldo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_transacoes = m
+		mode: import
+		source =
+				let
+				  Origem = Csv.Document(File.Contents("D:\\Documentos\\Indicium AI\\Formação AE\\dados_treino\\fact_transacoes.csv"), [Delimiter = ",", Columns = 11, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"pk_transacao", Int64.Type}, {"fk_conta", Int64.Type}, {"fk_cliente", Int64.Type}, {"fk_agencia", Int64.Type}, {"fk_colaborador", Int64.Type}, {"fk_data", Int64.Type}, {"ts_transacao", type datetime}, {"NOME_TRANSACAO", type text}, {"valor_transacao", type number}, {"num_conta", Int64.Type}, {"saldo", type number}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

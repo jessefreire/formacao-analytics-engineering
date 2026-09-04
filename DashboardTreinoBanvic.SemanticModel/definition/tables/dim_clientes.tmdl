@@ -1,0 +1,141 @@
+table dim_clientes
+	lineageTag: cd65d244-68b2-443d-bea6-fe3ff51af7da
+
+	column pk_cliente
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a999bd1d-5151-42c0-a406-d746dec04ff5
+		summarizeBy: none
+		sourceColumn: pk_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Cliente'
+		dataType: string
+		lineageTag: cfa663a5-63f2-4fa3-9472-c713726a61e2
+		summarizeBy: none
+		sourceColumn: Nome do Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column email_cliente
+		dataType: string
+		lineageTag: e99325c2-dafd-426a-9e9e-9e5e78adf2de
+		summarizeBy: none
+		sourceColumn: email_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_cliente
+		dataType: string
+		lineageTag: 2405b4ae-fd67-40bd-b23d-666a162063b9
+		summarizeBy: none
+		sourceColumn: TIPO_CLIENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column cpfcnpj_cliente
+		dataType: string
+		lineageTag: f733bb0a-4399-48b3-93b5-e3571d5be667
+		summarizeBy: none
+		sourceColumn: cpfcnpj_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column ts_inclusao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 07f33e75-b14f-4641-b4cd-0a3c3ff237c9
+		summarizeBy: none
+		sourceColumn: ts_inclusao
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_nascimento_cliente
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5bf2f277-a3b1-4b1a-94d6-a4e3ae4c884b
+		summarizeBy: none
+		sourceColumn: data_nascimento_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column endereco_cliente
+		dataType: string
+		lineageTag: 4746f60e-0667-4def-967d-cf4a597a5dc1
+		summarizeBy: none
+		sourceColumn: endereco_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column cep_cliente
+		dataType: string
+		lineageTag: 844819ec-a447-44df-ab90-e4e4141755e9
+		summarizeBy: none
+		sourceColumn: cep_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade_cliente
+		dataType: string
+		lineageTag: 0d4b2508-ac05-45c1-959b-e6c8d4e6ca2b
+		summarizeBy: none
+		sourceColumn: cidade_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column uf_cliente
+		dataType: string
+		lineageTag: 6c488b78-f47a-4c4b-934d-8dac4191bce3
+		summarizeBy: none
+		sourceColumn: uf_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_agencia
+		dataType: int64
+		formatString: 0
+		lineageTag: ebfb04a9-6c51-4709-a357-698fc313a43a
+		summarizeBy: none
+		sourceColumn: cod_agencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_colaborador
+		dataType: int64
+		formatString: 0
+		lineageTag: 79f93d33-b607-4fc2-ac39-44d77851972b
+		summarizeBy: none
+		sourceColumn: cod_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_abertura
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f0c83f4c-786c-40ea-bbed-3c6573c12c02
+		summarizeBy: none
+		sourceColumn: data_abertura
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition dim_clientes = m
+		mode: import
+		source =
+				let
+				  Origem = Csv.Document(File.Contents("D:\\Documentos\\Indicium AI\\Formação AE\\dados_treino\\dim_clientes.csv"), [Delimiter = ",", Columns = 14, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"pk_cliente", Int64.Type}, {"nome_cliente", type text}, {"email_cliente", type text}, {"TIPO_CLIENTE", type text}, {"cpfcnpj_cliente", type text}, {"ts_inclusao", type datetime}, {"data_nascimento_cliente", type date}, {"endereco_cliente", type text}, {"cep_cliente", type text}, {"cidade_cliente", type text}, {"uf_cliente", type text}, {"cod_agencia", Int64.Type}, {"cod_colaborador", Int64.Type}, {"data_abertura", type date}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo de coluna alterado",{{"nome_cliente", "Nome do Cliente"}})
+				in
+				  #"Colunas Renomeadas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

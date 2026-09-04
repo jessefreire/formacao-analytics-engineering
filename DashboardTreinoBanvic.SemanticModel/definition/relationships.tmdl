@@ -1,0 +1,13 @@
+relationship AutoDetected_5b89dc2f-4636-424d-9bea-be494fe46ed1
+	crossFilteringBehavior: bothDirections
+	fromColumn: fact_transacoes.fk_agencia
+	toColumn: dim_agencias.pk_agencia
+
+relationship AutoDetected_0c6b8e16-7804-4db5-bf44-2d2f9d1bd850
+	fromColumn: fact_transacoes.fk_cliente
+	toColumn: dim_clientes.pk_cliente
+
+relationship AutoDetected_f8228a31-1135-4806-8ef7-8ba9d1d8c5fc
+	fromColumn: fact_transacoes.fk_data
+	toColumn: dim_datas.pk_data
+

@@ -1,0 +1,77 @@
+table dim_agencias
+	lineageTag: af48bf27-f900-4bf2-bde5-c5c9c2199e53
+
+	column pk_agencia
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d50346ee-a5a7-49f3-8dfc-69cf9d9b1126
+		summarizeBy: none
+		sourceColumn: pk_agencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome da Agência'
+		dataType: string
+		lineageTag: 409c7f2e-bbf5-438a-b1a4-740000370286
+		summarizeBy: none
+		sourceColumn: Nome da Agência
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_agencia
+		dataType: string
+		lineageTag: ef7d8244-01dd-4c7e-b76e-d84220cb0be1
+		summarizeBy: none
+		sourceColumn: tipo_agencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade_agencia
+		dataType: string
+		lineageTag: f8884e99-203d-418c-a119-1d73cfd50d19
+		summarizeBy: none
+		sourceColumn: cidade_agencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column uf_agencia
+		dataType: string
+		lineageTag: ccdaa3fc-ec3a-444a-a2bf-7c572283e796
+		summarizeBy: none
+		sourceColumn: uf_agencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column endereco
+		dataType: string
+		lineageTag: a94ec6fc-83a4-4028-b3e1-51aa580eea56
+		summarizeBy: none
+		sourceColumn: endereco
+
+		annotation SummarizationSetBy = Automatic
+
+	column abertura
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bbafeeda-a535-415e-a4dd-76ba551ac713
+		summarizeBy: none
+		sourceColumn: abertura
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition dim_agencias = m
+		mode: import
+		source =
+				let
+				  Origem = Csv.Document(File.Contents("D:\\Documentos\\Indicium AI\\Formação AE\\dados_treino\\dim_agencias.csv"), [Delimiter = ",", Columns = 7, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"pk_agencia", Int64.Type}, {"nome_agencia", type text}, {"tipo_agencia", type text}, {"cidade_agencia", type text}, {"uf_agencia", type text}, {"endereco", type text}, {"abertura", type date}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo de coluna alterado",{{"nome_agencia", "Nome da Agência"}})
+				in
+				  #"Colunas Renomeadas"
+
+	annotation PBI_ResultType = Table
+

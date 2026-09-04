@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 75.421244585246527
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "dim_agencias",
+          "nodeLineageTag": "af48bf27-f900-4bf2-bde5-c5c9c2199e53",
+          "size": {
+            "height": 292,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 192,
+            "y": 403
+          },
+          "nodeIndex": "dim_clientes",
+          "nodeLineageTag": "cd65d244-68b2-443d-bea6-fe3ff51af7da",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 602,
+            "y": 418
+          },
+          "nodeIndex": "dim_datas",
+          "nodeLineageTag": "9dba438e-5689-4620-bd38-2997b3c22f36",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 418,
+            "y": 0
+          },
+          "nodeIndex": "fact_transacoes",
+          "nodeLineageTag": "300d6b50-5034-4301-8bc3-cf15ad436287",
+          "size": {
+            "height": 363,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 886,
+            "y": 251.5
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "efa42099-07eb-4b77-83a8-920cb7520c16",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 79.553182037699827,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

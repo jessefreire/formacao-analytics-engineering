@@ -1,0 +1,107 @@
+table dim_datas
+	lineageTag: 9dba438e-5689-4620-bd38-2997b3c22f36
+
+	column pk_data
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 20f13bd3-24cf-4450-9efd-d3c1f5b67e60
+		summarizeBy: none
+		sourceColumn: pk_data
+
+		annotation SummarizationSetBy = Automatic
+
+	column dt_data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f2f82b08-81d7-4cdb-a45a-d42b2ec40ec6
+		summarizeBy: none
+		sourceColumn: dt_data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dia
+		dataType: int64
+		formatString: 0
+		lineageTag: 944e79f5-05d1-4e8b-98ae-470068a279a0
+		summarizeBy: none
+		sourceColumn: dia
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: int64
+		formatString: 0
+		lineageTag: e2c81430-ff2f-4cc0-81d4-b0e7e3a3dbfd
+		summarizeBy: none
+		sourceColumn: mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d74640c-df1e-4750-ad6e-07a122dbaf0e
+		summarizeBy: none
+		sourceColumn: ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column trimestre
+		dataType: int64
+		formatString: 0
+		lineageTag: 3efc3991-8a3f-40d4-8ee0-13c032f5446d
+		summarizeBy: none
+		sourceColumn: trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_da_semana
+		dataType: int64
+		formatString: 0
+		lineageTag: a9f302bf-19bc-4ecd-ac99-f56d9ee1fdd2
+		summarizeBy: none
+		sourceColumn: dia_da_semana
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_final_de_semana
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5704664d-4243-421c-b4fe-99e95cb02812
+		summarizeBy: none
+		sourceColumn: is_final_de_semana
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_ano
+		dataType: int64
+		formatString: 0
+		lineageTag: f8c516f2-4a37-404e-a787-a81f5595aa31
+		summarizeBy: none
+		sourceColumn: dia_ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_dia
+		dataType: string
+		lineageTag: 076a2b6e-8051-459c-84b6-a5ca3bed5044
+		summarizeBy: none
+		sourceColumn: nome_dia
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_datas = m
+		mode: import
+		source =
+				let
+				  Origem = Csv.Document(File.Contents("D:\\Documentos\\Indicium AI\\Formação AE\\dados_treino\\dim_datas.csv"), [Delimiter = ",", Columns = 10, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"pk_data", Int64.Type}, {"dt_data", type date}, {"dia", Int64.Type}, {"mes", Int64.Type}, {"ano", Int64.Type}, {"trimestre", Int64.Type}, {"dia_da_semana", Int64.Type}, {"is_final_de_semana", type logical}, {"dia_ano", Int64.Type}, {"nome_dia", type text}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

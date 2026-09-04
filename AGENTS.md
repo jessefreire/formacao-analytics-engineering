@@ -48,7 +48,7 @@ Formação AE/                        # ← Repositório git local (commit "chor
 **Seu projeto real** = fork de `https://github.com/techindicium/banvic-dbt` clonado localmente em `banvic-dbt/` (repo git próprio, aninhado; ignorado pelo repo do curso via `.gitignore`).
 **App de materiais** = local, sem build. Sempre abrir via `http://localhost:8765` (não `file://`, por CORS). Sync: `python .opencode/skill/ae_materials_app/sync.py` (o alias moderno `python -m ae_materials_app.sync` NÃO funciona — module fora do path).
 
-> ⚠️ **Fora do git (copiar à mão ao trocar de máquina):** `Módulo 9 - Curso SQL Completo (YouTube)/AdventureWorks2017.bak` (~48 MB) está no `.gitignore` (`*.bak`) de propósito. `bancoNorthwind.txt` (1 MB) e tudo mais ESTÁ versionado. Se o usuário estiver configurando uma máquina nova, só esse `.bak` precisa ser copiado manualmente (pendrive/Drive); todo o resto vem do clone. Ao converter o `.bak` para CSV/Databricks (guia em `carregar_bancos.md`), pode descartar o `.bak` se quiser liberar espaço.
+> ⚠️ **Fora do git (copiar à mão ao trocar de máquina):** `Módulo 9 - Curso SQL Completo (YouTube)/AdventureWorks2017.bak` e `AdventureWorks2025.bak` (~48 MB cada) estão no `.gitignore` (`*.bak`) de propósito. `bancoNorthwind.txt` (1 MB) e tudo mais ESTÁ versionado. Se o usuário estiver configurando uma máquina nova, só esse `.bak` precisa ser copiado manualmente (pendrive/Drive); todo o resto vem do clone. Ao converter o `.bak` para CSV/Databricks (guia em `carregar_bancos.md`), pode descartar o `.bak` se quiser liberar espaço.
 
 ---
 
@@ -158,6 +158,14 @@ jupyter notebook  # abre analise_banvic.ipynb ou seu notebook
 4. **Models triviais existentes** — `my_first_dbt_model` e `my_second_dbt_model` são exemplos; **substitua/remova** ao criar models reais
 5. **`_seed_schema.yml`** — define tipos de colunas nas seeds; mantenha sincronizado com CSVs reais
 6. **Databricks Community Edition** — tem limites (horas, cluster size); planeje `dbt run` em horários de baixo uso
+
+### Power BI (PBIP + MCP/skills) — guardrails duramente aprendidos
+- **NUNCA remover `objects.background` (tela de fundo) nem arquivos de `StaticResources/RegisteredResources` sem pedido explícito.** O Desktop faz garbage-collection de recursos "não usados" no save — remover o fundo temporariamente (ex: para debug) **apaga o SVG e o registro de forma irreversível**. Debug visual sem mexer no fundo.
+- **Edição externa × Desktop aberto:** o Desktop guarda cópia própria das consultas Power Query. Editar partições M via XMLA com sessão aberta causa conflito (erro de referência cíclica no refresh). Regra: **M via arquivos TMDL com o Desktop fechado** (ou edite na UI); refresh sempre no Desktop; MCP só para o resto (tipos, colunas, relações, medidas, auditoria).
+- **Refresh via MCP não executa no Desktop** (silent no-op). Refresh de dados = sempre no Desktop.
+- **Deleção de arquivos `.Report` com Desktop aberto ressuscita no save.** Deletar visual = com Desktop fechado + reload antes de qualquer save (ou apague pela UI).
+- **Salvar após cada lote MCP** (medidas, colunas): objetos criados via XMLA vivem só na memória — kill/fechamento sem save perde tudo (caso real: tabela `Medidas` inteira perdida).
+- **Tema Storm nos relatórios de treino** (padrão da aula): o tema base Fluent2 (build 2.155) não renderiza `cardVisual` (cards em branco); Storm renderiza. Suspeita também para outros arquivos com big numbers apagados.
 
 ---
 

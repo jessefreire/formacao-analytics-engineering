@@ -198,7 +198,14 @@ DATABRICKS (DBT) -> POWER BI (PASSO A PASSO)
 - Modelagem: 1:* direcao UNICA, juncao SK -> FK (agencia_sk -> agencia_fk). Ocultar *_sk/*_fk
 - Publicar -> nascem modelo semantico + relatorio no Service. Reconfigurar credencial + refresh agendado
 
->> PEGADINHA: dim_agencias x fact_transacoes em "Ambas" = fato filtra a dimensao (esconde agencias, ambiguidade, lentidao). Padrao = UNICA.
+>> NOTA DA AULA: dim_agencias x fact_transacoes em AMBAS de proposito: com 1 fato so, e seguro e faz o slicer de agencias responder a outros filtros (ex: filtra ano -> lista so agencias com movimento). Risco de Ambas cresce com multiplas fatos (ambiguidade + performance).
+
+MEDIDAS DEFINITIVAS DA AULA (tabela virtual "Medidas", coluna Value oculta)
+--------------------------------------------
+- TRANSACOES_PIX = CALCULATE(DISTINCTCOUNT(fact[pk_transacao]), fact[nome_transacao] IN {"Pix - Realizado","Pix - Recebido","Pix Saque"}) -> 1264 nos nossos dados
+- TRANSACOES_PIX_2021 = mesma + FILTER(dim_datas, dim_datas[ano]=2021) -> 485 (demonstra FILTER entre tabelas)
+- TRANSACOES_DIGITAL = VAR total + VAR digital (CALCULATE ... dim_agencias[Nome da Agência]="Agência Digital") + RETURN DIVIDE(digital,total) -> 0,34 (demonstra VAR/RETURN + DIVIDE)
+- Adaptacao vs aula: pk_transacao no lugar de cod_transacao (nossa PK); resto identico (rename p/ nome comercial paga aqui)
 
 TREINO LOCAL (SEM DATABRICKS)
 --------------------------------------------

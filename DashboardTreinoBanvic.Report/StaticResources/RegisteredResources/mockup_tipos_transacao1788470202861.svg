@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#1A3A44" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas -->
+  <rect x="0" y="0" width="1280" height="720" fill="#EDF1F5"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1280" height="64" fill="#0F7E8C"/>
+  <circle cx="36" cy="32" r="14" fill="#FFFFFF"/>
+  <polygon points="36,22 27,29 45,29" fill="#0F7E8C"/>
+  <rect x="29" y="30" width="3" height="7" fill="#0F7E8C"/>
+  <rect x="34.5" y="30" width="3" height="7" fill="#0F7E8C"/>
+  <rect x="40" y="30" width="3" height="7" fill="#0F7E8C"/>
+  <rect x="27" y="37" width="18" height="2.5" fill="#0F7E8C"/>
+  <text x="58" y="39" font-size="20" font-weight="700" fill="#FFFFFF">banco banvic</text>
+  <text x="640" y="40" font-size="22" font-weight="600" letter-spacing="6" text-anchor="middle" fill="#FFFFFF">TRANSAÇÕES</text>
+  <rect x="978" y="18" width="122" height="28" rx="14" fill="#FFFFFF" opacity="0.28"/>
+  <text x="1039" y="37" font-size="13" font-weight="600" text-anchor="middle" fill="#FFFFFF">Visão geral</text>
+  <rect x="1108" y="18" width="156" height="28" rx="14" fill="#FFFFFF"/>
+  <text x="1186" y="37" font-size="13" font-weight="600" text-anchor="middle" fill="#0F7E8C">Tipo de transação</text>
+
+  <!-- Filter bar -->
+  <rect x="16" y="80" width="1248" height="64" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
+  <g stroke="#0F7E8C" stroke-width="2" stroke-linecap="round">
+    <line x1="40" y1="102" x2="68" y2="102"/><circle cx="52" cy="102" r="4" fill="#FFFFFF"/>
+    <line x1="40" y1="112" x2="68" y2="112"/><circle cx="60" cy="112" r="4" fill="#FFFFFF"/>
+    <line x1="40" y1="122" x2="68" y2="122"/><circle cx="48" cy="122" r="4" fill="#FFFFFF"/>
+  </g>
+  <text x="1232" y="116" font-size="13" font-weight="600" text-anchor="end" fill="#0F7E8C">Limpar filtros</text>
+
+  <!-- Left panel -->
+  <rect x="16" y="160" width="608" height="544" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
+  <text x="36" y="188" font-size="13" font-weight="600" fill="#4E6E77">Quantidade de transações por tipo</text>
+
+  <!-- Right panel -->
+  <rect x="656" y="160" width="608" height="544" rx="8" fill="#FFFFFF" filter="url(#sh)"/>
+  <text x="676" y="188" font-size="13" font-weight="600" fill="#4E6E77">Valor transacionado por tipo</text>
+</svg>

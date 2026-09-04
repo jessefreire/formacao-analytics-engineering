@@ -1,11 +1,11 @@
-﻿pk_agencia,nome_agencia,tipo_agencia,cidade_agencia,uf_agencia
-10,Agência Recife,Física,Recife,PE
-6,Agência Rio de Janeiro,Física,Rio de Janeiro,RJ
-5,Agência Porto Alegre,Física,Porto Alegre,RS
-9,Agência Florianópolis,Física,Florianópolis,SC
-3,Agência Campinas,Física,Campinas,SP
-4,Agência Osasco,Física,Osasco,SP
-8,Agência Jardins,Física,São Paulo,SP
-7,Agência Digital,Digital,São Paulo,SP
-2,Agência Tatuapé,Física,São Paulo,SP
-1,Agência Matriz,Física,São Paulo,SP
+﻿pk_agencia,nome_agencia,tipo_agencia,cidade_agencia,uf_agencia,endereco,abertura
+10,Agência Recife,Física,Recife,PE,"Av. Conselheiro Aguiar, 4432 - Boa Viagem, Recife - PE, 51021-020",2021-10-09
+6,Agência Rio de Janeiro,Física,Rio de Janeiro,RJ,"R. Sen. Dantas, 15 - Centro, Rio de Janeiro - RJ, 20031-202",2015-04-01
+5,Agência Porto Alegre,Física,Porto Alegre,RS,"Av. Bento Gonçalves, 1924 - Partenon, Porto Alegre - RS, 90650-000",2013-12-01
+9,Agência Florianópolis,Física,Florianópolis,SC,"Av. Jorn. Rubéns de Arruda Ramos, 1280 - Centro, Florianópolis - SC, 88015-700",2019-10-09
+3,Agência Campinas,Física,Campinas,SP,"Av. Francisco Glicério, 895 - Vila Lidia, Campinas - SP, 13012-000",2012-03-04
+4,Agência Osasco,Física,Osasco,SP,"Av. Antônio Carlos Costa, 1000 - Bela Vista, Osasco - SP, 06053-014",2013-11-06
+8,Agência Jardins,Física,São Paulo,SP,"Av. Brg. Faria Lima, 2491 - Jardim Paulistano, São Paulo - SP, 01452-000",2018-01-09
+7,Agência Digital,Digital,São Paulo,SP,"Av. Paulista, 1436 - Cerqueira César, São Paulo - SP, 01310-916",2015-08-01
+2,Agência Tatuapé,Física,São Paulo,SP,"Praça Sílvio Romero, 158 - Tatuapé, São Paulo - SP, 03323-000",2010-06-14
+1,Agência Matriz,Física,São Paulo,SP,"Av. Paulista, 1436 - Cerqueira César, São Paulo - SP, 01310-916",2010-01-01

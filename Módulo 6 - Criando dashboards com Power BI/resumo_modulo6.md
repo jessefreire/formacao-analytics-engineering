@@ -53,10 +53,12 @@ O Power BI tem dois componentes principais:
 2. **No Desktop:** Obter Dados → conector **Databricks** → colar **Server hostname** + **HTTP path** (SQL Warehouses → warehouse → *Connection details*).
 3. **Modo:** BanVic é pequeno → **Importação** (DAX/M completos, mais rápido).
 4. **Autenticar** com o token (PAT) → no Navegador, marcar as tabelas dos **marts** (`dim_*`, `fact_*`) → Carregar.
-5. **Na Modelagem:** conferir relacionamentos 1:* com direção **Única** e junção **SK → FK** (`agencia_sk` → `agencia_fk`, `cliente_sk` → `cliente_fk`, `data_sk` → `data_fk`). Ocultar `*_sk`/`*_fk` da exibição.
+5. **Na Modelagem:** conferir relacionamentos 1:* e junção **SK → FK** (`agencia_sk` → `agencia_fk`, `cliente_sk` → `cliente_fk`, `data_sk` → `data_fk`). Direção: a aula configura `dim_agencias` × `fact_transacoes` em **Ambas** (as demais, Única). Ocultar `*_sk`/`*_fk` da exibição.
 6. **Publicar** no workspace → nascem as duas caixas no Service: **modelo semântico** + **relatório**. No Service, reinserir credencial da fonte e configurar atualização agendada.
 
 > **Treino local via CSV (sem Databricks):** o dashboard de treino da aula usa as 4 tabelas via CSV. Gere a partir dos seus marts: `dbt build --target local` em `banvic-dbt/` (roda no DuckDB, profile `~/.dbt/profiles.yml`) → `python export_marts_local.py` → importa em `dados_treino/` via Obter Dados → CSV. Para o desafio final, use o conector Databricks direto (`export_marts_csv.py` gera os mesmos CSVs a partir do warehouse).
+>
+> **Workflow .pbip + MCP (lição aprendida):** o Desktop guarda cópia própria das consultas Power Query — editar o modelo vivo via XMLA com o Desktop aberto causa conflito (erro de referência cíclica no refresh) e o refresh via MCP não executa no Desktop. Regra: **M via arquivos TMDL no disco com o Desktop fechado** (ou edite no Desktop e salve); **refresh (esquema+dados) sempre no Desktop**; MCP para o resto (tipos, ocultar chaves, relacionamentos, medidas DAX, auditoria). Tipos que o importador erra e devem ser corrigidos no M: `cep` → texto (zeros à esquerda!), valores monetários → decimal, `num_conta` numérico + "não resumir". Chaves `pk_*/fk_*`: ocultar + "não resumir".
 
 **Dashboards vs Relatórios no Service:** Dashboard no Service é um painel de alto nível que agrupa relatórios (diferente do dashboard como conceito geral).
 
@@ -383,3 +385,4 @@ CALCULATE(
 - **Medidas DAX vs métricas dbt:** Métricas agregadas (totais, médias, percentuais) são feitas em DAX no Power BI. Transformações de linha e regras de negócio ficam no dbt.
 - **Otimização:** Se o modelo dbt estiver bem construído (Star Schema, granularidade correta), o Power BI terá melhor performance — menos necessidade de DirectQuery ou tabelas calculadas.
 - **Desafio final:** O dashboard Power BI é a entrega final do desafio. Ele deve ser **análise explicativa** (narrativa guiando a conclusão), com KPIs claros, filtros interativos e visualizações que gerem insights sobre os dados do BanVic.
+- **Mapa spec → models (lição aprendida):** as colunas-alvo das dims/fato estão na aula de PBI (`Conteúdo M6:594/620`: dim_clientes com cod_agencia/colaborador/data_abertura; fact com num_conta/saldo), a linhagem no aprofundamento M-IV (`:1025-1031,1431`) e os atributos no diagrama do M3 (`:635`). Checklist antes de exportar os CSVs: (1) staging descartou alguma coluna do seed? (2) intermediate fez todos os joins da spec? (3) intermediate projetou todas as colunas do join? (4) dim_datas tem dia_ano + nome_dia?

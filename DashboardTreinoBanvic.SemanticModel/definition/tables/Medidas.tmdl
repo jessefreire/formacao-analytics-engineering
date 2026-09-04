@@ -1,0 +1,48 @@
+/// Tabela virtual para centralizar as medidas do modelo.
+table Medidas
+	lineageTag: efa42099-07eb-4b77-83a8-920cb7520c16
+
+	/// Quantidade distinta de transações Pix (Realizado, Recebido e Saque). Demonstra CALCULATE com filtro simples.
+	measure TRANSACOES_PIX =
+			CALCULATE(
+			    DISTINCTCOUNT(fact_transacoes[pk_transacao]),
+			    fact_transacoes[nome_transacao] IN {"Pix - Realizado", "Pix - Recebido", "Pix Saque"}
+			)
+		lineageTag: 92dd120e-b39e-49c9-984e-448c276d1cd1
+
+	/// Transações Pix de 2021. Demonstra CALCULATE com FILTER em outra tabela.
+	measure TRANSACOES_PIX_2021 =
+			CALCULATE(
+			    DISTINCTCOUNT(fact_transacoes[pk_transacao]),
+			    fact_transacoes[nome_transacao] IN {"Pix - Realizado", "Pix - Recebido", "Pix Saque"},
+			    FILTER(dim_datas, dim_datas[ano] = 2021)
+			)
+		lineageTag: 819f64bf-d491-4549-b4c0-4ed0efaf0401
+
+	/// Proporção do valor transacionado na Agência Digital. Demonstra VAR/RETURN e DIVIDE.
+	measure TRANSACOES_DIGITAL =
+			VAR Total_transacao = SUM(fact_transacoes[valor_transacao])
+			VAR Transacao_digital =
+			    CALCULATE(
+			        SUM(fact_transacoes[valor_transacao]),
+			        dim_agencias[Nome da Agência] = "Agência Digital"
+			    )
+			RETURN
+			    DIVIDE(Transacao_digital, Total_transacao)
+		formatString: 0.00%
+		lineageTag: 7b2d5f6a-459f-423d-96f3-e3f70bb50e7a
+
+	/// Quantidade distinta de transações (medida explícita para os cards e a matriz).
+	measure 'Qtd Transações' = DISTINCTCOUNT(fact_transacoes[pk_transacao])
+		lineageTag: 7d61c0a8-6744-4579-999f-9bb404c1cf53
+
+	column Value
+		isHidden
+		lineageTag: d038b666-cce9-4aff-bbec-77d25efcef68
+		isNameInferred
+		sourceColumn: [Value]
+
+	partition Medidas = calculated
+		mode: import
+		source = {BLANK()}
+

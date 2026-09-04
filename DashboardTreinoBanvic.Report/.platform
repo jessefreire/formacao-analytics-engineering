@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "DashboardTreinoBanvic"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "eb63b2e0-2832-463b-907b-8b74cff2626d"
+  }
+}
