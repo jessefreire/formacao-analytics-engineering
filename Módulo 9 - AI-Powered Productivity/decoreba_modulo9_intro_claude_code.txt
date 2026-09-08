@@ -169,6 +169,22 @@ MCP (MODEL CONTEXT PROTOCOL)
    O MCP do GitHub foi feito pelo GitHub. Nao escreva chamada de API pra
    gerenciar pull request se o MCP oficial ja abstrai isso.
 
+OS 4 TRANSPORTES DE MCP  [NAO ESTA NA AULA - CAI NO QUIZ]
+--------------------------------------------
+  HTTP      -> remoto (nuvem)   ** RECOMENDADO PRA SERVICOS REMOTOS **
+  SSE       -> remoto           DESCONTINUADO (use HTTP onde houver)
+  stdio     -> processo LOCAL   padrao pra ferramenta local
+  WebSocket -> remoto bidirecional persistente, suportado mas nicho
+
+  claude mcp add --transport http notion https://mcp.notion.com/mcp
+
+>> PEGADINHA: SSE EXISTE E FUNCIONA - mas nao e o recomendado.
+   A pergunta nao e o que e SUPORTADO, e o que e RECOMENDADO HOJE.
+   SSE foi o transporte remoto ORIGINAL do MCP e virou legado;
+   HTTP (Streamable HTTP) substituiu por ser mais suportado.
+   Material antigo na internet ainda ensina SSE -> dai vem a confusao.
+   Os MCPs deste repo (.mcp.json) usam stdio: sao processos locais.
+
 LSP (LANGUAGE SERVER PROTOCOL)
 --------------------------------------------
 - Servidor de linguagem dando inteligencia de codigo EM TEMPO REAL

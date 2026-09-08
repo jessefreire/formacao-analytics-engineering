@@ -210,6 +210,34 @@ O argumento de economia é direto: o MCP do GitHub foi feito pelo GitHub. Não f
 escrever chamada de API para gerenciar pull request e criar repositório quando o MCP oficial já
 abstrai isso. **Reutilize em vez de reimplementar.**
 
+### Os transportes — como o Claude Code conversa com o servidor
+
+> ⚠️ **Não coberto na aula, cobrado no quiz.** A aula trata MCP só no nível conceitual
+> ("existe MCP pra tudo, reutilize") e nunca menciona transporte. O conteúdo abaixo vem da
+> documentação oficial (`code.claude.com/docs/en/mcp`), não do vídeo.
+
+Um servidor MCP pode rodar na sua máquina ou na nuvem, e o **transporte** é o canal por onde as
+chamadas passam. São quatro:
+
+| Transporte | Onde roda | Situação |
+|---|---|---|
+| **HTTP** | remoto (nuvem) | ✅ **recomendado para serviços remotos** |
+| **SSE** (Server-Sent Events) | remoto | ⚠️ **descontinuado** — use HTTP onde houver |
+| **stdio** | processo local na sua máquina | padrão para ferramentas locais |
+| **WebSocket** | remoto, conexão bidirecional persistente | suportado, nicho |
+
+```bash
+claude mcp add --transport http notion https://mcp.notion.com/mcp
+```
+
+**Pegadinha:** SSE **existe** e ainda funciona — a pergunta não é sobre o que é suportado, e sim
+sobre o que é *recomendado hoje*. SSE foi o transporte remoto original do MCP e virou legado;
+HTTP (*Streamable HTTP*) o substituiu por ser mais amplamente suportado. Material antigo na
+internet ainda ensina SSE como o caminho remoto, e é daí que vem a confusão.
+
+> Os MCPs deste repo (ver `.mcp.json`) usam **stdio** — o `powerbi-modeling-mcp` é processo
+> local. Transporte remoto só aparece quando você conecta um serviço de nuvem.
+
 **LSP (Language Server Protocol)** aparece de passagem: servidores de linguagem dando inteligência
 de código em tempo real, sem parsing manual. A aula é transparente ao dizer que o instrutor tem
 pouca experiência com isso. A distinção útil que fica: MCP é ferramenta que você invoca; LSP é
