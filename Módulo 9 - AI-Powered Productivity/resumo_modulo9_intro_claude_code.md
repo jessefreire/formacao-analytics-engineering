@@ -185,6 +185,44 @@ O `matcher` aceita alternativa (`Write|Edit`) e o comando recebe o arquivo em `$
 **silêncio**: não bloqueia nada e você não fica sabendo. Se o seu hook de segurança sai com 1,
 ele não está protegendo nada.
 
+### Os dois canais: como o hook fala com o Claude
+
+> Complemento fora da aula — necessário para entender a pegadinha acima.
+
+Todo processo no sistema operacional nasce com três canais:
+
+| Canal | Nº | Para que serve |
+|---|---|---|
+| `stdin` | 0 | entrada — o que o programa **lê** |
+| `stdout` | 1 | saída normal — o **resultado** do programa |
+| `stderr` | 2 | saída de erro — **mensagens sobre** a execução |
+
+A separação existe para que o resultado possa ser encanado sem que as mensagens sujem o cano:
+em `grep "erro" log.txt > resultado.txt`, se o arquivo não existir, o aviso precisa aparecer na
+**sua tela** e não dentro do `resultado.txt`. A régua: **`stdout` é o dado, `stderr` é o
+comentário sobre o dado.**
+
+Isso explica o desenho do hook. Ele precisa comunicar duas coisas diferentes:
+
+- **a decisão** → pelo *exit code* (`exit 2` bloqueia)
+- **o motivo** → pelo *stderr* (o texto que você vê)
+
+```bash
+#!/bin/bash
+if grep -q "\.env" <<< "$CLAUDE_TOOL_INPUT"; then
+  echo "Bloqueado: leitura de .env nao e permitida neste projeto." >&2
+  exit 2
+fi
+```
+
+O `>&2` é o que joga a mensagem no canal 2. **Sem ele o `echo` vai para `stdout`, e os dois
+canais têm destinos diferentes:** `stdout` de hook é dado que pode voltar como contexto para o
+modelo; `stderr` é mensagem para o **humano**. Um hook que bloqueia sem escrever em `stderr`
+funciona, mas deixa você olhando uma ação que simplesmente não aconteceu, sem dizer por quê.
+
+**Pegadinha de shell:** `>&2` (redireciona para o canal 2) é diferente de `> 2` (cria um arquivo
+chamado `2`). O `&` significa "o descritor número 2", não "o arquivo 2".
+
 **Pegadinha:** o hook de `PostToolUse` com `ruff format` só funciona se o `ruff` estiver instalado
 no ambiente. Hook que chama ferramenta externa herda a dependência dela.
 

@@ -147,6 +147,39 @@ Configuracao em settings.json:
    qualquer outro nao-zero    -> falha SILENCIOSA: nao bloqueia e voce nao sabe
    Hook de seguranca que sai com 1 NAO esta protegendo nada.
 
+OS DOIS CANAIS: COMO O HOOK FALA  [complemento fora da aula]
+--------------------------------------------
+Todo processo nasce com 3 canais:
+  stdin   canal 0  -> entrada, o que o programa LE
+  stdout  canal 1  -> saida normal, o RESULTADO
+  stderr  canal 2  -> saida de erro, MENSAGENS SOBRE a execucao
+
+- Por que separado: pra poder encanar o resultado sem sujar o cano.
+  grep "erro" log.txt > resultado.txt  -> se o arquivo nao existe, o aviso
+  tem que ir pra SUA TELA, nao pro resultado.txt
+- REGUA: stdout e o DADO, stderr e o COMENTARIO SOBRE o dado
+
+O hook comunica DUAS coisas diferentes:
+  a DECISAO -> pelo exit code   (exit 2 bloqueia)
+  o MOTIVO  -> pelo stderr      (o texto que voce ve)
+
+  #!/bin/bash
+  if grep -q "\.env" <<< "$CLAUDE_TOOL_INPUT"; then
+    echo "Bloqueado: leitura de .env nao e permitida." >&2
+    exit 2
+  fi
+
+>> SEM O >&2 O echo VAI PRO stdout, E O DESTINO E OUTRO
+   stdout de hook -> dado que pode voltar como CONTEXTO pro modelo
+   stderr de hook -> mensagem pro HUMANO
+   Hook que bloqueia sem stderr funciona, mas voce fica olhando uma acao
+   que nao aconteceu sem saber por que.
+
+>> PEGADINHA DE SHELL: >&2 nao e o mesmo que > 2
+   >&2  -> redireciona pro CANAL 2
+   > 2  -> cria um ARQUIVO chamado "2"
+   O & quer dizer "o descritor numero 2", nao "o arquivo 2".
+
 OS 4 USOS DE HOOK (dos slides):
   Validacao e bloqueio -> PreToolUse  -> impede tool proibida (ler .env)
   Notificacao          -> Stop        -> avisa no Slack/Teams em tarefa longa

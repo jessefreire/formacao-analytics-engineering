@@ -171,6 +171,8 @@ Para estudar os PDFs/MDs do curso sem depender de pastas, montei um app HTML loc
 - Atribuição sem espaço no `=`: `nome="Carlos"`; uso: `$nome` ou `${nome}`.
 - Command substitution: `` `comando` `` (sintaxe antiga) ou `$(comando)` (preferível) — captura saída de um comando numa variável.
 - Redirecionamento: `>` (sobrescreve), `>>` (acrescenta), `<` (entrada), `2>` (só erros/stderr), `&>` (saída + erro).
+- Os números vêm dos **três canais** que todo processo tem: `stdin` (0, entrada), `stdout` (1, o resultado) e `stderr` (2, mensagens sobre a execução). São separados para o resultado poder ser encanado sem que as mensagens sujem o cano — `stdout` é o dado, `stderr` é o comentário sobre o dado.
+- Para **escrever** em stderr dentro de um script: `echo "mensagem" >&2`. Cuidado: `>&2` é o canal 2; `> 2` cria um arquivo chamado `2`. Isso importa em hook do Claude Code, onde stderr é o canal do aviso ao usuário (ver Módulo 9).
 
 **Cálculos**
 - Bash só faz inteiros nativamente: `$((5 + 3))`, `let x=5+3`.
