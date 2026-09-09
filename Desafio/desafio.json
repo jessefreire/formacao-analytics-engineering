@@ -3,7 +3,7 @@
     "id": "kpis",
     "etapa": 1,
     "titulo": "KPIs e perguntas de negócio",
-    "oque": "Pesquisar e definir os indicadores relevantes para o negócio da Adventure Works, propor quais vão para o dashboard e justificar cada escolha. É o insumo de todas as etapas seguintes.",
+    "oque": "Pesquisar e definir os indicadores relevantes para o negocio da Adventure Works, propor quais vao para o dashboard e justificar cada escolha. Organizado como as 6 perguntas do briefing (as ancoras) mais 14 aprofundamentos que nascem delas, codificados a.1 ... f.2 pra a origem ficar visivel. E o insumo de todas as etapas seguintes.",
     "formato": "Documento (markdown → entra na apresentação final)",
     "depende_de": []
   },
