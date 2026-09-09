@@ -1,0 +1,124 @@
+[
+  {
+    "id": "kpis",
+    "etapa": 1,
+    "titulo": "KPIs e perguntas de negócio",
+    "oque": "Pesquisar e definir os indicadores relevantes para o negócio da Adventure Works, propor quais vão para o dashboard e justificar cada escolha. É o insumo de todas as etapas seguintes.",
+    "formato": "Documento (markdown → entra na apresentação final)",
+    "depende_de": []
+  },
+  {
+    "id": "eda",
+    "etapa": 2,
+    "titulo": "Análise exploratória",
+    "oque": "Notebook em Python ou SQL com código, gráficos e comentário sobre cada insight. Precisa explicar como os insights ajudaram a entender o dataset.",
+    "formato": "Notebook (.ipynb)",
+    "depende_de": [
+      "kpis"
+    ]
+  },
+  {
+    "id": "modelo_conceitual",
+    "etapa": 3,
+    "titulo": "Modelo conceitual do DW",
+    "oque": "Fato e dimensões necessárias para responder as 6 perguntas obrigatórias, indicando as tabelas-fonte de cada uma. Consome as três decisões da Etapa 1: bridge do motivo de venda, grão da fato e leitura de \"Promotion\".",
+    "formato": "PDF (sugestão: draw.io)",
+    "depende_de": [
+      "kpis",
+      "eda"
+    ]
+  },
+  {
+    "id": "dw_dbt_setup",
+    "etapa": 4,
+    "titulo": "DW na nuvem + dbt",
+    "oque": "Subir o data warehouse e configurar o dbt. Antes disso é preciso ingerir os dados do Adventure Works seguindo o tutorial do repositório oficial, usando somente o schema adventure_works.",
+    "formato": "Databricks Free Edition + dbt Cloud",
+    "depende_de": []
+  },
+  {
+    "id": "dbt_transform",
+    "etapa": 5,
+    "titulo": "Transformação em dbt",
+    "oque": "Modelos com documentação de tabelas e colunas, testes de source, testes de chave primária em fato e dimensões, e testes de qualidade. Aqui entra o teste de aceite do CEO: vendas brutas de 2011 = US$ 12.646.112,16.",
+    "formato": "Projeto dbt",
+    "depende_de": [
+      "modelo_conceitual",
+      "dw_dbt_setup"
+    ]
+  },
+  {
+    "id": "repo_github",
+    "etapa": 5,
+    "titulo": "Repositório no GitHub",
+    "oque": "O código de transformação hospedado em repositório público, com o link entregue num arquivo de texto na pasta de submissão.",
+    "formato": "Link (acesso público obrigatório)",
+    "depende_de": [
+      "dbt_transform"
+    ]
+  },
+  {
+    "id": "mockup",
+    "etapa": 6,
+    "titulo": "Mockup do dashboard",
+    "oque": "Rascunho do dashboard baseado na pesquisa de KPIs e nos insights da exploratória, respeitando boas práticas de visualização e storytelling.",
+    "formato": "JPEG (o briefing pede Figma — confirmar se a ferramenta é livre)",
+    "depende_de": [
+      "kpis",
+      "eda"
+    ]
+  },
+  {
+    "id": "dashboard",
+    "etapa": 7,
+    "titulo": "Dashboard",
+    "oque": "Seguindo a lógica do mockup e respondendo no mínimo as 6 perguntas obrigatórias. Um dashboard completo e bem estruturado também pesa na nota de BI.",
+    "formato": "PBIX com medidas DAX documentadas, ou Databricks AI/BI (link + JSON)",
+    "depende_de": [
+      "mockup",
+      "dbt_transform"
+    ]
+  },
+  {
+    "id": "regras_negocio",
+    "etapa": 8,
+    "titulo": "Documentação das regras de negócio",
+    "oque": "Onde moram as decisões que não são óbvias no código: a leitura de \"Promotion\", o tratamento do motivo de venda muitos-para-muitos, a definição de vendas brutas e a armadilha do desconto já embutido no linetotal.",
+    "formato": "Documento",
+    "depende_de": [
+      "dbt_transform"
+    ]
+  },
+  {
+    "id": "slides",
+    "etapa": 9,
+    "titulo": "Apresentação final",
+    "oque": "Etapas do projeto, argumentação sobre cultura data-driven, insights da exploratória, justificativa dos indicadores e dos visuais, passeio pelo dashboard e recomendações acionáveis para o cliente.",
+    "formato": "Slides (PDF/JPEG na pasta)",
+    "depende_de": [
+      "dashboard",
+      "regras_negocio"
+    ]
+  },
+  {
+    "id": "video",
+    "etapa": 10,
+    "titulo": "Vídeo de apresentação",
+    "oque": "Demonstrar dbt run, dbt test --select source:*, dbt test, a fato com os joins das dimensões, os testes de dados e o dashboard em ação com os filtros. O briefing se contradiz na duração: \"no more than 10 minutes\" no passo 10 e \"3 to 5 minutes\" na submissão.",
+    "formato": "Link (YouTube/Drive/Dropbox, acesso público)",
+    "depende_de": [
+      "slides"
+    ]
+  },
+  {
+    "id": "planejamento",
+    "etapa": 11,
+    "titulo": "Planejamento do projeto (opcional)",
+    "oque": "Objetivos, stakeholders e riscos/contingências, usando o template do briefing. Vale pela argumentação com a diretora comercial cética, que é critério de avaliação.",
+    "formato": "PDF — OPCIONAL",
+    "depende_de": [
+      "kpis"
+    ],
+    "opcional": true
+  }
+]

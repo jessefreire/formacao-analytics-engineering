@@ -40,7 +40,22 @@ Módulo 9 - AI-Powered Productivity/*.jpg
 Módulo 9 - AI-Powered Productivity/*.png
 
 # ==== Repos de referência do desafio (cópias de terceiros) ====
+# A pasta foi movida para dentro de "Legado ...", então o caminho antigo
+# deixou de casar. As duas regras ficam: a de baixo cobre o novo lugar.
 Desafio/Exemplos repo banvic/
+Desafio/Legado pois não é com banvic/
+
+# ==== Desafio: material INTERNO da Indicium (repo é público — não versionar) ====
+# Playbooks de processo da consultoria, não material do curso. Ficam só no disco,
+# e por isso também não entram no files.json (que é versionado e publicaria os
+# títulos + criaria link morto em qualquer clone).
+Desafio/[[]AE[]] Referencial central de processos/
+Desafio/*.png
+Desafio/*.xlsx
+
+# ==== Desafio: repos clonados e o repo de entrega (git próprio, aninhado) ====
+Desafio/indicium-code-style/
+Desafio/desafio-adventureworks/
 
 # ==== Projeto dbt do desafio (repo git próprio, aninhado) ====
 /banvic-dbt/

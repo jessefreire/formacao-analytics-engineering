@@ -38,6 +38,12 @@ MODULES = [
     # Material extra (fora da grade oficial da Indicium), mas numerado como
     # modulo 10 pra entrar na ordem natural da navegacao.
     {"num": 10, "sort": 10,  "title": "Curso SQL Completo (YouTube)"},
+    # Desafio final: nao e modulo do curso, entao usa `folder` explicito e `cat`
+    # proprio e nunca passa pelo MODULE_FOLDER_RE. O glob e *.md/*.txt NAO
+    # recursivo, o que aqui e proposital: o referencial interno da Indicium fica
+    # em subpasta e precisa continuar fora do files.json (que e versionado).
+    {"num": "Desafio", "sort": 99, "cat": "Desafio Final",
+     "folder": "Desafio", "title": ""},
 ]
 
 # Padrão de nome de pasta de módulo (usado por find_module_folder)
@@ -145,6 +151,24 @@ def discover_files() -> List[Dict[str, Any]]:
                 "size": md_file.stat().st_size,
             })
 
+    # --- Tela de acompanhamento do desafio (entrada sintetica, nao vem de glob) ---
+    # A guarda de existencia importa: files.json e versionado, e um clone sem o
+    # arquivo nao pode carregar link morto na navegacao.
+    tracker = ROOT / "Desafio" / "desafio.json"
+    if tracker.exists():
+        files.append({
+            "id": "desafio",
+            "label": "Acompanhamento",
+            "title": "Desafio Final — AdventureWorks",
+            "path": tracker.relative_to(ROOT).as_posix(),
+            "cat": "Desafio Final",
+            "view": "desafio",
+            "done": True,
+            "module": "desafio",
+            "sort": 98,   # 98 < 99 => a tela vem antes do briefing, mesma secao
+            "size": tracker.stat().st_size,
+        })
+
     # Ordena: Config primeiro, depois por sort do módulo, depois tipo (oficial > pessoal > EN), depois label
     def type_order(fid):
         if fid.startswith("oficial"):
@@ -234,10 +258,12 @@ def render_index(files: List[Dict[str, Any]]) -> str:
     lines = ["const FILES = ["]
     for f in files:
         done = "true" if f["done"] else "false"
+        # `view` sai so em quem tem, pra entrada normal nao ganhar campo novo
+        view = f' view: "{escape_js(f["view"])}",' if f.get("view") else ""
         lines.append(
             f'  {{ id: "{f["id"]}", label: "{escape_js(f["label"])}", '
             f'title: "{escape_js(f["title"])}", path: "{escape_js(f["path"])}", '
-            f'cat: "{escape_js(f["cat"])}", done: {done} }},'
+            f'cat: "{escape_js(f["cat"])}",{view} done: {done} }},'
         )
     lines.append("];")
     files_js = "\n".join(lines)

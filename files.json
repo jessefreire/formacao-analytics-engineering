@@ -625,5 +625,39 @@
     "module": "10",
     "sort": 10,
     "size": 4425
+  },
+  {
+    "id": "desafio",
+    "label": "Acompanhamento",
+    "title": "Desafio Final — AdventureWorks",
+    "path": "Desafio/desafio.json",
+    "cat": "Desafio Final",
+    "view": "desafio",
+    "done": true,
+    "module": "desafio",
+    "sort": 98,
+    "size": 4859
+  },
+  {
+    "id": "oficial_desafio_briefing_desafio",
+    "label": "Briefing Desafio.txt",
+    "title": "The certification",
+    "path": "Desafio/Briefing Desafio.txt",
+    "cat": "Desafio Final",
+    "done": true,
+    "module": "Desafio",
+    "sort": 99,
+    "size": 13061
+  },
+  {
+    "id": "oficial_desafio_sugest_o_de_primeiros_pontos_p",
+    "label": "Sugestão de primeiros pontos para estudar.txt",
+    "title": "Sugestão de primeiros pontos para estudar:",
+    "path": "Desafio/Sugestão de primeiros pontos para estudar.txt",
+    "cat": "Desafio Final",
+    "done": true,
+    "module": "Desafio",
+    "sort": 99,
+    "size": 675
   }
 ]

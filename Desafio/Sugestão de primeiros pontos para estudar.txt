@@ -1,0 +1,9 @@
+Sugestão de primeiros pontos para estudar:
+
+1) Como mapear regras e problema de negócio? Também ler sobre a vertical de negócio da projeto que você irá trabalhar.
+2) Como fazer um planejamento de DW? (modelo conceitual, tabelas que precisam ser ingeridas, dicionário de dados., tipos de fato e dimensões, conceito de chaves...)
+3) Como começar a trabalhar em um projeto de dbt? Boas práticas de desenvolvimento...
+4) Saber como fazer commits, como abrir PR e quem deve revisar
+5) Saber como documentar o código e como criar os testes adequados
+6) Saber avaliar agilidade no desenvolvimento, custo e desempenho
+7) Saber como validar dados de forma eficiente

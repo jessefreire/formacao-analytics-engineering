@@ -192,6 +192,10 @@ body {
 .main { flex: 1; overflow-y: auto; padding: clamp(1.5rem, 3vw, 3rem); padding-bottom: 6rem; }
 .main-header { margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
 .main-header-empty { display: flex; align-items: center; gap: 0.5rem; min-height: 2.5rem; }
+/* `display: flex` acima vence o [hidden] { display: none } do navegador, entao o
+   atributo hidden nao surtia efeito: a faixa "Selecione um material" ficava
+   ocupando 40px no topo de TODO material. Mesmo padrao usado no .update-banner. */
+.main-header-empty[hidden] { display: none; }
 .main-header-empty .empty-hint { color: var(--muted); font-size: 0.875rem; }
 
 .main-title {
@@ -311,6 +315,41 @@ body {
 .markdown-body > * + * { margin-top: 0.75rem; }
 .markdown-body h1 { margin-top: 0; }
 .markdown-body table { font-size: var(--fs-sm); }
+
+/* ========== TELA DO DESAFIO ==========
+   Fora do .markdown-body de proposito: as regras de measure clampam os filhos
+   diretos dele em 74ch, e aqui a gente quer a largura do .content (108ch). */
+.dsf-resumo { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; margin-top: var(--sp-2); }
+.dsf-barra { flex: 1 1 200px; height: 6px; min-width: 140px; background: var(--accent-soft); border-radius: 999px; overflow: hidden; }
+.dsf-barra > span { display: block; height: 100%; background: var(--accent); border-radius: 999px; transition: width var(--response) ease; }
+.dsf-contagem { font-size: var(--fs-sm); color: var(--fg-soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dsf-acoes { display: flex; gap: var(--sp-2); }
+.dsf-acao { font-size: var(--fs-xs); padding: var(--sp-1) var(--sp-3); border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--fg-soft); cursor: pointer; font-family: inherit; }
+.dsf-acao:hover { background: var(--accent-soft); border-color: var(--border-strong); }
+
+.dsf-lista { display: flex; flex-direction: column; gap: var(--sp-2); margin-top: var(--sp-6); }
+.dsf-item { display: grid; grid-template-columns: 2.25rem 1fr; gap: var(--sp-1) var(--sp-3); align-items: start;
+            padding: var(--sp-3) var(--sp-4); border: 1px solid var(--border); border-left: 3px solid var(--border-strong);
+            border-radius: 8px; background: var(--card); }
+.dsf-item[data-st="wip"]  { border-left-color: var(--warn-border); background: var(--warn-bg); }
+.dsf-item[data-st="done"] { border-left-color: var(--accent); }
+.dsf-etapa { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: var(--fs-sm); color: var(--muted);
+             font-variant-numeric: tabular-nums; padding-top: 0.1rem; }
+.dsf-cab { display: flex; align-items: baseline; gap: var(--sp-2); flex-wrap: wrap; }
+.dsf-titulo { font-size: var(--fs-body); font-weight: 600; color: var(--fg); }
+.dsf-item[data-st="done"] .dsf-titulo { color: var(--fg-soft); }
+.dsf-item[data-st="wip"] .dsf-titulo { color: var(--warn-fg); }
+.dsf-opcional { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);
+                border: 1px solid var(--border); border-radius: 999px; padding: 0 var(--sp-2); }
+.dsf-oque { grid-column: 2; font-size: var(--fs-sm); line-height: 1.6; color: var(--fg-soft); max-width: var(--measure); }
+.dsf-meta { grid-column: 2; font-size: var(--fs-xs); color: var(--muted); }
+.dsf-trava { color: var(--warn-fg); }
+.dsf-est { grid-column: 2; display: flex; gap: var(--sp-1); margin-top: var(--sp-1); }
+.dsf-bt { font-size: var(--fs-xs); padding: var(--sp-1) var(--sp-3); border-radius: 999px; border: 1px solid var(--border);
+          background: transparent; color: var(--fg-soft); cursor: pointer; font-family: inherit; }
+.dsf-bt:hover { border-color: var(--border-strong); }
+.dsf-bt[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 500; }
+.dsf-aviso { margin-top: var(--sp-6); font-size: var(--fs-xs); color: var(--muted); max-width: var(--measure); }
 
 /* ========== FOCUS VISIBLE ========== */
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -509,7 +548,9 @@ function moduleKey(cat) {
   const m = cat.match(/M[óo]dulo\s+(\d+|IV|[IV]+)/i);
   if (m) return m[1].toUpperCase();
   if (cat === 'Config') return '\u25cf';
-  return cat;
+  // Fallback seguro pra qualquer categoria futura: o chip tem largura de icone,
+  // e o title dele ja carrega o nome completo.
+  return cat.replace(/[^A-Za-zÀ-ÿ0-9]/g, '').slice(0, 2).toUpperCase();
 }
 
 function renderNav() {
@@ -610,7 +651,12 @@ function renderContent(file, text) {
   const emptyHint = document.getElementById('emptyHint');
   emptyHint.hidden = true;
   content.hidden = false;
-  
+
+  // Tem de ser return no topo: mais abaixo o isMd embrulharia o JSON num <pre>
+  // e o formatBytes imprimiria o tamanho do arquivo no cabecalho.
+  const custom = file.view && VIEWS[file.view];
+  if (custom) return custom(file, text);
+
   const isMd = file.path.endsWith('.md');
   let html = isMd ? marked.parse(text) : '<pre><code>' + escapeHtml(text) + '</code></pre>';
 
@@ -657,6 +703,141 @@ function renderContent(file, text) {
   });
 }
 
+// ========== TELA DO DESAFIO ==========
+const DSF_KEY = 'ae_desafio_v1';
+const DSF_ESTADOS = [
+  { v: 'todo', rot: 'Nao comecado' },
+  { v: 'wip',  rot: 'Em andamento' },
+  { v: 'done', rot: 'Pronto' },
+];
+
+// localStorage lanca em modo privado e por cota. Um throw aqui mataria o toggle
+// em silencio, entao os dois lados sao tolerantes a falha.
+function dsfLer() {
+  try {
+    const cru = JSON.parse(localStorage.getItem(DSF_KEY) || '{}');
+    const ok = {};
+    const validos = DSF_ESTADOS.map(e => e.v);
+    for (const [k, v] of Object.entries(cru)) ok[k] = validos.includes(v) ? v : 'todo';
+    return ok;
+  } catch (e) { return {}; }
+}
+function dsfGravar(st) {
+  try { localStorage.setItem(DSF_KEY, JSON.stringify(st)); return true; }
+  catch (e) { return false; }
+}
+
+function renderDesafio(file, text) {
+  const content = document.getElementById('content');
+  let itens;
+  try {
+    itens = JSON.parse(text);
+    if (!Array.isArray(itens)) throw new Error('esperava uma lista de entregaveis');
+  } catch (e) {
+    return renderError(file, 'JSON invalido em ' + file.path + ': ' + e.message);
+  }
+
+  // Ids gravados que nao existem mais no JSON sao ignorados, nunca apagados:
+  // um rename revertido volta a funcionar. E o denominador vem do JSON, nunca
+  // das chaves gravadas.
+  const st = dsfLer();
+  const estado = id => st[id] || 'todo';
+  const obrig = itens.filter(i => !i.opcional);
+  const prontos = obrig.filter(i => estado(i.id) === 'done').length;
+  const pct = obrig.length ? Math.round((prontos / obrig.length) * 100) : 0;
+
+  const trava = it => (it.depende_de || [])
+    .filter(d => estado(d) !== 'done')
+    .map(d => (itens.find(x => x.id === d) || {}).titulo || d);
+
+  content.innerHTML = `
+    <header class="main-header">
+      <span class="module-badge">${escapeHtml(file.cat)}</span>
+      <h1 class="main-title">${escapeHtml(file.title || file.label)}</h1>
+      <div class="dsf-resumo">
+        <div class="dsf-barra" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"
+             aria-label="Progresso dos entregaveis obrigatorios"><span style="width:${pct}%"></span></div>
+        <span class="dsf-contagem">${prontos} de ${obrig.length} obrigatorios &middot; ${pct}%</span>
+        <span class="dsf-acoes">
+          <button class="dsf-acao" id="dsfCopiar" type="button">Copiar progresso</button>
+          <button class="dsf-acao" id="dsfImportar" type="button">Importar</button>
+        </span>
+      </div>
+    </header>
+    <div class="dsf-lista">
+      ${itens.map(it => {
+        const s = estado(it.id);
+        const pend = trava(it);
+        return `
+        <div class="dsf-item" data-st="${s}" data-id="${escapeHtml(it.id)}">
+          <span class="dsf-etapa">${escapeHtml(String(it.etapa ?? '-'))}</span>
+          <div class="dsf-cab">
+            <span class="dsf-titulo">${escapeHtml(it.titulo || it.id)}</span>
+            ${it.opcional ? '<span class="dsf-opcional">opcional</span>' : ''}
+          </div>
+          <p class="dsf-oque">${escapeHtml(it.oque || '')}</p>
+          <div class="dsf-meta">${escapeHtml(it.formato || '')}${
+            pend.length ? ' &middot; <span class="dsf-trava">espera: ' + escapeHtml(pend.join(', ')) + '</span>' : ''
+          }</div>
+          <div class="dsf-est" role="group" aria-label="Estado de ${escapeHtml(it.titulo || it.id)}">
+            ${DSF_ESTADOS.map(e => `
+              <button class="dsf-bt" type="button" data-v="${e.v}"
+                      aria-pressed="${s === e.v}">${e.rot}</button>`).join('')}
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+    <p class="dsf-aviso">O progresso fica no navegador (localStorage), nao no git &mdash; e por origem,
+      entao localhost e uma versao publicada nao compartilham marcacao. Use "Copiar progresso"
+      pra guardar.</p>
+  `;
+
+  content.querySelectorAll('.dsf-item').forEach(card => {
+    card.querySelectorAll('.dsf-bt').forEach(bt => {
+      bt.addEventListener('click', () => {
+        const atual = dsfLer();
+        atual[card.dataset.id] = bt.dataset.v;
+        if (!dsfGravar(atual)) {
+          alert('Nao foi possivel gravar o progresso neste navegador (modo privado ou cota cheia).');
+          return;
+        }
+        renderDesafio(file, text);
+      });
+    });
+  });
+
+  document.getElementById('dsfCopiar').addEventListener('click', async (ev) => {
+    const bt = ev.currentTarget;
+    const txt = JSON.stringify(dsfLer(), null, 2);
+    try {
+      await navigator.clipboard.writeText(txt);
+      bt.textContent = 'Copiado';
+      setTimeout(() => { bt.textContent = 'Copiar progresso'; }, 1500);
+    } catch (e) {
+      // Fora de contexto seguro (aberto por IP na rede) a Clipboard API nao existe.
+      window.prompt('Copie o progresso:', txt);
+    }
+  });
+
+  document.getElementById('dsfImportar').addEventListener('click', () => {
+    const cru = window.prompt('Cole o JSON de progresso:');
+    if (!cru) return;
+    try {
+      const novo = JSON.parse(cru);
+      if (typeof novo !== 'object' || novo === null || Array.isArray(novo)) {
+        throw new Error('esperava um objeto');
+      }
+      if (!dsfGravar(novo)) throw new Error('nao foi possivel gravar neste navegador');
+      renderDesafio(file, text);
+    } catch (e) {
+      alert('Nao importei: ' + e.message);
+    }
+  });
+}
+
+// Tabela de despacho: uma tela nova custa uma linha aqui, nada em renderContent.
+const VIEWS = { desafio: renderDesafio };
+
 function renderError(file, msg) {
   const content = document.getElementById('content');
   const emptyHint = document.getElementById('emptyHint');
@@ -676,12 +857,16 @@ function renderError(file, msg) {
 }
 
 function escapeHtml(str) {
-  return str
-    .replace(/&/g, '&')
-    .replace(/</g, '<')
-    .replace(/>/g, '>')
-    .replace(/"/g, '"')
-    .replace(/'/g, "\\'");
+  // Cuidado: as substituicoes tinham virado identidade ('&' -> '&') e a ultima
+  // injetava um backslash-apostrofo literal na pagina. Ficou dormindo porque
+  // nenhum material tinha < & " ' no titulo. A tela do desafio renderiza texto
+  // de JSON, e ai acorda. As entidades abaixo tem de continuar escritas por extenso.
+  return String(str ?? '')
+    .replace(/&/g, '&' + 'amp;')
+    .replace(/</g, '&' + 'lt;')
+    .replace(/>/g, '&' + 'gt;')
+    .replace(/"/g, '&' + 'quot;')
+    .replace(/'/g, '&' + '#39;');
 }
 
 function formatBytes(bytes) {
@@ -716,8 +901,11 @@ document.getElementById('main').addEventListener('click', () => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && sidebarOpen) closeMobileMenu();
   if (e.key === 'b' && e.ctrlKey) { e.preventDefault(); toggleSidebarCollapse(); }
-  if (e.key === 'ArrowLeft' && currentFile) { e.preventDefault(); goPrev(); }
-  if (e.key === 'ArrowRight' && currentFile) { e.preventDefault(); goNext(); }
+  // Seta so navega entre materiais se o foco nao estiver num controle. Sem isso
+  // o toggle de estado do desafio mudava o valor E saltava de pagina no mesmo evento.
+  const emControle = e.target?.closest?.('input,select,textarea,button,[contenteditable]');
+  if (e.key === 'ArrowLeft' && currentFile && !emControle) { e.preventDefault(); goPrev(); }
+  if (e.key === 'ArrowRight' && currentFile && !emControle) { e.preventDefault(); goNext(); }
   if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
     e.preventDefault();
     document.getElementById('nav').querySelector('.nav-link')?.focus();
