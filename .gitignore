@@ -55,6 +55,7 @@ Desafio/*.xlsx
 
 # ==== Desafio: repos clonados e o repo de entrega (git próprio, aninhado) ====
 Desafio/indicium-code-style/
+Desafio/adventureworks-oficial/
 Desafio/desafio-adventureworks/
 
 # ==== Projeto dbt do desafio (repo git próprio, aninhado) ====

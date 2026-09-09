@@ -32,7 +32,7 @@
     "id": "dw_dbt_setup",
     "etapa": 4,
     "titulo": "DW na nuvem + dbt",
-    "oque": "Subir o data warehouse e configurar o dbt. Antes disso é preciso ingerir os dados do Adventure Works seguindo o tutorial do repositório oficial, usando somente o schema adventure_works.",
+    "oque": "Subir o data warehouse e configurar o dbt. Antes disso e preciso ingerir os dados do AdventureWorks a partir do repo oficial (dpavancini/analytics-engineering, pasta AdventureWorks: install.sql + 72 TSV). O briefing manda usar so o schema adventure_works, que nao existe no install.sql — confirmar se e o schema de destino da ingestao.",
     "formato": "Databricks Free Edition + dbt Cloud",
     "depende_de": []
   },
@@ -40,7 +40,7 @@
     "id": "dbt_transform",
     "etapa": 5,
     "titulo": "Transformação em dbt",
-    "oque": "Modelos com documentação de tabelas e colunas, testes de source, testes de chave primária em fato e dimensões, e testes de qualidade. Aqui entra o teste de aceite do CEO: vendas brutas de 2011 = US$ 12.646.112,16.",
+    "oque": "Modelos com documentacao de tabelas e colunas, testes de source, testes de chave primaria em fato e dimensoes, e testes de qualidade. O teste de aceite do CEO ja esta resolvido: vendas brutas de 2011 = sum(unitprice * orderqty) por orderdate = US$ 12.646.112,16. Bom candidato a teste de qualidade: linetotal nao e coluna calculada nesta porta, entao a identidade unitprice*(1-desconto)*qtd vale no dado mas nao e garantida pelo banco.",
     "formato": "Projeto dbt",
     "depende_de": [
       "modelo_conceitual",
