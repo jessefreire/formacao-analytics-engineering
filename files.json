@@ -639,6 +639,17 @@
     "size": 5227
   },
   {
+    "id": "oficial_desafio_briefing_desafio_pt_br",
+    "label": "Briefing Desafio (PT-BR).md",
+    "title": "Desafio Final — Adventure Works",
+    "path": "Desafio/Briefing Desafio (PT-BR).md",
+    "cat": "Desafio Final",
+    "done": true,
+    "module": "Desafio",
+    "sort": 99,
+    "size": 16536
+  },
+  {
     "id": "oficial_desafio_briefing_desafio",
     "label": "Briefing Desafio.txt",
     "title": "The certification",
