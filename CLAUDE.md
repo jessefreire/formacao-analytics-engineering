@@ -40,13 +40,14 @@ Repositório de formação em Analytics Engineering: curso Indicium (módulos 0-
 Além do code style da Indicium (`Desafio/indicium-code-style/`, sqlfluff 1.4.5), vale
 neste repositório:
 
-1. **Nenhuma query sem comentário.** O comentário declara **o que se confere**, **o que
-   se espera ver** e **por que importa**. Em consulta de verificação, declara também
-   **o que fazer se divergir**.
-2. **Valor esperado dentro do SQL.** Quando existe um número de referência, ele entra
-   como coluna `esperado` e o próprio SQL calcula uma coluna `resultado` (`ok`/`DIVERGE`).
-   Quem roda não deveria precisar saber de cor qual é o número certo.
-3. Vale para arquivo versionado, célula de notebook e SQL colado no chat.
+1. **Nenhuma query sem comentário**, incluindo as colocadas no chat. Uma ou duas linhas
+   acima da consulta dizendo **o que se confere** e **qual o valor esperado**.
+2. **Comentário curto.** O objetivo é entender a consulta de relance. Explicação longa
+   vira parágrafo antes de rodar e atrapalha mais do que ajuda — se o contexto for
+   grande, ele vai para o `.md` ou para a célula de markdown, não para dentro do SQL.
+3. Não inflar a consulta para acomodar a conferência. Colunas `esperado`/`resultado`
+   calculadas no SQL cabem em script de verificação dedicado (ver
+   `03-verificacao-da-carga.sql`), não em consulta de conferência rápida.
 
 ## Guardrails Críticos (Power BI)
 
