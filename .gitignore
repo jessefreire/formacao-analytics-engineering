@@ -60,7 +60,9 @@ Desafio/adventureworks-oficial/
 # ==== Entregaveis com marca Indicium (logos de clientes reais) ====
 # Nao vao pro repo publico: nem o .pptx, nem imagem dele.
 Desafio/entregaveis/
-Desafio/desafio-adventureworks/
+# O repo de entrega do desafio passou a ser versionado AQUI, para a equipe puxar
+# junto do resto do material. O git aninhado dele foi movido para .git-backups/.
+.git-backups/
 
 # ==== Projeto dbt do desafio (repo git próprio, aninhado) ====
 /banvic-dbt/
