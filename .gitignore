@@ -56,6 +56,10 @@ Desafio/*.xlsx
 # ==== Desafio: repos clonados e o repo de entrega (git próprio, aninhado) ====
 Desafio/indicium-code-style/
 Desafio/adventureworks-oficial/
+
+# ==== Entregaveis com marca Indicium (logos de clientes reais) ====
+# Nao vao pro repo publico: nem o .pptx, nem imagem dele.
+Desafio/entregaveis/
 Desafio/desafio-adventureworks/
 
 # ==== Projeto dbt do desafio (repo git próprio, aninhado) ====

@@ -264,6 +264,17 @@
     "size": 7076
   },
   {
+    "id": "personal_iv_resumo_code_style_indicium",
+    "label": "resumo_code_style_indicium.md",
+    "title": "Code style da Indicium — resumo de trabalho",
+    "path": "Módulo IV - Engenharia de Dados com dbt e Snowflake/resumo_code_style_indicium.md",
+    "cat": "Módulo IV - Engenharia de Dados com dbt e Snowflake",
+    "done": true,
+    "module": "IV",
+    "sort": 3.5,
+    "size": 6399
+  },
+  {
     "id": "personal_iv_resumo_moduloiv",
     "label": "resumo_moduloIV.md",
     "title": "Resumo — Módulo IV: Engenharia de Dados com dbt e Snowflake",
