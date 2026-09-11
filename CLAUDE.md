@@ -49,6 +49,26 @@ neste repositório:
    calculadas no SQL cabem em script de verificação dedicado (ver
    `03-verificacao-da-carga.sql`), não em consulta de conferência rápida.
 
+## Convenções de Português
+
+1. **Prosa em português leva acento** — comentário, docstring, markdown de célula,
+   título de célula (`DBTITLE`), README e documento de entrega inclusive. Não há
+   restrição técnica: os arquivos são UTF-8 e o Databricks executa acento sem
+   problema.
+2. **Identificador fica em ASCII** — nome de variável, função, alias de SQL, nome de
+   tabela e de coluna, e nome de arquivo. Alias acentuado quebra o lexer do sqlfluff
+   (`LXR | Unable to lex characters`), e nome de arquivo acentuado quebra os links do
+   README, do docx e dos decks.
+3. **Conteúdo acentuado se escreve com as ferramentas de arquivo, nunca por heredoc de
+   shell.** A raiz do problema foi essa: escapamento de heredoc falhou tantas vezes
+   que o reflexo virou evitar acento em vez de trocar de ferramenta.
+4. **Script que imprime acento começa com**
+   `sys.stdout.reconfigure(encoding="utf-8", errors="replace")` — o console do Windows
+   é cp1252 e morre com `UnicodeEncodeError` no meio do relatório.
+5. **Conferir com `python scripts/confere_portugues.py`**, na mesma rotina do
+   `linta_notebook.py`. Ele acusa palavra sem acento, mojibake (`Ã§`, `Â`, `â€`) e o
+   erro inverso — acento dentro de identificador de SQL.
+
 ## Guardrails Críticos (Power BI)
 
 1. **NUNCA remover backgrounds/SVGs** sem pedido explícito
