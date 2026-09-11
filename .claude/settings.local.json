@@ -14,7 +14,9 @@
       "Bash(python .opencode/skill/ae_materials_app/sync.py)",
       "Bash(git commit -q -m ' *)",
       "Bash(git commit -q -m 'chore\\(desafio\\): .gitignore proprio, para a pasta nao depender da raiz *)",
-      "Bash(git subtree *)"
+      "Bash(git subtree *)",
+      "Bash(git ls-tree *)",
+      "Bash(git ls-remote *)"
     ]
   }
 }
