@@ -6,6 +6,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["server.py"],
       "port": 8765
+    },
+    {
+      "name": "entregaveis",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8766", "--directory", "Desafio/entregaveis"],
+      "port": 8766
     }
   ]
 }
