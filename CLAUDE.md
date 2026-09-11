@@ -1,4 +1,4 @@
-# CLAUDE.md — Formação Analytics Engineer (Indicium)
+# CLAUDE.md — Formação Analytics Engineer (Indicium AI)
 
 > Guia de contexto para Claude Code. Para detalhes completos, ler `AGENTS.md`.
 
@@ -6,7 +6,7 @@
 
 ## Projeto
 
-Repositório de formação em Analytics Engineering: curso Indicium (módulos 0-9), projeto dbt BanVic (Databricks), dashboard Power BI (PBIP) e toolkit de skills.
+Repositório de formação em Analytics Engineering: curso Indicium AI (módulos 0-9), projeto dbt BanVic (Databricks), dashboard Power BI (PBIP) e toolkit de skills.
 
 ## Arquivos de Referência (ler quando relevante)
 
@@ -37,7 +37,7 @@ Repositório de formação em Analytics Engineering: curso Indicium (módulos 0-
 
 ## Convenções de SQL
 
-Além do code style da Indicium (`Desafio/indicium-code-style/`, sqlfluff 1.4.5), vale
+Além do code style da Indicium AI (`Desafio/indicium-code-style/`, sqlfluff 1.4.5), vale
 neste repositório:
 
 1. **Nenhuma query sem comentário**, incluindo as colocadas no chat. Uma ou duas linhas

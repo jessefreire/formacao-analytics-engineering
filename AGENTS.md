@@ -1,4 +1,4 @@
-# AGENTS.md — Formação Analytics Engineer (Indicium)
+# AGENTS.md — Formação Analytics Engineer (Indicium AI)
 
 > **⚠️ DOCUMENTO VIVO** — Este arquivo, `INDICE_MODULOS.md` e `Analytics Engineer Training 2026.md` devem ser **atualizados automaticamente** a cada nova conversa com agentes, novo material do curso ou mudança estrutural no projeto. Não deixe para depois.
 
@@ -284,7 +284,7 @@ banvic-dbt/  ──dbt build --target local──>  dev.duckdb
 - **Template oficial**: https://github.com/techindicium/banvic-dbt
 - **dbt-databricks docs**: https://github.com/databricks/dbt-databricks
 - **Databricks Community**: https://community.cloud.databricks.com/
-- **Curso Indicium**: Materials no `Analytics Engineer Training 2026.md`
+- **Curso Indicium AI**: Materials no `Analytics Engineer Training 2026.md`
 
 ---
 
@@ -380,10 +380,10 @@ banvic-dbt/  ──dbt build --target local──>  dev.duckdb
 | **Decoreba — Claude for AE** | `decoreba_modulo9_claude_for_ae.txt` |
 | **Decoreba — Aulas do módulo** | `decoreba_modulo9_aulas.txt` |
 
-> **Um par de resumo+decoreba por subcurso**, não um por módulo — os três blocos tratam de assuntos distintos (as 13 aulas FADA são sobre **AI/BI no Databricks**, não sobre Claude Code). Áudio (`audio/`) e transcrições (`transcricoes/`) ficam **fora do git**: este repo é público e o conteúdo integral das videoaulas é material proprietário da Indicium. Só os derivados são versionados. As subpastas também são invisíveis para o `sync.py`, cujo glob não é recursivo — o que evita o `files.json` (versionado) apontar para arquivo ausente do clone.
+> **Um par de resumo+decoreba por subcurso**, não um por módulo — os três blocos tratam de assuntos distintos (as 13 aulas FADA são sobre **AI/BI no Databricks**, não sobre Claude Code). Áudio (`audio/`) e transcrições (`transcricoes/`) ficam **fora do git**: este repo é público e o conteúdo integral das videoaulas é material proprietário da Indicium AI. Só os derivados são versionados. As subpastas também são invisíveis para o `sync.py`, cujo glob não é recursivo — o que evita o `files.json` (versionado) apontar para arquivo ausente do clone.
 
 ### Módulo 10 — Curso SQL Completo (YouTube)
-> Material extra, fora da grade oficial da Indicium.
+> Material extra, fora da grade oficial da Indicium AI.
 
 | Tipo | Arquivo |
 |------|---------|
