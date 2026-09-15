@@ -66,6 +66,11 @@ Desafio/entregaveis/
 
 # ==== Projeto dbt do desafio (repo git próprio, aninhado) ====
 /banvic-dbt/
+# Repo aninhado, como o banvic-dbt acima: e clone real de
+# https://github.com/jessefreire/certificacao-ae-adventureworks.git, com .git
+# proprio. O monorepo nao rastreia por dentro; sincroniza com git pull/push comuns,
+# sem subtree split.
+/Desafio/desafio-adventureworks/
 
 # ==== Skills instalados de terceiros ====
 .agents/
