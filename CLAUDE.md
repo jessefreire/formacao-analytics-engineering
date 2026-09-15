@@ -69,6 +69,29 @@ neste repositório:
    `linta_notebook.py`. Ele acusa palavra sem acento, mojibake (`Ã§`, `Â`, `â€`) e o
    erro inverso — acento dentro de identificador de SQL.
 
+## Guardrail Crítico — rubrica de avaliação nunca vai para o repositório do desafio
+
+O usuário é candidato da Certificação em AE (desafio Adventure Works) **e**, em outra
+sessão, tem acesso à rubrica confidencial de correção (via `certificacao-ae-correcao`,
+pasta `Avaliador AE`). Essa rubrica pode orientar **meu** raciocínio silencioso sobre onde
+vale investir esforço, mas ela **nunca** pode aparecer, direta ou indiretamente, em nada
+que faça parte da entrega: `Desafio/desafio-adventureworks/`, o repositório
+`certificacao-ae-adventureworks`, PRs, mensagens de commit, slides, vídeo.
+
+**Nunca escrever, nesses lugares:** número de item do formulário (`item 2.5`, `1.3`),
+nome de bloco (`Bloco 2`), peso ou nota (`peso 5,00`, `vale metade da nota`), palavras
+como `formulário`, `checklist`, `pontuação` referidas à correção, ou frases como "isto
+atende ao item X" / "fecha o item Y".
+
+**Sempre pode:** citar o **briefing público** do desafio, suas etapas numeradas (Etapa 1
+a 11) e suas exigências textuais — isso é material do próprio candidato, não da correção.
+
+Se uma justificativa técnica só faz sentido citando a rubrica, reescreva-a citando o
+briefing ou a boa prática de engenharia em si (ex.: "o briefing pede testes de source" em
+vez de "item 2.5 do formulário exige testes de source"). Encontrado um vazamento
+retroativo — buscar com `grep -rn` por esses termos no repositório do desafio antes de
+declarar a correção concluída.
+
 ## Guardrails Críticos (Power BI)
 
 1. **NUNCA remover backgrounds/SVGs** sem pedido explícito
