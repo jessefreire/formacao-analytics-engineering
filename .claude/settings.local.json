@@ -18,7 +18,8 @@
       "Bash(git ls-tree *)",
       "Bash(git ls-remote *)",
       "Bash(git commit -q -m 'chore\\(desafio\\): sincroniza os 16 modelos criados direto no Studio *)",
-      "Bash(git commit -q -m 'chore: Desafio/desafio-adventureworks vira repo aninhado, como o banvic-dbt *)"
+      "Bash(git commit -q -m 'chore: Desafio/desafio-adventureworks vira repo aninhado, como o banvic-dbt *)",
+      "Bash(git commit -q -m 'docs: Pull from remote \\(main\\) x Pull from main \\(feature branch\\) *)"
     ]
   }
 }

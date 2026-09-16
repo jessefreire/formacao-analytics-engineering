@@ -72,7 +72,9 @@ Quando o assistente gera os arquivos no clone local, o caminho inverso funciona 
 1. Local:    cria branch → escreve arquivos → commit → push da branch
 2. Studio:   Change branch → carrega a branch nova (ela aparece sozinha)
 3. Studio:   cria o PR pelo próprio Studio → merge no GitHub
-4. Studio:   volta pra main → Pull from main (traz o merge)
+4. Studio:   volta pra main → Pull from remote (traz o merge; o botão muda de nome
+             conforme a branch — "Pull from remote" na main, "Pull from main" numa
+             feature branch, que traz a main pra dentro dela)
 5. Studio:   dbt build + dbt test nos models novos
 ```
 
