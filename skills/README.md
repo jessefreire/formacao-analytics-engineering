@@ -1,5 +1,8 @@
 # Skills do Projeto
 
+> Mapa completo (skills do projeto, de Power BI, as criadas no desafio e o MCP):
+> [`../SKILLS_E_MCP.md`](../SKILLS_E_MCP.md)
+
 Skills versionadas neste repositório para uso com qualquer IDE com IA (Claude Code, OpenCode).
 
 ## Skills Incluídas
