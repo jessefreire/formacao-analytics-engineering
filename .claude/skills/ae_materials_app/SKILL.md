@@ -12,7 +12,12 @@
 | **Extrai metadados** | Título do `# ` no markdown, número do módulo via regex, categoria automática |
 | **Atualiza `index.html`** | Reescreve o array `FILES` mantendo o resto do app intacto |
 | **Gera `files.json`** | Exporta metadados para outros usos (ex: scripts de build, CI) |
+| **Gera `grafo.json`** | Módulos e materiais descobertos + a camada escrita à mão em `grafo_base.json` (etapas do desafio, skills, ferramentas). Alimenta a tela "Grafo da formação" |
+| **Projeto do desafio e skills** | Lista o README e os `docs/` do repo aninhado do desafio (caminho no GitHub público) e os `skills/*/SKILL.md` |
 | **Comando único** | `python -m ae_materials_app.sync` |
+
+Skill ou etapa nova no grafo: adicionar o nó e as ligações em `grafo_base.json` e rodar o sync.
+Ligação para nó inexistente vira aviso no console, não quebra o sync.
 
 ---
 

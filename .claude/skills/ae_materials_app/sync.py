@@ -21,6 +21,14 @@ INDEX = ROOT / "index.html"
 TEMPLATE = Path(__file__).parent / "templates" / "index.html.j2"
 FILES_JSON = ROOT / "files.json"
 VERSION_JSON = ROOT / "version.json"
+GRAFO_JSON = ROOT / "grafo.json"
+GRAFO_BASE = Path(__file__).parent / "grafo_base.json"
+
+# O projeto do desafio e um repositorio aninhado, ignorado pelo git da formacao.
+# O titulo sai da copia local; o caminho aponta para o GitHub publico, para quem
+# clonar so a formacao nao cair em link morto.
+DESAFIO_REPO = ROOT / "Desafio" / "desafio-adventureworks"
+DESAFIO_RAW = "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/"
 
 # Módulos na ordem do curso. `sort` controla ordenação (IV=3.5 fica entre 3 e 4)
 MODULES = [
@@ -169,6 +177,62 @@ def discover_files() -> List[Dict[str, Any]]:
             "size": tracker.stat().st_size,
         })
 
+    # --- Projeto do desafio: README + docs de cada etapa ---
+    if DESAFIO_REPO.is_dir():
+        docs = [DESAFIO_REPO / "README.md"] + sorted((DESAFIO_REPO / "docs").glob("*.md"))
+        for doc in docs:
+            if not doc.exists():
+                continue
+            rel = doc.relative_to(DESAFIO_REPO).as_posix()
+            slug = re.sub(r'[^a-z0-9]+', '_', doc.stem.lower()).strip('_')
+            files.append({
+                "id": f"desafio_doc_{slug}",
+                "label": rel,
+                "title": extract_title(doc) or rel,
+                "path": DESAFIO_RAW + rel,
+                "cat": "Desafio — Projeto",
+                "done": True,
+                "module": "desafio",
+                "sort": 99.5,
+                "size": doc.stat().st_size,
+            })
+
+    # --- Skills e MCP ---
+    extras = [(ROOT / "SKILLS_E_MCP.md", "skills_mcp", "SKILLS_E_MCP.md"),
+              (ROOT / "mcp" / "README.md", "mcp_readme", "mcp/README.md")]
+    extras += [(p, "skill_" + re.sub(r'[^a-z0-9]+', '_', p.parent.name.lower()).strip('_'),
+                f"{p.parent.name}/SKILL.md")
+               for p in sorted((ROOT / "skills").glob("*/SKILL.md"))]
+    for path, fid, label in extras:
+        if not path.exists():
+            continue
+        files.append({
+            "id": fid,
+            "label": label,
+            "title": extract_title(path) or label,
+            "path": path.relative_to(ROOT).as_posix(),
+            "cat": "Skills e MCP",
+            "done": True,
+            "module": "skills",
+            "sort": 100,
+            "size": path.stat().st_size,
+        })
+
+    # --- Grafo (entrada sintetica; o grafo.json e gerado no main) ---
+    if GRAFO_BASE.exists():
+        files.append({
+            "id": "grafo",
+            "label": "Grafo da formação",
+            "title": "Grafo — formação, desafio, skills e ferramentas",
+            "path": GRAFO_JSON.relative_to(ROOT).as_posix(),
+            "cat": "Mapa",
+            "view": "grafo",
+            "done": True,
+            "module": "mapa",
+            "sort": -1,
+            "size": 0,
+        })
+
     # Ordena: Config primeiro, depois por sort do módulo, depois tipo (oficial > pessoal > EN), depois label
     def type_order(fid):
         if fid.startswith("oficial"):
@@ -291,6 +355,74 @@ def write_files_json(files: List[Dict[str, Any]]):
     FILES_JSON.write_text(json.dumps(files, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def _slug(s: str) -> str:
+    return re.sub(r'[^a-z0-9]+', '_', s.lower()).strip('_')
+
+
+def _cat_do_modulo(mod) -> str:
+    return mod.get("cat") or (f"Módulo {mod['num']}" + (f" - {mod['title']}" if mod["title"] else ""))
+
+
+def write_grafo_json(files: List[Dict[str, Any]]):
+    """Gera grafo.json: modulos e materiais descobertos + a camada de grafo_base.json.
+
+    Ligacao que aponta para no inexistente vira aviso no console, nunca falha:
+    um material renomeado nao pode derrubar o sync inteiro.
+    """
+    if not GRAFO_BASE.exists():
+        return
+    base = json.loads(GRAFO_BASE.read_text(encoding="utf-8"))
+    ids_arquivo = {f["id"] for f in files}
+    nos, ligacoes = {}, []
+
+    for f in files:
+        if f["id"] == "grafo":
+            continue
+        cat_id = "cat_" + _slug(f["cat"])
+        if cat_id not in nos:
+            nos[cat_id] = {"id": cat_id, "tipo": "modulo", "rotulo": f["cat"]}
+        nid = "f_" + f["id"]
+        nos[nid] = {"id": nid, "tipo": "material", "rotulo": f["title"] or f["label"], "arquivo": f["id"]}
+        ligacoes.append([nid, cat_id])
+
+    for no in base["nos"]:
+        no = dict(no)
+        if no.get("arquivo") and no["arquivo"] not in ids_arquivo:
+            print(f"   [SYNC] Aviso grafo: '{no['id']}' aponta para material inexistente '{no['arquivo']}'")
+            no.pop("arquivo")
+        nos[no["id"]] = no
+
+    mods = {str(m["num"]): "cat_" + _slug(_cat_do_modulo(m)) for m in MODULES}
+
+    def resolver(ref: str):
+        if ref.startswith("mod:"):
+            return mods.get(ref[4:])
+        if ref.startswith("file:"):
+            return "f_" + ref[5:]
+        if ref.startswith("cat:"):
+            return "cat_" + _slug(ref[4:])
+        return ref
+
+    # No que abre um material tambem se liga a ele: e o que costura a camada
+    # escrita a mao (etapas, skills) com os documentos descobertos.
+    for no in base["nos"]:
+        alvo = "f_" + no["arquivo"] if no.get("arquivo") else None
+        if alvo in nos and "arquivo" in nos[no["id"]]:
+            ligacoes.append([no["id"], alvo])
+
+    for a, b in base["ligacoes"]:
+        ra, rb = resolver(a), resolver(b)
+        if ra in nos and rb in nos:
+            ligacoes.append([ra, rb])
+        else:
+            print(f"   [SYNC] Aviso grafo: ligacao ignorada {a} -> {b}")
+
+    GRAFO_JSON.write_text(json.dumps({"tipos": base["tipos"], "nos": list(nos.values()),
+                                      "ligacoes": ligacoes}, ensure_ascii=False, indent=1),
+                          encoding="utf-8")
+    print(f"   {len(nos)} nos, {len(ligacoes)} ligacoes")
+
+
 def write_version_json():
     """Gera version.json com o commit atual para o banner de atualizações.
 
@@ -324,6 +456,9 @@ def main():
 
     print("[SYNC] Gerando files.json...")
     write_files_json(files)
+
+    print("[SYNC] Gerando grafo.json...")
+    write_grafo_json(files)
 
     print("[SYNC] Gerando version.json...")
     ver = write_version_json()

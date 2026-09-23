@@ -1,0 +1,1661 @@
+{
+ "tipos": {
+  "modulo": {
+   "rotulo": "Módulo",
+   "cor": "#5b6cf0"
+  },
+  "material": {
+   "rotulo": "Material",
+   "cor": "#9aa3b5"
+  },
+  "etapa": {
+   "rotulo": "Etapa do desafio",
+   "cor": "#e8833a"
+  },
+  "skill": {
+   "rotulo": "Skill",
+   "cor": "#27a37a"
+  },
+  "ferramenta": {
+   "rotulo": "Ferramenta",
+   "cor": "#c24d8c"
+  }
+ },
+ "nos": [
+  {
+   "id": "cat_config",
+   "tipo": "modulo",
+   "rotulo": "Config"
+  },
+  {
+   "id": "f_agents",
+   "tipo": "material",
+   "rotulo": "AGENTS.md — Formação Analytics Engineer (Indicium AI)",
+   "arquivo": "agents"
+  },
+  {
+   "id": "f_diario",
+   "tipo": "material",
+   "rotulo": "Analytics Engineer Training 2026",
+   "arquivo": "diario"
+  },
+  {
+   "id": "f_convencoes",
+   "tipo": "material",
+   "rotulo": "Convenções de Git — Conventional Commits e Branches",
+   "arquivo": "convencoes"
+  },
+  {
+   "id": "f_guia",
+   "tipo": "material",
+   "rotulo": "Guia rápido: o que é esse repositório e como rodar o dbt",
+   "arquivo": "guia"
+  },
+  {
+   "id": "f_indice",
+   "tipo": "material",
+   "rotulo": "Índice Consolidado — Formação Analytics Engineer (Indicium Academy)",
+   "arquivo": "indice"
+  },
+  {
+   "id": "f_setup",
+   "tipo": "material",
+   "rotulo": "Setup do Ambiente das Aulas Práticas — GitHub + Databricks + dbt Cloud",
+   "arquivo": "setup"
+  },
+  {
+   "id": "cat_m_dulo_0_banco_de_dados_banvic",
+   "tipo": "modulo",
+   "rotulo": "Módulo 0 - Banco de Dados BanVic"
+  },
+  {
+   "id": "f_oficial_0_banvic_queries",
+   "tipo": "material",
+   "rotulo": "Banco BanVic — Queries de Referência",
+   "arquivo": "oficial_0_banvic_queries"
+  },
+  {
+   "id": "f_oficial_0_banvic_tabelas",
+   "tipo": "material",
+   "rotulo": "Banco BanVic — Schema das Tabelas",
+   "arquivo": "oficial_0_banvic_tabelas"
+  },
+  {
+   "id": "f_oficial_0_banvic_visao_geral",
+   "tipo": "material",
+   "rotulo": "Banco de Dados BanVic — Visão Geral",
+   "arquivo": "oficial_0_banvic_visao_geral"
+  },
+  {
+   "id": "cat_m_dulo_1_introdu_o_an_lise_de_dados",
+   "tipo": "modulo",
+   "rotulo": "Módulo 1 - Introdução à Análise de Dados"
+  },
+  {
+   "id": "f_oficial_1__fada_conte_do_m_dulo_01_intro",
+   "tipo": "material",
+   "rotulo": "Material Teórico",
+   "arquivo": "oficial_1__fada_conte_do_m_dulo_01_intro"
+  },
+  {
+   "id": "f_personal_1_decoreba_modulo1",
+   "tipo": "material",
+   "rotulo": "DECOREBA - MODULO 1: INTRODUCAO A ANALISE DE DADOS",
+   "arquivo": "personal_1_decoreba_modulo1"
+  },
+  {
+   "id": "f_personal_1_resumo_modulo1",
+   "tipo": "material",
+   "rotulo": "Resumo — Módulo 1: Introdução à Análise de Dados",
+   "arquivo": "personal_1_resumo_modulo1"
+  },
+  {
+   "id": "f_en_1__fada_english_slides_introduct",
+   "tipo": "material",
+   "rotulo": "Course presentation",
+   "arquivo": "en_1__fada_english_slides_introduct"
+  },
+  {
+   "id": "cat_m_dulo_2_sql",
+   "tipo": "modulo",
+   "rotulo": "Módulo 2 - SQL"
+  },
+  {
+   "id": "f_oficial_2_conte_do_m_dulo_2_sql_1",
+   "tipo": "material",
+   "rotulo": "Material Teórico",
+   "arquivo": "oficial_2_conte_do_m_dulo_2_sql_1"
+  },
+  {
+   "id": "f_oficial_2__academy_querying_data_with_sq",
+   "tipo": "material",
+   "rotulo": "Welcome",
+   "arquivo": "oficial_2__academy_querying_data_with_sq"
+  },
+  {
+   "id": "f_personal_2_decoreba_sql",
+   "tipo": "material",
+   "rotulo": "DECOREBA DE SQL - PARA ENTENDER, NAO PARA DECORAR",
+   "arquivo": "personal_2_decoreba_sql"
+  },
+  {
+   "id": "f_personal_2_resumo_modulo_2_sql",
+   "tipo": "material",
+   "rotulo": "Resumo de Estudo — Módulo 2: Consultando Dados com SQL",
+   "arquivo": "personal_2_resumo_modulo_2_sql"
+  },
+  {
+   "id": "cat_m_dulo_3_modelagem_de_dados",
+   "tipo": "modulo",
+   "rotulo": "Módulo 3 - Modelagem de dados"
+  },
+  {
+   "id": "f_oficial_3__fada_conte_do_m_dulo_3_modela",
+   "tipo": "material",
+   "rotulo": "Material Teórico",
+   "arquivo": "oficial_3__fada_conte_do_m_dulo_3_modela"
+  },
+  {
+   "id": "f_personal_3_decoreba_modulo3",
+   "tipo": "material",
+   "rotulo": "DECOREBA - MODULO 3: MODELAGEM DE DADOS",
+   "arquivo": "personal_3_decoreba_modulo3"
+  },
+  {
+   "id": "f_personal_3_resumo_modulo3",
+   "tipo": "material",
+   "rotulo": "Resumo — Módulo 3: Modelagem de dados",
+   "arquivo": "personal_3_resumo_modulo3"
+  },
+  {
+   "id": "f_en_3__english_fada_m_dulo_3_modelag",
+   "tipo": "material",
+   "rotulo": "Data modeling **Index**",
+   "arquivo": "en_3__english_fada_m_dulo_3_modelag"
+  },
+  {
+   "id": "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake",
+   "tipo": "modulo",
+   "rotulo": "Módulo IV - Engenharia de Dados com dbt e Snowflake"
+  },
+  {
+   "id": "f_oficial_iv__fea_conte_do_m_dulo_iv_engenh",
+   "tipo": "material",
+   "rotulo": "Material Teórico",
+   "arquivo": "oficial_iv__fea_conte_do_m_dulo_iv_engenh"
+  },
+  {
+   "id": "f_personal_iv_aprofundamento_moduloiv",
+   "tipo": "material",
+   "rotulo": "Aprofundamento — Módulo IV: Ingestão, Transformação e Camadas de Dados",
+   "arquivo": "personal_iv_aprofundamento_moduloiv"
+  },
+  {
+   "id": "f_personal_iv_decoreba_moduloiv",
+   "tipo": "material",
+   "rotulo": "DECOREBA - MODULO IV: ENGENHARIA DE DADOS COM DBT E SNOWFLAKE",
+   "arquivo": "personal_iv_decoreba_moduloiv"
+  },
+  {
+   "id": "f_personal_iv_resumo_code_style_indicium",
+   "tipo": "material",
+   "rotulo": "Code style da Indicium — resumo de trabalho",
+   "arquivo": "personal_iv_resumo_code_style_indicium"
+  },
+  {
+   "id": "f_personal_iv_resumo_moduloiv",
+   "tipo": "material",
+   "rotulo": "Resumo — Módulo IV: Engenharia de Dados com dbt e Snowflake",
+   "arquivo": "personal_iv_resumo_moduloiv"
+  },
+  {
+   "id": "f_en_iv__academy_en_us_asynchronous_fe",
+   "tipo": "material",
+   "rotulo": "**ETL**",
+   "arquivo": "en_iv__academy_en_us_asynchronous_fe"
+  },
+  {
+   "id": "cat_m_dulo_4_storytelling_com_dados",
+   "tipo": "modulo",
+   "rotulo": "Módulo 4 - Storytelling com Dados"
+  },
+  {
+   "id": "f_oficial_4_conte_do_m_dulo_4_storytelling",
+   "tipo": "material",
+   "rotulo": "Material Teórico",
+   "arquivo": "oficial_4_conte_do_m_dulo_4_storytelling"
+  },
+  {
+   "id": "f_personal_4_decoreba_modulo4",
+   "tipo": "material",
+   "rotulo": "DECOREBA - MODULO 4: STORYTELLING COM DADOS",
+   "arquivo": "personal_4_decoreba_modulo4"
+  },
+  {
+   "id": "f_personal_4_resumo_modulo4",
+   "tipo": "material",
+   "rotulo": "Resumo — Módulo 4: Storytelling com Dados",
+   "arquivo": "personal_4_resumo_modulo4"
+  },
+  {
+   "id": "f_en_4__english_fada_m_dulo_4_storyte",
+   "tipo": "material",
+   "rotulo": "**DATA-INK =**",
+   "arquivo": "en_4__english_fada_m_dulo_4_storyte"
+  },
+  {
+   "id": "cat_m_dulo_5_design_de_experi_ncia",
+   "tipo": "modulo",
+   "rotulo": "Módulo 5 - Design de Experiência"
+  },
+  {
+   "id": "f_oficial_5__fada_apostila_m_dulo_5_design",
+   "tipo": "material",
+   "rotulo": "Apostila",
+   "arquivo": "oficial_5__fada_apostila_m_dulo_5_design"
+  },
+  {
+   "id": "f_personal_5_decoreba_modulo5",
+   "tipo": "material",
+   "rotulo": "DECOREBA - MODULO 5: DESIGN DE EXPERIENCIA",
+   "arquivo": "personal_5_decoreba_modulo5"
+  },
+  {
+   "id": "f_personal_5_resumo_modulo5",
+   "tipo": "material",
+   "rotulo": "Resumo — Módulo 5: Design de Experiência",
+   "arquivo": "personal_5_resumo_modulo5"
+  },
+  {
+   "id": "f_en_5_copy_of_fada_m_dulo_5_design_d",
+   "tipo": "material",
+   "rotulo": "Lesson 1 - Introduction",
+   "arquivo": "en_5_copy_of_fada_m_dulo_5_design_d"
+  },
+  {
+   "id": "cat_m_dulo_6_dashboards_com_power_bi",
+   "tipo": "modulo",
+   "rotulo": "Módulo 6 - Dashboards com Power BI"
+  },
+  {
+   "id": "f_oficial_6_conte_do_m_dulo_6_criando_dash",
+   "tipo": "material",
+   "rotulo": "Material Teórico",
+   "arquivo": "oficial_6_conte_do_m_dulo_6_criando_dash"
+  },
+  {
+   "id": "f_personal_6_decoreba_modulo6",
+   "tipo": "material",
+   "rotulo": "DECOREBA - MODULO 6: DASHBOARDS COM POWER BI",
+   "arquivo": "personal_6_decoreba_modulo6"
+  },
+  {
+   "id": "f_personal_6_resumo_modulo6",
+   "tipo": "material",
+   "rotulo": "Resumo — Módulo 6: Dashboards com Power BI",
+   "arquivo": "personal_6_resumo_modulo6"
+  },
+  {
+   "id": "f_en_6__english_fada_m_dulo_6_criando",
+   "tipo": "material",
+   "rotulo": "Components of **POWER BI**",
+   "arquivo": "en_6__english_fada_m_dulo_6_criando"
+  },
+  {
+   "id": "cat_m_dulo_7_estat_stica_aplicada_an_lise_de_dados",
+   "tipo": "modulo",
+   "rotulo": "Módulo 7 - Estatística aplicada à análise de dados"
+  },
+  {
+   "id": "f_oficial_7__fada_conte_do_m_dulo_7_estat",
+   "tipo": "material",
+   "rotulo": "Material Teórico",
+   "arquivo": "oficial_7__fada_conte_do_m_dulo_7_estat"
+  },
+  {
+   "id": "f_personal_7_decoreba_modulo7",
+   "tipo": "material",
+   "rotulo": "DECOREBA - MODULO 7: ESTATISTICA APLICADA A ANALISE DE DADOS",
+   "arquivo": "personal_7_decoreba_modulo7"
+  },
+  {
+   "id": "f_personal_7_resumo_modulo7",
+   "tipo": "material",
+   "rotulo": "Resumo — Módulo 7: Estatística aplicada à análise de dados",
+   "arquivo": "personal_7_resumo_modulo7"
+  },
+  {
+   "id": "f_en_7_copy_of_fada_m_dulo_7_estat_st",
+   "tipo": "material",
+   "rotulo": "**Dispersion measures**",
+   "arquivo": "en_7_copy_of_fada_m_dulo_7_estat_st"
+  },
+  {
+   "id": "cat_m_dulo_8_python",
+   "tipo": "modulo",
+   "rotulo": "Módulo 8 - Python"
+  },
+  {
+   "id": "f_oficial_8__fada_conte_do_m_dulo_8_python",
+   "tipo": "material",
+   "rotulo": "Material Teórico",
+   "arquivo": "oficial_8__fada_conte_do_m_dulo_8_python"
+  },
+  {
+   "id": "f_personal_8_decoreba_modulo8",
+   "tipo": "material",
+   "rotulo": "i = indice, valor = elemento",
+   "arquivo": "personal_8_decoreba_modulo8"
+  },
+  {
+   "id": "f_personal_8_resumo_modulo8",
+   "tipo": "material",
+   "rotulo": "Resumo — Módulo 8: Python",
+   "arquivo": "personal_8_resumo_modulo8"
+  },
+  {
+   "id": "f_en_8__english_fada_m_dulo_de_python",
+   "tipo": "material",
+   "rotulo": "Python",
+   "arquivo": "en_8__english_fada_m_dulo_de_python"
+  },
+  {
+   "id": "cat_m_dulo_9_ai_powered_productivity",
+   "tipo": "modulo",
+   "rotulo": "Módulo 9 - AI-Powered Productivity"
+  },
+  {
+   "id": "f_personal_9_decoreba_modulo9_aulas",
+   "tipo": "material",
+   "rotulo": "DECOREBA - MODULO 9: AULAS DO MODULO (AI/BI DATABRICKS)",
+   "arquivo": "personal_9_decoreba_modulo9_aulas"
+  },
+  {
+   "id": "f_personal_9_decoreba_modulo9_claude_for_ae",
+   "tipo": "material",
+   "rotulo": "DECOREBA - MODULO 9: CLAUDE FOR AE",
+   "arquivo": "personal_9_decoreba_modulo9_claude_for_ae"
+  },
+  {
+   "id": "f_personal_9_decoreba_modulo9_intro_claude",
+   "tipo": "material",
+   "rotulo": "DECOREBA - MODULO 9: INTRO AO CLAUDE CODE",
+   "arquivo": "personal_9_decoreba_modulo9_intro_claude"
+  },
+  {
+   "id": "f_personal_9_resumo_modulo9_aulas",
+   "tipo": "material",
+   "rotulo": "Resumo — Módulo 9: Aulas do Módulo (AI/BI Databricks)",
+   "arquivo": "personal_9_resumo_modulo9_aulas"
+  },
+  {
+   "id": "f_personal_9_resumo_modulo9_claude_for_ae",
+   "tipo": "material",
+   "rotulo": "Resumo — Módulo 9: Claude for AE",
+   "arquivo": "personal_9_resumo_modulo9_claude_for_ae"
+  },
+  {
+   "id": "f_personal_9_resumo_modulo9_intro_claude_co",
+   "tipo": "material",
+   "rotulo": "Resumo — Módulo 9: Intro ao Claude Code",
+   "arquivo": "personal_9_resumo_modulo9_intro_claude_co"
+  },
+  {
+   "id": "cat_m_dulo_10_curso_sql_completo_youtube",
+   "tipo": "modulo",
+   "rotulo": "Módulo 10 - Curso SQL Completo (YouTube)"
+  },
+  {
+   "id": "f_oficial_10_adventureworks_banco_referenci",
+   "tipo": "material",
+   "rotulo": "AdventureWorks — Referência do Banco de Dados",
+   "arquivo": "oficial_10_adventureworks_banco_referenci"
+  },
+  {
+   "id": "f_oficial_10_banconorthwind",
+   "tipo": "material",
+   "rotulo": "/*",
+   "arquivo": "oficial_10_banconorthwind"
+  },
+  {
+   "id": "f_oficial_10_carregar_bancos",
+   "tipo": "material",
+   "rotulo": "Como Carregar os Bancos do Curso (Databricks / Neon)",
+   "arquivo": "oficial_10_carregar_bancos"
+  },
+  {
+   "id": "f_oficial_10_curso_sql_completo_2025",
+   "tipo": "material",
+   "rotulo": "Curso SQL Completo 2025 — Conteúdo do Curso",
+   "arquivo": "oficial_10_curso_sql_completo_2025"
+  },
+  {
+   "id": "f_oficial_10_northwind_banco_referencia",
+   "tipo": "material",
+   "rotulo": "Northwind — Referência do Banco de Dados",
+   "arquivo": "oficial_10_northwind_banco_referencia"
+  },
+  {
+   "id": "cat_desafio_final",
+   "tipo": "modulo",
+   "rotulo": "Desafio Final"
+  },
+  {
+   "id": "f_desafio",
+   "tipo": "material",
+   "rotulo": "Desafio Final — AdventureWorks",
+   "arquivo": "desafio"
+  },
+  {
+   "id": "f_oficial_desafio_briefing_desafio_pt_br",
+   "tipo": "material",
+   "rotulo": "Desafio Final — Adventure Works",
+   "arquivo": "oficial_desafio_briefing_desafio_pt_br"
+  },
+  {
+   "id": "f_oficial_desafio_briefing_desafio",
+   "tipo": "material",
+   "rotulo": "The certification",
+   "arquivo": "oficial_desafio_briefing_desafio"
+  },
+  {
+   "id": "f_oficial_desafio_sugest_o_de_primeiros_pontos_p",
+   "tipo": "material",
+   "rotulo": "Sugestão de primeiros pontos para estudar:",
+   "arquivo": "oficial_desafio_sugest_o_de_primeiros_pontos_p"
+  },
+  {
+   "id": "cat_desafio_projeto",
+   "tipo": "modulo",
+   "rotulo": "Desafio — Projeto"
+  },
+  {
+   "id": "f_desafio_doc_readme",
+   "tipo": "material",
+   "rotulo": "Desafio Final — Adventure Works",
+   "arquivo": "desafio_doc_readme"
+  },
+  {
+   "id": "f_desafio_doc_01_kpis_e_perguntas",
+   "tipo": "material",
+   "rotulo": "Etapa 1 — KPIs e perguntas de negócio",
+   "arquivo": "desafio_doc_01_kpis_e_perguntas"
+  },
+  {
+   "id": "f_desafio_doc_01_01_mapa_completo",
+   "tipo": "material",
+   "rotulo": "Etapa 1 · Mapa completo das perguntas de negócio",
+   "arquivo": "desafio_doc_01_01_mapa_completo"
+  },
+  {
+   "id": "f_desafio_doc_02_analise_exploratoria",
+   "tipo": "material",
+   "rotulo": "Etapa 2 — Análise exploratória de dados",
+   "arquivo": "desafio_doc_02_analise_exploratoria"
+  },
+  {
+   "id": "f_desafio_doc_03_decisoes_de_modelagem",
+   "tipo": "material",
+   "rotulo": "Decisões de modelagem — Etapa 3",
+   "arquivo": "desafio_doc_03_decisoes_de_modelagem"
+  },
+  {
+   "id": "f_desafio_doc_03_01_modelo_conceitual",
+   "tipo": "material",
+   "rotulo": "Modelo conceitual — Etapa 3",
+   "arquivo": "desafio_doc_03_01_modelo_conceitual"
+  },
+  {
+   "id": "f_desafio_doc_04_configuracao_dbt_cloud",
+   "tipo": "material",
+   "rotulo": "Etapa 4 — configurar o dbt Cloud sobre o Databricks",
+   "arquivo": "desafio_doc_04_configuracao_dbt_cloud"
+  },
+  {
+   "id": "f_desafio_doc_05_plano_de_entrega_dbt",
+   "tipo": "material",
+   "rotulo": "Etapa 5 — plano de entrega em branches",
+   "arquivo": "desafio_doc_05_plano_de_entrega_dbt"
+  },
+  {
+   "id": "f_desafio_doc_06_mockup",
+   "tipo": "material",
+   "rotulo": "Etapa 6 — Mockup do dashboard",
+   "arquivo": "desafio_doc_06_mockup"
+  },
+  {
+   "id": "f_desafio_doc_07_dashboard",
+   "tipo": "material",
+   "rotulo": "Etapa 7 — Desenvolvimento do dashboard",
+   "arquivo": "desafio_doc_07_dashboard"
+  },
+  {
+   "id": "f_desafio_doc_08_regras_de_negocio",
+   "tipo": "material",
+   "rotulo": "Etapa 8 — Documentação das regras de negócio",
+   "arquivo": "desafio_doc_08_regras_de_negocio"
+  },
+  {
+   "id": "cat_skills_e_mcp",
+   "tipo": "modulo",
+   "rotulo": "Skills e MCP"
+  },
+  {
+   "id": "f_skills_mcp",
+   "tipo": "material",
+   "rotulo": "Skills e MCP — o kit de Analytics Engineer com IA",
+   "arquivo": "skills_mcp"
+  },
+  {
+   "id": "f_skill_ae_fullflow",
+   "tipo": "material",
+   "rotulo": "Skill: Analytics Engineer Completo",
+   "arquivo": "skill_ae_fullflow"
+  },
+  {
+   "id": "f_skill_ae_materials_app",
+   "tipo": "material",
+   "rotulo": "Skill: ae-materials-app",
+   "arquivo": "skill_ae_materials_app"
+  },
+  {
+   "id": "f_skill_dbt_packages_tests",
+   "tipo": "material",
+   "rotulo": "Skill: dbt Packages e Testes — Lições Aprendidas",
+   "arquivo": "skill_dbt_packages_tests"
+  },
+  {
+   "id": "f_mcp_readme",
+   "tipo": "material",
+   "rotulo": "MCP Servers",
+   "arquivo": "mcp_readme"
+  },
+  {
+   "id": "t_sql",
+   "tipo": "ferramenta",
+   "rotulo": "SQL"
+  },
+  {
+   "id": "t_databricks",
+   "tipo": "ferramenta",
+   "rotulo": "Databricks"
+  },
+  {
+   "id": "t_dbt",
+   "tipo": "ferramenta",
+   "rotulo": "dbt Cloud"
+  },
+  {
+   "id": "t_snowflake",
+   "tipo": "ferramenta",
+   "rotulo": "Snowflake"
+  },
+  {
+   "id": "t_powerbi",
+   "tipo": "ferramenta",
+   "rotulo": "Power BI"
+  },
+  {
+   "id": "t_mcp",
+   "tipo": "ferramenta",
+   "rotulo": "powerbi-modeling-mcp",
+   "arquivo": "mcp_readme"
+  },
+  {
+   "id": "t_python",
+   "tipo": "ferramenta",
+   "rotulo": "Python"
+  },
+  {
+   "id": "t_git",
+   "tipo": "ferramenta",
+   "rotulo": "Git / GitHub",
+   "arquivo": "convencoes"
+  },
+  {
+   "id": "t_claude",
+   "tipo": "ferramenta",
+   "rotulo": "Claude Code",
+   "arquivo": "skills_mcp"
+  },
+  {
+   "id": "t_design",
+   "tipo": "ferramenta",
+   "rotulo": "Canvas /design"
+  },
+  {
+   "id": "t_slides",
+   "tipo": "ferramenta",
+   "rotulo": "Slides"
+  },
+  {
+   "id": "e1",
+   "tipo": "etapa",
+   "rotulo": "1 · KPIs e perguntas",
+   "arquivo": "desafio_doc_01_kpis_e_perguntas"
+  },
+  {
+   "id": "e2",
+   "tipo": "etapa",
+   "rotulo": "2 · Análise exploratória",
+   "arquivo": "desafio_doc_02_analise_exploratoria"
+  },
+  {
+   "id": "e3",
+   "tipo": "etapa",
+   "rotulo": "3 · Modelo conceitual",
+   "arquivo": "desafio_doc_03_01_modelo_conceitual"
+  },
+  {
+   "id": "e4",
+   "tipo": "etapa",
+   "rotulo": "4 · DW e dbt Cloud",
+   "arquivo": "desafio_doc_04_configuracao_dbt_cloud"
+  },
+  {
+   "id": "e5",
+   "tipo": "etapa",
+   "rotulo": "5 · Transformação dbt",
+   "arquivo": "desafio_doc_05_plano_de_entrega_dbt"
+  },
+  {
+   "id": "e6",
+   "tipo": "etapa",
+   "rotulo": "6 · Mockup",
+   "arquivo": "desafio_doc_06_mockup"
+  },
+  {
+   "id": "e7",
+   "tipo": "etapa",
+   "rotulo": "7 · Dashboard Power BI",
+   "arquivo": "desafio_doc_07_dashboard"
+  },
+  {
+   "id": "e8",
+   "tipo": "etapa",
+   "rotulo": "8 · Regras de negócio",
+   "arquivo": "desafio_doc_08_regras_de_negocio"
+  },
+  {
+   "id": "e9",
+   "tipo": "etapa",
+   "rotulo": "9 · Apresentação"
+  },
+  {
+   "id": "e10",
+   "tipo": "etapa",
+   "rotulo": "10 · Vídeo"
+  },
+  {
+   "id": "e11",
+   "tipo": "etapa",
+   "rotulo": "Submissão",
+   "arquivo": "desafio_doc_readme"
+  },
+  {
+   "id": "s_ae_fullflow",
+   "tipo": "skill",
+   "rotulo": "ae-fullflow",
+   "arquivo": "skill_ae_fullflow"
+  },
+  {
+   "id": "s_dbt_packages",
+   "tipo": "skill",
+   "rotulo": "dbt-packages-tests",
+   "arquivo": "skill_dbt_packages_tests"
+  },
+  {
+   "id": "s_materials",
+   "tipo": "skill",
+   "rotulo": "ae_materials_app",
+   "arquivo": "skill_ae_materials_app"
+  },
+  {
+   "id": "s_report_planning",
+   "tipo": "skill",
+   "rotulo": "powerbi-report-planning",
+   "arquivo": "skills_mcp"
+  },
+  {
+   "id": "s_report_design",
+   "tipo": "skill",
+   "rotulo": "powerbi-report-design",
+   "arquivo": "skills_mcp"
+  },
+  {
+   "id": "s_report_authoring",
+   "tipo": "skill",
+   "rotulo": "powerbi-report-authoring",
+   "arquivo": "skills_mcp"
+  },
+  {
+   "id": "s_dax_create",
+   "tipo": "skill",
+   "rotulo": "pbi-dax-create",
+   "arquivo": "skills_mcp"
+  },
+  {
+   "id": "s_pbi_doc",
+   "tipo": "skill",
+   "rotulo": "pbi-doc",
+   "arquivo": "skills_mcp"
+  },
+  {
+   "id": "s_modelo_review",
+   "tipo": "skill",
+   "rotulo": "pbi-modelo-review",
+   "arquivo": "skills_mcp"
+  },
+  {
+   "id": "s_migra_fonte",
+   "tipo": "skill",
+   "rotulo": "pbi-migra-fonte",
+   "arquivo": "skills_mcp"
+  },
+  {
+   "id": "s_slides",
+   "tipo": "skill",
+   "rotulo": "indicium-slide-creator",
+   "arquivo": "skills_mcp"
+  },
+  {
+   "id": "s_ingestao",
+   "tipo": "skill",
+   "rotulo": "databricks-ingestao",
+   "arquivo": "skills_mcp",
+   "nova": true
+  },
+  {
+   "id": "s_modelagem",
+   "tipo": "skill",
+   "rotulo": "dbt-modelagem-dimensional",
+   "arquivo": "skills_mcp",
+   "nova": true
+  },
+  {
+   "id": "s_mockup",
+   "tipo": "skill",
+   "rotulo": "pbi-mockup-design",
+   "arquivo": "skills_mcp",
+   "nova": true
+  },
+  {
+   "id": "s_licoes",
+   "tipo": "skill",
+   "rotulo": "pbi-licoes-pbir",
+   "arquivo": "skills_mcp",
+   "nova": true
+  },
+  {
+   "id": "s_reconciliacao",
+   "tipo": "skill",
+   "rotulo": "reconciliacao-numeros",
+   "arquivo": "skills_mcp",
+   "nova": true
+  },
+  {
+   "id": "s_apresentacao",
+   "tipo": "skill",
+   "rotulo": "pbi-apresentacao",
+   "arquivo": "skills_mcp",
+   "nova": true
+  },
+  {
+   "id": "s_entrega",
+   "tipo": "skill",
+   "rotulo": "entrega-a-partir-do-briefing",
+   "arquivo": "skills_mcp",
+   "nova": true
+  }
+ ],
+ "ligacoes": [
+  [
+   "f_agents",
+   "cat_config"
+  ],
+  [
+   "f_diario",
+   "cat_config"
+  ],
+  [
+   "f_convencoes",
+   "cat_config"
+  ],
+  [
+   "f_guia",
+   "cat_config"
+  ],
+  [
+   "f_indice",
+   "cat_config"
+  ],
+  [
+   "f_setup",
+   "cat_config"
+  ],
+  [
+   "f_oficial_0_banvic_queries",
+   "cat_m_dulo_0_banco_de_dados_banvic"
+  ],
+  [
+   "f_oficial_0_banvic_tabelas",
+   "cat_m_dulo_0_banco_de_dados_banvic"
+  ],
+  [
+   "f_oficial_0_banvic_visao_geral",
+   "cat_m_dulo_0_banco_de_dados_banvic"
+  ],
+  [
+   "f_oficial_1__fada_conte_do_m_dulo_01_intro",
+   "cat_m_dulo_1_introdu_o_an_lise_de_dados"
+  ],
+  [
+   "f_personal_1_decoreba_modulo1",
+   "cat_m_dulo_1_introdu_o_an_lise_de_dados"
+  ],
+  [
+   "f_personal_1_resumo_modulo1",
+   "cat_m_dulo_1_introdu_o_an_lise_de_dados"
+  ],
+  [
+   "f_en_1__fada_english_slides_introduct",
+   "cat_m_dulo_1_introdu_o_an_lise_de_dados"
+  ],
+  [
+   "f_oficial_2_conte_do_m_dulo_2_sql_1",
+   "cat_m_dulo_2_sql"
+  ],
+  [
+   "f_oficial_2__academy_querying_data_with_sq",
+   "cat_m_dulo_2_sql"
+  ],
+  [
+   "f_personal_2_decoreba_sql",
+   "cat_m_dulo_2_sql"
+  ],
+  [
+   "f_personal_2_resumo_modulo_2_sql",
+   "cat_m_dulo_2_sql"
+  ],
+  [
+   "f_oficial_3__fada_conte_do_m_dulo_3_modela",
+   "cat_m_dulo_3_modelagem_de_dados"
+  ],
+  [
+   "f_personal_3_decoreba_modulo3",
+   "cat_m_dulo_3_modelagem_de_dados"
+  ],
+  [
+   "f_personal_3_resumo_modulo3",
+   "cat_m_dulo_3_modelagem_de_dados"
+  ],
+  [
+   "f_en_3__english_fada_m_dulo_3_modelag",
+   "cat_m_dulo_3_modelagem_de_dados"
+  ],
+  [
+   "f_oficial_iv__fea_conte_do_m_dulo_iv_engenh",
+   "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake"
+  ],
+  [
+   "f_personal_iv_aprofundamento_moduloiv",
+   "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake"
+  ],
+  [
+   "f_personal_iv_decoreba_moduloiv",
+   "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake"
+  ],
+  [
+   "f_personal_iv_resumo_code_style_indicium",
+   "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake"
+  ],
+  [
+   "f_personal_iv_resumo_moduloiv",
+   "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake"
+  ],
+  [
+   "f_en_iv__academy_en_us_asynchronous_fe",
+   "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake"
+  ],
+  [
+   "f_oficial_4_conte_do_m_dulo_4_storytelling",
+   "cat_m_dulo_4_storytelling_com_dados"
+  ],
+  [
+   "f_personal_4_decoreba_modulo4",
+   "cat_m_dulo_4_storytelling_com_dados"
+  ],
+  [
+   "f_personal_4_resumo_modulo4",
+   "cat_m_dulo_4_storytelling_com_dados"
+  ],
+  [
+   "f_en_4__english_fada_m_dulo_4_storyte",
+   "cat_m_dulo_4_storytelling_com_dados"
+  ],
+  [
+   "f_oficial_5__fada_apostila_m_dulo_5_design",
+   "cat_m_dulo_5_design_de_experi_ncia"
+  ],
+  [
+   "f_personal_5_decoreba_modulo5",
+   "cat_m_dulo_5_design_de_experi_ncia"
+  ],
+  [
+   "f_personal_5_resumo_modulo5",
+   "cat_m_dulo_5_design_de_experi_ncia"
+  ],
+  [
+   "f_en_5_copy_of_fada_m_dulo_5_design_d",
+   "cat_m_dulo_5_design_de_experi_ncia"
+  ],
+  [
+   "f_oficial_6_conte_do_m_dulo_6_criando_dash",
+   "cat_m_dulo_6_dashboards_com_power_bi"
+  ],
+  [
+   "f_personal_6_decoreba_modulo6",
+   "cat_m_dulo_6_dashboards_com_power_bi"
+  ],
+  [
+   "f_personal_6_resumo_modulo6",
+   "cat_m_dulo_6_dashboards_com_power_bi"
+  ],
+  [
+   "f_en_6__english_fada_m_dulo_6_criando",
+   "cat_m_dulo_6_dashboards_com_power_bi"
+  ],
+  [
+   "f_oficial_7__fada_conte_do_m_dulo_7_estat",
+   "cat_m_dulo_7_estat_stica_aplicada_an_lise_de_dados"
+  ],
+  [
+   "f_personal_7_decoreba_modulo7",
+   "cat_m_dulo_7_estat_stica_aplicada_an_lise_de_dados"
+  ],
+  [
+   "f_personal_7_resumo_modulo7",
+   "cat_m_dulo_7_estat_stica_aplicada_an_lise_de_dados"
+  ],
+  [
+   "f_en_7_copy_of_fada_m_dulo_7_estat_st",
+   "cat_m_dulo_7_estat_stica_aplicada_an_lise_de_dados"
+  ],
+  [
+   "f_oficial_8__fada_conte_do_m_dulo_8_python",
+   "cat_m_dulo_8_python"
+  ],
+  [
+   "f_personal_8_decoreba_modulo8",
+   "cat_m_dulo_8_python"
+  ],
+  [
+   "f_personal_8_resumo_modulo8",
+   "cat_m_dulo_8_python"
+  ],
+  [
+   "f_en_8__english_fada_m_dulo_de_python",
+   "cat_m_dulo_8_python"
+  ],
+  [
+   "f_personal_9_decoreba_modulo9_aulas",
+   "cat_m_dulo_9_ai_powered_productivity"
+  ],
+  [
+   "f_personal_9_decoreba_modulo9_claude_for_ae",
+   "cat_m_dulo_9_ai_powered_productivity"
+  ],
+  [
+   "f_personal_9_decoreba_modulo9_intro_claude",
+   "cat_m_dulo_9_ai_powered_productivity"
+  ],
+  [
+   "f_personal_9_resumo_modulo9_aulas",
+   "cat_m_dulo_9_ai_powered_productivity"
+  ],
+  [
+   "f_personal_9_resumo_modulo9_claude_for_ae",
+   "cat_m_dulo_9_ai_powered_productivity"
+  ],
+  [
+   "f_personal_9_resumo_modulo9_intro_claude_co",
+   "cat_m_dulo_9_ai_powered_productivity"
+  ],
+  [
+   "f_oficial_10_adventureworks_banco_referenci",
+   "cat_m_dulo_10_curso_sql_completo_youtube"
+  ],
+  [
+   "f_oficial_10_banconorthwind",
+   "cat_m_dulo_10_curso_sql_completo_youtube"
+  ],
+  [
+   "f_oficial_10_carregar_bancos",
+   "cat_m_dulo_10_curso_sql_completo_youtube"
+  ],
+  [
+   "f_oficial_10_curso_sql_completo_2025",
+   "cat_m_dulo_10_curso_sql_completo_youtube"
+  ],
+  [
+   "f_oficial_10_northwind_banco_referencia",
+   "cat_m_dulo_10_curso_sql_completo_youtube"
+  ],
+  [
+   "f_desafio",
+   "cat_desafio_final"
+  ],
+  [
+   "f_oficial_desafio_briefing_desafio_pt_br",
+   "cat_desafio_final"
+  ],
+  [
+   "f_oficial_desafio_briefing_desafio",
+   "cat_desafio_final"
+  ],
+  [
+   "f_oficial_desafio_sugest_o_de_primeiros_pontos_p",
+   "cat_desafio_final"
+  ],
+  [
+   "f_desafio_doc_readme",
+   "cat_desafio_projeto"
+  ],
+  [
+   "f_desafio_doc_01_kpis_e_perguntas",
+   "cat_desafio_projeto"
+  ],
+  [
+   "f_desafio_doc_01_01_mapa_completo",
+   "cat_desafio_projeto"
+  ],
+  [
+   "f_desafio_doc_02_analise_exploratoria",
+   "cat_desafio_projeto"
+  ],
+  [
+   "f_desafio_doc_03_decisoes_de_modelagem",
+   "cat_desafio_projeto"
+  ],
+  [
+   "f_desafio_doc_03_01_modelo_conceitual",
+   "cat_desafio_projeto"
+  ],
+  [
+   "f_desafio_doc_04_configuracao_dbt_cloud",
+   "cat_desafio_projeto"
+  ],
+  [
+   "f_desafio_doc_05_plano_de_entrega_dbt",
+   "cat_desafio_projeto"
+  ],
+  [
+   "f_desafio_doc_06_mockup",
+   "cat_desafio_projeto"
+  ],
+  [
+   "f_desafio_doc_07_dashboard",
+   "cat_desafio_projeto"
+  ],
+  [
+   "f_desafio_doc_08_regras_de_negocio",
+   "cat_desafio_projeto"
+  ],
+  [
+   "f_skills_mcp",
+   "cat_skills_e_mcp"
+  ],
+  [
+   "f_skill_ae_fullflow",
+   "cat_skills_e_mcp"
+  ],
+  [
+   "f_skill_ae_materials_app",
+   "cat_skills_e_mcp"
+  ],
+  [
+   "f_skill_dbt_packages_tests",
+   "cat_skills_e_mcp"
+  ],
+  [
+   "f_mcp_readme",
+   "cat_skills_e_mcp"
+  ],
+  [
+   "t_mcp",
+   "f_mcp_readme"
+  ],
+  [
+   "t_git",
+   "f_convencoes"
+  ],
+  [
+   "t_claude",
+   "f_skills_mcp"
+  ],
+  [
+   "e1",
+   "f_desafio_doc_01_kpis_e_perguntas"
+  ],
+  [
+   "e2",
+   "f_desafio_doc_02_analise_exploratoria"
+  ],
+  [
+   "e3",
+   "f_desafio_doc_03_01_modelo_conceitual"
+  ],
+  [
+   "e4",
+   "f_desafio_doc_04_configuracao_dbt_cloud"
+  ],
+  [
+   "e5",
+   "f_desafio_doc_05_plano_de_entrega_dbt"
+  ],
+  [
+   "e6",
+   "f_desafio_doc_06_mockup"
+  ],
+  [
+   "e7",
+   "f_desafio_doc_07_dashboard"
+  ],
+  [
+   "e8",
+   "f_desafio_doc_08_regras_de_negocio"
+  ],
+  [
+   "e11",
+   "f_desafio_doc_readme"
+  ],
+  [
+   "s_ae_fullflow",
+   "f_skill_ae_fullflow"
+  ],
+  [
+   "s_dbt_packages",
+   "f_skill_dbt_packages_tests"
+  ],
+  [
+   "s_materials",
+   "f_skill_ae_materials_app"
+  ],
+  [
+   "s_report_planning",
+   "f_skills_mcp"
+  ],
+  [
+   "s_report_design",
+   "f_skills_mcp"
+  ],
+  [
+   "s_report_authoring",
+   "f_skills_mcp"
+  ],
+  [
+   "s_dax_create",
+   "f_skills_mcp"
+  ],
+  [
+   "s_pbi_doc",
+   "f_skills_mcp"
+  ],
+  [
+   "s_modelo_review",
+   "f_skills_mcp"
+  ],
+  [
+   "s_migra_fonte",
+   "f_skills_mcp"
+  ],
+  [
+   "s_slides",
+   "f_skills_mcp"
+  ],
+  [
+   "s_ingestao",
+   "f_skills_mcp"
+  ],
+  [
+   "s_modelagem",
+   "f_skills_mcp"
+  ],
+  [
+   "s_mockup",
+   "f_skills_mcp"
+  ],
+  [
+   "s_licoes",
+   "f_skills_mcp"
+  ],
+  [
+   "s_reconciliacao",
+   "f_skills_mcp"
+  ],
+  [
+   "s_apresentacao",
+   "f_skills_mcp"
+  ],
+  [
+   "s_entrega",
+   "f_skills_mcp"
+  ],
+  [
+   "cat_m_dulo_0_banco_de_dados_banvic",
+   "t_sql"
+  ],
+  [
+   "cat_m_dulo_0_banco_de_dados_banvic",
+   "t_databricks"
+  ],
+  [
+   "cat_m_dulo_2_sql",
+   "t_sql"
+  ],
+  [
+   "cat_m_dulo_10_curso_sql_completo_youtube",
+   "t_sql"
+  ],
+  [
+   "cat_m_dulo_3_modelagem_de_dados",
+   "s_modelagem"
+  ],
+  [
+   "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake",
+   "t_dbt"
+  ],
+  [
+   "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake",
+   "t_snowflake"
+  ],
+  [
+   "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake",
+   "t_git"
+  ],
+  [
+   "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake",
+   "s_dbt_packages"
+  ],
+  [
+   "cat_m_dulo_4_storytelling_com_dados",
+   "s_slides"
+  ],
+  [
+   "cat_m_dulo_4_storytelling_com_dados",
+   "t_slides"
+  ],
+  [
+   "cat_m_dulo_5_design_de_experi_ncia",
+   "s_mockup"
+  ],
+  [
+   "cat_m_dulo_5_design_de_experi_ncia",
+   "t_design"
+  ],
+  [
+   "cat_m_dulo_6_dashboards_com_power_bi",
+   "t_powerbi"
+  ],
+  [
+   "cat_m_dulo_8_python",
+   "t_python"
+  ],
+  [
+   "cat_m_dulo_9_ai_powered_productivity",
+   "t_claude"
+  ],
+  [
+   "cat_m_dulo_9_ai_powered_productivity",
+   "t_databricks"
+  ],
+  [
+   "e1",
+   "e2"
+  ],
+  [
+   "e2",
+   "e3"
+  ],
+  [
+   "e3",
+   "e4"
+  ],
+  [
+   "e4",
+   "e5"
+  ],
+  [
+   "e5",
+   "e6"
+  ],
+  [
+   "e6",
+   "e7"
+  ],
+  [
+   "e7",
+   "e8"
+  ],
+  [
+   "e8",
+   "e9"
+  ],
+  [
+   "e9",
+   "e10"
+  ],
+  [
+   "e10",
+   "e11"
+  ],
+  [
+   "cat_desafio_final",
+   "e1"
+  ],
+  [
+   "e1",
+   "cat_m_dulo_1_introdu_o_an_lise_de_dados"
+  ],
+  [
+   "e1",
+   "cat_m_dulo_4_storytelling_com_dados"
+  ],
+  [
+   "e1",
+   "cat_m_dulo_7_estat_stica_aplicada_an_lise_de_dados"
+  ],
+  [
+   "e2",
+   "cat_m_dulo_1_introdu_o_an_lise_de_dados"
+  ],
+  [
+   "e2",
+   "cat_m_dulo_7_estat_stica_aplicada_an_lise_de_dados"
+  ],
+  [
+   "e2",
+   "cat_m_dulo_8_python"
+  ],
+  [
+   "e2",
+   "cat_m_dulo_2_sql"
+  ],
+  [
+   "e2",
+   "t_databricks"
+  ],
+  [
+   "e2",
+   "s_ingestao"
+  ],
+  [
+   "e2",
+   "s_reconciliacao"
+  ],
+  [
+   "e3",
+   "cat_m_dulo_3_modelagem_de_dados"
+  ],
+  [
+   "e3",
+   "s_modelagem"
+  ],
+  [
+   "e4",
+   "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake"
+  ],
+  [
+   "e4",
+   "t_dbt"
+  ],
+  [
+   "e4",
+   "t_databricks"
+  ],
+  [
+   "e4",
+   "s_ae_fullflow"
+  ],
+  [
+   "e5",
+   "cat_m_dulo_iv_engenharia_de_dados_com_dbt_e_snowflake"
+  ],
+  [
+   "e5",
+   "t_dbt"
+  ],
+  [
+   "e5",
+   "t_git"
+  ],
+  [
+   "e5",
+   "s_dbt_packages"
+  ],
+  [
+   "e5",
+   "s_modelagem"
+  ],
+  [
+   "e6",
+   "cat_m_dulo_5_design_de_experi_ncia"
+  ],
+  [
+   "e6",
+   "s_mockup"
+  ],
+  [
+   "e6",
+   "t_design"
+  ],
+  [
+   "e7",
+   "cat_m_dulo_6_dashboards_com_power_bi"
+  ],
+  [
+   "e7",
+   "t_powerbi"
+  ],
+  [
+   "e7",
+   "t_mcp"
+  ],
+  [
+   "e7",
+   "s_report_planning"
+  ],
+  [
+   "e7",
+   "s_report_design"
+  ],
+  [
+   "e7",
+   "s_report_authoring"
+  ],
+  [
+   "e7",
+   "s_dax_create"
+  ],
+  [
+   "e7",
+   "s_licoes"
+  ],
+  [
+   "e7",
+   "s_modelo_review"
+  ],
+  [
+   "e7",
+   "s_reconciliacao"
+  ],
+  [
+   "e8",
+   "s_reconciliacao"
+  ],
+  [
+   "e8",
+   "s_modelagem"
+  ],
+  [
+   "e9",
+   "cat_m_dulo_4_storytelling_com_dados"
+  ],
+  [
+   "e9",
+   "s_slides"
+  ],
+  [
+   "e9",
+   "t_slides"
+  ],
+  [
+   "e10",
+   "s_apresentacao"
+  ],
+  [
+   "e10",
+   "t_powerbi"
+  ],
+  [
+   "e11",
+   "s_entrega"
+  ],
+  [
+   "e11",
+   "t_git"
+  ],
+  [
+   "s_ae_fullflow",
+   "t_databricks"
+  ],
+  [
+   "s_ae_fullflow",
+   "t_dbt"
+  ],
+  [
+   "s_ae_fullflow",
+   "t_powerbi"
+  ],
+  [
+   "s_ae_fullflow",
+   "t_git"
+  ],
+  [
+   "s_dbt_packages",
+   "t_dbt"
+  ],
+  [
+   "s_modelagem",
+   "t_dbt"
+  ],
+  [
+   "s_ingestao",
+   "t_databricks"
+  ],
+  [
+   "s_ingestao",
+   "t_sql"
+  ],
+  [
+   "s_materials",
+   "t_python"
+  ],
+  [
+   "s_report_planning",
+   "t_powerbi"
+  ],
+  [
+   "s_report_design",
+   "t_powerbi"
+  ],
+  [
+   "s_report_authoring",
+   "t_powerbi"
+  ],
+  [
+   "s_dax_create",
+   "t_powerbi"
+  ],
+  [
+   "s_dax_create",
+   "t_mcp"
+  ],
+  [
+   "s_pbi_doc",
+   "t_powerbi"
+  ],
+  [
+   "s_modelo_review",
+   "t_powerbi"
+  ],
+  [
+   "s_migra_fonte",
+   "t_powerbi"
+  ],
+  [
+   "s_migra_fonte",
+   "t_databricks"
+  ],
+  [
+   "s_migra_fonte",
+   "t_mcp"
+  ],
+  [
+   "s_licoes",
+   "t_powerbi"
+  ],
+  [
+   "s_apresentacao",
+   "t_powerbi"
+  ],
+  [
+   "s_mockup",
+   "t_design"
+  ],
+  [
+   "s_mockup",
+   "t_powerbi"
+  ],
+  [
+   "s_reconciliacao",
+   "t_sql"
+  ],
+  [
+   "s_reconciliacao",
+   "t_dbt"
+  ],
+  [
+   "s_reconciliacao",
+   "t_mcp"
+  ],
+  [
+   "s_slides",
+   "t_slides"
+  ],
+  [
+   "s_entrega",
+   "t_git"
+  ],
+  [
+   "t_mcp",
+   "t_powerbi"
+  ],
+  [
+   "t_claude",
+   "t_mcp"
+  ],
+  [
+   "cat_desafio_projeto",
+   "cat_desafio_final"
+  ],
+  [
+   "cat_skills_e_mcp",
+   "t_claude"
+  ],
+  [
+   "cat_config",
+   "t_git"
+  ]
+ ]
+}

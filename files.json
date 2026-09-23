@@ -2,13 +2,13 @@
   {
     "id": "agents",
     "label": "AGENTS.md",
-    "title": "AGENTS.md — Formação Analytics Engineer (Indicium)",
+    "title": "AGENTS.md — Formação Analytics Engineer (Indicium AI)",
     "path": "AGENTS.md",
     "cat": "Config",
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 27191
+    "size": 27203
   },
   {
     "id": "diario",
@@ -30,7 +30,7 @@
     "done": true,
     "module": 0,
     "sort": 0,
-    "size": 3840
+    "size": 4011
   },
   {
     "id": "guia",
@@ -64,6 +64,18 @@
     "module": 0,
     "sort": 0,
     "size": 6439
+  },
+  {
+    "id": "grafo",
+    "label": "Grafo da formação",
+    "title": "Grafo — formação, desafio, skills e ferramentas",
+    "path": "grafo.json",
+    "cat": "Mapa",
+    "view": "grafo",
+    "done": true,
+    "module": "mapa",
+    "sort": -1,
+    "size": 0
   },
   {
     "id": "oficial_0_banvic_queries",
@@ -681,5 +693,181 @@
     "module": "Desafio",
     "sort": 99,
     "size": 675
+  },
+  {
+    "id": "desafio_doc_readme",
+    "label": "README.md",
+    "title": "Desafio Final — Adventure Works",
+    "path": "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/README.md",
+    "cat": "Desafio — Projeto",
+    "done": true,
+    "module": "desafio",
+    "sort": 99.5,
+    "size": 24934
+  },
+  {
+    "id": "desafio_doc_01_kpis_e_perguntas",
+    "label": "docs/01-kpis-e-perguntas.md",
+    "title": "Etapa 1 — KPIs e perguntas de negócio",
+    "path": "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/01-kpis-e-perguntas.md",
+    "cat": "Desafio — Projeto",
+    "done": true,
+    "module": "desafio",
+    "sort": 99.5,
+    "size": 44459
+  },
+  {
+    "id": "desafio_doc_01_01_mapa_completo",
+    "label": "docs/01.01-mapa-completo.md",
+    "title": "Etapa 1 · Mapa completo das perguntas de negócio",
+    "path": "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/01.01-mapa-completo.md",
+    "cat": "Desafio — Projeto",
+    "done": true,
+    "module": "desafio",
+    "sort": 99.5,
+    "size": 9725
+  },
+  {
+    "id": "desafio_doc_02_analise_exploratoria",
+    "label": "docs/02-analise-exploratoria.md",
+    "title": "Etapa 2 — Análise exploratória de dados",
+    "path": "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/02-analise-exploratoria.md",
+    "cat": "Desafio — Projeto",
+    "done": true,
+    "module": "desafio",
+    "sort": 99.5,
+    "size": 8417
+  },
+  {
+    "id": "desafio_doc_03_decisoes_de_modelagem",
+    "label": "docs/03-decisoes-de-modelagem.md",
+    "title": "Decisões de modelagem — Etapa 3",
+    "path": "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/03-decisoes-de-modelagem.md",
+    "cat": "Desafio — Projeto",
+    "done": true,
+    "module": "desafio",
+    "sort": 99.5,
+    "size": 13846
+  },
+  {
+    "id": "desafio_doc_03_01_modelo_conceitual",
+    "label": "docs/03.01-modelo-conceitual.md",
+    "title": "Modelo conceitual — Etapa 3",
+    "path": "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/03.01-modelo-conceitual.md",
+    "cat": "Desafio — Projeto",
+    "done": true,
+    "module": "desafio",
+    "sort": 99.5,
+    "size": 3726
+  },
+  {
+    "id": "desafio_doc_04_configuracao_dbt_cloud",
+    "label": "docs/04-configuracao-dbt-cloud.md",
+    "title": "Etapa 4 — configurar o dbt Cloud sobre o Databricks",
+    "path": "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/04-configuracao-dbt-cloud.md",
+    "cat": "Desafio — Projeto",
+    "done": true,
+    "module": "desafio",
+    "sort": 99.5,
+    "size": 11967
+  },
+  {
+    "id": "desafio_doc_05_plano_de_entrega_dbt",
+    "label": "docs/05-plano-de-entrega-dbt.md",
+    "title": "Etapa 5 — plano de entrega em branches",
+    "path": "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/05-plano-de-entrega-dbt.md",
+    "cat": "Desafio — Projeto",
+    "done": true,
+    "module": "desafio",
+    "sort": 99.5,
+    "size": 20387
+  },
+  {
+    "id": "desafio_doc_06_mockup",
+    "label": "docs/06-mockup.md",
+    "title": "Etapa 6 — Mockup do dashboard",
+    "path": "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/06-mockup.md",
+    "cat": "Desafio — Projeto",
+    "done": true,
+    "module": "desafio",
+    "sort": 99.5,
+    "size": 9430
+  },
+  {
+    "id": "desafio_doc_07_dashboard",
+    "label": "docs/07-dashboard.md",
+    "title": "Etapa 7 — Desenvolvimento do dashboard",
+    "path": "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/07-dashboard.md",
+    "cat": "Desafio — Projeto",
+    "done": true,
+    "module": "desafio",
+    "sort": 99.5,
+    "size": 18679
+  },
+  {
+    "id": "desafio_doc_08_regras_de_negocio",
+    "label": "docs/08-regras-de-negocio.md",
+    "title": "Etapa 8 — Documentação das regras de negócio",
+    "path": "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/08-regras-de-negocio.md",
+    "cat": "Desafio — Projeto",
+    "done": true,
+    "module": "desafio",
+    "sort": 99.5,
+    "size": 8800
+  },
+  {
+    "id": "skills_mcp",
+    "label": "SKILLS_E_MCP.md",
+    "title": "Skills e MCP — o kit de Analytics Engineer com IA",
+    "path": "SKILLS_E_MCP.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 7446
+  },
+  {
+    "id": "skill_ae_fullflow",
+    "label": "ae-fullflow/SKILL.md",
+    "title": "Skill: Analytics Engineer Completo",
+    "path": "skills/ae-fullflow/SKILL.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 11456
+  },
+  {
+    "id": "skill_ae_materials_app",
+    "label": "ae_materials_app/SKILL.md",
+    "title": "Skill: ae-materials-app",
+    "path": "skills/ae_materials_app/SKILL.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 3433
+  },
+  {
+    "id": "skill_dbt_packages_tests",
+    "label": "dbt-packages-tests/SKILL.md",
+    "title": "Skill: dbt Packages e Testes — Lições Aprendidas",
+    "path": "skills/dbt-packages-tests/SKILL.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 7545
+  },
+  {
+    "id": "mcp_readme",
+    "label": "mcp/README.md",
+    "title": "MCP Servers",
+    "path": "mcp/README.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 1964
   }
 ]
