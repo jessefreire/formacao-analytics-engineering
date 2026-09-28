@@ -824,7 +824,7 @@
     "done": true,
     "module": "skills",
     "sort": 100,
-    "size": 7446
+    "size": 7525
   },
   {
     "id": "skill_ae_fullflow",
@@ -846,7 +846,29 @@
     "done": true,
     "module": "skills",
     "sort": 100,
-    "size": 3433
+    "size": 3944
+  },
+  {
+    "id": "skill_databricks_ingestao",
+    "label": "databricks-ingestao/SKILL.md",
+    "title": "/databricks-ingestao",
+    "path": "skills/databricks-ingestao/SKILL.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 3136
+  },
+  {
+    "id": "skill_dbt_modelagem_dimensional",
+    "label": "dbt-modelagem-dimensional/SKILL.md",
+    "title": "/dbt-modelagem-dimensional",
+    "path": "skills/dbt-modelagem-dimensional/SKILL.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 5075
   },
   {
     "id": "skill_dbt_packages_tests",
@@ -860,6 +882,17 @@
     "size": 7545
   },
   {
+    "id": "skill_entrega_a_partir_do_briefing",
+    "label": "entrega-a-partir-do-briefing/SKILL.md",
+    "title": "/entrega-a-partir-do-briefing",
+    "path": "skills/entrega-a-partir-do-briefing/SKILL.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 2710
+  },
+  {
     "id": "mcp_readme",
     "label": "mcp/README.md",
     "title": "MCP Servers",
@@ -869,5 +902,49 @@
     "module": "skills",
     "sort": 100,
     "size": 1964
+  },
+  {
+    "id": "skill_pbi_apresentacao",
+    "label": "pbi-apresentacao/SKILL.md",
+    "title": "/pbi-apresentacao",
+    "path": "skills/pbi-apresentacao/SKILL.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 2047
+  },
+  {
+    "id": "skill_pbi_licoes_pbir",
+    "label": "pbi-licoes-pbir/SKILL.md",
+    "title": "/pbi-licoes-pbir",
+    "path": "skills/pbi-licoes-pbir/SKILL.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 3806
+  },
+  {
+    "id": "skill_pbi_mockup_design",
+    "label": "pbi-mockup-design/SKILL.md",
+    "title": "/pbi-mockup-design",
+    "path": "skills/pbi-mockup-design/SKILL.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 3375
+  },
+  {
+    "id": "skill_reconciliacao_numeros",
+    "label": "reconciliacao-numeros/SKILL.md",
+    "title": "/reconciliacao-numeros",
+    "path": "skills/reconciliacao-numeros/SKILL.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 3238
   }
 ]

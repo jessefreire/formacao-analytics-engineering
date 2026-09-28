@@ -559,16 +559,58 @@
    "arquivo": "skill_ae_materials_app"
   },
   {
+   "id": "f_skill_databricks_ingestao",
+   "tipo": "material",
+   "rotulo": "/databricks-ingestao",
+   "arquivo": "skill_databricks_ingestao"
+  },
+  {
+   "id": "f_skill_dbt_modelagem_dimensional",
+   "tipo": "material",
+   "rotulo": "/dbt-modelagem-dimensional",
+   "arquivo": "skill_dbt_modelagem_dimensional"
+  },
+  {
    "id": "f_skill_dbt_packages_tests",
    "tipo": "material",
    "rotulo": "Skill: dbt Packages e Testes — Lições Aprendidas",
    "arquivo": "skill_dbt_packages_tests"
   },
   {
+   "id": "f_skill_entrega_a_partir_do_briefing",
+   "tipo": "material",
+   "rotulo": "/entrega-a-partir-do-briefing",
+   "arquivo": "skill_entrega_a_partir_do_briefing"
+  },
+  {
    "id": "f_mcp_readme",
    "tipo": "material",
    "rotulo": "MCP Servers",
    "arquivo": "mcp_readme"
+  },
+  {
+   "id": "f_skill_pbi_apresentacao",
+   "tipo": "material",
+   "rotulo": "/pbi-apresentacao",
+   "arquivo": "skill_pbi_apresentacao"
+  },
+  {
+   "id": "f_skill_pbi_licoes_pbir",
+   "tipo": "material",
+   "rotulo": "/pbi-licoes-pbir",
+   "arquivo": "skill_pbi_licoes_pbir"
+  },
+  {
+   "id": "f_skill_pbi_mockup_design",
+   "tipo": "material",
+   "rotulo": "/pbi-mockup-design",
+   "arquivo": "skill_pbi_mockup_design"
+  },
+  {
+   "id": "f_skill_reconciliacao_numeros",
+   "tipo": "material",
+   "rotulo": "/reconciliacao-numeros",
+   "arquivo": "skill_reconciliacao_numeros"
   },
   {
    "id": "t_sql",
@@ -762,49 +804,49 @@
    "id": "s_ingestao",
    "tipo": "skill",
    "rotulo": "databricks-ingestao",
-   "arquivo": "skills_mcp",
+   "arquivo": "skill_databricks_ingestao",
    "nova": true
   },
   {
    "id": "s_modelagem",
    "tipo": "skill",
    "rotulo": "dbt-modelagem-dimensional",
-   "arquivo": "skills_mcp",
+   "arquivo": "skill_dbt_modelagem_dimensional",
    "nova": true
   },
   {
    "id": "s_mockup",
    "tipo": "skill",
    "rotulo": "pbi-mockup-design",
-   "arquivo": "skills_mcp",
+   "arquivo": "skill_pbi_mockup_design",
    "nova": true
   },
   {
    "id": "s_licoes",
    "tipo": "skill",
    "rotulo": "pbi-licoes-pbir",
-   "arquivo": "skills_mcp",
+   "arquivo": "skill_pbi_licoes_pbir",
    "nova": true
   },
   {
    "id": "s_reconciliacao",
    "tipo": "skill",
    "rotulo": "reconciliacao-numeros",
-   "arquivo": "skills_mcp",
+   "arquivo": "skill_reconciliacao_numeros",
    "nova": true
   },
   {
    "id": "s_apresentacao",
    "tipo": "skill",
    "rotulo": "pbi-apresentacao",
-   "arquivo": "skills_mcp",
+   "arquivo": "skill_pbi_apresentacao",
    "nova": true
   },
   {
    "id": "s_entrega",
    "tipo": "skill",
    "rotulo": "entrega-a-partir-do-briefing",
-   "arquivo": "skills_mcp",
+   "arquivo": "skill_entrega_a_partir_do_briefing",
    "nova": true
   }
  ],
@@ -1114,11 +1156,39 @@
    "cat_skills_e_mcp"
   ],
   [
+   "f_skill_databricks_ingestao",
+   "cat_skills_e_mcp"
+  ],
+  [
+   "f_skill_dbt_modelagem_dimensional",
+   "cat_skills_e_mcp"
+  ],
+  [
    "f_skill_dbt_packages_tests",
    "cat_skills_e_mcp"
   ],
   [
+   "f_skill_entrega_a_partir_do_briefing",
+   "cat_skills_e_mcp"
+  ],
+  [
    "f_mcp_readme",
+   "cat_skills_e_mcp"
+  ],
+  [
+   "f_skill_pbi_apresentacao",
+   "cat_skills_e_mcp"
+  ],
+  [
+   "f_skill_pbi_licoes_pbir",
+   "cat_skills_e_mcp"
+  ],
+  [
+   "f_skill_pbi_mockup_design",
+   "cat_skills_e_mcp"
+  ],
+  [
+   "f_skill_reconciliacao_numeros",
    "cat_skills_e_mcp"
   ],
   [
@@ -1215,31 +1285,31 @@
   ],
   [
    "s_ingestao",
-   "f_skills_mcp"
+   "f_skill_databricks_ingestao"
   ],
   [
    "s_modelagem",
-   "f_skills_mcp"
+   "f_skill_dbt_modelagem_dimensional"
   ],
   [
    "s_mockup",
-   "f_skills_mcp"
+   "f_skill_pbi_mockup_design"
   ],
   [
    "s_licoes",
-   "f_skills_mcp"
+   "f_skill_pbi_licoes_pbir"
   ],
   [
    "s_reconciliacao",
-   "f_skills_mcp"
+   "f_skill_reconciliacao_numeros"
   ],
   [
    "s_apresentacao",
-   "f_skills_mcp"
+   "f_skill_pbi_apresentacao"
   ],
   [
    "s_entrega",
-   "f_skills_mcp"
+   "f_skill_entrega_a_partir_do_briefing"
   ],
   [
    "cat_m_dulo_0_banco_de_dados_banvic",

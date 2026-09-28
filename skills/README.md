@@ -13,6 +13,20 @@ Skills versionadas neste repositório para uso com qualquer IDE com IA (Claude C
 | **ae_materials_app** | Auto-sync dos materiais do curso | Sincroniza `index.html` com novos arquivos |
 | **dbt-packages-tests** | Lições de packages e testes dbt | `dbt_utils`, testes genéricos, erros comuns |
 
+### Criadas a partir do desafio Adventure Works
+
+Ativas como globais em `~/.claude/skills/`; aqui fica a cópia versionada.
+
+| Skill | Descrição | Uso |
+|-------|-----------|-----|
+| **databricks-ingestao** | Carga da camada bruta a partir do DDL | `read_files` idempotente, tipos certos, 5 conferências |
+| **dbt-modelagem-dimensional** | Decisões de modelo dimensional | grão da fato, ponte N:N com `allocation_factor`, membros `-1` |
+| **pbi-mockup-design** | Mockup do dashboard antes do Power BI | canvas `/design`, 1280px, fundos SVG, interação → objeto do PBI |
+| **pbi-licoes-pbir** | Armadilhas de Power BI e a correção | RANKX, field parameters, PBIR, caminho longo |
+| **reconciliacao-numeros** | Bater o número em SQL, dbt e DAX | investigar divergência e filtro vazio |
+| **pbi-apresentacao** | Dashboard em tela cheia sem a interface do Desktop | gravar ou apresentar sem Power BI Service |
+| **entrega-a-partir-do-briefing** | Montar e conferir o pacote de entrega | "pede × onde está", PDFs, links públicos, ZIP |
+
 ## Como Usar
 
 As skills já estão ativas em `.claude/skills/` (Claude Code) e `.opencode/skill/` (OpenCode). Esta pasta `skills/` é o espelho canônico para compartilhamento.

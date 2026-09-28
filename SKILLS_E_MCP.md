@@ -58,6 +58,8 @@ Complementares usadas no desafio: `indicium-slide-creator` (decks na identidade 
 
 ## 5. Skills criadas a partir do desafio Adventure Works (globais, novas)
 
+Ativas em `~/.claude/skills/`, com cópia versionada em [`skills/`](skills/).
+
 Cada uma nasceu de um problema que custou tempo de verdade no desafio.
 
 | Skill | Quando usar | O que ela resolve |
