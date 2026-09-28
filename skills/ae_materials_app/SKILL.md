@@ -99,6 +99,8 @@ const FILES = [
 
 Se os marcadores não existirem, o script tenta substituir `const FILES = [...];` por regex.
 
+Tokens, regra de contraste, componentes e checklist mobile do template: `references/design-system.md`.
+
 ---
 
 ## Adicionando novo padrão de arquivo

@@ -10,7 +10,7 @@ Skills versionadas neste repositório para uso com qualquer IDE com IA (Claude C
 | Skill | Descrição | Uso |
 |-------|-----------|-----|
 | **ae-fullflow** | Fluxo ponta a ponta do Analytics Engineer | Databricks → SQL → dbt → GitHub → Power BI → SVG → Tema JSON |
-| **ae_materials_app** | Auto-sync dos materiais do curso | Sincroniza `index.html` com novos arquivos |
+| **ae_materials_app** | Auto-sync dos materiais do curso | Sincroniza `index.html` com novos arquivos; visual e navegação em `references/design-system.md` |
 | **dbt-packages-tests** | Lições de packages e testes dbt | `dbt_utils`, testes genéricos, erros comuns |
 
 ### Criadas a partir do desafio Adventure Works

@@ -40,7 +40,7 @@ Briefing ─▶ Ingestão ─▶ Modelagem ─▶ dbt ─▶ Mockup ─▶ Power
 |---|---|
 | `ae-fullflow` | Fluxo completo do AE: Databricks → SQL → dbt → GitHub → Power BI → SVG → tema JSON |
 | `dbt-packages-tests` | Packages (`dbt_utils`), testes genéricos e os erros comuns do dbt, com a correção de cada um |
-| `ae_materials_app` | Sincroniza os materiais do curso com o `index.html` do visualizador local |
+| `ae_materials_app` | Sincroniza os materiais do curso com o `index.html` do visualizador local (busca Ctrl+K, tema claro/escuro, layout a partir de 320px; ver `references/design-system.md`) |
 
 ## 4. Skills de Power BI (globais, já existiam)
 

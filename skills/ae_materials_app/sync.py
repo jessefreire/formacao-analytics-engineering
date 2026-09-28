@@ -221,6 +221,21 @@ def discover_files() -> List[Dict[str, Any]]:
             "size": path.stat().st_size,
         })
 
+    # --- Tela Inicio (sem arquivo: e montada no navegador a partir do proprio FILES) ---
+    files.append({
+        "id": "inicio",
+        "label": "Início",
+        "title": "Início",
+        "path": "",
+        "cat": "Início",
+        "view": "inicio",
+        "oculto": True,   # fora da lista, da busca por grupo e do Anterior/Proximo
+        "done": True,
+        "module": "inicio",
+        "sort": -2,
+        "size": 0,
+    })
+
     # --- Raio-X dos modelos (gerados pela skill pbi-raio-x em raio-x/*.json) ---
     for rx in sorted((ROOT / "raio-x").glob("*.json")):
         try:
@@ -378,10 +393,11 @@ def render_index(files: List[Dict[str, Any]]) -> str:
         done = "true" if f["done"] else "false"
         # `view` sai so em quem tem, pra entrada normal nao ganhar campo novo
         view = f' view: "{escape_js(f["view"])}",' if f.get("view") else ""
+        oculto = " oculto: true," if f.get("oculto") else ""
         lines.append(
             f'  {{ id: "{f["id"]}", label: "{escape_js(f["label"])}", '
             f'title: "{escape_js(f["title"])}", path: "{escape_js(f["path"])}", '
-            f'cat: "{escape_js(f["cat"])}",{view} done: {done} }},'
+            f'cat: "{escape_js(f["cat"])}",{view}{oculto} done: {done} }},'
         )
     lines.append("];")
     files_js = "\n".join(lines)
@@ -480,7 +496,7 @@ def write_grafo_json(files: List[Dict[str, Any]]):
     nos, ligacoes = {}, []
 
     for f in files:
-        if f["id"] == "grafo":
+        if f["id"] == "grafo" or f.get("oculto"):
             continue
         cat_id = "cat_" + _slug(f["cat"])
         if cat_id not in nos:

@@ -66,6 +66,19 @@
     "size": 6439
   },
   {
+    "id": "inicio",
+    "label": "Início",
+    "title": "Início",
+    "path": "",
+    "cat": "Início",
+    "view": "inicio",
+    "oculto": true,
+    "done": true,
+    "module": "inicio",
+    "sort": -2,
+    "size": 0
+  },
+  {
     "id": "grafo",
     "label": "Grafo da formação",
     "title": "Grafo — formação, desafio, skills e ferramentas",
