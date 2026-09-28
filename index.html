@@ -364,6 +364,87 @@ body {
 .grf-dica { margin-top: 8px; font-size: var(--fs-xs); color: var(--muted); }
 @media (max-width: 900px) { .grf-busca { margin-left: 0; width: 100%; } .grf-tela { height: 60vh; } }
 
+/* ===== Telas de painel (biblioteca, raio-x, kit) ===== */
+.content:has(.painel) { max-width: none; }
+.pn-barra { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: var(--sp-4) 0 14px; }
+.pn-chip { padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px; background: var(--card);
+  color: var(--fg-soft); font-size: var(--fs-sm); cursor: pointer; }
+.pn-chip[aria-pressed="true"] { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.pn-busca { margin-left: auto; min-width: 220px; padding: 6px 10px; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); background: var(--bg); color: var(--fg); font-size: var(--fs-sm); }
+.pn-rodape { margin-top: var(--sp-6); font-size: var(--fs-xs); color: var(--muted); }
+.bib-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+.bib-card { display: flex; flex-direction: column; gap: 10px; padding: 16px; border: 1px solid var(--border);
+  border-radius: var(--radius-md); background: var(--card); }
+.bib-topo { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.bib-nome { font: 600 var(--fs-body)/1.3 "Cascadia Code", Consolas, monospace; color: var(--fg); }
+.bib-origem { font-size: var(--fs-xs); color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.bib-desc { font-size: var(--fs-sm); line-height: 1.55; color: var(--fg-soft);
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.bib-gatilhos { display: flex; flex-wrap: wrap; gap: 6px; }
+.bib-gatilho { font-size: var(--fs-xs); padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--fg-soft); }
+.bib-acoes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.bib-btn { padding: 6px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg);
+  color: var(--fg); font-size: var(--fs-sm); cursor: pointer; }
+.bib-btn:hover { border-color: var(--border-strong); }
+@media (max-width: 900px) { .pn-busca { margin-left: 0; width: 100%; } .bib-grade { grid-template-columns: 1fr; } }
+
+/* ===== Raio-X ===== */
+.rx-topo { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; margin: var(--sp-4) 0; }
+.rx-nota { width: 104px; height: 104px; border-radius: 50%; display: grid; place-items: center; text-align: center;
+  border: 6px solid var(--rx-cor, var(--border-strong)); background: var(--card); }
+.rx-nota b { display: block; font-size: 2rem; line-height: 1; color: var(--fg); }
+.rx-nota span { font-size: var(--fs-xs); color: var(--muted); }
+.rx-numeros { display: flex; flex-wrap: wrap; gap: 10px; }
+.rx-num { padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card); min-width: 96px; }
+.rx-num b { display: block; font-size: 1.25rem; color: var(--fg); }
+.rx-num span { font-size: var(--fs-xs); color: var(--muted); }
+.rx-abas { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin: 8px 0 14px; flex-wrap: wrap; }
+.rx-aba { padding: 8px 14px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--fg-soft);
+  font-size: var(--fs-ui); cursor: pointer; }
+.rx-aba[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--fg); font-weight: 600; }
+.rx-achado { border: 1px solid var(--border); border-left: 4px solid var(--rx-sev); border-radius: var(--radius-sm);
+  background: var(--card); padding: 12px 14px; margin-bottom: 10px; }
+.rx-achado h3 { margin: 0 0 4px; font-size: var(--fs-body); color: var(--fg); }
+.rx-onde { font: var(--fs-sm) "Cascadia Code", Consolas, monospace; color: var(--fg-soft); }
+.rx-achado p { margin: 6px 0 0; font-size: var(--fs-sm); line-height: 1.55; color: var(--fg-soft); max-width: var(--measure); }
+.rx-sev { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .04em; color: var(--rx-sev); font-weight: 700; }
+.rx-tabela { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.rx-tabela th, .rx-tabela td { border-bottom: 1px solid var(--border); padding: 7px 8px; text-align: left; vertical-align: top; }
+.rx-tabela th { color: var(--muted); font-weight: 600; position: sticky; top: 0; background: var(--bg); }
+.rx-tabela tr[data-medida] { cursor: pointer; }
+.rx-tabela tr[data-medida]:hover { background: var(--accent-soft); }
+.rx-rolagem { max-height: 62vh; overflow: auto; border: 1px solid var(--border); border-radius: var(--radius-md); }
+.rx-dep { display: grid; grid-template-columns: 1fr 340px; gap: 14px; }
+.rx-painel { border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card); padding: 14px;
+  max-height: 68vh; overflow: auto; font-size: var(--fs-sm); color: var(--fg-soft); }
+.rx-painel h3 { margin: 0 0 6px; color: var(--fg); font-size: var(--fs-body); }
+.rx-painel pre { white-space: pre-wrap; font-size: var(--fs-xs); background: var(--code-bg); padding: 8px; border-radius: var(--radius-sm); }
+.rx-lista { margin: 4px 0 10px; padding-left: 18px; }
+@media (max-width: 900px) { .rx-dep { grid-template-columns: 1fr; } .rx-topo { grid-template-columns: 1fr; } }
+
+/* ===== Kit visual ===== */
+.kit { display: grid; grid-template-columns: 320px 1fr; gap: 18px; align-items: start; margin-top: var(--sp-4); }
+.kit-form { border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card); padding: 14px;
+  display: flex; flex-direction: column; gap: 12px; font-size: var(--fs-sm); color: var(--fg-soft); }
+.kit-form fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.kit-form legend { font-weight: 600; color: var(--fg); margin-bottom: 4px; }
+.kit-linha { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.kit-form input[type="text"], .kit-form select, .kit-form input[type="number"] { padding: 5px 8px; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); background: var(--bg); color: var(--fg); font-size: var(--fs-sm); min-width: 0; }
+.kit-cores { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.kit-cores input, .kit-linha input[type="color"] { width: 100%; height: 30px; padding: 0; border: 1px solid var(--border); border-radius: var(--radius-sm); background: none; }
+.kit-linha input[type="color"] { width: 48px; }
+.kit-preview { border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; background: var(--card); }
+.kit-preview svg { display: block; width: 100%; height: auto; }
+.kit-contraste { margin-top: 12px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card); padding: 12px 14px; font-size: var(--fs-sm); }
+.kit-contraste li { list-style: none; display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; color: var(--fg-soft); }
+.kit-contraste ul { margin: 6px 0 0; padding: 0; }
+.kit-ok { color: #2e9d6a; font-weight: 600; } .kit-falha { color: #d64545; font-weight: 600; }
+.kit-acoes { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.kit-acoes .bib-btn[disabled] { opacity: .45; cursor: not-allowed; }
+@media (max-width: 1200px) { .kit { grid-template-columns: 1fr; } .kit > div { order: -1; } }
+
 /* ========== FOCUS VISIBLE ========== */
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
@@ -425,6 +506,9 @@ const FILES = [
   { id: "indice", label: "INDICE_MODULOS.md", title: "Índice Consolidado — Formação Analytics Engineer (Indicium Academy)", path: "INDICE_MODULOS.md", cat: "Config", done: true },
   { id: "setup", label: "SETUP_AMBIENTE_AULAS.md", title: "Setup do Ambiente das Aulas Práticas — GitHub + Databricks + dbt Cloud", path: "SETUP_AMBIENTE_AULAS.md", cat: "Config", done: true },
   { id: "grafo", label: "Grafo da formação", title: "Grafo — formação, desafio, skills e ferramentas", path: "grafo.json", cat: "Mapa", view: "grafo", done: true },
+  { id: "kit_visual", label: "Kit visual", title: "Kit visual — tema e fundo para Power BI", path: "skills/ae_materials_app/kit_visual.json", cat: "Mapa", view: "kit", done: true },
+  { id: "raiox_desafio_adventure_works", label: "Desafio Adventure Works", title: "Raio-X — Desafio Adventure Works", path: "raio-x/desafio-adventure-works.json", cat: "Raio-X", view: "raiox", done: true },
+  { id: "raiox_treino_banvic", label: "Treino BanVic", title: "Raio-X — Treino BanVic", path: "raio-x/treino-banvic.json", cat: "Raio-X", view: "raiox", done: true },
   { id: "oficial_0_banvic_queries", label: "banvic_queries.md", title: "Banco BanVic — Queries de Referência", path: "Módulo 0 - Banco de Dados BanVic/banvic_queries.md", cat: "Módulo 0 - Banco de Dados BanVic", done: true },
   { id: "oficial_0_banvic_tabelas", label: "banvic_tabelas.md", title: "Banco BanVic — Schema das Tabelas", path: "Módulo 0 - Banco de Dados BanVic/banvic_tabelas.md", cat: "Módulo 0 - Banco de Dados BanVic", done: true },
   { id: "oficial_0_banvic_visao_geral", label: "banvic_visao_geral.md", title: "Banco de Dados BanVic — Visão Geral", path: "Módulo 0 - Banco de Dados BanVic/banvic_visao_geral.md", cat: "Módulo 0 - Banco de Dados BanVic", done: true },
@@ -492,6 +576,7 @@ const FILES = [
   { id: "desafio_doc_06_mockup", label: "docs/06-mockup.md", title: "Etapa 6 — Mockup do dashboard", path: "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/06-mockup.md", cat: "Desafio — Projeto", done: true },
   { id: "desafio_doc_07_dashboard", label: "docs/07-dashboard.md", title: "Etapa 7 — Desenvolvimento do dashboard", path: "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/07-dashboard.md", cat: "Desafio — Projeto", done: true },
   { id: "desafio_doc_08_regras_de_negocio", label: "docs/08-regras-de-negocio.md", title: "Etapa 8 — Documentação das regras de negócio", path: "https://raw.githubusercontent.com/jessefreire/certificacao-ae-adventureworks/main/docs/08-regras-de-negocio.md", cat: "Desafio — Projeto", done: true },
+  { id: "biblioteca", label: "Biblioteca de skills", title: "Biblioteca de skills", path: "skills.json", cat: "Skills e MCP", view: "biblioteca", done: true },
   { id: "skills_mcp", label: "SKILLS_E_MCP.md", title: "Skills e MCP — o kit de Analytics Engineer com IA", path: "SKILLS_E_MCP.md", cat: "Skills e MCP", done: true },
   { id: "skill_ae_fullflow", label: "ae-fullflow/SKILL.md", title: "Skill: Analytics Engineer Completo", path: "skills/ae-fullflow/SKILL.md", cat: "Skills e MCP", done: true },
   { id: "skill_ae_materials_app", label: "ae_materials_app/SKILL.md", title: "Skill: ae-materials-app", path: "skills/ae_materials_app/SKILL.md", cat: "Skills e MCP", done: true },
@@ -499,10 +584,12 @@ const FILES = [
   { id: "skill_dbt_modelagem_dimensional", label: "dbt-modelagem-dimensional/SKILL.md", title: "/dbt-modelagem-dimensional", path: "skills/dbt-modelagem-dimensional/SKILL.md", cat: "Skills e MCP", done: true },
   { id: "skill_dbt_packages_tests", label: "dbt-packages-tests/SKILL.md", title: "Skill: dbt Packages e Testes — Lições Aprendidas", path: "skills/dbt-packages-tests/SKILL.md", cat: "Skills e MCP", done: true },
   { id: "skill_entrega_a_partir_do_briefing", label: "entrega-a-partir-do-briefing/SKILL.md", title: "/entrega-a-partir-do-briefing", path: "skills/entrega-a-partir-do-briefing/SKILL.md", cat: "Skills e MCP", done: true },
+  { id: "skill_estudo_video", label: "estudo-video/SKILL.md", title: "/estudo-video", path: "skills/estudo-video/SKILL.md", cat: "Skills e MCP", done: true },
   { id: "mcp_readme", label: "mcp/README.md", title: "MCP Servers", path: "mcp/README.md", cat: "Skills e MCP", done: true },
   { id: "skill_pbi_apresentacao", label: "pbi-apresentacao/SKILL.md", title: "/pbi-apresentacao", path: "skills/pbi-apresentacao/SKILL.md", cat: "Skills e MCP", done: true },
   { id: "skill_pbi_licoes_pbir", label: "pbi-licoes-pbir/SKILL.md", title: "/pbi-licoes-pbir", path: "skills/pbi-licoes-pbir/SKILL.md", cat: "Skills e MCP", done: true },
   { id: "skill_pbi_mockup_design", label: "pbi-mockup-design/SKILL.md", title: "/pbi-mockup-design", path: "skills/pbi-mockup-design/SKILL.md", cat: "Skills e MCP", done: true },
+  { id: "skill_pbi_raio_x", label: "pbi-raio-x/SKILL.md", title: "/pbi-raio-x", path: "skills/pbi-raio-x/SKILL.md", cat: "Skills e MCP", done: true },
   { id: "skill_reconciliacao_numeros", label: "reconciliacao-numeros/SKILL.md", title: "/reconciliacao-numeros", path: "skills/reconciliacao-numeros/SKILL.md", cat: "Skills e MCP", done: true },
 ];
 // ========== END FILES ==========
@@ -1028,7 +1115,449 @@ function grfDesenhar(dados) {
   });
 }
 
-const VIEWS = { desafio: renderDesafio, grafo: renderGrafo };
+// ========== TELA DA BIBLIOTECA DE SKILLS ==========
+const AUTORIA = 'Jessé Freire · Indicium AI';
+
+function renderBiblioteca(file, text) {
+  const skills = JSON.parse(text);
+  const content = document.getElementById('content');
+  const origens = [...new Set(skills.map(s => s.origem))];
+  let filtro = 'todas';
+
+  content.innerHTML = `
+    <div class="painel">
+      <header class="main-header">
+        <span class="module-badge">${escapeHtml(file.cat)}</span>
+        <h1 class="main-title">${escapeHtml(file.title)}</h1>
+        <div class="main-meta">${skills.length} skills · instale copiando o comando e rodando na raiz do repositório</div>
+      </header>
+      <div class="pn-barra">
+        ${['todas', ...origens].map(o => `<button class="pn-chip" type="button" data-origem="${escapeHtml(o)}" aria-pressed="${o === 'todas'}">${escapeHtml({ todas: 'Todas', curso: 'Do curso', 'formação': 'Criadas na formação' }[o] || o)}</button>`).join('')}
+        <input class="pn-busca" id="bibBusca" type="search" placeholder="Buscar skill…" aria-label="Buscar skill">
+      </div>
+      <div class="bib-grade" id="bibGrade"></div>
+      <p class="pn-rodape">Skills de ${AUTORIA}.</p>
+    </div>`;
+
+  const grade = document.getElementById('bibGrade');
+  const busca = document.getElementById('bibBusca');
+
+  function desenhar() {
+    const q = busca.value.trim().toLowerCase();
+    const lista = skills.filter(s => (filtro === 'todas' || s.origem === filtro)
+      && (!q || (s.nome + ' ' + s.descricao + ' ' + s.gatilhos.join(' ')).toLowerCase().includes(q)));
+    grade.innerHTML = lista.map(s => `
+      <article class="bib-card">
+        <div class="bib-topo"><span class="bib-nome">${escapeHtml(s.nome)}</span><span class="bib-origem">${escapeHtml(s.origem)}</span></div>
+        <p class="bib-desc" title="${escapeHtml(s.descricao)}">${escapeHtml(s.descricao)}</p>
+        ${s.gatilhos.length ? `<div class="bib-gatilhos">${s.gatilhos.map(g => `<span class="bib-gatilho">${escapeHtml(g)}</span>`).join('')}</div>` : ''}
+        <div class="bib-acoes">
+          <button class="bib-btn" type="button" data-copiar="${escapeHtml(s.instalar.powershell)}">Copiar (PowerShell)</button>
+          <button class="bib-btn" type="button" data-copiar="${escapeHtml(s.instalar.bash)}">Copiar (bash)</button>
+          ${s.arquivo ? `<button class="bib-btn" type="button" data-abrir="${escapeHtml(s.arquivo)}">Abrir SKILL.md</button>` : ''}
+        </div>
+      </article>`).join('') || '<p class="bib-desc">Nenhuma skill encontrada.</p>';
+
+    grade.querySelectorAll('[data-copiar]').forEach(b => b.addEventListener('click', async () => {
+      const original = b.textContent;
+      try { await navigator.clipboard.writeText(b.dataset.copiar); b.textContent = 'Copiado ✓'; }
+      catch { b.textContent = 'Copie manualmente'; }
+      setTimeout(() => { b.textContent = original; }, 1600);
+    }));
+    grade.querySelectorAll('[data-abrir]').forEach(b => b.addEventListener('click', () => loadFile(b.dataset.abrir)));
+  }
+
+  content.querySelectorAll('[data-origem]').forEach(b => b.addEventListener('click', () => {
+    filtro = b.dataset.origem;
+    content.querySelectorAll('[data-origem]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    desenhar();
+  }));
+  busca.addEventListener('input', desenhar);
+  desenhar();
+}
+
+// ========== TELA DO RAIO-X ==========
+const RX_SEV = { critico: { rot: 'Crítico', cor: '#d64545' }, medio: { rot: 'Médio', cor: '#d98a1f' }, leve: { rot: 'Leve', cor: '#7b8494' } };
+
+function rxCorNota(n) { return n >= 85 ? '#2e9d6a' : n >= 65 ? '#d98a1f' : '#d64545'; }
+
+function renderRaioX(file, text) {
+  const d = JSON.parse(text);
+  const content = document.getElementById('content');
+  const r = d.resumo;
+  const tipos = Object.entries(r.por_tipo).map(([t, n]) => `${n} ${t}`).join(' · ');
+
+  content.innerHTML = `
+    <div class="painel">
+      <header class="main-header">
+        <span class="module-badge">${escapeHtml(file.cat)}</span>
+        <h1 class="main-title">${escapeHtml(file.title)}</h1>
+        <div class="main-meta">Gerado em ${escapeHtml(d.gerado_em.replace('T', ' '))} · ${escapeHtml(tipos)}</div>
+      </header>
+      <div class="rx-topo">
+        <div class="rx-nota" style="--rx-cor:${rxCorNota(d.nota)}"><div><b>${d.nota}</b><span>de 100</span></div></div>
+        <div class="rx-numeros">
+          ${[['tabelas', r.tabelas], ['colunas', r.colunas], ['medidas', r.medidas], ['relacionamentos', r.relacionamentos]]
+            .map(([k, v]) => `<div class="rx-num"><b>${v}</b><span>${k}</span></div>`).join('')}
+          ${Object.entries(RX_SEV).map(([s, x]) => `<div class="rx-num"><b style="color:${x.cor}">${d.contagem[s] || 0}</b><span>${x.rot.toLowerCase()}</span></div>`).join('')}
+        </div>
+      </div>
+      <div class="rx-abas" role="tablist">
+        ${['Achados', 'Medidas', 'Tabelas', 'Dependências'].map((a, i) => `<button class="rx-aba" role="tab" data-aba="${i}" aria-selected="${i === 0}">${a}</button>`).join('')}
+      </div>
+      <div id="rxCorpo"></div>
+      <p class="pn-rodape">Raio-X por ${AUTORIA} · nota = 100 − (${d.pesos.critico}·crítico + ${d.pesos.medio}·médio + ${d.pesos.leve}·leve), cada check contando no máximo ${d.limite_repeticao} vezes${r.relatorio_lido ? '' : ' · relatório não encontrado: medidas órfãs não avaliadas'}.</p>
+    </div>`;
+
+  const corpo = document.getElementById('rxCorpo');
+  const abas = [rxAchados, rxMedidas, rxTabelas, rxDependencias];
+  content.querySelectorAll('.rx-aba').forEach(b => b.addEventListener('click', () => {
+    content.querySelectorAll('.rx-aba').forEach(x => x.setAttribute('aria-selected', String(x === b)));
+    abas[+b.dataset.aba](corpo, d);
+  }));
+  rxAchados(corpo, d);
+}
+
+function rxAchados(corpo, d) {
+  let filtro = 'todos';
+  corpo.innerHTML = `
+    <div class="pn-barra">
+      ${['todos', ...Object.keys(RX_SEV)].map(s => `<button class="pn-chip" type="button" data-sev="${s}" aria-pressed="${s === 'todos'}">${s === 'todos' ? 'Todos' : RX_SEV[s].rot} · ${s === 'todos' ? d.achados.length : (d.contagem[s] || 0)}</button>`).join('')}
+    </div>
+    <div id="rxLista"></div>`;
+  const lista = corpo.querySelector('#rxLista');
+  function desenhar() {
+    const itens = d.achados.filter(a => filtro === 'todos' || a.severidade === filtro);
+    lista.innerHTML = itens.map(a => `
+      <article class="rx-achado" style="--rx-sev:${RX_SEV[a.severidade].cor}">
+        <span class="rx-sev">${RX_SEV[a.severidade].rot}</span>
+        <h3>${escapeHtml(a.titulo)}</h3>
+        <div class="rx-onde">${escapeHtml(a.onde)}</div>
+        <p><b>Por que importa:</b> ${escapeHtml(a.por_que)}</p>
+        <p><b>Como corrigir:</b> ${escapeHtml(a.como_corrigir)}</p>
+      </article>`).join('') || '<p class="bib-desc">Nenhum achado nesta severidade.</p>';
+  }
+  corpo.querySelectorAll('[data-sev]').forEach(b => b.addEventListener('click', () => {
+    filtro = b.dataset.sev;
+    corpo.querySelectorAll('[data-sev]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    desenhar();
+  }));
+  desenhar();
+}
+
+function rxMedidas(corpo, d) {
+  corpo.innerHTML = `
+    <div class="pn-barra"><input class="pn-busca" id="rxBusca" type="search" placeholder="Buscar medida ou DAX…" aria-label="Buscar medida"></div>
+    <div class="rx-rolagem"><table class="rx-tabela"><thead><tr>
+      <th>Medida</th><th>Tabela</th><th>Usa</th><th>Impacta</th><th>No relatório</th><th>Descrição</th>
+    </tr></thead><tbody id="rxLinhas"></tbody></table></div>`;
+  const linhas = corpo.querySelector('#rxLinhas');
+  const busca = corpo.querySelector('#rxBusca');
+  function desenhar() {
+    const q = busca.value.trim().toLowerCase();
+    linhas.innerHTML = d.medidas.filter(m => !q || (m.nome + ' ' + m.dax).toLowerCase().includes(q)).map(m => `
+      <tr data-medida="${escapeHtml(m.nome)}">
+        <td><b>${escapeHtml(m.nome)}</b></td><td>${escapeHtml(m.tabela)}</td>
+        <td>${m.usa_medidas.length + m.usa_colunas.length}</td><td>${m.impacta.length}</td>
+        <td>${m.usada_no_relatorio === null ? '—' : m.usada_no_relatorio ? 'sim' : '<b>não</b>'}</td>
+        <td>${escapeHtml(m.descricao || '—')}</td>
+      </tr>`).join('');
+    linhas.querySelectorAll('tr[data-medida]').forEach(tr => tr.addEventListener('click', () => {
+      corpo.parentElement.querySelector('.rx-aba[data-aba="3"]').click();
+      rxFocar(tr.dataset.medida);
+    }));
+  }
+  busca.addEventListener('input', desenhar);
+  desenhar();
+}
+
+function rxTabelas(corpo, d) {
+  corpo.innerHTML = `<div class="rx-rolagem"><table class="rx-tabela"><thead><tr>
+      <th>Tabela</th><th>Tipo</th><th>Colunas</th><th>Chave</th><th>Medidas</th><th>Descrição</th>
+    </tr></thead><tbody>${d.tabelas.map(t => `
+      <tr><td><b>${escapeHtml(t.nome)}</b>${t.oculta ? ' <span class="bib-origem">oculta</span>' : ''}</td>
+        <td>${escapeHtml(t.tipo)}</td><td>${t.colunas.length}</td>
+        <td>${escapeHtml(t.colunas.filter(c => c.chave).map(c => c.nome).join(', ') || '—')}</td>
+        <td>${t.medidas}</td><td>${escapeHtml(t.descricao || '—')}</td></tr>`).join('')}
+    </tbody></table></div>`;
+}
+
+let rxCy = null;
+let rxDados = null;
+function rxDependencias(corpo, d) {
+  rxDados = d;
+  rxCy = null;  // o grafo anterior foi descartado com o HTML; rxFocar espera o novo
+  corpo.innerHTML = `
+    <div class="rx-dep">
+      <div class="grf-tela" id="rxTela" role="img" aria-label="Grafo de dependências das medidas"></div>
+      <aside class="rx-painel" id="rxPainel"><h3>Dependências</h3><p>Clique numa medida para ver o DAX, o que ela usa e o que quebra se ela mudar. Medidas em cor, colunas em cinza.</p></aside>
+    </div>`;
+  grfBiblioteca().then(() => {
+    const css = getComputedStyle(document.documentElement);
+    const fg = css.getPropertyValue('--fg').trim();
+    const borda = css.getPropertyValue('--border-strong').trim();
+    rxCy = cytoscape({
+      container: document.getElementById('rxTela'),
+      elements: [
+        ...d.dependencias.nos.map(n => ({ data: { ...n } })),
+        ...d.dependencias.ligacoes.map(([a, b], i) => ({ data: { id: 'l' + i, source: a, target: b } })),
+      ],
+      style: [
+        { selector: 'node', style: { label: 'data(rotulo)', color: fg, 'font-size': 10, 'text-valign': 'bottom', 'text-margin-y': 3,
+          'text-outline-color': css.getPropertyValue('--card').trim(), 'text-outline-width': 2, 'min-zoomed-font-size': 6 } },
+        { selector: 'node[tipo = "medida"]', style: { 'background-color': '#5b6cf0', width: 18, height: 18 } },
+        { selector: 'node[tipo = "coluna"]', style: { 'background-color': '#9aa3b5', width: 9, height: 9, 'font-size': 8, 'min-zoomed-font-size': 9 } },
+        { selector: 'edge', style: { width: 1, 'line-color': borda, 'target-arrow-color': borda, 'target-arrow-shape': 'triangle',
+          'arrow-scale': .7, 'curve-style': 'bezier', opacity: .8 } },
+        { selector: '.apagado', style: { opacity: .1 } },
+        { selector: 'node.foco', style: { 'border-width': 3, 'border-color': fg } },
+      ],
+      layout: { name: 'cose', animate: false, nodeRepulsion: 7000, idealEdgeLength: 60 },
+      wheelSensitivity: 0.25,
+    });
+    rxCy.on('tap', 'node[tipo = "medida"]', e => rxFocar(e.target.data('rotulo')));
+    rxCy.on('tap', e => { if (e.target === rxCy) { rxCy.elements().removeClass('apagado foco'); } });
+  }).catch(e => { corpo.innerHTML = `<p class="bib-desc">${escapeHtml(e.message)}</p>`; });
+}
+
+function rxFocar(nome) {
+  const tentar = () => {
+    if (!rxCy) return setTimeout(tentar, 150);
+    const m = rxDados.medidas.find(x => x.nome === nome);
+    const no = rxCy.getElementById('m:' + nome);
+    rxCy.elements().removeClass('apagado foco');
+    if (no.nonempty()) {
+      const ligado = no.closedNeighborhood().union(no.predecessors()).union(no.successors());
+      rxCy.elements().not(ligado).addClass('apagado');
+      no.addClass('foco');
+      rxCy.animate({ fit: { eles: ligado, padding: 50 }, duration: 300 });
+    }
+    const li = xs => xs.length ? `<ul class="rx-lista">${xs.map(x => `<li>${escapeHtml(x)}</li>`).join('')}</ul>` : '<p>—</p>';
+    document.getElementById('rxPainel').innerHTML = `
+      <h3>${escapeHtml(m.nome)}</h3>
+      <p>${escapeHtml(m.tabela)}${m.formato ? ' · formato ' + escapeHtml(m.formato) : ''}${m.usada_no_relatorio === false ? ' · <b>não usada no relatório</b>' : ''}</p>
+      ${m.descricao ? `<p>${escapeHtml(m.descricao)}</p>` : ''}
+      <pre>${escapeHtml(m.dax)}</pre>
+      <b>Usa medidas</b>${li(m.usa_medidas)}
+      <b>Usa colunas</b>${li(m.usa_colunas)}
+      <b>Impacta se mudar (${m.impacta.length})</b>${li(m.impacta)}`;
+  };
+  tentar();
+}
+
+// ========== TELA DO KIT VISUAL ==========
+// Contraste pela luminância relativa da WCAG 2.1.
+function kitLum(hex) {
+  const c = hex.replace('#', '').match(/.{2}/g).map(v => parseInt(v, 16) / 255)
+    .map(v => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+}
+function kitContraste(a, b) {
+  const [x, y] = [kitLum(a), kitLum(b)].sort((p, q) => q - p);
+  return (x + 0.05) / (y + 0.05);
+}
+function kitTextoSobre(fundo) { return kitContraste(fundo, '#FFFFFF') >= kitContraste(fundo, '#111111') ? '#FFFFFF' : '#111111'; }
+
+function renderKit(file, text) {
+  const regras = JSON.parse(text);
+  const st = JSON.parse(JSON.stringify(regras.padrao));
+  st.logo = null;
+  const content = document.getElementById('content');
+  const opt = (v, atual, rot) => `<option value="${v}"${String(v) === String(atual) ? ' selected' : ''}>${rot}</option>`;
+
+  content.innerHTML = `
+    <div class="painel">
+      <header class="main-header">
+        <span class="module-badge">${escapeHtml(file.cat)}</span>
+        <h1 class="main-title">${escapeHtml(file.title)}</h1>
+        <div class="main-meta">Canvas ${regras.canvas.largura}×${regras.canvas.altura} · margem ${regras.grade.margem}px · espaçamento ${regras.grade.gutter}px · contraste mínimo ${regras.contraste.texto} (texto) e ${regras.contraste.grafico} (gráfico)</div>
+      </header>
+      <div class="kit">
+        <form class="kit-form" id="kitForm" onsubmit="return false">
+          <fieldset><legend>Identidade</legend>
+            <div class="kit-linha"><label for="kNome">Nome do tema</label><input type="text" id="kNome" value="${escapeHtml(st.nome)}"></div>
+            <div class="kit-linha"><label for="kLogo">Logo</label><input type="file" id="kLogo" accept="image/png,image/svg+xml,image/jpeg"></div>
+            <div class="kit-linha"><label for="kPrim">Cor principal</label><input type="color" id="kPrim" value="${st.primaria}"></div>
+          </fieldset>
+          <fieldset><legend>Layout</legend>
+            <div class="kit-linha"><label for="kModo">Modo</label><select id="kModo">${opt('claro', st.modo, 'Claro')}${opt('escuro', st.modo, 'Escuro')}</select></div>
+            <div class="kit-linha"><label for="kNav">Navegação</label><select id="kNav">${opt('lateral', st.navegacao, 'Lateral')}${opt('topo', st.navegacao, 'No topo')}${opt('nenhuma', st.navegacao, 'Nenhuma')}</select></div>
+            <div class="kit-linha"><label for="kFiltros">Barra de filtros</label><input type="checkbox" id="kFiltros"${st.filtros ? ' checked' : ''}></div>
+            <div class="kit-linha"><label for="kCards">Cards de KPI</label><input type="number" id="kCards" min="${regras.limites.cards_min}" max="${regras.limites.cards_max}" value="${st.cards}"></div>
+            <div class="kit-linha"><label for="kCols">Gráficos por linha</label><select id="kCols">${regras.limites.colunas_graficos.map(c => opt(c, st.colunas_graficos, c)).join('')}</select></div>
+            <div class="kit-linha"><label for="kLinhas">Linhas de gráficos</label><input type="number" id="kLinhas" min="1" max="${regras.limites.linhas_graficos_max}" value="${st.linhas_graficos}"></div>
+            <div class="kit-linha"><label for="kRaio">Cantos</label><select id="kRaio">${regras.grade.raios.map(r => opt(r, st.raio, r === 0 ? 'Retos' : r + ' px')).join('')}</select></div>
+            <div class="kit-linha"><label for="kBorda">Borda nos cartões</label><input type="checkbox" id="kBorda"${st.borda ? ' checked' : ''}></div>
+          </fieldset>
+          <fieldset><legend>Cores dos gráficos</legend>
+            <div class="kit-cores">${st.paleta.map((c, i) => `<input type="color" data-paleta="${i}" value="${c}" aria-label="Cor ${i + 1}">`).join('')}</div>
+            <div class="kit-linha"><label for="kBom">Resultado bom</label><input type="color" id="kBom" value="${st.bom}"></div>
+            <div class="kit-linha"><label for="kRuim">Resultado ruim</label><input type="color" id="kRuim" value="${st.ruim}"></div>
+          </fieldset>
+        </form>
+        <div>
+          <div class="kit-preview" id="kitPreview"></div>
+          <div class="kit-contraste" id="kitContraste"></div>
+          <div class="kit-acoes">
+            <button class="bib-btn" type="button" id="kitTema">Baixar tema (.json)</button>
+            <button class="bib-btn" type="button" id="kitFundo">Baixar fundo (.svg)</button>
+          </div>
+        </div>
+      </div>
+      <p class="pn-rodape">Kit visual por ${AUTORIA}. Tema: Power BI Desktop › Exibição › Temas › Procurar temas. Fundo: Formatar página › Plano de fundo da tela › imagem, ajuste "Ajustar".</p>
+    </div>`;
+
+  const $ = id => document.getElementById(id);
+  function ler() {
+    st.nome = $('kNome').value.trim() || 'Meu tema';
+    st.primaria = $('kPrim').value; st.modo = $('kModo').value; st.navegacao = $('kNav').value;
+    st.filtros = $('kFiltros').checked; st.borda = $('kBorda').checked;
+    st.cards = Math.min(regras.limites.cards_max, Math.max(regras.limites.cards_min, +$('kCards').value || 4));
+    st.colunas_graficos = +$('kCols').value;
+    st.linhas_graficos = Math.min(regras.limites.linhas_graficos_max, Math.max(1, +$('kLinhas').value || 1));
+    st.raio = +$('kRaio').value;
+    st.paleta = [...document.querySelectorAll('[data-paleta]')].map(i => i.value);
+    st.bom = $('kBom').value; st.ruim = $('kRuim').value;
+  }
+
+  function checar() {
+    const m = regras.modos[st.modo];
+    const pares = [
+      ['Texto sobre o cartão', m.texto, m.cartao, regras.contraste.texto],
+      ['Texto suave sobre o cartão', m.texto_suave, m.cartao, regras.contraste.texto],
+      ['Título sobre a cor principal', kitTextoSobre(st.primaria), st.primaria, regras.contraste.texto],
+      ...st.paleta.map((c, i) => [`Cor ${i + 1} do gráfico`, c, m.cartao, regras.contraste.grafico]),
+      ['Resultado bom', st.bom, m.cartao, regras.contraste.grafico],
+      ['Resultado ruim', st.ruim, m.cartao, regras.contraste.grafico],
+    ].map(([rot, a, b, min]) => ({ rot, razao: kitContraste(a, b), min }));
+    const falhas = pares.filter(p => p.razao < p.min);
+    $('kitContraste').innerHTML = `<b>${falhas.length ? `${falhas.length} par(es) abaixo do mínimo — ajuste antes de baixar` : 'Contraste aprovado em todos os pares'}</b>
+      <ul>${pares.map(p => `<li><span>${p.rot}</span><span class="${p.razao >= p.min ? 'kit-ok' : 'kit-falha'}">${p.razao.toFixed(2)} (mín. ${p.min})</span></li>`).join('')}</ul>`;
+    $('kitTema').disabled = $('kitFundo').disabled = falhas.length > 0;
+  }
+
+  function desenhar() { ler(); $('kitPreview').innerHTML = kitSvg(regras, st, true); checar(); }
+
+  function baixar(nome, conteudo, tipo) {
+    const url = URL.createObjectURL(new Blob([conteudo], { type: tipo }));
+    const a = Object.assign(document.createElement('a'), { href: url, download: nome });
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  const arquivo = () => st.nome.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Za-z0-9]+/g, '-').replace(/^-|-$/g, '').toLowerCase() || 'tema';
+
+  $('kitForm').addEventListener('input', desenhar);
+  $('kitForm').addEventListener('change', desenhar);
+  $('kLogo').addEventListener('change', e => {
+    const f = e.target.files[0];
+    if (!f) { st.logo = null; return desenhar(); }
+    const leitor = new FileReader();
+    leitor.onload = () => { st.logo = leitor.result; desenhar(); };
+    leitor.readAsDataURL(f);
+  });
+  $('kitTema').addEventListener('click', () => baixar(`tema-${arquivo()}.json`, JSON.stringify(kitTema(regras, st), null, 2), 'application/json'));
+  $('kitFundo').addEventListener('click', () => baixar(`fundo-${arquivo()}.svg`, kitSvg(regras, st, false), 'image/svg+xml'));
+  desenhar();
+}
+
+// Mesma geometria no preview e no fundo exportado; o fundo sai sem texto nem dado.
+function kitLayout(r, st) {
+  const W = r.canvas.largura, H = r.canvas.altura, M = r.grade.margem, G = r.grade.gutter, A = r.alturas;
+  const caixas = [];
+  const cab = { x: 0, y: 0, w: W, h: A.cabecalho, papel: 'cabecalho' };
+  let x0 = M, y = A.cabecalho + M;
+  let nav = null;
+  if (st.navegacao === 'lateral') {
+    nav = { x: 0, y: A.cabecalho, w: r.navegacao_lateral.largura, h: H - A.cabecalho, papel: 'nav' };
+    x0 = r.navegacao_lateral.largura + M;
+  } else if (st.navegacao === 'topo') {
+    nav = { x: 0, y: A.cabecalho, w: W, h: A.navegacao_topo, papel: 'nav' };
+    y += A.navegacao_topo;
+  }
+  const largura = W - x0 - M;
+  if (st.filtros) { caixas.push({ x: x0, y, w: largura, h: A.filtros, papel: 'filtros' }); y += A.filtros + G; }
+  const wc = (largura - G * (st.cards - 1)) / st.cards;
+  for (let i = 0; i < st.cards; i++) caixas.push({ x: x0 + i * (wc + G), y, w: wc, h: A.cards, papel: 'card', i });
+  y += A.cards + G;
+  const altRest = H - M - y, hg = (altRest - G * (st.linhas_graficos - 1)) / st.linhas_graficos;
+  const wg = (largura - G * (st.colunas_graficos - 1)) / st.colunas_graficos;
+  let k = 0;
+  for (let l = 0; l < st.linhas_graficos; l++)
+    for (let c = 0; c < st.colunas_graficos; c++)
+      caixas.push({ x: x0 + c * (wg + G), y: y + l * (hg + G), w: wg, h: hg, papel: 'grafico', i: k++ });
+  return { W, H, cab, nav, caixas };
+}
+
+function kitSvg(r, st, preview) {
+  const m = r.modos[st.modo], L = kitLayout(r, st), f = n => n.toFixed(1);
+  const borda = st.borda ? ` stroke="${m.borda}" stroke-width="1"` : '';
+  const txtCab = kitTextoSobre(st.primaria);
+  const partes = [`<rect width="${L.W}" height="${L.H}" fill="${m.pagina}"/>`,
+    `<rect x="0" y="0" width="${L.W}" height="${L.cab.h}" fill="${st.primaria}"/>`];
+  if (st.logo) partes.push(`<image href="${st.logo}" x="${r.grade.margem}" y="12" height="${L.cab.h - 24}" width="160" preserveAspectRatio="xMinYMid meet"/>`);
+  if (preview) partes.push(`<text x="${st.logo ? 200 : r.grade.margem}" y="${L.cab.h / 2 + 6}" fill="${txtCab}" font-family="Segoe UI, Arial" font-size="18" font-weight="600">${escapeHtml(st.nome)}</text>`);
+  if (L.nav) {
+    partes.push(`<rect x="${L.nav.x}" y="${L.nav.y}" width="${L.nav.w}" height="${L.nav.h}" fill="${m.cartao}"${borda}/>`);
+    if (preview) for (let i = 0; i < 4; i++) {
+      const lateral = st.navegacao === 'lateral';
+      const x = lateral ? L.nav.w / 2 - 12 : r.grade.margem + i * 120, y = lateral ? L.nav.y + 24 + i * 52 : L.nav.y + 10;
+      partes.push(`<rect x="${x}" y="${y}" width="${lateral ? 24 : 100}" height="${lateral ? 24 : 20}" rx="4" fill="${i === 0 ? st.primaria : m.borda}"/>`);
+    }
+  }
+  for (const c of L.caixas) {
+    partes.push(`<rect x="${f(c.x)}" y="${f(c.y)}" width="${f(c.w)}" height="${f(c.h)}" rx="${st.raio}" fill="${m.cartao}"${borda}/>`);
+    if (!preview) continue;
+    if (c.papel === 'filtros') for (let i = 0; i < 4; i++)
+      partes.push(`<rect x="${f(c.x + 16 + i * 150)}" y="${f(c.y + 16)}" width="134" height="24" rx="4" fill="none" stroke="${m.borda}"/>`);
+    if (c.papel === 'card') {
+      const bom = c.i % 2 === 0;
+      partes.push(`<text x="${f(c.x + 16)}" y="${f(c.y + 30)}" fill="${m.texto_suave}" font-family="Segoe UI, Arial" font-size="12">KPI ${c.i + 1}</text>`,
+        `<text x="${f(c.x + 16)}" y="${f(c.y + 64)}" fill="${m.texto}" font-family="Segoe UI, Arial" font-size="26" font-weight="600">${(12 + c.i * 7).toFixed(1)} mi</text>`,
+        `<text x="${f(c.x + 16)}" y="${f(c.y + 84)}" fill="${bom ? st.bom : st.ruim}" font-family="Segoe UI, Arial" font-size="12">${bom ? '▲ 4,2%' : '▼ 1,8%'}</text>`);
+    }
+    if (c.papel === 'grafico') {
+      const n = 6, base = c.y + c.h - 20, alt = c.h - 60, bw = (c.w - 40) / n;
+      partes.push(`<text x="${f(c.x + 16)}" y="${f(c.y + 24)}" fill="${m.texto}" font-family="Segoe UI, Arial" font-size="13" font-weight="600">Gráfico ${c.i + 1}</text>`);
+      for (let b = 0; b < n; b++) {
+        const h = alt * (0.35 + 0.6 * Math.abs(Math.sin((b + 1) * (c.i + 2))));
+        partes.push(`<rect x="${f(c.x + 20 + b * bw + bw * 0.15)}" y="${f(base - h)}" width="${f(bw * 0.7)}" height="${f(h)}" rx="2" fill="${st.paleta[b % st.paleta.length]}"/>`);
+      }
+    }
+  }
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${L.W} ${L.H}" width="${L.W}" height="${L.H}">${partes.join('')}</svg>`;
+}
+
+function kitTema(r, st) {
+  const m = r.modos[st.modo];
+  const solido = cor => ({ solid: { color: cor } });
+  return {
+    name: st.nome,
+    dataColors: st.paleta,
+    background: m.cartao,
+    foreground: m.texto,
+    tableAccent: st.primaria,
+    good: st.bom, bad: st.ruim, neutral: r.padrao.neutro,
+    textClasses: {
+      title: { fontFace: r.fontes.titulo, fontSize: 12, color: m.texto },
+      header: { fontFace: r.fontes.titulo, fontSize: 12, color: m.texto },
+      label: { fontFace: r.fontes.texto, fontSize: 10, color: m.texto_suave },
+      callout: { fontFace: r.fontes.numero, fontSize: 28, color: m.texto },
+    },
+    visualStyles: {
+      '*': { '*': {
+        background: [{ show: true, color: solido(m.cartao), transparency: 0 }],
+        border: [{ show: st.borda, color: solido(m.borda), radius: st.raio }],
+        title: [{ fontColor: solido(m.texto) }],
+      } },
+      page: { '*': {
+        background: [{ color: solido(m.pagina), transparency: 0 }],
+        outspace: [{ color: solido(m.pagina) }],
+      } },
+    },
+  };
+}
+
+const VIEWS = { desafio: renderDesafio, grafo: renderGrafo, biblioteca: renderBiblioteca, raiox: renderRaioX, kit: renderKit };
 
 function renderError(file, msg) {
   const content = document.getElementById('content');

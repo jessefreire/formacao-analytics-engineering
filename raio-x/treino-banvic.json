@@ -1,0 +1,732 @@
+{
+ "modelo": "Treino BanVic",
+ "gerado_em": "2026-09-28T11:16:11",
+ "autoria": "Jessé Freire · Indicium AI",
+ "nota": 84,
+ "contagem": {
+  "critico": 1,
+  "medio": 0,
+  "leve": 9
+ },
+ "pesos": {
+  "critico": 8,
+  "medio": 3,
+  "leve": 1
+ },
+ "limite_repeticao": 3,
+ "resumo": {
+  "tabelas": 5,
+  "colunas": 43,
+  "medidas": 4,
+  "relacionamentos": 3,
+  "por_tipo": {
+   "dimensão": 2,
+   "calendário": 1,
+   "fato": 1,
+   "auxiliar": 1
+  },
+  "relatorio_lido": true
+ },
+ "tabelas": [
+  {
+   "nome": "dim_agencias",
+   "tipo": "dimensão",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "pk_agencia",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Nome da Agência",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "tipo_agencia",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "cidade_agencia",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "uf_agencia",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "endereco",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "abertura",
+     "tipo_dado": "dateTime",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "dim_clientes",
+   "tipo": "dimensão",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "pk_cliente",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Nome do Cliente",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "email_cliente",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "tipo_cliente",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "cpfcnpj_cliente",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "ts_inclusao",
+     "tipo_dado": "dateTime",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "data_nascimento_cliente",
+     "tipo_dado": "dateTime",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "endereco_cliente",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "cep_cliente",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "cidade_cliente",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "uf_cliente",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "cod_agencia",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "cod_colaborador",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "data_abertura",
+     "tipo_dado": "dateTime",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "dim_datas",
+   "tipo": "calendário",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "pk_data",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "dt_data",
+     "tipo_dado": "dateTime",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "dia",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "mes",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "ano",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "trimestre",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "dia_da_semana",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "is_final_de_semana",
+     "tipo_dado": "boolean",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "dia_ano",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "nome_dia",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "fact_transacoes",
+   "tipo": "fato",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "pk_transacao",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "fk_conta",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "fk_cliente",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "fk_agencia",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "fk_colaborador",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "fk_data",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "ts_transacao",
+     "tipo_dado": "dateTime",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "nome_transacao",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "valor_transacao",
+     "tipo_dado": "double",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "sum",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "num_conta",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "saldo",
+     "tipo_dado": "double",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "sum",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "Medidas",
+   "tipo": "auxiliar",
+   "descricao": "Tabela virtual para centralizar as medidas do modelo.",
+   "oculta": false,
+   "medidas": 4,
+   "colunas": [
+    {
+     "nome": "Value",
+     "tipo_dado": "",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "",
+     "ordenar_por": ""
+    }
+   ]
+  }
+ ],
+ "medidas": [
+  {
+   "nome": "TRANSACOES_PIX",
+   "tabela": "Medidas",
+   "descricao": "Quantidade distinta de transações Pix (Realizado, Recebido e Saque). Demonstra CALCULATE com filtro simples.",
+   "dax": "CALCULATE(\n    DISTINCTCOUNT(fact_transacoes[pk_transacao]),\n    fact_transacoes[nome_transacao] IN {\"Pix - Realizado\", \"Pix - Recebido\", \"Pix Saque\"}\n)",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "fact_transacoes[nome_transacao]",
+    "fact_transacoes[pk_transacao]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "TRANSACOES_PIX_2021",
+   "tabela": "Medidas",
+   "descricao": "Transações Pix de 2021. Demonstra CALCULATE com FILTER em outra tabela.",
+   "dax": "CALCULATE(\n    DISTINCTCOUNT(fact_transacoes[pk_transacao]),\n    fact_transacoes[nome_transacao] IN {\"Pix - Realizado\", \"Pix - Recebido\", \"Pix Saque\"},\n    FILTER(dim_datas, dim_datas[ano] = 2021)\n)",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "dim_datas[ano]",
+    "fact_transacoes[nome_transacao]",
+    "fact_transacoes[pk_transacao]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "TRANSACOES_DIGITAL",
+   "tabela": "Medidas",
+   "descricao": "Proporção do valor transacionado na Agência Digital. Demonstra VAR/RETURN e DIVIDE.",
+   "dax": "VAR Total_transacao = SUM(fact_transacoes[valor_transacao])\nVAR Transacao_digital =\n    CALCULATE(\n        SUM(fact_transacoes[valor_transacao]),\n        dim_agencias[Nome da Agência] = \"Agência Digital\"\n    )\nRETURN\n    DIVIDE(Transacao_digital, Total_transacao)",
+   "formato": "0.00%",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "dim_agencias[Nome da Agência]",
+    "fact_transacoes[valor_transacao]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Qtd Transações",
+   "tabela": "Medidas",
+   "descricao": "Quantidade distinta de transações (medida explícita para os cards e a matriz).",
+   "dax": "DISTINCTCOUNT(fact_transacoes[pk_transacao])",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "fact_transacoes[pk_transacao]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  }
+ ],
+ "relacionamentos": [
+  {
+   "de_tabela": "fact_transacoes",
+   "de_coluna": "fk_agencia",
+   "para_tabela": "dim_agencias",
+   "para_coluna": "pk_agencia",
+   "bidirecional": true,
+   "ativo": true,
+   "cardinalidade": "many:one"
+  },
+  {
+   "de_tabela": "fact_transacoes",
+   "de_coluna": "fk_cliente",
+   "para_tabela": "dim_clientes",
+   "para_coluna": "pk_cliente",
+   "bidirecional": false,
+   "ativo": true,
+   "cardinalidade": "many:one"
+  },
+  {
+   "de_tabela": "fact_transacoes",
+   "de_coluna": "fk_data",
+   "para_tabela": "dim_datas",
+   "para_coluna": "pk_data",
+   "bidirecional": false,
+   "ativo": true,
+   "cardinalidade": "many:one"
+  }
+ ],
+ "achados": [
+  {
+   "id": "rel-bidirecional",
+   "severidade": "critico",
+   "titulo": "Relacionamento com filtro nos dois sentidos",
+   "onde": "fact_transacoes[fk_agencia] → dim_agencias[pk_agencia]",
+   "por_que": "Filtro bidirecional cria caminhos ambíguos entre tabelas e deixa o motor mais lento. Fora de uma ponte, raramente é necessário.",
+   "como_corrigir": "Troque para filtro único e, onde precisar do outro sentido, use CROSSFILTER dentro da medida."
+  },
+  {
+   "id": "dimensao-sem-chave",
+   "severidade": "leve",
+   "titulo": "Dimensão sem coluna marcada como chave",
+   "onde": "dim_agencias",
+   "por_que": "Marcar a chave (isKey) documenta a unicidade da linha e ajuda recursos de IA e de relacionamento a entenderem o modelo.",
+   "como_corrigir": "No TMDL, acrescente `isKey` na coluna de chave primária da tabela."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "dim_agencias",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "dimensao-sem-chave",
+   "severidade": "leve",
+   "titulo": "Dimensão sem coluna marcada como chave",
+   "onde": "dim_clientes",
+   "por_que": "Marcar a chave (isKey) documenta a unicidade da linha e ajuda recursos de IA e de relacionamento a entenderem o modelo.",
+   "como_corrigir": "No TMDL, acrescente `isKey` na coluna de chave primária da tabela."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "dim_clientes",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "dim_datas",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "fact_transacoes",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "medida-orfa",
+   "severidade": "leve",
+   "titulo": "Medida que nenhum visual nem outra medida usa",
+   "onde": "Medidas[TRANSACOES_PIX]",
+   "por_que": "Medida sem uso aumenta a lista de campos e o custo de manutenção.",
+   "como_corrigir": "Confirme se é resto de teste; se for, remova."
+  },
+  {
+   "id": "filter-tabela-inteira",
+   "severidade": "leve",
+   "titulo": "FILTER sobre a tabela inteira",
+   "onde": "Medidas[TRANSACOES_PIX_2021]",
+   "por_que": "FILTER(dim_datas, …) percorre a tabela linha a linha e costuma ser o gargalo da medida.",
+   "como_corrigir": "Filtre só a coluna: CALCULATE([m], tabela[coluna] = valor) ou FILTER(VALUES(tabela[coluna]), …)."
+  },
+  {
+   "id": "medida-orfa",
+   "severidade": "leve",
+   "titulo": "Medida que nenhum visual nem outra medida usa",
+   "onde": "Medidas[TRANSACOES_PIX_2021]",
+   "por_que": "Medida sem uso aumenta a lista de campos e o custo de manutenção.",
+   "como_corrigir": "Confirme se é resto de teste; se for, remova."
+  }
+ ],
+ "dependencias": {
+  "nos": [
+   {
+    "id": "m:TRANSACOES_PIX",
+    "tipo": "medida",
+    "rotulo": "TRANSACOES_PIX",
+    "tabela": "Medidas"
+   },
+   {
+    "id": "m:TRANSACOES_PIX_2021",
+    "tipo": "medida",
+    "rotulo": "TRANSACOES_PIX_2021",
+    "tabela": "Medidas"
+   },
+   {
+    "id": "m:TRANSACOES_DIGITAL",
+    "tipo": "medida",
+    "rotulo": "TRANSACOES_DIGITAL",
+    "tabela": "Medidas"
+   },
+   {
+    "id": "m:Qtd Transações",
+    "tipo": "medida",
+    "rotulo": "Qtd Transações",
+    "tabela": "Medidas"
+   },
+   {
+    "id": "c:dim_agencias[Nome da Agência]",
+    "tipo": "coluna",
+    "rotulo": "dim_agencias[Nome da Agência]"
+   },
+   {
+    "id": "c:dim_datas[ano]",
+    "tipo": "coluna",
+    "rotulo": "dim_datas[ano]"
+   },
+   {
+    "id": "c:fact_transacoes[nome_transacao]",
+    "tipo": "coluna",
+    "rotulo": "fact_transacoes[nome_transacao]"
+   },
+   {
+    "id": "c:fact_transacoes[pk_transacao]",
+    "tipo": "coluna",
+    "rotulo": "fact_transacoes[pk_transacao]"
+   },
+   {
+    "id": "c:fact_transacoes[valor_transacao]",
+    "tipo": "coluna",
+    "rotulo": "fact_transacoes[valor_transacao]"
+   }
+  ],
+  "ligacoes": [
+   [
+    "m:TRANSACOES_PIX",
+    "c:fact_transacoes[nome_transacao]"
+   ],
+   [
+    "m:TRANSACOES_PIX",
+    "c:fact_transacoes[pk_transacao]"
+   ],
+   [
+    "m:TRANSACOES_PIX_2021",
+    "c:dim_datas[ano]"
+   ],
+   [
+    "m:TRANSACOES_PIX_2021",
+    "c:fact_transacoes[nome_transacao]"
+   ],
+   [
+    "m:TRANSACOES_PIX_2021",
+    "c:fact_transacoes[pk_transacao]"
+   ],
+   [
+    "m:TRANSACOES_DIGITAL",
+    "c:dim_agencias[Nome da Agência]"
+   ],
+   [
+    "m:TRANSACOES_DIGITAL",
+    "c:fact_transacoes[valor_transacao]"
+   ],
+   [
+    "m:Qtd Transações",
+    "c:fact_transacoes[pk_transacao]"
+   ]
+  ]
+ }
+}

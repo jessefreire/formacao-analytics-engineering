@@ -78,6 +78,42 @@
     "size": 0
   },
   {
+    "id": "kit_visual",
+    "label": "Kit visual",
+    "title": "Kit visual — tema e fundo para Power BI",
+    "path": "skills/ae_materials_app/kit_visual.json",
+    "cat": "Mapa",
+    "view": "kit",
+    "done": true,
+    "module": "mapa",
+    "sort": -0.9,
+    "size": 1337
+  },
+  {
+    "id": "raiox_desafio_adventure_works",
+    "label": "Desafio Adventure Works",
+    "title": "Raio-X — Desafio Adventure Works",
+    "path": "raio-x/desafio-adventure-works.json",
+    "cat": "Raio-X",
+    "view": "raiox",
+    "done": true,
+    "module": "raiox",
+    "sort": -0.5,
+    "size": 82470
+  },
+  {
+    "id": "raiox_treino_banvic",
+    "label": "Treino BanVic",
+    "title": "Raio-X — Treino BanVic",
+    "path": "raio-x/treino-banvic.json",
+    "cat": "Raio-X",
+    "view": "raiox",
+    "done": true,
+    "module": "raiox",
+    "sort": -0.5,
+    "size": 18423
+  },
+  {
     "id": "oficial_0_banvic_queries",
     "label": "banvic_queries.md",
     "title": "Banco BanVic — Queries de Referência",
@@ -816,6 +852,18 @@
     "size": 8800
   },
   {
+    "id": "biblioteca",
+    "label": "Biblioteca de skills",
+    "title": "Biblioteca de skills",
+    "path": "skills.json",
+    "cat": "Skills e MCP",
+    "view": "biblioteca",
+    "done": true,
+    "module": "skills",
+    "sort": 99.9,
+    "size": 0
+  },
+  {
     "id": "skills_mcp",
     "label": "SKILLS_E_MCP.md",
     "title": "Skills e MCP — o kit de Analytics Engineer com IA",
@@ -824,7 +872,7 @@
     "done": true,
     "module": "skills",
     "sort": 100,
-    "size": 7525
+    "size": 8497
   },
   {
     "id": "skill_ae_fullflow",
@@ -846,7 +894,7 @@
     "done": true,
     "module": "skills",
     "sort": 100,
-    "size": 3944
+    "size": 4183
   },
   {
     "id": "skill_databricks_ingestao",
@@ -893,6 +941,17 @@
     "size": 2710
   },
   {
+    "id": "skill_estudo_video",
+    "label": "estudo-video/SKILL.md",
+    "title": "/estudo-video",
+    "path": "skills/estudo-video/SKILL.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 3439
+  },
+  {
     "id": "mcp_readme",
     "label": "mcp/README.md",
     "title": "MCP Servers",
@@ -934,7 +993,18 @@
     "done": true,
     "module": "skills",
     "sort": 100,
-    "size": 3375
+    "size": 4445
+  },
+  {
+    "id": "skill_pbi_raio_x",
+    "label": "pbi-raio-x/SKILL.md",
+    "title": "/pbi-raio-x",
+    "path": "skills/pbi-raio-x/SKILL.md",
+    "cat": "Skills e MCP",
+    "done": true,
+    "module": "skills",
+    "sort": 100,
+    "size": 3967
   },
   {
     "id": "skill_reconciliacao_numeros",

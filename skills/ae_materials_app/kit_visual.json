@@ -1,0 +1,30 @@
+{
+  "_leia": "Regras do Kit visual da plataforma (tela 'Kit visual'). Uma fonte só: a tela le daqui, e uma futura skill de linha de comando le o mesmo arquivo. Autoria: Jesse Freire - Indicium AI.",
+  "canvas": {"largura": 1280, "altura": 720},
+  "grade": {"margem": 24, "gutter": 16, "raios": [0, 6, 12]},
+  "alturas": {"cabecalho": 64, "navegacao_topo": 40, "filtros": 56, "cards": 96},
+  "navegacao_lateral": {"largura": 72},
+  "limites": {"cards_min": 2, "cards_max": 6, "colunas_graficos": [1, 2, 3], "linhas_graficos_max": 3},
+  "contraste": {"texto": 4.5, "grafico": 3.0},
+  "fontes": {"titulo": "Segoe UI Semibold", "texto": "Segoe UI", "numero": "Segoe UI Semibold"},
+  "modos": {
+    "claro": {"pagina": "#EEF2F8", "cartao": "#FFFFFF", "texto": "#1A1F36", "texto_suave": "#5B6477", "borda": "#D8DEE9"},
+    "escuro": {"pagina": "#0F1320", "cartao": "#181D2E", "texto": "#E8EBF4", "texto_suave": "#A7AFC4", "borda": "#2B3350"}
+  },
+  "padrao": {
+    "nome": "Meu tema",
+    "primaria": "#1E4FD8",
+    "paleta": ["#2F6BEB", "#0E8C8C", "#C8661F", "#7A57D1", "#C23F7F", "#4E8A1E"],
+    "bom": "#1F9D55",
+    "ruim": "#D64545",
+    "neutro": "#8A94A6",
+    "modo": "claro",
+    "navegacao": "lateral",
+    "filtros": true,
+    "cards": 4,
+    "colunas_graficos": 2,
+    "linhas_graficos": 2,
+    "raio": 6,
+    "borda": true
+  }
+}

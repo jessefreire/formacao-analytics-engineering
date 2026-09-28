@@ -1,0 +1,2836 @@
+{
+ "modelo": "Desafio Adventure Works",
+ "gerado_em": "2026-09-28T11:16:09",
+ "autoria": "Jessé Freire · Indicium AI",
+ "nota": 79,
+ "contagem": {
+  "critico": 0,
+  "medio": 2,
+  "leve": 35
+ },
+ "pesos": {
+  "critico": 8,
+  "medio": 3,
+  "leve": 1
+ },
+ "limite_repeticao": 3,
+ "resumo": {
+  "tabelas": 17,
+  "colunas": 84,
+  "medidas": 45,
+  "relacionamentos": 10,
+  "por_tipo": {
+   "auxiliar": 1,
+   "ponte": 1,
+   "dimensão": 8,
+   "calendário": 1,
+   "field parameter": 5,
+   "fato": 1
+  },
+  "relatorio_lido": true
+ },
+ "tabelas": [
+  {
+   "nome": "Atualização do Modelo",
+   "tipo": "auxiliar",
+   "descricao": "Tabela auxiliar de 1 linha usada para expor a data/hora do ultimo calculo do modelo (NOW() e recalculado a cada refresh). Fonte da medida Ultima Atualizacao exibida no cabecalho do dashboard.",
+   "oculta": true,
+   "medidas": 1,
+   "colunas": [
+    {
+     "nome": "Data",
+     "tipo_dado": "",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "bridge_order_sales_reason",
+   "tipo": "ponte",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 5,
+   "colunas": [
+    {
+     "nome": "sales_order_id",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "sales_reason_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "allocation_factor",
+     "tipo_dado": "double",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "sum",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "dim_credit_card",
+   "tipo": "dimensão",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "credit_card_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "card_type",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "dim_customer",
+   "tipo": "dimensão",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 5,
+   "colunas": [
+    {
+     "nome": "customer_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Cliente",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "customer_type",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "account_number",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "dim_dates",
+   "tipo": "calendário",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "date_day",
+     "tipo_dado": "dateTime",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "year",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "month",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "month_name",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": "month"
+    },
+    {
+     "nome": "quarter",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "is_full_year",
+     "tipo_dado": "boolean",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "dim_geography",
+   "tipo": "dimensão",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 8,
+   "colunas": [
+    {
+     "nome": "bill_to_geography_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "city",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "state_province_id",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Cidade",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "state_province",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "billing_country",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "postal_code",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "dim_product",
+   "tipo": "dimensão",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 12,
+   "colunas": [
+    {
+     "nome": "product_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Produto",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "product_number",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "subcategory",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Categoria",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "list_price",
+     "tipo_dado": "double",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "color",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "product_line",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "dim_sales_reason",
+   "tipo": "dimensão",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "sales_reason_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "reason_name",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "reason_type",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "dim_salesperson",
+   "tipo": "dimensão",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "salesperson_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "salesperson_name",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "sales_quota",
+     "tipo_dado": "double",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "commission_pct",
+     "tipo_dado": "double",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "dim_special_offer",
+   "tipo": "dimensão",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "special_offer_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "offer_description",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "offer_type",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "offer_category",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "discount_pct",
+     "tipo_dado": "double",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "dim_territory",
+   "tipo": "dimensão",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "territory_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "territory_name",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "territory_country",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "territory_group",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "Dimensão Geográfica (Ranking)",
+   "tipo": "field parameter",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "Dimensão Geográfica (Ranking) Order",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "sum",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Dimensão Geográfica (Ranking) Fields",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": "'Dimensão Geográfica (Ranking) Order'"
+    },
+    {
+     "nome": "Dimensão Geográfica (Ranking)",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": "'Dimensão Geográfica (Ranking) Order'"
+    }
+   ]
+  },
+  {
+   "nome": "Dimensão Geográfica (Ticket Médio)",
+   "tipo": "field parameter",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "Dimensão Geográfica (Ticket Médio) Order",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "sum",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Dimensão Geográfica (Ticket Médio) Fields",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": "'Dimensão Geográfica (Ticket Médio) Order'"
+    },
+    {
+     "nome": "Dimensão Geográfica (Ticket Médio)",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": "'Dimensão Geográfica (Ticket Médio) Order'"
+    }
+   ]
+  },
+  {
+   "nome": "fact_sales",
+   "tipo": "fato",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 14,
+   "colunas": [
+    {
+     "nome": "sales_order_detail_id",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "sales_order_id",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "sales_order_number",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "order_date",
+     "tipo_dado": "dateTime",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "product_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "customer_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "bill_to_geography_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "credit_card_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "territory_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "special_offer_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "salesperson_key",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "status",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "channel",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "has_promotion_reason",
+     "tipo_dado": "boolean",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "unit_price",
+     "tipo_dado": "double",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "unit_price_discount_rate",
+     "tipo_dado": "double",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "order_quantity",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "sum",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "gross_revenue",
+     "tipo_dado": "double",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "sum",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "discount_amount",
+     "tipo_dado": "double",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "sum",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "net_revenue",
+     "tipo_dado": "double",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "sum",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Promoção",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": true,
+     "agregacao": "",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Status (Texto)",
+     "tipo_dado": "",
+     "chave": false,
+     "oculta": false,
+     "calculada": true,
+     "agregacao": "",
+     "ordenar_por": ""
+    }
+   ]
+  },
+  {
+   "nome": "Métrica (Cartão)",
+   "tipo": "field parameter",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "Métrica (Cartão) Order",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "sum",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Métrica (Cartão) Fields",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": "'Métrica (Cartão) Order'"
+    },
+    {
+     "nome": "Métrica (Cartão)",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": "'Métrica (Cartão) Order'"
+    }
+   ]
+  },
+  {
+   "nome": "Métrica (Motivo)",
+   "tipo": "field parameter",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "Métrica (Motivo) Order",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "sum",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Métrica (Motivo) Fields",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": "'Métrica (Motivo) Order'"
+    },
+    {
+     "nome": "Métrica (Motivo)",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": "'Métrica (Motivo) Order'"
+    }
+   ]
+  },
+  {
+   "nome": "Métrica (Receita/Pedidos)",
+   "tipo": "field parameter",
+   "descricao": "",
+   "oculta": false,
+   "medidas": 0,
+   "colunas": [
+    {
+     "nome": "Métrica (Receita/Pedidos) Order",
+     "tipo_dado": "int64",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "sum",
+     "ordenar_por": ""
+    },
+    {
+     "nome": "Métrica (Receita/Pedidos) Fields",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": true,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": "'Métrica (Receita/Pedidos) Order'"
+    },
+    {
+     "nome": "Métrica (Receita/Pedidos)",
+     "tipo_dado": "string",
+     "chave": false,
+     "oculta": false,
+     "calculada": false,
+     "agregacao": "none",
+     "ordenar_por": "'Métrica (Receita/Pedidos) Order'"
+    }
+   ]
+  }
+ ],
+ "medidas": [
+  {
+   "nome": "Última Atualização",
+   "tabela": "Atualização do Modelo",
+   "descricao": "Data e hora do ultimo calculo do modelo (equivale ao ultimo refresh em modo Import). Usada no cabecalho das duas paginas do dashboard.",
+   "dax": "\"Atualizado em \" & FORMAT(MAX('Atualização do Modelo'[Data]), \"DD/MM/YYYY HH:mm\")",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "Atualização do Modelo[Data]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Receita por Motivo de Venda",
+   "tabela": "bridge_order_sales_reason",
+   "descricao": "Receita liquida do pedido multiplicada por allocation_factor (1/numero de motivos do pedido), somada linha a linha da ponte. Nunca some receita da fato direto atraves da ponte: infla o resultado em ~29%.",
+   "dax": "SUMX(\n    'bridge_order_sales_reason',\n    'bridge_order_sales_reason'[allocation_factor]\n        * CALCULATE(SUM('fact_sales'[net_revenue]))\n)",
+   "formato": "R$ #,##0.00",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "bridge_order_sales_reason[allocation_factor]",
+    "fact_sales[net_revenue]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": true,
+   "impacta": [
+    "Motivo Predominante"
+   ],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Motivo Predominante",
+   "tabela": "bridge_order_sales_reason",
+   "descricao": "Motivo de venda com maior receita alocada (via allocation_factor) no contexto de filtro atual. Usado em tabelas com grao de cliente ou cidade - mostra o motivo predominante, nao todos os que o cliente/cidade teve.",
+   "dax": "VAR t = TOPN(1, SUMMARIZE(bridge_order_sales_reason, dim_sales_reason[reason_name], \"r\", [Receita por Motivo de Venda]), [r])\nRETURN MAXX(t, dim_sales_reason[reason_name])",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Receita por Motivo de Venda"
+   ],
+   "usa_colunas": [
+    "dim_sales_reason[reason_name]"
+   ],
+   "ambiguas": [
+    "r"
+   ],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Pedidos por Motivo de Venda",
+   "tabela": "bridge_order_sales_reason",
+   "descricao": "Pedidos alocados por allocation_factor (1/numero de motivos do pedido) - soma 1 por pedido no total, evita contar 2x um pedido com mais de um motivo.",
+   "dax": "SUMX(\n    'bridge_order_sales_reason',\n    'bridge_order_sales_reason'[allocation_factor]\n)",
+   "formato": "#,##0",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "bridge_order_sales_reason[allocation_factor]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": true,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Quantidade por Motivo de Venda",
+   "tabela": "bridge_order_sales_reason",
+   "descricao": "Itens vendidos multiplicados por allocation_factor (1/numero de motivos do pedido), somados linha a linha da ponte. Nunca some quantidade da fato direto atraves da ponte: infla o resultado.",
+   "dax": "SUMX(\n    'bridge_order_sales_reason',\n    'bridge_order_sales_reason'[allocation_factor]\n        * CALCULATE(SUM('fact_sales'[order_quantity]))\n)",
+   "formato": "#,##0",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "bridge_order_sales_reason[allocation_factor]",
+    "fact_sales[order_quantity]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": true,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Título Motivo de Venda",
+   "tabela": "bridge_order_sales_reason",
+   "descricao": "Titulo dinamico do grafico de barras, varia conforme o botao selecionado no toggle Metrica (Motivo).",
+   "dax": "SWITCH(\n    TRUE(),\n    SELECTEDVALUE('Métrica (Motivo)'[Métrica (Motivo) Fields]) = \"'bridge_order_sales_reason'[Pedidos por Motivo de Venda]\", \"Pedidos por motivo de venda\",\n    SELECTEDVALUE('Métrica (Motivo)'[Métrica (Motivo) Fields]) = \"'bridge_order_sales_reason'[Quantidade por Motivo de Venda]\", \"Quantidade por motivo de venda\",\n    \"Receita por motivo de venda\"\n)",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "Métrica (Motivo)[Métrica (Motivo) Fields]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Receita Top 10 Clientes",
+   "tabela": "dim_customer",
+   "descricao": "Soma da receita liquida dos 10 clientes de maior receita no contexto de filtro atual.",
+   "dax": "SUMX(\n    TOPN(\n        10,\n        VALUES('dim_customer'[customer_key]),\n        CALCULATE([Receita Líquida])\n    ),\n    CALCULATE([Receita Líquida])\n)",
+   "formato": "R$ #,##0.00",
+   "pasta": "",
+   "usa_medidas": [
+    "Receita Líquida"
+   ],
+   "usa_colunas": [
+    "dim_customer[customer_key]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [
+    "% Receita Top 10 Clientes",
+    "Top 10 Clientes (Texto)"
+   ],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "% Receita Top 10 Clientes",
+   "tabela": "dim_customer",
+   "descricao": "Percentual da receita liquida total concentrado nos 10 maiores clientes.",
+   "dax": "DIVIDE(\n    [Receita Top 10 Clientes],\n    CALCULATE([Receita Líquida], ALL('dim_customer'))\n)",
+   "formato": "0.0%",
+   "pasta": "",
+   "usa_medidas": [
+    "Receita Líquida",
+    "Receita Top 10 Clientes"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [
+    "Top 10 Clientes (Texto)"
+   ],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "% da Receita Líquida",
+   "tabela": "dim_customer",
+   "descricao": "Participacao do cliente (ou do contexto atual de cliente) na receita liquida total. Usado na tabela Top 10 Clientes.",
+   "dax": "DIVIDE(\n    [Receita Líquida],\n    CALCULATE([Receita Líquida], ALL('dim_customer'))\n)",
+   "formato": "0.0%",
+   "pasta": "",
+   "usa_medidas": [
+    "Receita Líquida"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Top 10 Clientes (Texto)",
+   "tabela": "dim_customer",
+   "descricao": "Legenda de apoio pra exibir ao lado do valor absoluto de Receita Top 10 Clientes na tabela de detalhe.",
+   "dax": "\"soma dos top 10 (\" & FORMAT([% Receita Top 10 Clientes], \"0.0%\") & \" da receita total)\"",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "% Receita Top 10 Clientes"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Ranking Cliente",
+   "tabela": "dim_customer",
+   "descricao": "Posicao do cliente (1 a 10) dentro do recorte visivel da tabela Top 10 Clientes, ordenado por Receita Liquida.",
+   "dax": "VAR receita = CALCULATE([Receita Líquida])\nRETURN\nIF(\n    NOT ISBLANK(receita),\n    RANKX(FILTER(ALLSELECTED(dim_customer), CALCULATE([Receita Líquida]) <> BLANK()), CALCULATE([Receita Líquida]), , DESC)\n)",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Receita Líquida"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "% da Receita Líquida (Geografia)",
+   "tabela": "dim_geography",
+   "descricao": "Participacao da cidade (ou do contexto atual de geografia) na receita liquida total. Usado no Ranking de Cidades.",
+   "dax": "DIVIDE(\n    [Receita Líquida],\n    CALCULATE([Receita Líquida], ALL('dim_geography'))\n)",
+   "formato": "0.0%",
+   "pasta": "",
+   "usa_medidas": [
+    "Receita Líquida"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Receita Top 5 Cidades",
+   "tabela": "dim_geography",
+   "descricao": "Soma da receita liquida das 5 cidades com maior faturamento no contexto de filtro atual.",
+   "dax": "SUMX(TOPN(5, VALUES(dim_geography[Cidade]), CALCULATE([Receita Líquida])), CALCULATE([Receita Líquida]))",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Receita Líquida"
+   ],
+   "usa_colunas": [
+    "dim_geography[Cidade]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [
+    "% Receita Top 5 Cidades",
+    "Ranking Cidades (Texto Legenda)",
+    "Ranking Cidades (Texto)"
+   ],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "% Receita Top 5 Cidades",
+   "tabela": "dim_geography",
+   "descricao": "Participacao das 5 cidades de maior faturamento na receita liquida total. Usado no Ranking de Cidades pra mostrar concentracao geografica.",
+   "dax": "DIVIDE([Receita Top 5 Cidades], CALCULATE([Receita Líquida], ALL(dim_geography)))",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Receita Líquida",
+    "Receita Top 5 Cidades"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [
+    "Ranking Cidades (Texto Legenda)",
+    "Ranking Cidades (Texto)"
+   ],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Cidades Que Vendem",
+   "tabela": "dim_geography",
+   "descricao": "Quantidade de cidades distintas com pelo menos uma venda no contexto de filtro atual.",
+   "dax": "CALCULATE(DISTINCTCOUNT(dim_geography[Cidade]), FILTER(dim_geography, CALCULATE(COUNTROWS(fact_sales)) > 0))",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "dim_geography[Cidade]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [
+    "Ranking Cidades (Texto)"
+   ],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Ranking Cidades (Texto)",
+   "tabela": "dim_geography",
+   "descricao": "Legenda de apoio pra exibir acima da tabela de Ranking de Cidades, mostrando quantas cidades vendem e a concentracao das 5 maiores.",
+   "dax": "FORMAT([Cidades Que Vendem], \"#,##0\") & \" cidades que vendem — top 5 concentra \" & FORMAT([% Receita Top 5 Cidades], \"0.0%\")",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "% Receita Top 5 Cidades",
+    "Cidades Que Vendem"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Ranking Cidades (Texto Legenda)",
+   "tabela": "dim_geography",
+   "descricao": "Legenda de apoio (sem o numero) pra exibir ao lado do big number de Cidades Que Vendem.",
+   "dax": "\"cidades que vendem — top 5 concentra \" & FORMAT([% Receita Top 5 Cidades], \"0.0%\")",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "% Receita Top 5 Cidades"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Ranking Cidade",
+   "tabela": "dim_geography",
+   "descricao": "Posicao da cidade dentro do recorte visivel da tabela Ranking de Cidades, ordenado por Receita Liquida.",
+   "dax": "VAR sel = SELECTEDVALUE('Dimensão Geográfica (Ranking)'[Dimensão Geográfica (Ranking) Fields])\nRETURN\nSWITCH(\n    TRUE(),\n    sel = NAMEOF('dim_geography'[billing_country]), RANKX(ALLSELECTED(dim_geography[billing_country]), CALCULATE([Receita Líquida]), , DESC),\n    sel = NAMEOF('dim_geography'[state_province]), RANKX(ALLSELECTED(dim_geography[state_province]), CALCULATE([Receita Líquida]), , DESC),\n    RANKX(ALLSELECTED(dim_geography[Cidade]), CALCULATE([Receita Líquida]), , DESC)\n)",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Receita Líquida"
+   ],
+   "usa_colunas": [
+    "Dimensão Geográfica (Ranking)[Dimensão Geográfica (Ranking) Fields]",
+    "dim_geography[Cidade]",
+    "dim_geography[billing_country]",
+    "dim_geography[state_province]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Ticket Médio por Dimensão (Título)",
+   "tabela": "dim_geography",
+   "descricao": "",
+   "dax": "VAR sel = SELECTEDVALUE('Dimensão Geográfica (Ticket Médio)'[Dimensão Geográfica (Ticket Médio) Fields])\nRETURN \"Ticket médio por \" & SWITCH(TRUE(),\n    sel = NAMEOF('dim_geography'[billing_country]), \"país\",\n    sel = NAMEOF('dim_geography'[state_province]), \"estado\",\n    sel = NAMEOF('dim_geography'[Cidade]), \"cidade\",\n    \"país\"\n)",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "Dimensão Geográfica (Ticket Médio)[Dimensão Geográfica (Ticket Médio) Fields]",
+    "dim_geography[Cidade]",
+    "dim_geography[billing_country]",
+    "dim_geography[state_province]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Total de Produtos",
+   "tabela": "dim_product",
+   "descricao": "Contagem total de produtos no catalogo, independente de terem vendido ou nao.",
+   "dax": "COUNTROWS(dim_product)",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [
+    "Produtos Nunca Venderam (Legenda)",
+    "Produtos Nunca Venderam (Texto)"
+   ],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Produtos Nunca Venderam",
+   "tabela": "dim_product",
+   "descricao": "Quantidade de produtos do catalogo sem nenhuma linha de venda em fact_sales, no contexto de filtro atual.",
+   "dax": "CALCULATE(\n    COUNTROWS(dim_product),\n    FILTER(dim_product, CALCULATE(COUNTROWS(fact_sales)) = 0)\n)",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [
+    "Produtos Nunca Venderam (Texto)"
+   ],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Produto Destaque",
+   "tabela": "dim_product",
+   "descricao": "Nome do produto com mais itens vendidos no contexto de filtro atual. Responde a pergunta do briefing sobre o produto mais vendido por motivo de venda quando o filtro Motivo da Venda = Promotion estiver selecionado.",
+   "dax": "VAR t = TOPN(1, VALUES(dim_product[Produto]), CALCULATE([Itens Vendidos]))\nRETURN MAXX(t, dim_product[Produto])",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Itens Vendidos"
+   ],
+   "usa_colunas": [
+    "dim_product[Produto]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [
+    "Produto Destaque (Texto)"
+   ],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Itens Vendidos (Produto Destaque)",
+   "tabela": "dim_product",
+   "descricao": "Itens vendidos do produto retornado por Produto Destaque.",
+   "dax": "MAXX(TOPN(1, VALUES(dim_product[Produto]), CALCULATE([Itens Vendidos])), CALCULATE([Itens Vendidos]))",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Itens Vendidos"
+   ],
+   "usa_colunas": [
+    "dim_product[Produto]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [
+    "Produto Destaque (Legenda)",
+    "Produto Destaque (Texto)"
+   ],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Produtos Nunca Venderam (Texto)",
+   "tabela": "dim_product",
+   "descricao": "Texto pronto pra exibicao: quantidade de produtos do catalogo sem nenhuma venda, sobre o total do catalogo.",
+   "dax": "FORMAT([Produtos Nunca Venderam], \"0\") & \" de \" & FORMAT([Total de Produtos], \"0\") & \" produtos nunca venderam\"",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Produtos Nunca Venderam",
+    "Total de Produtos"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Produto Destaque (Texto)",
+   "tabela": "dim_product",
+   "descricao": "Produto com mais itens vendidos no contexto de filtro atual, formatado pra exibicao direta em card/legenda.",
+   "dax": "IF(ISBLANK([Itens Vendidos (Produto Destaque)]), \"sem vendas no filtro atual\", [Produto Destaque] & \" — \" & FORMAT([Itens Vendidos (Produto Destaque)], \"#,##0\") & \" un.\")",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Itens Vendidos (Produto Destaque)",
+    "Produto Destaque"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Produtos Nunca Venderam (Legenda)",
+   "tabela": "dim_product",
+   "descricao": "Legenda de apoio (sem o numero) pra exibir ao lado do big number de Produtos Nunca Venderam.",
+   "dax": "\"de \" & FORMAT([Total de Produtos], \"0\") & \" produtos nunca venderam\"",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Total de Produtos"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Produto Destaque (Legenda)",
+   "tabela": "dim_product",
+   "descricao": "Legenda de apoio (sem o nome do produto) pra exibir ao lado do big number de Produto Destaque.",
+   "dax": "IF(ISBLANK([Itens Vendidos (Produto Destaque)]), \"sem vendas no filtro atual\", \"produto destaque no filtro atual — \" & FORMAT([Itens Vendidos (Produto Destaque)], \"#,##0\") & \" un.\")",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Itens Vendidos (Produto Destaque)"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Produto Maior Ticket Médio",
+   "tabela": "dim_product",
+   "descricao": "Nome do produto com maior ticket medio no contexto de filtro atual. Usado no callout da pagina Produtos e no card de Ticket Medio por pais em Geografia.",
+   "dax": "VAR t = TOPN(1, VALUES(dim_product[Produto]), CALCULATE([Ticket Médio]))\nRETURN MAXX(t, dim_product[Produto])",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Ticket Médio"
+   ],
+   "usa_colunas": [
+    "dim_product[Produto]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [
+    "Produto Maior Ticket Médio (Legenda)",
+    "Produto Maior Ticket Médio (Texto)",
+    "Ticket Médio (Produto Maior Ticket Médio)"
+   ],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Ticket Médio (Produto Maior Ticket Médio)",
+   "tabela": "dim_product",
+   "descricao": "Valor de ticket medio do produto retornado por Produto Maior Ticket Medio, no mesmo contexto de filtro.",
+   "dax": "CALCULATE([Ticket Médio], TREATAS({[Produto Maior Ticket Médio]}, dim_product[Produto]))",
+   "formato": "R$ #,##0.00",
+   "pasta": "",
+   "usa_medidas": [
+    "Produto Maior Ticket Médio",
+    "Ticket Médio"
+   ],
+   "usa_colunas": [
+    "dim_product[Produto]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [
+    "Produto Maior Ticket Médio (Legenda)",
+    "Produto Maior Ticket Médio (Texto)"
+   ],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Produto Maior Ticket Médio (Texto)",
+   "tabela": "dim_product",
+   "descricao": "Produto com maior ticket medio no contexto de filtro atual, formatado pra exibicao direta em card/callout.",
+   "dax": "IF(ISBLANK([Ticket Médio (Produto Maior Ticket Médio)]), \"sem vendas no filtro atual\", [Produto Maior Ticket Médio] & \" — \" & FORMAT([Ticket Médio (Produto Maior Ticket Médio)], \"R$ #,##0.00\"))",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Produto Maior Ticket Médio",
+    "Ticket Médio (Produto Maior Ticket Médio)"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Produto Maior Ticket Médio (Legenda)",
+   "tabela": "dim_product",
+   "descricao": "Legenda de apoio (sem o nome do produto) pra exibir ao lado do nome do produto com maior ticket medio.",
+   "dax": "IF(ISBLANK([Ticket Médio (Produto Maior Ticket Médio)]), \"sem vendas no filtro atual\", \"produto com maior ticket médio no filtro atual — \" & FORMAT([Ticket Médio (Produto Maior Ticket Médio)], \"R$ #,##0.00\"))",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Ticket Médio (Produto Maior Ticket Médio)"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Receita Bruta",
+   "tabela": "fact_sales",
+   "descricao": "Receita bruta = orderqty x unitprice, somada no grao do item. Teste de aceite do CEO: 12.646.112,1607 em 2011.",
+   "dax": "SUM('fact_sales'[gross_revenue])",
+   "formato": "R$ #,##0.00",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "fact_sales[gross_revenue]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [
+    "Taxa de Desconto"
+   ],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Receita Líquida",
+   "tabela": "fact_sales",
+   "descricao": "Receita liquida = linetotal da origem (receita bruta menos desconto).",
+   "dax": "SUM('fact_sales'[net_revenue])",
+   "formato": "R$ #,##0.00",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "fact_sales[net_revenue]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": true,
+   "impacta": [
+    "% Receita Top 10 Clientes",
+    "% Receita Top 5 Cidades",
+    "% da Receita Líquida",
+    "% da Receita Líquida (Geografia)",
+    "Canal Predominante",
+    "Produto Maior Ticket Médio",
+    "Produto Maior Ticket Médio (Legenda)",
+    "Produto Maior Ticket Médio (Texto)",
+    "Ranking Cidade",
+    "Ranking Cidades (Texto Legenda)",
+    "Ranking Cidades (Texto)",
+    "Ranking Cliente",
+    "Receita Top 10 Clientes",
+    "Receita Top 5 Cidades",
+    "Ticket Médio",
+    "Ticket Médio (Produto Maior Ticket Médio)",
+    "Top 10 Clientes (Texto)",
+    "Valor"
+   ],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Número de Pedidos",
+   "tabela": "fact_sales",
+   "descricao": "Contagem de pedidos distintos. Nunca COUNTROWS: a fato esta no grao do item, um pedido tem varias linhas.",
+   "dax": "DISTINCTCOUNT('fact_sales'[sales_order_id])",
+   "formato": "#,##0",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "fact_sales[sales_order_id]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": true,
+   "impacta": [
+    "Mix de Canal",
+    "Produto Maior Ticket Médio",
+    "Produto Maior Ticket Médio (Legenda)",
+    "Produto Maior Ticket Médio (Texto)",
+    "Ticket Médio",
+    "Ticket Médio (Produto Maior Ticket Médio)"
+   ],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Itens Vendidos",
+   "tabela": "fact_sales",
+   "descricao": "Soma de unidades vendidas (order_quantity).",
+   "dax": "SUM('fact_sales'[order_quantity])",
+   "formato": "#,##0",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "fact_sales[order_quantity]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": true,
+   "impacta": [
+    "Itens Vendidos (Produto Destaque)",
+    "Produto Destaque",
+    "Produto Destaque (Legenda)",
+    "Produto Destaque (Texto)",
+    "Quantidade"
+   ],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Ticket Médio",
+   "tabela": "fact_sales",
+   "descricao": "Receita liquida dividida pelo numero de pedidos distintos.",
+   "dax": "DIVIDE([Receita Líquida], [Número de Pedidos])",
+   "formato": "R$ #,##0.00",
+   "pasta": "",
+   "usa_medidas": [
+    "Número de Pedidos",
+    "Receita Líquida"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": true,
+   "impacta": [
+    "Produto Maior Ticket Médio",
+    "Produto Maior Ticket Médio (Legenda)",
+    "Produto Maior Ticket Médio (Texto)",
+    "Ticket Médio (Produto Maior Ticket Médio)"
+   ],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Taxa de Desconto",
+   "tabela": "fact_sales",
+   "descricao": "Desconto total dividido pela receita bruta.",
+   "dax": "DIVIDE(SUM('fact_sales'[discount_amount]), [Receita Bruta])",
+   "formato": "0.0%",
+   "pasta": "",
+   "usa_medidas": [
+    "Receita Bruta"
+   ],
+   "usa_colunas": [
+    "fact_sales[discount_amount]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Mix de Canal",
+   "tabela": "fact_sales",
+   "descricao": "Participacao de pedidos por canal (online / revenda). Sem esse indicador, ticket medio e outras comparacoes por pais/motivo podem ser lidas como efeito de mercado quando na verdade sao efeito de mix de canal.",
+   "dax": "VAR PctOnline = DIVIDE(CALCULATE([Número de Pedidos], fact_sales[channel] = \"online\"), [Número de Pedidos])\nVAR PctRevenda = DIVIDE(CALCULATE([Número de Pedidos], fact_sales[channel] = \"revenda\"), [Número de Pedidos])\nRETURN FORMAT(PctOnline, \"0%\") & \" / \" & FORMAT(PctRevenda, \"0%\")",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Número de Pedidos"
+   ],
+   "usa_colunas": [
+    "fact_sales[channel]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Taxa de Recorrência",
+   "tabela": "fact_sales",
+   "descricao": "Percentual de clientes com mais de um pedido no periodo filtrado.",
+   "dax": "VAR ClientesRecorrentes =\n    CALCULATE(\n        DISTINCTCOUNT(fact_sales[customer_key]),\n        FILTER(\n            VALUES(fact_sales[customer_key]),\n            CALCULATE(DISTINCTCOUNT(fact_sales[sales_order_id])) > 1\n        )\n    )\nRETURN DIVIDE(ClientesRecorrentes, DISTINCTCOUNT(fact_sales[customer_key]))",
+   "formato": "0.0%",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "fact_sales[customer_key]",
+    "fact_sales[sales_order_id]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Data da Venda",
+   "tabela": "fact_sales",
+   "descricao": "Data da ultima venda do produto no contexto de filtro atual. So aparece em branco no nivel de produto (linha folha da Matriz); em qualquer outro contexto (categoria, total) retorna vazio de proposito, pra responder 'por data da venda' do briefing sem misturar granularidades diferentes numa mesma coluna.",
+   "dax": "IF(HASONEVALUE(dim_product[Produto]), MAX(fact_sales[order_date]), BLANK())",
+   "formato": "dd/mm/yyyy",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "dim_product[Produto]",
+    "fact_sales[order_date]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Canal Predominante",
+   "tabela": "fact_sales",
+   "descricao": "Canal (online/revenda) com maior receita liquida no contexto de filtro atual. Usado em tabelas com grao de cliente ou cidade, onde um mesmo cliente/cidade pode ter pedidos em mais de um canal - mostra o canal predominante, nao todos.",
+   "dax": "VAR t = TOPN(1, SUMMARIZE(fact_sales, fact_sales[channel], \"r\", CALCULATE([Receita Líquida])), [r])\nRETURN MAXX(t, fact_sales[channel])",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [
+    "Receita Líquida"
+   ],
+   "usa_colunas": [
+    "fact_sales[channel]"
+   ],
+   "ambiguas": [
+    "r"
+   ],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": false
+  },
+  {
+   "nome": "Valor",
+   "tabela": "fact_sales",
+   "descricao": "Alias de Receita Liquida usado especificamente nas 3 tabelas de detalhe (Top 10 Clientes, Ranking de Cidades, Matriz), onde o briefing e o mockup chamam a coluna de 'Valor', nao 'Receita Liquida'. Mesmo numero, so o rotulo muda - nao usar em KPIs/graficos, que continuam com Receita Liquida.",
+   "dax": "[Receita Líquida]",
+   "formato": "R$ #,##0.00",
+   "pasta": "",
+   "usa_medidas": [
+    "Receita Líquida"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Quantidade",
+   "tabela": "fact_sales",
+   "descricao": "Alias de Itens Vendidos usado nas tabelas de detalhe (Top 10 Clientes, Matriz), onde o briefing chama a coluna de 'quantidade comprada'. Mesmo numero, so o rotulo muda.",
+   "dax": "[Itens Vendidos]",
+   "formato": "#,##0",
+   "pasta": "",
+   "usa_medidas": [
+    "Itens Vendidos"
+   ],
+   "usa_colunas": [],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Título Receita por Mês",
+   "tabela": "fact_sales",
+   "descricao": "Titulo dinamico do grafico de linha, varia conforme o botao selecionado no toggle Metrica (Receita/Pedidos).",
+   "dax": "SWITCH(\n    TRUE(),\n    SELECTEDVALUE('Métrica (Receita/Pedidos)'[Métrica (Receita/Pedidos) Fields]) = \"'fact_sales'[Número de Pedidos]\", \"Pedidos por mês / ano\",\n    SELECTEDVALUE('Métrica (Receita/Pedidos)'[Métrica (Receita/Pedidos) Fields]) = \"'fact_sales'[Itens Vendidos]\", \"Quantidade por mês / ano\",\n    \"Receita por mês / ano\"\n)",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "Métrica (Receita/Pedidos)[Métrica (Receita/Pedidos) Fields]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  },
+  {
+   "nome": "Título Cartão",
+   "tabela": "fact_sales",
+   "descricao": "Titulo dinamico do grafico de barras por tipo de cartao, varia conforme o botao selecionado no toggle Metrica (Cartao).",
+   "dax": "SWITCH(\n    TRUE(),\n    SELECTEDVALUE('Métrica (Cartão)'[Métrica (Cartão) Fields]) = \"'fact_sales'[Número de Pedidos]\", \"Pedidos por tipo de cartão\",\n    SELECTEDVALUE('Métrica (Cartão)'[Métrica (Cartão) Fields]) = \"'fact_sales'[Itens Vendidos]\", \"Quantidade por tipo de cartão\",\n    \"Receita por tipo de cartão\"\n)",
+   "formato": "",
+   "pasta": "",
+   "usa_medidas": [],
+   "usa_colunas": [
+    "Métrica (Cartão)[Métrica (Cartão) Fields]"
+   ],
+   "ambiguas": [],
+   "usada_por_parametro": false,
+   "impacta": [],
+   "usada_no_relatorio": true
+  }
+ ],
+ "relacionamentos": [
+  {
+   "de_tabela": "bridge_order_sales_reason",
+   "de_coluna": "sales_reason_key",
+   "para_tabela": "dim_sales_reason",
+   "para_coluna": "sales_reason_key",
+   "bidirecional": false,
+   "ativo": true,
+   "cardinalidade": "many:one"
+  },
+  {
+   "de_tabela": "fact_sales",
+   "de_coluna": "credit_card_key",
+   "para_tabela": "dim_credit_card",
+   "para_coluna": "credit_card_key",
+   "bidirecional": false,
+   "ativo": true,
+   "cardinalidade": "many:one"
+  },
+  {
+   "de_tabela": "fact_sales",
+   "de_coluna": "customer_key",
+   "para_tabela": "dim_customer",
+   "para_coluna": "customer_key",
+   "bidirecional": false,
+   "ativo": true,
+   "cardinalidade": "many:one"
+  },
+  {
+   "de_tabela": "fact_sales",
+   "de_coluna": "bill_to_geography_key",
+   "para_tabela": "dim_geography",
+   "para_coluna": "bill_to_geography_key",
+   "bidirecional": false,
+   "ativo": true,
+   "cardinalidade": "many:one"
+  },
+  {
+   "de_tabela": "fact_sales",
+   "de_coluna": "product_key",
+   "para_tabela": "dim_product",
+   "para_coluna": "product_key",
+   "bidirecional": false,
+   "ativo": true,
+   "cardinalidade": "many:one"
+  },
+  {
+   "de_tabela": "fact_sales",
+   "de_coluna": "salesperson_key",
+   "para_tabela": "dim_salesperson",
+   "para_coluna": "salesperson_key",
+   "bidirecional": false,
+   "ativo": true,
+   "cardinalidade": "many:one"
+  },
+  {
+   "de_tabela": "fact_sales",
+   "de_coluna": "special_offer_key",
+   "para_tabela": "dim_special_offer",
+   "para_coluna": "special_offer_key",
+   "bidirecional": false,
+   "ativo": true,
+   "cardinalidade": "many:one"
+  },
+  {
+   "de_tabela": "fact_sales",
+   "de_coluna": "territory_key",
+   "para_tabela": "dim_territory",
+   "para_coluna": "territory_key",
+   "bidirecional": false,
+   "ativo": true,
+   "cardinalidade": "many:one"
+  },
+  {
+   "de_tabela": "fact_sales",
+   "de_coluna": "order_date",
+   "para_tabela": "dim_dates",
+   "para_coluna": "date_day",
+   "bidirecional": false,
+   "ativo": true,
+   "cardinalidade": "many:one"
+  },
+  {
+   "de_tabela": "bridge_order_sales_reason",
+   "de_coluna": "sales_order_id",
+   "para_tabela": "fact_sales",
+   "para_coluna": "sales_order_id",
+   "bidirecional": true,
+   "ativo": true,
+   "cardinalidade": "many:many"
+  }
+ ],
+ "achados": [
+  {
+   "id": "coluna-calculada",
+   "severidade": "medio",
+   "titulo": "Coluna calculada — avaliar se vira medida",
+   "onde": "fact_sales[Promoção]",
+   "por_que": "Coluna calculada é gravada em memória a cada atualização e aumenta o modelo; se ela só é agregada, uma medida faz o mesmo sem custo de armazenamento.",
+   "como_corrigir": "Se não é usada como filtro ou eixo, converta em medida e troque as referências."
+  },
+  {
+   "id": "coluna-calculada",
+   "severidade": "medio",
+   "titulo": "Coluna calculada — avaliar se vira medida",
+   "onde": "fact_sales[Status (Texto)]",
+   "por_que": "Coluna calculada é gravada em memória a cada atualização e aumenta o modelo; se ela só é agregada, uma medida faz o mesmo sem custo de armazenamento.",
+   "como_corrigir": "Se não é usada como filtro ou eixo, converta em medida e troque as referências."
+  },
+  {
+   "id": "rel-bidirecional",
+   "severidade": "leve",
+   "titulo": "Relacionamento com filtro nos dois sentidos",
+   "onde": "bridge_order_sales_reason[sales_order_id] → fact_sales[sales_order_id]",
+   "por_que": "Filtro bidirecional cria caminhos ambíguos entre tabelas e deixa o motor mais lento. Em ponte muitos-para-muitos costuma ser intencional — só confirme que é.",
+   "como_corrigir": "Troque para filtro único e, onde precisar do outro sentido, use CROSSFILTER dentro da medida."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "bridge_order_sales_reason",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "dimensao-sem-chave",
+   "severidade": "leve",
+   "titulo": "Dimensão sem coluna marcada como chave",
+   "onde": "dim_credit_card",
+   "por_que": "Marcar a chave (isKey) documenta a unicidade da linha e ajuda recursos de IA e de relacionamento a entenderem o modelo.",
+   "como_corrigir": "No TMDL, acrescente `isKey` na coluna de chave primária da tabela."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "dim_credit_card",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "dimensao-sem-chave",
+   "severidade": "leve",
+   "titulo": "Dimensão sem coluna marcada como chave",
+   "onde": "dim_customer",
+   "por_que": "Marcar a chave (isKey) documenta a unicidade da linha e ajuda recursos de IA e de relacionamento a entenderem o modelo.",
+   "como_corrigir": "No TMDL, acrescente `isKey` na coluna de chave primária da tabela."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "dim_customer",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "dim_dates",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "dimensao-sem-chave",
+   "severidade": "leve",
+   "titulo": "Dimensão sem coluna marcada como chave",
+   "onde": "dim_geography",
+   "por_que": "Marcar a chave (isKey) documenta a unicidade da linha e ajuda recursos de IA e de relacionamento a entenderem o modelo.",
+   "como_corrigir": "No TMDL, acrescente `isKey` na coluna de chave primária da tabela."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "dim_geography",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "dimensao-sem-chave",
+   "severidade": "leve",
+   "titulo": "Dimensão sem coluna marcada como chave",
+   "onde": "dim_product",
+   "por_que": "Marcar a chave (isKey) documenta a unicidade da linha e ajuda recursos de IA e de relacionamento a entenderem o modelo.",
+   "como_corrigir": "No TMDL, acrescente `isKey` na coluna de chave primária da tabela."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "dim_product",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "dimensao-sem-chave",
+   "severidade": "leve",
+   "titulo": "Dimensão sem coluna marcada como chave",
+   "onde": "dim_sales_reason",
+   "por_que": "Marcar a chave (isKey) documenta a unicidade da linha e ajuda recursos de IA e de relacionamento a entenderem o modelo.",
+   "como_corrigir": "No TMDL, acrescente `isKey` na coluna de chave primária da tabela."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "dim_sales_reason",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "dimensao-sem-chave",
+   "severidade": "leve",
+   "titulo": "Dimensão sem coluna marcada como chave",
+   "onde": "dim_salesperson",
+   "por_que": "Marcar a chave (isKey) documenta a unicidade da linha e ajuda recursos de IA e de relacionamento a entenderem o modelo.",
+   "como_corrigir": "No TMDL, acrescente `isKey` na coluna de chave primária da tabela."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "dim_salesperson",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "dimensao-sem-chave",
+   "severidade": "leve",
+   "titulo": "Dimensão sem coluna marcada como chave",
+   "onde": "dim_special_offer",
+   "por_que": "Marcar a chave (isKey) documenta a unicidade da linha e ajuda recursos de IA e de relacionamento a entenderem o modelo.",
+   "como_corrigir": "No TMDL, acrescente `isKey` na coluna de chave primária da tabela."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "dim_special_offer",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "dimensao-sem-chave",
+   "severidade": "leve",
+   "titulo": "Dimensão sem coluna marcada como chave",
+   "onde": "dim_territory",
+   "por_que": "Marcar a chave (isKey) documenta a unicidade da linha e ajuda recursos de IA e de relacionamento a entenderem o modelo.",
+   "como_corrigir": "No TMDL, acrescente `isKey` na coluna de chave primária da tabela."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "dim_territory",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "tabela-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Tabela sem descrição",
+   "onde": "fact_sales",
+   "por_que": "Quem abre o modelo não sabe o grão nem o papel da tabela sem ler o código.",
+   "como_corrigir": "Acrescente `///` acima de `table` com grão e papel (ex.: 'fato no grão do item do pedido')."
+  },
+  {
+   "id": "medida-orfa",
+   "severidade": "leve",
+   "titulo": "Medida que nenhum visual nem outra medida usa",
+   "onde": "bridge_order_sales_reason[Motivo Predominante]",
+   "por_que": "Medida sem uso aumenta a lista de campos e o custo de manutenção.",
+   "como_corrigir": "Confirme se é resto de teste; se for, remova."
+  },
+  {
+   "id": "medida-orfa",
+   "severidade": "leve",
+   "titulo": "Medida que nenhum visual nem outra medida usa",
+   "onde": "dim_customer[% da Receita Líquida]",
+   "por_que": "Medida sem uso aumenta a lista de campos e o custo de manutenção.",
+   "como_corrigir": "Confirme se é resto de teste; se for, remova."
+  },
+  {
+   "id": "medida-orfa",
+   "severidade": "leve",
+   "titulo": "Medida que nenhum visual nem outra medida usa",
+   "onde": "dim_geography[% da Receita Líquida (Geografia)]",
+   "por_que": "Medida sem uso aumenta a lista de campos e o custo de manutenção.",
+   "como_corrigir": "Confirme se é resto de teste; se for, remova."
+  },
+  {
+   "id": "medida-sem-formato",
+   "severidade": "leve",
+   "titulo": "Medida sem formato definido",
+   "onde": "dim_geography[Receita Top 5 Cidades]",
+   "por_que": "Sem formatString cada visual mostra o número de um jeito (casas, moeda, %).",
+   "como_corrigir": "Defina `formatString` na medida."
+  },
+  {
+   "id": "medida-sem-formato",
+   "severidade": "leve",
+   "titulo": "Medida sem formato definido",
+   "onde": "dim_geography[% Receita Top 5 Cidades]",
+   "por_que": "Sem formatString cada visual mostra o número de um jeito (casas, moeda, %).",
+   "como_corrigir": "Defina `formatString` na medida."
+  },
+  {
+   "id": "filter-tabela-inteira",
+   "severidade": "leve",
+   "titulo": "FILTER sobre a tabela inteira",
+   "onde": "dim_geography[Cidades Que Vendem]",
+   "por_que": "FILTER(dim_geography, …) percorre a tabela linha a linha e costuma ser o gargalo da medida.",
+   "como_corrigir": "Filtre só a coluna: CALCULATE([m], tabela[coluna] = valor) ou FILTER(VALUES(tabela[coluna]), …)."
+  },
+  {
+   "id": "medida-orfa",
+   "severidade": "leve",
+   "titulo": "Medida que nenhum visual nem outra medida usa",
+   "onde": "dim_geography[Ranking Cidades (Texto)]",
+   "por_que": "Medida sem uso aumenta a lista de campos e o custo de manutenção.",
+   "como_corrigir": "Confirme se é resto de teste; se for, remova."
+  },
+  {
+   "id": "medida-sem-descricao",
+   "severidade": "leve",
+   "titulo": "Medida sem descrição",
+   "onde": "dim_geography[Ticket Médio por Dimensão (Título)]",
+   "por_que": "A descrição aparece no painel de campos e documenta a regra de negócio dentro do arquivo.",
+   "como_corrigir": "Acrescente `///` acima da medida explicando o que ela calcula."
+  },
+  {
+   "id": "filter-tabela-inteira",
+   "severidade": "leve",
+   "titulo": "FILTER sobre a tabela inteira",
+   "onde": "dim_product[Produtos Nunca Venderam]",
+   "por_que": "FILTER(dim_product, …) percorre a tabela linha a linha e costuma ser o gargalo da medida.",
+   "como_corrigir": "Filtre só a coluna: CALCULATE([m], tabela[coluna] = valor) ou FILTER(VALUES(tabela[coluna]), …)."
+  },
+  {
+   "id": "medida-orfa",
+   "severidade": "leve",
+   "titulo": "Medida que nenhum visual nem outra medida usa",
+   "onde": "dim_product[Produtos Nunca Venderam (Texto)]",
+   "por_que": "Medida sem uso aumenta a lista de campos e o custo de manutenção.",
+   "como_corrigir": "Confirme se é resto de teste; se for, remova."
+  },
+  {
+   "id": "medida-orfa",
+   "severidade": "leve",
+   "titulo": "Medida que nenhum visual nem outra medida usa",
+   "onde": "dim_product[Produto Destaque (Texto)]",
+   "por_que": "Medida sem uso aumenta a lista de campos e o custo de manutenção.",
+   "como_corrigir": "Confirme se é resto de teste; se for, remova."
+  },
+  {
+   "id": "medida-orfa",
+   "severidade": "leve",
+   "titulo": "Medida que nenhum visual nem outra medida usa",
+   "onde": "dim_product[Produto Maior Ticket Médio (Texto)]",
+   "por_que": "Medida sem uso aumenta a lista de campos e o custo de manutenção.",
+   "como_corrigir": "Confirme se é resto de teste; se for, remova."
+  },
+  {
+   "id": "medida-orfa",
+   "severidade": "leve",
+   "titulo": "Medida que nenhum visual nem outra medida usa",
+   "onde": "dim_product[Produto Maior Ticket Médio (Legenda)]",
+   "por_que": "Medida sem uso aumenta a lista de campos e o custo de manutenção.",
+   "como_corrigir": "Confirme se é resto de teste; se for, remova."
+  },
+  {
+   "id": "medida-orfa",
+   "severidade": "leve",
+   "titulo": "Medida que nenhum visual nem outra medida usa",
+   "onde": "fact_sales[Data da Venda]",
+   "por_que": "Medida sem uso aumenta a lista de campos e o custo de manutenção.",
+   "como_corrigir": "Confirme se é resto de teste; se for, remova."
+  },
+  {
+   "id": "medida-orfa",
+   "severidade": "leve",
+   "titulo": "Medida que nenhum visual nem outra medida usa",
+   "onde": "fact_sales[Canal Predominante]",
+   "por_que": "Medida sem uso aumenta a lista de campos e o custo de manutenção.",
+   "como_corrigir": "Confirme se é resto de teste; se for, remova."
+  }
+ ],
+ "dependencias": {
+  "nos": [
+   {
+    "id": "m:Última Atualização",
+    "tipo": "medida",
+    "rotulo": "Última Atualização",
+    "tabela": "Atualização do Modelo"
+   },
+   {
+    "id": "m:Receita por Motivo de Venda",
+    "tipo": "medida",
+    "rotulo": "Receita por Motivo de Venda",
+    "tabela": "bridge_order_sales_reason"
+   },
+   {
+    "id": "m:Motivo Predominante",
+    "tipo": "medida",
+    "rotulo": "Motivo Predominante",
+    "tabela": "bridge_order_sales_reason"
+   },
+   {
+    "id": "m:Pedidos por Motivo de Venda",
+    "tipo": "medida",
+    "rotulo": "Pedidos por Motivo de Venda",
+    "tabela": "bridge_order_sales_reason"
+   },
+   {
+    "id": "m:Quantidade por Motivo de Venda",
+    "tipo": "medida",
+    "rotulo": "Quantidade por Motivo de Venda",
+    "tabela": "bridge_order_sales_reason"
+   },
+   {
+    "id": "m:Título Motivo de Venda",
+    "tipo": "medida",
+    "rotulo": "Título Motivo de Venda",
+    "tabela": "bridge_order_sales_reason"
+   },
+   {
+    "id": "m:Receita Top 10 Clientes",
+    "tipo": "medida",
+    "rotulo": "Receita Top 10 Clientes",
+    "tabela": "dim_customer"
+   },
+   {
+    "id": "m:% Receita Top 10 Clientes",
+    "tipo": "medida",
+    "rotulo": "% Receita Top 10 Clientes",
+    "tabela": "dim_customer"
+   },
+   {
+    "id": "m:% da Receita Líquida",
+    "tipo": "medida",
+    "rotulo": "% da Receita Líquida",
+    "tabela": "dim_customer"
+   },
+   {
+    "id": "m:Top 10 Clientes (Texto)",
+    "tipo": "medida",
+    "rotulo": "Top 10 Clientes (Texto)",
+    "tabela": "dim_customer"
+   },
+   {
+    "id": "m:Ranking Cliente",
+    "tipo": "medida",
+    "rotulo": "Ranking Cliente",
+    "tabela": "dim_customer"
+   },
+   {
+    "id": "m:% da Receita Líquida (Geografia)",
+    "tipo": "medida",
+    "rotulo": "% da Receita Líquida (Geografia)",
+    "tabela": "dim_geography"
+   },
+   {
+    "id": "m:Receita Top 5 Cidades",
+    "tipo": "medida",
+    "rotulo": "Receita Top 5 Cidades",
+    "tabela": "dim_geography"
+   },
+   {
+    "id": "m:% Receita Top 5 Cidades",
+    "tipo": "medida",
+    "rotulo": "% Receita Top 5 Cidades",
+    "tabela": "dim_geography"
+   },
+   {
+    "id": "m:Cidades Que Vendem",
+    "tipo": "medida",
+    "rotulo": "Cidades Que Vendem",
+    "tabela": "dim_geography"
+   },
+   {
+    "id": "m:Ranking Cidades (Texto)",
+    "tipo": "medida",
+    "rotulo": "Ranking Cidades (Texto)",
+    "tabela": "dim_geography"
+   },
+   {
+    "id": "m:Ranking Cidades (Texto Legenda)",
+    "tipo": "medida",
+    "rotulo": "Ranking Cidades (Texto Legenda)",
+    "tabela": "dim_geography"
+   },
+   {
+    "id": "m:Ranking Cidade",
+    "tipo": "medida",
+    "rotulo": "Ranking Cidade",
+    "tabela": "dim_geography"
+   },
+   {
+    "id": "m:Ticket Médio por Dimensão (Título)",
+    "tipo": "medida",
+    "rotulo": "Ticket Médio por Dimensão (Título)",
+    "tabela": "dim_geography"
+   },
+   {
+    "id": "m:Total de Produtos",
+    "tipo": "medida",
+    "rotulo": "Total de Produtos",
+    "tabela": "dim_product"
+   },
+   {
+    "id": "m:Produtos Nunca Venderam",
+    "tipo": "medida",
+    "rotulo": "Produtos Nunca Venderam",
+    "tabela": "dim_product"
+   },
+   {
+    "id": "m:Produto Destaque",
+    "tipo": "medida",
+    "rotulo": "Produto Destaque",
+    "tabela": "dim_product"
+   },
+   {
+    "id": "m:Itens Vendidos (Produto Destaque)",
+    "tipo": "medida",
+    "rotulo": "Itens Vendidos (Produto Destaque)",
+    "tabela": "dim_product"
+   },
+   {
+    "id": "m:Produtos Nunca Venderam (Texto)",
+    "tipo": "medida",
+    "rotulo": "Produtos Nunca Venderam (Texto)",
+    "tabela": "dim_product"
+   },
+   {
+    "id": "m:Produto Destaque (Texto)",
+    "tipo": "medida",
+    "rotulo": "Produto Destaque (Texto)",
+    "tabela": "dim_product"
+   },
+   {
+    "id": "m:Produtos Nunca Venderam (Legenda)",
+    "tipo": "medida",
+    "rotulo": "Produtos Nunca Venderam (Legenda)",
+    "tabela": "dim_product"
+   },
+   {
+    "id": "m:Produto Destaque (Legenda)",
+    "tipo": "medida",
+    "rotulo": "Produto Destaque (Legenda)",
+    "tabela": "dim_product"
+   },
+   {
+    "id": "m:Produto Maior Ticket Médio",
+    "tipo": "medida",
+    "rotulo": "Produto Maior Ticket Médio",
+    "tabela": "dim_product"
+   },
+   {
+    "id": "m:Ticket Médio (Produto Maior Ticket Médio)",
+    "tipo": "medida",
+    "rotulo": "Ticket Médio (Produto Maior Ticket Médio)",
+    "tabela": "dim_product"
+   },
+   {
+    "id": "m:Produto Maior Ticket Médio (Texto)",
+    "tipo": "medida",
+    "rotulo": "Produto Maior Ticket Médio (Texto)",
+    "tabela": "dim_product"
+   },
+   {
+    "id": "m:Produto Maior Ticket Médio (Legenda)",
+    "tipo": "medida",
+    "rotulo": "Produto Maior Ticket Médio (Legenda)",
+    "tabela": "dim_product"
+   },
+   {
+    "id": "m:Receita Bruta",
+    "tipo": "medida",
+    "rotulo": "Receita Bruta",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Receita Líquida",
+    "tipo": "medida",
+    "rotulo": "Receita Líquida",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Número de Pedidos",
+    "tipo": "medida",
+    "rotulo": "Número de Pedidos",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Itens Vendidos",
+    "tipo": "medida",
+    "rotulo": "Itens Vendidos",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Ticket Médio",
+    "tipo": "medida",
+    "rotulo": "Ticket Médio",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Taxa de Desconto",
+    "tipo": "medida",
+    "rotulo": "Taxa de Desconto",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Mix de Canal",
+    "tipo": "medida",
+    "rotulo": "Mix de Canal",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Taxa de Recorrência",
+    "tipo": "medida",
+    "rotulo": "Taxa de Recorrência",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Data da Venda",
+    "tipo": "medida",
+    "rotulo": "Data da Venda",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Canal Predominante",
+    "tipo": "medida",
+    "rotulo": "Canal Predominante",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Valor",
+    "tipo": "medida",
+    "rotulo": "Valor",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Quantidade",
+    "tipo": "medida",
+    "rotulo": "Quantidade",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Título Receita por Mês",
+    "tipo": "medida",
+    "rotulo": "Título Receita por Mês",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "m:Título Cartão",
+    "tipo": "medida",
+    "rotulo": "Título Cartão",
+    "tabela": "fact_sales"
+   },
+   {
+    "id": "c:Atualização do Modelo[Data]",
+    "tipo": "coluna",
+    "rotulo": "Atualização do Modelo[Data]"
+   },
+   {
+    "id": "c:Dimensão Geográfica (Ranking)[Dimensão Geográfica (Ranking) Fields]",
+    "tipo": "coluna",
+    "rotulo": "Dimensão Geográfica (Ranking)[Dimensão Geográfica (Ranking) Fields]"
+   },
+   {
+    "id": "c:Dimensão Geográfica (Ticket Médio)[Dimensão Geográfica (Ticket Médio) Fields]",
+    "tipo": "coluna",
+    "rotulo": "Dimensão Geográfica (Ticket Médio)[Dimensão Geográfica (Ticket Médio) Fields]"
+   },
+   {
+    "id": "c:Métrica (Cartão)[Métrica (Cartão) Fields]",
+    "tipo": "coluna",
+    "rotulo": "Métrica (Cartão)[Métrica (Cartão) Fields]"
+   },
+   {
+    "id": "c:Métrica (Motivo)[Métrica (Motivo) Fields]",
+    "tipo": "coluna",
+    "rotulo": "Métrica (Motivo)[Métrica (Motivo) Fields]"
+   },
+   {
+    "id": "c:Métrica (Receita/Pedidos)[Métrica (Receita/Pedidos) Fields]",
+    "tipo": "coluna",
+    "rotulo": "Métrica (Receita/Pedidos)[Métrica (Receita/Pedidos) Fields]"
+   },
+   {
+    "id": "c:bridge_order_sales_reason[allocation_factor]",
+    "tipo": "coluna",
+    "rotulo": "bridge_order_sales_reason[allocation_factor]"
+   },
+   {
+    "id": "c:dim_customer[customer_key]",
+    "tipo": "coluna",
+    "rotulo": "dim_customer[customer_key]"
+   },
+   {
+    "id": "c:dim_geography[Cidade]",
+    "tipo": "coluna",
+    "rotulo": "dim_geography[Cidade]"
+   },
+   {
+    "id": "c:dim_geography[billing_country]",
+    "tipo": "coluna",
+    "rotulo": "dim_geography[billing_country]"
+   },
+   {
+    "id": "c:dim_geography[state_province]",
+    "tipo": "coluna",
+    "rotulo": "dim_geography[state_province]"
+   },
+   {
+    "id": "c:dim_product[Produto]",
+    "tipo": "coluna",
+    "rotulo": "dim_product[Produto]"
+   },
+   {
+    "id": "c:dim_sales_reason[reason_name]",
+    "tipo": "coluna",
+    "rotulo": "dim_sales_reason[reason_name]"
+   },
+   {
+    "id": "c:fact_sales[channel]",
+    "tipo": "coluna",
+    "rotulo": "fact_sales[channel]"
+   },
+   {
+    "id": "c:fact_sales[customer_key]",
+    "tipo": "coluna",
+    "rotulo": "fact_sales[customer_key]"
+   },
+   {
+    "id": "c:fact_sales[discount_amount]",
+    "tipo": "coluna",
+    "rotulo": "fact_sales[discount_amount]"
+   },
+   {
+    "id": "c:fact_sales[gross_revenue]",
+    "tipo": "coluna",
+    "rotulo": "fact_sales[gross_revenue]"
+   },
+   {
+    "id": "c:fact_sales[net_revenue]",
+    "tipo": "coluna",
+    "rotulo": "fact_sales[net_revenue]"
+   },
+   {
+    "id": "c:fact_sales[order_date]",
+    "tipo": "coluna",
+    "rotulo": "fact_sales[order_date]"
+   },
+   {
+    "id": "c:fact_sales[order_quantity]",
+    "tipo": "coluna",
+    "rotulo": "fact_sales[order_quantity]"
+   },
+   {
+    "id": "c:fact_sales[sales_order_id]",
+    "tipo": "coluna",
+    "rotulo": "fact_sales[sales_order_id]"
+   }
+  ],
+  "ligacoes": [
+   [
+    "m:Última Atualização",
+    "c:Atualização do Modelo[Data]"
+   ],
+   [
+    "m:Receita por Motivo de Venda",
+    "c:bridge_order_sales_reason[allocation_factor]"
+   ],
+   [
+    "m:Receita por Motivo de Venda",
+    "c:fact_sales[net_revenue]"
+   ],
+   [
+    "m:Motivo Predominante",
+    "m:Receita por Motivo de Venda"
+   ],
+   [
+    "m:Motivo Predominante",
+    "c:dim_sales_reason[reason_name]"
+   ],
+   [
+    "m:Pedidos por Motivo de Venda",
+    "c:bridge_order_sales_reason[allocation_factor]"
+   ],
+   [
+    "m:Quantidade por Motivo de Venda",
+    "c:bridge_order_sales_reason[allocation_factor]"
+   ],
+   [
+    "m:Quantidade por Motivo de Venda",
+    "c:fact_sales[order_quantity]"
+   ],
+   [
+    "m:Título Motivo de Venda",
+    "c:Métrica (Motivo)[Métrica (Motivo) Fields]"
+   ],
+   [
+    "m:Receita Top 10 Clientes",
+    "m:Receita Líquida"
+   ],
+   [
+    "m:Receita Top 10 Clientes",
+    "c:dim_customer[customer_key]"
+   ],
+   [
+    "m:% Receita Top 10 Clientes",
+    "m:Receita Líquida"
+   ],
+   [
+    "m:% Receita Top 10 Clientes",
+    "m:Receita Top 10 Clientes"
+   ],
+   [
+    "m:% da Receita Líquida",
+    "m:Receita Líquida"
+   ],
+   [
+    "m:Top 10 Clientes (Texto)",
+    "m:% Receita Top 10 Clientes"
+   ],
+   [
+    "m:Ranking Cliente",
+    "m:Receita Líquida"
+   ],
+   [
+    "m:% da Receita Líquida (Geografia)",
+    "m:Receita Líquida"
+   ],
+   [
+    "m:Receita Top 5 Cidades",
+    "m:Receita Líquida"
+   ],
+   [
+    "m:Receita Top 5 Cidades",
+    "c:dim_geography[Cidade]"
+   ],
+   [
+    "m:% Receita Top 5 Cidades",
+    "m:Receita Líquida"
+   ],
+   [
+    "m:% Receita Top 5 Cidades",
+    "m:Receita Top 5 Cidades"
+   ],
+   [
+    "m:Cidades Que Vendem",
+    "c:dim_geography[Cidade]"
+   ],
+   [
+    "m:Ranking Cidades (Texto)",
+    "m:% Receita Top 5 Cidades"
+   ],
+   [
+    "m:Ranking Cidades (Texto)",
+    "m:Cidades Que Vendem"
+   ],
+   [
+    "m:Ranking Cidades (Texto Legenda)",
+    "m:% Receita Top 5 Cidades"
+   ],
+   [
+    "m:Ranking Cidade",
+    "m:Receita Líquida"
+   ],
+   [
+    "m:Ranking Cidade",
+    "c:Dimensão Geográfica (Ranking)[Dimensão Geográfica (Ranking) Fields]"
+   ],
+   [
+    "m:Ranking Cidade",
+    "c:dim_geography[Cidade]"
+   ],
+   [
+    "m:Ranking Cidade",
+    "c:dim_geography[billing_country]"
+   ],
+   [
+    "m:Ranking Cidade",
+    "c:dim_geography[state_province]"
+   ],
+   [
+    "m:Ticket Médio por Dimensão (Título)",
+    "c:Dimensão Geográfica (Ticket Médio)[Dimensão Geográfica (Ticket Médio) Fields]"
+   ],
+   [
+    "m:Ticket Médio por Dimensão (Título)",
+    "c:dim_geography[Cidade]"
+   ],
+   [
+    "m:Ticket Médio por Dimensão (Título)",
+    "c:dim_geography[billing_country]"
+   ],
+   [
+    "m:Ticket Médio por Dimensão (Título)",
+    "c:dim_geography[state_province]"
+   ],
+   [
+    "m:Produto Destaque",
+    "m:Itens Vendidos"
+   ],
+   [
+    "m:Produto Destaque",
+    "c:dim_product[Produto]"
+   ],
+   [
+    "m:Itens Vendidos (Produto Destaque)",
+    "m:Itens Vendidos"
+   ],
+   [
+    "m:Itens Vendidos (Produto Destaque)",
+    "c:dim_product[Produto]"
+   ],
+   [
+    "m:Produtos Nunca Venderam (Texto)",
+    "m:Produtos Nunca Venderam"
+   ],
+   [
+    "m:Produtos Nunca Venderam (Texto)",
+    "m:Total de Produtos"
+   ],
+   [
+    "m:Produto Destaque (Texto)",
+    "m:Itens Vendidos (Produto Destaque)"
+   ],
+   [
+    "m:Produto Destaque (Texto)",
+    "m:Produto Destaque"
+   ],
+   [
+    "m:Produtos Nunca Venderam (Legenda)",
+    "m:Total de Produtos"
+   ],
+   [
+    "m:Produto Destaque (Legenda)",
+    "m:Itens Vendidos (Produto Destaque)"
+   ],
+   [
+    "m:Produto Maior Ticket Médio",
+    "m:Ticket Médio"
+   ],
+   [
+    "m:Produto Maior Ticket Médio",
+    "c:dim_product[Produto]"
+   ],
+   [
+    "m:Ticket Médio (Produto Maior Ticket Médio)",
+    "m:Produto Maior Ticket Médio"
+   ],
+   [
+    "m:Ticket Médio (Produto Maior Ticket Médio)",
+    "m:Ticket Médio"
+   ],
+   [
+    "m:Ticket Médio (Produto Maior Ticket Médio)",
+    "c:dim_product[Produto]"
+   ],
+   [
+    "m:Produto Maior Ticket Médio (Texto)",
+    "m:Produto Maior Ticket Médio"
+   ],
+   [
+    "m:Produto Maior Ticket Médio (Texto)",
+    "m:Ticket Médio (Produto Maior Ticket Médio)"
+   ],
+   [
+    "m:Produto Maior Ticket Médio (Legenda)",
+    "m:Ticket Médio (Produto Maior Ticket Médio)"
+   ],
+   [
+    "m:Receita Bruta",
+    "c:fact_sales[gross_revenue]"
+   ],
+   [
+    "m:Receita Líquida",
+    "c:fact_sales[net_revenue]"
+   ],
+   [
+    "m:Número de Pedidos",
+    "c:fact_sales[sales_order_id]"
+   ],
+   [
+    "m:Itens Vendidos",
+    "c:fact_sales[order_quantity]"
+   ],
+   [
+    "m:Ticket Médio",
+    "m:Número de Pedidos"
+   ],
+   [
+    "m:Ticket Médio",
+    "m:Receita Líquida"
+   ],
+   [
+    "m:Taxa de Desconto",
+    "m:Receita Bruta"
+   ],
+   [
+    "m:Taxa de Desconto",
+    "c:fact_sales[discount_amount]"
+   ],
+   [
+    "m:Mix de Canal",
+    "m:Número de Pedidos"
+   ],
+   [
+    "m:Mix de Canal",
+    "c:fact_sales[channel]"
+   ],
+   [
+    "m:Taxa de Recorrência",
+    "c:fact_sales[customer_key]"
+   ],
+   [
+    "m:Taxa de Recorrência",
+    "c:fact_sales[sales_order_id]"
+   ],
+   [
+    "m:Data da Venda",
+    "c:dim_product[Produto]"
+   ],
+   [
+    "m:Data da Venda",
+    "c:fact_sales[order_date]"
+   ],
+   [
+    "m:Canal Predominante",
+    "m:Receita Líquida"
+   ],
+   [
+    "m:Canal Predominante",
+    "c:fact_sales[channel]"
+   ],
+   [
+    "m:Valor",
+    "m:Receita Líquida"
+   ],
+   [
+    "m:Quantidade",
+    "m:Itens Vendidos"
+   ],
+   [
+    "m:Título Receita por Mês",
+    "c:Métrica (Receita/Pedidos)[Métrica (Receita/Pedidos) Fields]"
+   ],
+   [
+    "m:Título Cartão",
+    "c:Métrica (Cartão)[Métrica (Cartão) Fields]"
+   ]
+  ]
+ }
+}

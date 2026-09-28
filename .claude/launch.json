@@ -8,6 +8,12 @@
       "port": 8765
     },
     {
+      "name": "ae-materials-teste",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8767"],
+      "port": 8767
+    },
+    {
       "name": "entregaveis",
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8766", "--directory", "Desafio/entregaveis"],

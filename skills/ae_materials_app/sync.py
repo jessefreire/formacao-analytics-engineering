@@ -22,6 +22,9 @@ TEMPLATE = Path(__file__).parent / "templates" / "index.html.j2"
 FILES_JSON = ROOT / "files.json"
 VERSION_JSON = ROOT / "version.json"
 GRAFO_JSON = ROOT / "grafo.json"
+SKILLS_JSON = ROOT / "skills.json"
+# Skills que vieram do curso; as demais foram criadas na formação (desafio e plataforma).
+SKILLS_DO_CURSO = {"ae-fullflow", "ae_materials_app", "dbt-packages-tests"}
 GRAFO_BASE = Path(__file__).parent / "grafo_base.json"
 
 # O projeto do desafio e um repositorio aninhado, ignorado pelo git da formacao.
@@ -218,6 +221,57 @@ def discover_files() -> List[Dict[str, Any]]:
             "size": path.stat().st_size,
         })
 
+    # --- Raio-X dos modelos (gerados pela skill pbi-raio-x em raio-x/*.json) ---
+    for rx in sorted((ROOT / "raio-x").glob("*.json")):
+        try:
+            modelo = json.loads(rx.read_text(encoding="utf-8")).get("modelo") or rx.stem
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            print(f"   [SYNC] Aviso: {rx.name} nao e JSON valido, ignorado.")
+            continue
+        files.append({
+            "id": "raiox_" + re.sub(r'[^a-z0-9]+', '_', rx.stem.lower()).strip('_'),
+            "label": modelo,
+            "title": f"Raio-X — {modelo}",
+            "path": rx.relative_to(ROOT).as_posix(),
+            "cat": "Raio-X",
+            "view": "raiox",
+            "done": True,
+            "module": "raiox",
+            "sort": -0.5,
+            "size": rx.stat().st_size,
+        })
+
+    # --- Biblioteca de skills (entrada sintetica; o skills.json e gerado no main) ---
+    if any((ROOT / "skills").glob("*/SKILL.md")):
+        files.append({
+            "id": "biblioteca",
+            "label": "Biblioteca de skills",
+            "title": "Biblioteca de skills",
+            "path": SKILLS_JSON.relative_to(ROOT).as_posix(),
+            "cat": "Skills e MCP",
+            "view": "biblioteca",
+            "done": True,
+            "module": "skills",
+            "sort": 99.9,   # 99.9 < 100 => a tela vem antes dos SKILL.md, mesma secao
+            "size": 0,
+        })
+
+    # --- Kit visual (regras no espelho skills/, que o servidor e o GitHub enxergam) ---
+    kit = ROOT / "skills" / "ae_materials_app" / "kit_visual.json"
+    if kit.exists():
+        files.append({
+            "id": "kit_visual",
+            "label": "Kit visual",
+            "title": "Kit visual — tema e fundo para Power BI",
+            "path": kit.relative_to(ROOT).as_posix(),
+            "cat": "Mapa",
+            "view": "kit",
+            "done": True,
+            "module": "mapa",
+            "sort": -0.9,
+            "size": kit.stat().st_size,
+        })
+
     # --- Grafo (entrada sintetica; o grafo.json e gerado no main) ---
     if GRAFO_BASE.exists():
         files.append({
@@ -355,6 +409,56 @@ def write_files_json(files: List[Dict[str, Any]]):
     FILES_JSON.write_text(json.dumps(files, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def ler_frontmatter(path: Path) -> Dict[str, str]:
+    """Le o bloco entre '---' do SKILL.md: pares chave: valor, com valor multilinha
+    (indentado ou em bloco '>'/'|') juntado numa linha so."""
+    linhas = path.read_text(encoding="utf-8").splitlines()
+    if not linhas or linhas[0].strip() != "---":
+        return {}
+    dados, chave = {}, None
+    for linha in linhas[1:]:
+        if linha.strip() == "---":
+            break
+        m = re.match(r'^([A-Za-z_][\w-]*):\s*(.*)$', linha)
+        if m and not linha.startswith((" ", "\t")):
+            chave, valor = m.group(1), m.group(2).strip()
+            dados[chave] = "" if valor in (">", "|", ">-", "|-") else valor.strip('"')
+        elif chave and linha.strip():
+            dados[chave] = (dados[chave] + " " + linha.strip()).strip()
+    return dados
+
+
+def write_skills_json(files: List[Dict[str, Any]]):
+    """Gera skills.json para a tela Biblioteca, a partir do frontmatter de skills/*/SKILL.md."""
+    ids = {f["id"] for f in files}
+    skills = []
+    for path in sorted((ROOT / "skills").glob("*/SKILL.md")):
+        pasta = path.parent.name
+        fm = ler_frontmatter(path)
+        descricao = fm.get("description", "")
+        if not descricao:
+            # Skills do curso nao tem frontmatter: a descricao e a primeira citacao '> ...'
+            citacao = next((l[1:].strip() for l in path.read_text(encoding="utf-8").splitlines()
+                            if l.startswith(">") and not l.startswith(">>")), "")
+            descricao = re.sub(r'\*\*|`', '', citacao)
+        gatilhos = re.findall(r'["“]([^"”]{3,60})["”]', descricao)
+        fid = "skill_" + _slug(pasta)
+        skills.append({
+            "nome": fm.get("name") or pasta,
+            "pasta": pasta,
+            "descricao": re.sub(r'\s+', ' ', descricao).strip(),
+            "gatilhos": gatilhos[:8],
+            "origem": "curso" if pasta in SKILLS_DO_CURSO else "formação",
+            "arquivo": fid if fid in ids else None,
+            "instalar": {
+                "bash": f"cp -r skills/{pasta} ~/.claude/skills/",
+                "powershell": f"Copy-Item -Recurse skills\\{pasta} $HOME\\.claude\\skills\\",
+            },
+        })
+    SKILLS_JSON.write_text(json.dumps(skills, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"   {len(skills)} skills")
+
+
 def _slug(s: str) -> str:
     return re.sub(r'[^a-z0-9]+', '_', s.lower()).strip('_')
 
@@ -459,6 +563,9 @@ def main():
 
     print("[SYNC] Gerando grafo.json...")
     write_grafo_json(files)
+
+    print("[SYNC] Gerando skills.json...")
+    write_skills_json(files)
 
     print("[SYNC] Gerando version.json...")
     ver = write_version_json()

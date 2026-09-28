@@ -1,0 +1,198 @@
+[
+ {
+  "nome": "ae-fullflow",
+  "pasta": "ae-fullflow",
+  "descricao": "Fluxo ponta a ponta de um Analytics Engineer: Databricks → SQL → dbt → GitHub → Power BI → Figma/SVG → Tema JSON.",
+  "gatilhos": [],
+  "origem": "curso",
+  "arquivo": "skill_ae_fullflow",
+  "instalar": {
+   "bash": "cp -r skills/ae-fullflow ~/.claude/skills/",
+   "powershell": "Copy-Item -Recurse skills\\ae-fullflow $HOME\\.claude\\skills\\"
+  }
+ },
+ {
+  "nome": "ae_materials_app",
+  "pasta": "ae_materials_app",
+  "descricao": "Automatiza descoberta e sincronização dos materiais do curso (resumos, decorebas, configs) no index.html do visualizador local.",
+  "gatilhos": [],
+  "origem": "curso",
+  "arquivo": "skill_ae_materials_app",
+  "instalar": {
+   "bash": "cp -r skills/ae_materials_app ~/.claude/skills/",
+   "powershell": "Copy-Item -Recurse skills\\ae_materials_app $HOME\\.claude\\skills\\"
+  }
+ },
+ {
+  "nome": "databricks-ingestao",
+  "pasta": "databricks-ingestao",
+  "descricao": "Carrega arquivos brutos (CSV/TSV, inclusive sem cabeçalho) num schema do Databricks a partir do DDL de origem, com tipos corretos, carga idempotente e conferências de contagem, órfãos, nulos e valor de aceite. Use quando o usuário pedir \"sobe esses dados no Databricks\", \"ingestão\", \"carga da camada bruta\", \"criar as tabelas raw\", ou mencionar install.sql/DDL + arquivos de dados.",
+  "gatilhos": [
+   "sobe esses dados no Databricks",
+   "ingestão",
+   "carga da camada bruta",
+   "criar as tabelas raw"
+  ],
+  "origem": "formação",
+  "arquivo": "skill_databricks_ingestao",
+  "instalar": {
+   "bash": "cp -r skills/databricks-ingestao ~/.claude/skills/",
+   "powershell": "Copy-Item -Recurse skills\\databricks-ingestao $HOME\\.claude\\skills\\"
+  }
+ },
+ {
+  "nome": "dbt-modelagem-dimensional",
+  "pasta": "dbt-modelagem-dimensional",
+  "descricao": "Decide e implementa o modelo dimensional de um projeto dbt — grão da fato, dimensões, ponte muitos-para-muitos com allocation_factor, membros sintéticos -1, atributo vs. métrica e dimensão degenerada. Use quando o usuário pedir \"modela a fato\", \"qual o grão\", \"star schema\", \"como tratar muitos-para-muitos\", \"bridge table\", \"desenha o modelo conceitual\", ou antes de escrever os modelos de marts.",
+  "gatilhos": [
+   "modela a fato",
+   "qual o grão",
+   "star schema",
+   "como tratar muitos-para-muitos",
+   "bridge table",
+   "desenha o modelo conceitual"
+  ],
+  "origem": "formação",
+  "arquivo": "skill_dbt_modelagem_dimensional",
+  "instalar": {
+   "bash": "cp -r skills/dbt-modelagem-dimensional ~/.claude/skills/",
+   "powershell": "Copy-Item -Recurse skills\\dbt-modelagem-dimensional $HOME\\.claude\\skills\\"
+  }
+ },
+ {
+  "nome": "dbt-packages-tests",
+  "pasta": "dbt-packages-tests",
+  "descricao": "Esta skill documenta todo o processo de aprendizado sobre packages no dbt, testes genéricos com dbt_utils, erros comuns e como resolvê-los. Criada a partir de erros reais durante a Formação AE (Indicium).",
+  "gatilhos": [],
+  "origem": "curso",
+  "arquivo": "skill_dbt_packages_tests",
+  "instalar": {
+   "bash": "cp -r skills/dbt-packages-tests ~/.claude/skills/",
+   "powershell": "Copy-Item -Recurse skills\\dbt-packages-tests $HOME\\.claude\\skills\\"
+  }
+ },
+ {
+  "nome": "entrega-a-partir-do-briefing",
+  "pasta": "entrega-a-partir-do-briefing",
+  "descricao": "Monta o pacote final de um projeto a partir do próprio briefing — mapa \"o briefing pede × onde está\", PDFs gerados dos .md, arquivo de links públicos, pasta de entregáveis limpa e o ZIP no nome e limite exigidos. Use quando o usuário disser \"vamos submeter\", \"monta a entrega\", \"o que falta entregar\", \"gera o zip\", \"confere se está tudo\", ou colar a seção de submissão de um briefing.",
+  "gatilhos": [
+   "o briefing pede × onde está",
+   "vamos submeter",
+   "monta a entrega",
+   "o que falta entregar",
+   "gera o zip",
+   "confere se está tudo"
+  ],
+  "origem": "formação",
+  "arquivo": "skill_entrega_a_partir_do_briefing",
+  "instalar": {
+   "bash": "cp -r skills/entrega-a-partir-do-briefing ~/.claude/skills/",
+   "powershell": "Copy-Item -Recurse skills\\entrega-a-partir-do-briefing $HOME\\.claude\\skills\\"
+  }
+ },
+ {
+  "nome": "estudo-video",
+  "pasta": "estudo-video",
+  "descricao": "Transforma um vídeo do YouTube em material de estudo da formação — lê a transcrição, escreve um resumo em palavras próprias (com os momentos-chave e links com tempo) na pasta do módulo certo e sincroniza a plataforma para ele aparecer na navegação e no grafo. Use quando o usuário disser \"estuda esse vídeo\", \"resume essa aula\", \"transforma esse vídeo em material\", \"coloca esse vídeo na formação\", ou colar um link do YouTube pedindo resumo ou decoreba para estudar.",
+  "gatilhos": [
+   "estuda esse vídeo",
+   "resume essa aula",
+   "transforma esse vídeo em material",
+   "coloca esse vídeo na formação"
+  ],
+  "origem": "formação",
+  "arquivo": "skill_estudo_video",
+  "instalar": {
+   "bash": "cp -r skills/estudo-video ~/.claude/skills/",
+   "powershell": "Copy-Item -Recurse skills\\estudo-video $HOME\\.claude\\skills\\"
+  }
+ },
+ {
+  "nome": "pbi-apresentacao",
+  "pasta": "pbi-apresentacao",
+  "descricao": "Abre um .pbip/.pbix no Power BI Desktop em modo apresentação — tela cheia, sem ribbon, painéis, abas, barra de status, ícones de hover ou bordas de seleção — para gravar vídeo ou apresentar sem Power BI Service. Use quando o usuário quiser \"mostrar o dashboard sem a interface\", \"gravar o dashboard\", \"apresentar sem publicar\", \"modo leitura no Desktop\", ou não tiver conta no Service.",
+  "gatilhos": [
+   "mostrar o dashboard sem a interface",
+   "gravar o dashboard",
+   "apresentar sem publicar",
+   "modo leitura no Desktop"
+  ],
+  "origem": "formação",
+  "arquivo": "skill_pbi_apresentacao",
+  "instalar": {
+   "bash": "cp -r skills/pbi-apresentacao ~/.claude/skills/",
+   "powershell": "Copy-Item -Recurse skills\\pbi-apresentacao $HOME\\.claude\\skills\\"
+  }
+ },
+ {
+  "nome": "pbi-licoes-pbir",
+  "pasta": "pbi-licoes-pbir",
+  "descricao": "Armadilhas conhecidas de Power BI (PBIR/PBIP, DAX, field parameters, Desktop) e como resolver cada uma — consulta rápida antes de editar ou quando algo \"valida mas não funciona\". Use quando um visual renderiza errado, o ranking mostra números estranhos, o título dinâmico dá erro, o PBIP não abre, a formatação não aplica, ou ao começar uma edição de PBIR.",
+  "gatilhos": [
+   "valida mas não funciona"
+  ],
+  "origem": "formação",
+  "arquivo": "skill_pbi_licoes_pbir",
+  "instalar": {
+   "bash": "cp -r skills/pbi-licoes-pbir ~/.claude/skills/",
+   "powershell": "Copy-Item -Recurse skills\\pbi-licoes-pbir $HOME\\.claude\\skills\\"
+  }
+ },
+ {
+  "nome": "pbi-mockup-design",
+  "pasta": "pbi-mockup-design",
+  "descricao": "Cria o mockup de um dashboard Power BI no canvas /design a partir das perguntas de negócio e KPIs — ou direto de uma entrevista/reunião com o cliente (texto, arquivo ou vídeo), passando por um levantamento validado — baixa fidelidade, depois alta fidelidade, já com as medidas do Power BI (1280px), fundos exportáveis como SVG e cada interação mapeada para o objeto real do PBI. Use quando o usuário pedir \"faz o mockup do dashboard\", \"wireframe\", \"protótipo do relatório\", \"desenha as telas antes do Power BI\", \"monta o mockup a partir dessa entrevista\", \"transforma essa reunião em dashboard\", ou precisar do JPEG do mockup.",
+  "gatilhos": [
+   "faz o mockup do dashboard",
+   "wireframe",
+   "protótipo do relatório",
+   "desenha as telas antes do Power BI",
+   "monta o mockup a partir dessa entrevista",
+   "transforma essa reunião em dashboard"
+  ],
+  "origem": "formação",
+  "arquivo": "skill_pbi_mockup_design",
+  "instalar": {
+   "bash": "cp -r skills/pbi-mockup-design ~/.claude/skills/",
+   "powershell": "Copy-Item -Recurse skills\\pbi-mockup-design $HOME\\.claude\\skills\\"
+  }
+ },
+ {
+  "nome": "pbi-raio-x",
+  "pasta": "pbi-raio-x",
+  "descricao": "Gera o Raio-X de um modelo Power BI (PBIP/TMDL) — tabelas classificadas (fato, dimensão, ponte, calendário, field parameter, auxiliar), medidas com DAX e descrição, árvore de dependência e impacto de cada medida, uso no relatório, e achados de boas práticas com nota 0–100 — para ver na tela Raio-X da plataforma da formação. Use quando o usuário pedir \"raio-x do modelo\", \"audita o modelo\", \"o modelo está pronto pra produção?\", \"onde essa medida é usada?\", \"o que quebra se eu mudar essa medida?\", \"quais medidas não são usadas\", ou apontar uma pasta .SemanticModel.",
+  "gatilhos": [
+   "raio-x do modelo",
+   "audita o modelo",
+   "o modelo está pronto pra produção?",
+   "onde essa medida é usada?",
+   "o que quebra se eu mudar essa medida?",
+   "quais medidas não são usadas"
+  ],
+  "origem": "formação",
+  "arquivo": "skill_pbi_raio_x",
+  "instalar": {
+   "bash": "cp -r skills/pbi-raio-x ~/.claude/skills/",
+   "powershell": "Copy-Item -Recurse skills\\pbi-raio-x $HOME\\.claude\\skills\\"
+  }
+ },
+ {
+  "nome": "reconciliacao-numeros",
+  "pasta": "reconciliacao-numeros",
+  "descricao": "Confere que o mesmo número bate na fonte (SQL), no dbt (teste) e no BI (DAX), e investiga divergências e \"vazios\" antes de concluir que há bug. Use quando o usuário disser \"esse número tá certo?\", \"não bate\", \"deu vazio no filtro\", \"valida o dashboard\", \"confere com a fonte\", ou antes de declarar um dashboard/entrega pronto.",
+  "gatilhos": [
+   "vazios",
+   "esse número tá certo?",
+   "não bate",
+   "deu vazio no filtro",
+   "valida o dashboard",
+   "confere com a fonte"
+  ],
+  "origem": "formação",
+  "arquivo": "skill_reconciliacao_numeros",
+  "instalar": {
+   "bash": "cp -r skills/reconciliacao-numeros ~/.claude/skills/",
+   "powershell": "Copy-Item -Recurse skills\\reconciliacao-numeros $HOME\\.claude\\skills\\"
+  }
+ }
+]

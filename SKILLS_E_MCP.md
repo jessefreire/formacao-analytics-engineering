@@ -72,6 +72,18 @@ Cada uma nasceu de um problema que custou tempo de verdade no desafio.
 | `pbi-apresentacao` | gravar ou apresentar sem Power BI Service | abre o PBIP/PBIX no Desktop em tela cheia sem a interface de edição (app em `D:\Documentos\pbi-apresentacao`) |
 | `entrega-a-partir-do-briefing` | fechar e submeter o projeto | tabela "o briefing pede × onde está", PDFs gerados dos `.md`, links testados sem login, ZIP no nome da plataforma |
 
+### 5.1 Skills da plataforma (skills fazem o trabalho, a plataforma mostra)
+
+| Skill | Quando usar | Onde aparece na plataforma |
+|---|---|---|
+| `pbi-raio-x` | auditar um PBIP antes de publicar, ver onde uma medida é usada e o que quebra se ela mudar | **Raio-X**: nota 0–100, achados com correção, tabelas classificadas, medidas e grafo de dependências |
+| `estudo-video` | transformar um vídeo do YouTube em resumo de estudo | o `resumo_*.md` entra no módulo certo da navegação e no grafo |
+| `pbi-mockup-design` (ampliada) | montar o mockup direto de uma entrevista ou reunião com o cliente | passo 0 "Levantamento": perguntas, KPIs, evidência da fala e lacunas, validados antes do desenho |
+
+Telas sem skill própria: **Kit visual** (tema `.json` e fundo `.svg` do Power BI, com contraste
+WCAG conferido antes do download; regras em `skills/ae_materials_app/kit_visual.json`) e
+**Biblioteca de skills** (um card por skill com o comando de instalação).
+
 ---
 
 ## 6. MCP — `powerbi-modeling-mcp`

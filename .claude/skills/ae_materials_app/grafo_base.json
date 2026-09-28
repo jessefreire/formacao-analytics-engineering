@@ -82,6 +82,25 @@
       "rotulo": "Slides"
     },
     {
+      "id": "s_raio_x",
+      "tipo": "skill",
+      "rotulo": "pbi-raio-x",
+      "arquivo": "skill_pbi_raio_x",
+      "nova": true
+    },
+    {
+      "id": "s_estudo_video",
+      "tipo": "skill",
+      "rotulo": "estudo-video",
+      "arquivo": "skill_estudo_video",
+      "nova": true
+    },
+    {
+      "id": "t_youtube",
+      "tipo": "ferramenta",
+      "rotulo": "YouTube (transcrição)"
+    },
+    {
       "id": "e1",
       "tipo": "etapa",
       "rotulo": "1 · KPIs e perguntas",
@@ -677,6 +696,10 @@
     [
       "cat:Config",
       "t_git"
-    ]
+    ],
+    ["cat:Raio-X", "s_raio_x"], ["s_raio_x", "t_powerbi"], ["e7", "s_raio_x"],
+    ["file:kit_visual", "t_powerbi"], ["file:kit_visual", "s_mockup"], ["e6", "file:kit_visual"],
+    ["s_estudo_video", "t_youtube"], ["s_estudo_video", "s_materials"], ["s_mockup", "t_youtube"],
+    ["mod:9", "s_estudo_video"]
   ]
 }

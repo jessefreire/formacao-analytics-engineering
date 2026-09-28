@@ -26,6 +26,11 @@ Ativas como globais em `~/.claude/skills/`; aqui fica a cópia versionada.
 | **reconciliacao-numeros** | Bater o número em SQL, dbt e DAX | investigar divergência e filtro vazio |
 | **pbi-apresentacao** | Dashboard em tela cheia sem a interface do Desktop | gravar ou apresentar sem Power BI Service |
 | **entrega-a-partir-do-briefing** | Montar e conferir o pacote de entrega | "pede × onde está", PDFs, links públicos, ZIP |
+| **pbi-raio-x** | Raio-X do modelo Power BI | nota, achados, dependências e impacto das medidas — tela Raio-X |
+| **estudo-video** | Vídeo do YouTube vira resumo da formação | resumo em palavras próprias, com momentos e links com tempo |
+
+A `pbi-mockup-design` ganhou o modo **entrevista → levantamento → mockup**
+(`references/levantamento.md` e `templates/levantamento.md`).
 
 ## Como Usar
 

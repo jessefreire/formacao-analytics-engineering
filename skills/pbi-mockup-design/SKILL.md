@@ -1,7 +1,9 @@
 ---
 name: pbi-mockup-design
-description: Cria o mockup de um dashboard Power BI no canvas /design a partir das perguntas de negócio e KPIs — baixa fidelidade, depois alta fidelidade, já com as medidas do Power BI (1280px), fundos exportáveis como SVG e cada interação mapeada para o objeto real do PBI. Use quando o usuário pedir "faz o mockup do dashboard", "wireframe", "protótipo do relatório", "desenha as telas antes do Power BI", ou precisar do JPEG do mockup.
+description: Cria o mockup de um dashboard Power BI no canvas /design a partir das perguntas de negócio e KPIs — ou direto de uma entrevista/reunião com o cliente (texto, arquivo ou vídeo), passando por um levantamento validado — baixa fidelidade, depois alta fidelidade, já com as medidas do Power BI (1280px), fundos exportáveis como SVG e cada interação mapeada para o objeto real do PBI. Use quando o usuário pedir "faz o mockup do dashboard", "wireframe", "protótipo do relatório", "desenha as telas antes do Power BI", "monta o mockup a partir dessa entrevista", "transforma essa reunião em dashboard", ou precisar do JPEG do mockup.
 ---
+
+> Autoria: Jessé Freire · Indicium AI.
 
 # /pbi-mockup-design
 
@@ -10,7 +12,16 @@ Encaixa entre `powerbi-report-planning` (o que construir) e `powerbi-report-auth
 
 ## Processo
 
-1. **Régua de cobertura primeiro**: listar perguntas e indicadores. Cada um precisa de um
+0. **Levantamento (quando a entrada é uma entrevista ou reunião)**. Aceita três formas:
+   texto colado; arquivo `.txt`/`.md` de transcrição ou ata; ou link de vídeo, lido com
+   `python ~/.claude/skills/youtube-analyzer/scripts/get_transcript.py "<url>"` (saída
+   no scratchpad, nunca no repositório). Preencher `templates/levantamento.md` seguindo
+   `references/levantamento.md`: público e decisão, perguntas numeradas, KPIs com os seis
+   atributos, filtros, restrições, **evidência curta** da fala para cada pergunta, e
+   lacunas. **Mostrar o levantamento ao usuário e só seguir depois da validação** — é o
+   ponto em que um mal-entendido custa minutos em vez de um dashboard refeito.
+   Sem entrevista (perguntas já definidas), pular para o passo 1.
+1. **Régua de cobertura primeiro** (a partir do levantamento, quando houver): listar perguntas e indicadores. Cada um precisa de um
    visual; cada aprofundamento, de um **filtro ou toggle** — não de tela nova.
 2. **Baixa fidelidade (P&B)**: decide o que mostrar e a ordem de leitura (KPIs → gráficos →
    tabela). Sem cor. Uma página por grupo de pergunta; capa se houver 3+ páginas de conteúdo.

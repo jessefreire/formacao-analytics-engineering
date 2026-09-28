@@ -64,6 +64,34 @@
    "arquivo": "setup"
   },
   {
+   "id": "cat_mapa",
+   "tipo": "modulo",
+   "rotulo": "Mapa"
+  },
+  {
+   "id": "f_kit_visual",
+   "tipo": "material",
+   "rotulo": "Kit visual — tema e fundo para Power BI",
+   "arquivo": "kit_visual"
+  },
+  {
+   "id": "cat_raio_x",
+   "tipo": "modulo",
+   "rotulo": "Raio-X"
+  },
+  {
+   "id": "f_raiox_desafio_adventure_works",
+   "tipo": "material",
+   "rotulo": "Raio-X — Desafio Adventure Works",
+   "arquivo": "raiox_desafio_adventure_works"
+  },
+  {
+   "id": "f_raiox_treino_banvic",
+   "tipo": "material",
+   "rotulo": "Raio-X — Treino BanVic",
+   "arquivo": "raiox_treino_banvic"
+  },
+  {
    "id": "cat_m_dulo_0_banco_de_dados_banvic",
    "tipo": "modulo",
    "rotulo": "Módulo 0 - Banco de Dados BanVic"
@@ -541,6 +569,12 @@
    "rotulo": "Skills e MCP"
   },
   {
+   "id": "f_biblioteca",
+   "tipo": "material",
+   "rotulo": "Biblioteca de skills",
+   "arquivo": "biblioteca"
+  },
+  {
    "id": "f_skills_mcp",
    "tipo": "material",
    "rotulo": "Skills e MCP — o kit de Analytics Engineer com IA",
@@ -583,6 +617,12 @@
    "arquivo": "skill_entrega_a_partir_do_briefing"
   },
   {
+   "id": "f_skill_estudo_video",
+   "tipo": "material",
+   "rotulo": "/estudo-video",
+   "arquivo": "skill_estudo_video"
+  },
+  {
    "id": "f_mcp_readme",
    "tipo": "material",
    "rotulo": "MCP Servers",
@@ -605,6 +645,12 @@
    "tipo": "material",
    "rotulo": "/pbi-mockup-design",
    "arquivo": "skill_pbi_mockup_design"
+  },
+  {
+   "id": "f_skill_pbi_raio_x",
+   "tipo": "material",
+   "rotulo": "/pbi-raio-x",
+   "arquivo": "skill_pbi_raio_x"
   },
   {
    "id": "f_skill_reconciliacao_numeros",
@@ -669,6 +715,25 @@
    "id": "t_slides",
    "tipo": "ferramenta",
    "rotulo": "Slides"
+  },
+  {
+   "id": "s_raio_x",
+   "tipo": "skill",
+   "rotulo": "pbi-raio-x",
+   "arquivo": "skill_pbi_raio_x",
+   "nova": true
+  },
+  {
+   "id": "s_estudo_video",
+   "tipo": "skill",
+   "rotulo": "estudo-video",
+   "arquivo": "skill_estudo_video",
+   "nova": true
+  },
+  {
+   "id": "t_youtube",
+   "tipo": "ferramenta",
+   "rotulo": "YouTube (transcrição)"
   },
   {
    "id": "e1",
@@ -874,6 +939,18 @@
   [
    "f_setup",
    "cat_config"
+  ],
+  [
+   "f_kit_visual",
+   "cat_mapa"
+  ],
+  [
+   "f_raiox_desafio_adventure_works",
+   "cat_raio_x"
+  ],
+  [
+   "f_raiox_treino_banvic",
+   "cat_raio_x"
   ],
   [
    "f_oficial_0_banvic_queries",
@@ -1144,6 +1221,10 @@
    "cat_desafio_projeto"
   ],
   [
+   "f_biblioteca",
+   "cat_skills_e_mcp"
+  ],
+  [
    "f_skills_mcp",
    "cat_skills_e_mcp"
   ],
@@ -1172,6 +1253,10 @@
    "cat_skills_e_mcp"
   ],
   [
+   "f_skill_estudo_video",
+   "cat_skills_e_mcp"
+  ],
+  [
    "f_mcp_readme",
    "cat_skills_e_mcp"
   ],
@@ -1185,6 +1270,10 @@
   ],
   [
    "f_skill_pbi_mockup_design",
+   "cat_skills_e_mcp"
+  ],
+  [
+   "f_skill_pbi_raio_x",
    "cat_skills_e_mcp"
   ],
   [
@@ -1202,6 +1291,14 @@
   [
    "t_claude",
    "f_skills_mcp"
+  ],
+  [
+   "s_raio_x",
+   "f_skill_pbi_raio_x"
+  ],
+  [
+   "s_estudo_video",
+   "f_skill_estudo_video"
   ],
   [
    "e1",
@@ -1726,6 +1823,46 @@
   [
    "cat_config",
    "t_git"
+  ],
+  [
+   "cat_raio_x",
+   "s_raio_x"
+  ],
+  [
+   "s_raio_x",
+   "t_powerbi"
+  ],
+  [
+   "e7",
+   "s_raio_x"
+  ],
+  [
+   "f_kit_visual",
+   "t_powerbi"
+  ],
+  [
+   "f_kit_visual",
+   "s_mockup"
+  ],
+  [
+   "e6",
+   "f_kit_visual"
+  ],
+  [
+   "s_estudo_video",
+   "t_youtube"
+  ],
+  [
+   "s_estudo_video",
+   "s_materials"
+  ],
+  [
+   "s_mockup",
+   "t_youtube"
+  ],
+  [
+   "cat_m_dulo_9_ai_powered_productivity",
+   "s_estudo_video"
   ]
  ]
 }

@@ -16,6 +16,8 @@
 | **Projeto do desafio e skills** | Lista o README e os `docs/` do repo aninhado do desafio (caminho no GitHub público) e os `skills/*/SKILL.md` |
 | **Comando único** | `python -m ae_materials_app.sync` |
 
+| **Telas de painel** | `biblioteca` (lê `skills.json`, gerado do frontmatter de `skills/*/SKILL.md`), `raiox` (um item por `raio-x/*.json`, gerado pela skill `pbi-raio-x`) e `kit` (regras em `skills/ae_materials_app/kit_visual.json`) |
+
 Skill ou etapa nova no grafo: adicionar o nó e as ligações em `grafo_base.json` e rodar o sync.
 Ligação para nó inexistente vira aviso no console, não quebra o sync.
 
