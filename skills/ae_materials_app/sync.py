@@ -562,6 +562,93 @@ def write_version_json():
     return info or {"sha": "", "short": "", "date": "", "message": "", "repo": ""}
 
 
+ARTIFACT_DIR = ROOT / "_artifact"
+ARTIFACT_URL_FILE = ROOT / ".artifact-url"
+
+
+def montar_pacote_artifact(files: List[Dict[str, Any]]) -> Dict[str, str]:
+    """Monta `_artifact/` para publicar a plataforma como Artifact privado.
+
+    Cada material vira `c/<id>.<ext>` (nome ASCII: acento, espaço e colchete
+    complicam a publicação) e o `FILES` do pacote aponta para esse caminho. Os docs
+    do desafio, que na plataforma local vêm do GitHub, são copiados da pasta local:
+    o Artifact não depende de rede além dos CDNs. Devolve o mapa
+    `caminho publicado -> arquivo de origem` para o campo `files` da ferramenta.
+    """
+    import shutil
+    if ARTIFACT_DIR.exists():
+        shutil.rmtree(ARTIFACT_DIR)
+    (ARTIFACT_DIR / "c").mkdir(parents=True)
+
+    mapa: Dict[str, str] = {}
+    novos = []
+    for f in files:
+        f = dict(f)
+        origem = None
+        if f["path"].startswith(DESAFIO_RAW):
+            origem = DESAFIO_REPO / f["path"][len(DESAFIO_RAW):]
+        elif f["path"]:
+            origem = ROOT / f["path"]
+        if origem is not None:
+            if not origem.is_file():
+                print(f"   [ARTIFACT] Aviso: sem arquivo de origem para {f['id']}: {origem}")
+                continue
+            publicado = f"c/{f['id']}{origem.suffix}"
+            shutil.copyfile(origem, ARTIFACT_DIR / publicado)
+            mapa[publicado] = str(ARTIFACT_DIR / publicado)
+            f["path"] = publicado
+        novos.append(f)
+
+    # JSONs de apoio das telas (grafo, biblioteca, raio-x) e o rótulo do commit
+    apoio = [GRAFO_JSON, SKILLS_JSON, VERSION_JSON] + sorted((ROOT / "raio-x").glob("*.json"))
+    for arq in apoio:
+        if arq.is_file():
+            rel = arq.relative_to(ROOT).as_posix()
+            destino = ARTIFACT_DIR / rel
+            destino.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(arq, destino)
+            mapa[rel] = str(destino)
+
+    # Tudo embutido no HTML: não dependemos de o Artifact servir arquivos ao lado da página.
+    # O `fetch` da plataforma é interceptado e responde do dicionário quando o caminho é conhecido.
+    conteudo = {rel: Path(orig).read_text(encoding="utf-8") for rel, orig in mapa.items()}
+    embutido = json.dumps(conteudo, ensure_ascii=False).replace("</", "<\\/")
+    calco = (
+        "const MODO_ARTIFACT = true;\n"
+        f"const CONTEUDO = {embutido};\n"
+        "const _fetchReal = window.fetch.bind(window);\n"
+        "window.fetch = (url, opts) => {\n"
+        "  const chave = String(url);\n"
+        "  if (!Object.prototype.hasOwnProperty.call(CONTEUDO, chave)) return _fetchReal(url, opts);\n"
+        "  const tipo = chave.endsWith('.json') ? 'application/json' : 'text/plain; charset=utf-8';\n"
+        "  return Promise.resolve(new Response(CONTEUDO[chave], { status: 200, headers: { 'Content-Type': tipo } }));\n"
+        "};\n"
+    )
+    html = render_index(novos).replace("const FILES = [", calco + "const FILES = [", 1)
+    (ARTIFACT_DIR / "index.html").write_text(html, encoding="utf-8")
+    return mapa
+
+
+def main_artifact():
+    """`sync.py --artifact`: regenera tudo e monta o pacote do Artifact."""
+    main()
+    print("[SYNC] Montando pacote do Artifact...")
+    files = json.loads(FILES_JSON.read_text(encoding="utf-8"))
+    mapa = montar_pacote_artifact(files)
+    ver = json.loads(VERSION_JSON.read_text(encoding="utf-8")) if VERSION_JSON.is_file() else {}
+    rotulo = f"{ver.get('short', '?')} · {ver.get('date', '')}".strip()
+    (ARTIFACT_DIR / "files.map.json").write_text(
+        json.dumps({"label": rotulo, "files": {}}, ensure_ascii=False, indent=2), encoding="utf-8")
+    tam = (ARTIFACT_DIR / "index.html").stat().st_size / 1e6
+    print(f"   Pacote: {ARTIFACT_DIR}/index.html ({len(mapa)} arquivos embutidos, {tam:.1f} MB)")
+    print(f"   Rótulo: {rotulo}")
+    print(f"   Mapa de publicação: {ARTIFACT_DIR / 'files.map.json'}")
+    if ARTIFACT_URL_FILE.is_file():
+        print(f"   Republicar no link guardado em {ARTIFACT_URL_FILE.name}")
+    else:
+        print("   Primeira publicação: guarde a URL em .artifact-url (arquivo ignorado pelo git)")
+
+
 def main():
     print("[SYNC] Descobrindo arquivos...")
     files = discover_files()
@@ -592,4 +679,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    if "--artifact" in sys.argv[1:]:
+        main_artifact()
+    else:
+        main()

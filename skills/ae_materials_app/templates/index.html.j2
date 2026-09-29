@@ -1883,7 +1883,7 @@ async function initVersion() {
     badge.textContent = 'v' + local.short + ' - ' + (local.date || '').slice(5);
     badge.title = (local.message || '') + '\n' + (local.sha || '');
     const seen = localStorage.getItem('ae_seen_version');
-    if (seen && seen !== local.sha) {
+    if (seen && seen !== local.sha && typeof MODO_ARTIFACT === 'undefined') {
       showBanner('Conteudo atualizado localmente (' + local.short + ').', null);
     }
     localStorage.setItem('ae_seen_version', local.sha || '');
@@ -1891,6 +1891,8 @@ async function initVersion() {
   } else {
     badge.textContent = 'v?';
   }
+  // No Artifact não há servidor nem git para comparar: só o rótulo do commit publicado.
+  if (typeof MODO_ARTIFACT !== 'undefined') { document.getElementById('checkUpdates').hidden = true; return; }
   document.getElementById('checkUpdates').addEventListener('click', checkRemote);
   document.getElementById('updateDismiss').addEventListener('click', () => {
     document.getElementById('updateBanner').hidden = true;

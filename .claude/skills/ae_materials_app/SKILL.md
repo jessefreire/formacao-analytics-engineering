@@ -101,6 +101,18 @@ Se os marcadores não existirem, o script tenta substituir `const FILES = [...];
 
 Tokens, regra de contraste, componentes e checklist mobile do template: `references/design-system.md`.
 
+## Artifact privado (`--artifact`)
+
+`python sync.py --artifact` roda o sync normal e monta `_artifact/` (ignorado pelo git). O
+resultado é um único `index.html` com `MODO_ARTIFACT` (sem verificação de versão) e todo o conteúdo
+embutido: materiais, `grafo.json`, `skills.json`, `raio-x/*.json` e `version.json`, servidos por um
+`fetch` interceptado. Os docs do desafio vêm da pasta local, não do GitHub. `files.map.json` guarda o
+rótulo `<hash> · <data>`.
+Publicar só sob pedido, sempre privado, no mesmo link (guardado em `.artifact-url`, fora do git).
+Regras completas na seção "Artifact da plataforma" do `CLAUDE.md`.
+
+---
+
 ---
 
 ## Adicionando novo padrão de arquivo

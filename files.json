@@ -885,7 +885,7 @@
     "done": true,
     "module": "skills",
     "sort": 100,
-    "size": 8497
+    "size": 8743
   },
   {
     "id": "skill_ae_fullflow",
@@ -907,7 +907,7 @@
     "done": true,
     "module": "skills",
     "sort": 100,
-    "size": 4183
+    "size": 5044
   },
   {
     "id": "skill_databricks_ingestao",

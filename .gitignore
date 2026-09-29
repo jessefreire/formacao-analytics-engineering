@@ -81,3 +81,6 @@ version.json
 # ==== Power BI PBIP: cache local e settings da máquina (não versionar) ====
 *.abf
 **/.pbi/localSettings.json
+# ==== Artifact da plataforma (pacote gerado e link privado) ====
+_artifact/
+.artifact-url

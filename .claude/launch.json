@@ -14,6 +14,12 @@
       "port": 8767
     },
     {
+      "name": "ae-artifact-teste",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8768", "--directory", "_artifact"],
+      "port": 8768
+    },
+    {
       "name": "entregaveis",
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8766", "--directory", "Desafio/entregaveis"],

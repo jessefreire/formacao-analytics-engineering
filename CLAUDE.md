@@ -35,6 +35,27 @@ Repositório de formação em Analytics Engineering: curso Indicium AI (módulos
 
 `powerbi-modeling-mcp` — modelagem semântica (tabelas, medidas, relações, DAX). Ver `.mcp.json` e `mcp/README.md`.
 
+## Artifact da plataforma (espelho privado)
+
+A plataforma (`index.html`, gerado pelo `sync.py`) também vive como Artifact, para abrir fácil sem
+subir o servidor local. Regras:
+
+1. **Sempre privado.** Compartilhar é decisão do Jessé, caso a caso; nunca abrir o link por conta própria.
+2. **O git é a fonte de verdade.** O Artifact é espelho gerado: nunca se edita nele.
+3. **Ao mudar template, `sync.py`, materiais ou JSONs da plataforma:** depois do commit, avisar que o
+   Artifact ficou defasado e oferecer a republicação. Publicar só com o pedido do Jessé.
+4. **Republicar no mesmo link**, com rótulo `<hash do commit> · <data>` (vem de `version.json`).
+5. **O link fica fora do repositório** (repositório público): guardar em arquivo local ignorado pelo git.
+6. Só entra o que já é público no repositório; nada da rubrica de correção e nada de cliente real.
+
+Como gerar o pacote: `python .claude/skills/ae_materials_app/sync.py --artifact` monta `_artifact/`
+(ignorado pelo git). O Artifact é **um arquivo só**: `_artifact/index.html` traz todos os materiais
+e JSONs embutidos (a página intercepta o `fetch`), inclusive os docs do desafio, copiados da pasta
+local. `files.map.json` guarda o rótulo `<hash> · <data>`. Publicar apenas o `index.html`.
+
+Estado: publicado em 2026-09-28 (versão 1, rótulo `9a8b1cf · 2026-09-28`); o link está em
+`.artifact-url`. Para atualizar, republicar com `url` = esse link e novo rótulo.
+
 ## Convenções de SQL
 
 Além do code style da Indicium AI (`Desafio/indicium-code-style/`, sqlfluff 1.4.5), vale
